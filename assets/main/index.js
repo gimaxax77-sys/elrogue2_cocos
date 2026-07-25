@@ -865,6 +865,7 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
       var HALF_W = 360;
       var TOP_Y = 600; // 재화바 y(상단)
       var TAB_Y = -600; // 탭바 y(하단)
+      var IDLE_FRAME_SEC = 0.125; // idle 스프라이트 재생 간격(8fps)
 
       var BattleDemo = exports('BattleDemo', (_dec = ccclass('BattleDemo'), _dec(_class = /*#__PURE__*/function (_Component) {
         _inheritsLoose(BattleDemo, _Component);
@@ -1252,6 +1253,7 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
         ;
 
         _proto.addSprite = function addSprite(artKey, x, y, parent, size) {
+          var _this8 = this;
           if (size === void 0) {
             size = 96;
           }
@@ -1263,15 +1265,32 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
           tf.setContentSize(size, size);
           var sp = node.addComponent(Sprite);
           sp.sizeMode = Sprite.SizeMode.CUSTOM;
-          // idle1.png는 가로 스프라이트 스트립(예: 512×128 = 4프레임). 첫 프레임(정사각)만 잘라 표시.
+          // idle1.png는 가로 스프라이트 스트립(예: 768×128 = 6프레임). 정사각 프레임으로 잘라 순환 재생.
           resources.load("art/hero/" + artKey + "/idle1/spriteFrame", SpriteFrame, function (err, frame) {
             if (err || !frame || !sp.isValid) return;
             var tex = frame.texture;
             var h = tex.height || 128; // 프레임 높이 = 정사각 한 변
-            var fr = frame.clone();
-            fr.rect = new Rect(0, 0, h, h); // 첫 프레임만
-            fr.originalSize = new Size(h, h);
-            sp.spriteFrame = fr;
+            var count = Math.max(1, Math.floor((tex.width || h) / h)); // 스트립 프레임 수(4~21, 자산마다 다름)
+            var frames = [];
+            for (var _i = 0; _i < count; _i++) {
+              var fr = frame.clone();
+              fr.rect = new Rect(_i * h, 0, h, h);
+              fr.originalSize = new Size(h, h);
+              frames.push(fr);
+            }
+            sp.spriteFrame = frames[0];
+            if (count === 1) return;
+            var i = 0;
+            // 탭 전환 시 select()의 unscheduleAllCallbacks()가 정리. 로드가 전환 뒤 끝난 경우는 isValid로 자체 정지.
+            var step = function step() {
+              if (!sp.isValid) {
+                _this8.unschedule(step);
+                return;
+              }
+              i = (i + 1) % count;
+              sp.spriteFrame = frames[i];
+            };
+            _this8.schedule(step, IDLE_FRAME_SEC);
           });
           return node;
         };
