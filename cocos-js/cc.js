@@ -43,7 +43,7 @@ System.register([], (function (exports, module) {
         find: find,
         flattenCodeArray: flattenCodeArray,
         floatToHalf: floatToHalf,
-        formerlySerializedAs: formerlySerializedAs$1,
+        formerlySerializedAs: formerlySerializedAs,
         fragmentText: fragmentText,
         getBaselineOffset: getBaselineOffset,
         getEnglishWordPartAtFirst: getEnglishWordPartAtFirst,
@@ -1638,7 +1638,7 @@ System.register([], (function (exports, module) {
         return _cachedProxy;
       }
 
-      var _class$1A;
+      var _class$1y;
       var NonUuidMark = '.';
       var IDGenerator = function () {
         function IDGenerator(category) {
@@ -1651,8 +1651,8 @@ System.register([], (function (exports, module) {
         };
         return IDGenerator;
       }();
-      _class$1A = IDGenerator;
-      IDGenerator.global = new _class$1A('global');
+      _class$1y = IDGenerator;
+      IDGenerator.global = new _class$1y('global');
 
       var tempCIDGenerator = new IDGenerator('TmpCId.');
       var aliasesTag = typeof Symbol === 'undefined' ? '__aliases__' : Symbol('[[Aliases]]');
@@ -4146,7 +4146,7 @@ System.register([], (function (exports, module) {
       }
       legacyCC.v4 = v4;
 
-      var _class$1z;
+      var _class$1x;
       var abs$5 = Math.abs;
       var _max$2 = Math.max;
       var _min$2 = Math.min;
@@ -4762,7 +4762,7 @@ System.register([], (function (exports, module) {
         };
         return Vec3;
       }(ValueType));
-      _class$1z = Vec3;
+      _class$1x = Vec3;
       Vec3.UNIT_X = freezeVec3(1, 0, 0);
       Vec3.UNIT_Y = freezeVec3(0, 1, 0);
       Vec3.UNIT_Z = freezeVec3(0, 0, 1);
@@ -4773,47 +4773,47 @@ System.register([], (function (exports, module) {
       Vec3.ONE = freezeVec3(1, 1, 1);
       Vec3.NEG_ONE = freezeVec3(-1, -1, -1);
       Vec3.slerp = function () {
-        var cacheV1 = new _class$1z();
-        var cacheV2 = new _class$1z();
-        var cacheV3 = new _class$1z();
+        var cacheV1 = new _class$1x();
+        var cacheV2 = new _class$1x();
+        var cacheV3 = new _class$1x();
         return function (out, from, to, t) {
           var EPSILON = 1e-5;
-          var lenFrom = _class$1z.len(from);
-          var lenTo = _class$1z.len(to);
+          var lenFrom = _class$1x.len(from);
+          var lenTo = _class$1x.len(to);
           if (lenFrom < EPSILON || lenTo < EPSILON) {
-            return _class$1z.lerp(out, from, to, t);
+            return _class$1x.lerp(out, from, to, t);
           }
           var lenLerped = lerp(lenFrom, lenTo, t);
-          var dot = _class$1z.dot(from, to) / (lenFrom * lenTo);
+          var dot = _class$1x.dot(from, to) / (lenFrom * lenTo);
           if (dot > 1.0 - EPSILON) {
-            return _class$1z.lerp(out, from, to, t);
+            return _class$1x.lerp(out, from, to, t);
           } else if (dot < -1 + EPSILON) {
-            var fromNormalized = _class$1z.multiplyScalar(cacheV1, from, 1.0 / lenFrom);
-            var _axis = _class$1z.generateOrthogonal(cacheV2, fromNormalized);
+            var fromNormalized = _class$1x.multiplyScalar(cacheV1, from, 1.0 / lenFrom);
+            var _axis = _class$1x.generateOrthogonal(cacheV2, fromNormalized);
             var _angle = PI$4 * t;
             rotateAxisAngle(cacheV3, fromNormalized, _axis, _angle);
-            _class$1z.multiplyScalar(out, cacheV3, lenLerped);
+            _class$1x.multiplyScalar(out, cacheV3, lenLerped);
             return out;
           } else {
             var dotClamped = dot;
             var theta = acos$4(dotClamped) * t;
-            var _fromNormalized = _class$1z.multiplyScalar(cacheV1, from, 1.0 / lenFrom);
-            var toNormalized = _class$1z.multiplyScalar(cacheV2, to, 1.0 / lenTo);
-            _class$1z.scaleAndAdd(cacheV3, toNormalized, _fromNormalized, -dotClamped);
-            _class$1z.normalize(cacheV3, cacheV3);
-            _class$1z.multiplyScalar(cacheV3, cacheV3, sin$5(theta));
-            _class$1z.scaleAndAdd(cacheV3, cacheV3, _fromNormalized, cos$6(theta));
-            _class$1z.multiplyScalar(out, cacheV3, lenLerped);
+            var _fromNormalized = _class$1x.multiplyScalar(cacheV1, from, 1.0 / lenFrom);
+            var toNormalized = _class$1x.multiplyScalar(cacheV2, to, 1.0 / lenTo);
+            _class$1x.scaleAndAdd(cacheV3, toNormalized, _fromNormalized, -dotClamped);
+            _class$1x.normalize(cacheV3, cacheV3);
+            _class$1x.multiplyScalar(cacheV3, cacheV3, sin$5(theta));
+            _class$1x.scaleAndAdd(cacheV3, cacheV3, _fromNormalized, cos$6(theta));
+            _class$1x.multiplyScalar(out, cacheV3, lenLerped);
             return out;
           }
         };
       }();
       Vec3.signedAngle = function () {
-        var cacheCross = new _class$1z();
+        var cacheCross = new _class$1x();
         return function (a, b, normal) {
-          var angle = _class$1z.angle(a, b);
-          var cross = _class$1z.cross(cacheCross, a, b);
-          var dot = _class$1z.dot(cross, normal);
+          var angle = _class$1x.angle(a, b);
+          var cross = _class$1x.cross(cacheCross, a, b);
+          var dot = _class$1x.dot(cross, normal);
           return dot < 0 ? -angle : angle;
         };
       }();
@@ -5347,7 +5347,7 @@ System.register([], (function (exports, module) {
         return new Vec4(encode_rounded.x / 255.0, encode_rounded.y / 255.0, encode_rounded.z / 255.0, e / 255.0);
       }
 
-      var _class$1y;
+      var _class$1w;
       var abs$4 = Math.abs;
       var max$9 = Math.max;
       var Mat3 = exports("Mat3", function (_ValueType) {
@@ -6088,8 +6088,8 @@ System.register([], (function (exports, module) {
         };
         return Mat3;
       }(ValueType));
-      _class$1y = Mat3;
-      Mat3.IDENTITY = Object.freeze(new _class$1y());
+      _class$1w = Mat3;
+      Mat3.IDENTITY = Object.freeze(new _class$1w());
       var v3_1$4 = new Vec3();
       var v3_2$1 = new Vec3();
       CCClass.fastDefine('cc.Mat3', Mat3, {
@@ -6105,7 +6105,7 @@ System.register([], (function (exports, module) {
       });
       legacyCC.Mat3 = Mat3;
 
-      var _class$1x;
+      var _class$1v;
       var abs$3 = Math.abs;
       var max$8 = Math.max;
       var min$6 = Math.min;
@@ -6647,8 +6647,8 @@ System.register([], (function (exports, module) {
         };
         return Quat;
       }(ValueType));
-      _class$1x = Quat;
-      Quat.IDENTITY = Object.freeze(new _class$1x());
+      _class$1v = Quat;
+      Quat.IDENTITY = Object.freeze(new _class$1v());
       var qt_1$1 = new Quat();
       var qt_2 = new Quat();
       var v3_1$3 = new Vec3();
@@ -6678,7 +6678,7 @@ System.register([], (function (exports, module) {
       }
       legacyCC.quat = quat;
 
-      var _class$1w;
+      var _class$1u;
       var objectFreeze = Object.freeze;
       var preTransforms = exports("preTransforms", objectFreeze([objectFreeze([1, 0, 0, 1]), objectFreeze([0, 1, -1, 0]), objectFreeze([-1, 0, 0, -1]), objectFreeze([0, -1, 1, 0])]));
       var abs$2 = Math.abs;
@@ -8381,8 +8381,8 @@ System.register([], (function (exports, module) {
         };
         return Mat4;
       }(ValueType));
-      _class$1w = Mat4;
-      Mat4.IDENTITY = Object.freeze(new _class$1w());
+      _class$1u = Mat4;
+      Mat4.IDENTITY = Object.freeze(new _class$1u());
       var v3_1$2 = new Vec3();
       var m3_1$1 = new Mat3();
       CCClass.fastDefine('cc.Mat4', Mat4, {
@@ -9178,7 +9178,7 @@ System.register([], (function (exports, module) {
         targetName: 'Mat4'
       }]);
 
-      var _class$1v;
+      var _class$1t;
       var Size$1 = exports("Size", function (_ValueType) {
         _inheritsLoose(Size, _ValueType);
         Size.lerp = function lerp(out, from, to, ratio) {
@@ -9245,9 +9245,9 @@ System.register([], (function (exports, module) {
         }]);
         return Size;
       }(ValueType));
-      _class$1v = Size$1;
-      Size$1.ZERO = Object.freeze(new _class$1v(0, 0));
-      Size$1.ONE = Object.freeze(new _class$1v(1, 1));
+      _class$1t = Size$1;
+      Size$1.ZERO = Object.freeze(new _class$1t(0, 0));
+      Size$1.ONE = Object.freeze(new _class$1t(1, 1));
       CCClass.fastDefine('cc.Size', Size$1, {
         width: 0,
         height: 0
@@ -14153,7 +14153,7 @@ System.register([], (function (exports, module) {
         return obj[key] || (obj[key] = {});
       }
 
-      var ccclass$6 = makeSmartClassDecorator(function (constructor, name) {
+      var ccclass$5 = makeSmartClassDecorator(function (constructor, name) {
         var base = getSuper(constructor);
         if (base === Object) {
           base = null;
@@ -14176,7 +14176,7 @@ System.register([], (function (exports, module) {
       });
 
       var requireComponent = makeEditorClassDecoratorFn('requireComponent');
-      var executionOrder$1 = makeEditorClassDecoratorFn('executionOrder');
+      var executionOrder = makeEditorClassDecoratorFn('executionOrder');
       var disallowMultiple$1 = emptySmartClassDecorator;
 
       function property$1(target, propertyKey, descriptorOrInitializer) {
@@ -14294,11 +14294,11 @@ System.register([], (function (exports, module) {
         return (_ref$sMetadataTag = (_ref = constructor)[sMetadataTag]) !== null && _ref$sMetadataTag !== undefined ? _ref$sMetadataTag : _ref[sMetadataTag] = {};
       }
 
-      var serializable$5 = exports("serializable", function serializable(target, propertyKey, descriptorOrInitializer) {
+      var serializable$4 = exports("serializable", function serializable(target, propertyKey, descriptorOrInitializer) {
         var propertyStash = getOrCreatePropertyStash(target, propertyKey, descriptorOrInitializer);
         setImplicitSerializable(propertyStash);
       });
-      function formerlySerializedAs$1(name) {
+      function formerlySerializedAs(name) {
         return function (target, propertyKey, descriptorOrInitializer) {
           var propertyStash = getOrCreatePropertyStash(target, propertyKey, descriptorOrInitializer);
           propertyStash.formerlySerializedAs = name;
@@ -14331,11 +14331,11 @@ System.register([], (function (exports, module) {
       var displayOrder = exports("displayOrder", emptyDecoratorFn );
       var disallowAnimation = exports("disallowAnimation", emptyDecorator );
 
-      var integer = type$3(CCInteger);
-      var _float = type$3(CCFloat);
-      var _boolean = type$3(CCBoolean);
-      var string = type$3(CCString);
-      function type$3(type) {
+      var integer = type$2(CCInteger);
+      var _float = type$2(CCFloat);
+      var _boolean = type$2(CCBoolean);
+      var string = type$2(CCString);
+      function type$2(type) {
         return property$1({
           type: type
         });
@@ -14358,16 +14358,16 @@ System.register([], (function (exports, module) {
       var _decorator = /*#__PURE__*/Object.freeze({
         __proto__: null,
         boolean: _boolean,
-        ccclass: ccclass$6,
+        ccclass: ccclass$5,
         disallowAnimation: disallowAnimation,
         disallowMultiple: disallowMultiple$1,
         displayName: displayName,
         displayOrder: displayOrder,
         editable: editable,
         executeInEditMode: executeInEditMode,
-        executionOrder: executionOrder$1,
+        executionOrder: executionOrder,
         float: _float,
-        formerlySerializedAs: formerlySerializedAs$1,
+        formerlySerializedAs: formerlySerializedAs,
         help: help,
         icon: icon,
         inspector: inspector,
@@ -14379,17 +14379,17 @@ System.register([], (function (exports, module) {
         range: range,
         rangeStep: rangeStep,
         requireComponent: requireComponent,
-        serializable: serializable$5,
+        serializable: serializable$4,
         slide: slide,
         string: string,
         tooltip: tooltip,
-        type: type$3,
+        type: type$2,
         uniquelyReferenced: uniquelyReferenced,
         visible: visible
       });
       exports("_decorator", _decorator);
 
-      var _dec$1t, _class$1u, _class2$1c, _initializer$16, _initializer2$R, _initializer3$F, _initializer4$z, _class3$x, _BuiltinElementTypeTr;
+      var _dec$1r, _class$1s, _class2$1b, _initializer$15, _initializer2$Q, _initializer3$E, _initializer4$y, _class3$w, _BuiltinElementTypeTr;
       var StorageUnit = {
         Uint8: 0,
         Uint16: 1,
@@ -14418,12 +14418,12 @@ System.register([], (function (exports, module) {
           elementType: combined >> elementTypeBits
         };
       }
-      var CompactValueTypeArray = exports("CompactValueTypeArray", (_dec$1t = ccclass$6('cc.CompactValueTypeArray'), _dec$1t(_class$1u = (_class2$1c = (_class3$x = function () {
+      var CompactValueTypeArray = exports("CompactValueTypeArray", (_dec$1r = ccclass$5('cc.CompactValueTypeArray'), _dec$1r(_class$1s = (_class2$1b = (_class3$w = function () {
         function CompactValueTypeArray() {
-          this._byteOffset = _initializer$16 && _initializer$16();
-          this._unitCount = _initializer2$R && _initializer2$R();
-          this._unitElement = _initializer3$F && _initializer3$F();
-          this._length = _initializer4$z && _initializer4$z();
+          this._byteOffset = _initializer$15 && _initializer$15();
+          this._unitCount = _initializer2$Q && _initializer2$Q();
+          this._unitElement = _initializer3$E && _initializer3$E();
+          this._length = _initializer4$y && _initializer4$y();
         }
         CompactValueTypeArray.lengthFor = function lengthFor(values, elementType, unit) {
           var elementTraits = getElementTraits(elementType);
@@ -14459,15 +14459,15 @@ System.register([], (function (exports, module) {
           return result;
         };
         return CompactValueTypeArray;
-      }(), _class3$x.StorageUnit = StorageUnit, _class3$x.ElementType = ElementType, _class3$x), (_initializer$16 = applyDecoratedInitializer(_class2$1c.prototype, "_byteOffset", [serializable$5], function () {
+      }(), _class3$w.StorageUnit = StorageUnit, _class3$w.ElementType = ElementType, _class3$w), (_initializer$15 = applyDecoratedInitializer(_class2$1b.prototype, "_byteOffset", [serializable$4], function () {
         return 0;
-      }), _initializer2$R = applyDecoratedInitializer(_class2$1c.prototype, "_unitCount", [serializable$5], function () {
+      }), _initializer2$Q = applyDecoratedInitializer(_class2$1b.prototype, "_unitCount", [serializable$4], function () {
         return 0;
-      }), _initializer3$F = applyDecoratedInitializer(_class2$1c.prototype, "_unitElement", [serializable$5], function () {
+      }), _initializer3$E = applyDecoratedInitializer(_class2$1b.prototype, "_unitElement", [serializable$4], function () {
         return combineStorageUnitElementType(0, 0);
-      }), _initializer4$z = applyDecoratedInitializer(_class2$1c.prototype, "_length", [serializable$5], function () {
+      }), _initializer4$y = applyDecoratedInitializer(_class2$1b.prototype, "_length", [serializable$4], function () {
         return 0;
-      })), _class2$1c)) || _class$1u));
+      })), _class2$1b)) || _class$1s));
       function getElementTraits(elementType) {
         return BuiltinElementTypeTraits[elementType];
       }
@@ -15494,39 +15494,39 @@ System.register([], (function (exports, module) {
       }
       legacyCC.bezierByTime = bezierByTime;
 
-      var _dec$1s, _class$1t, _class2$1b, _initializer$15, _initializer2$Q, _initializer3$E, _dec2$R, _class4$c, _class5$b, _initializer4$y, _initializer5$r;
+      var _dec$1q, _class$1r, _class2$1a, _initializer$14, _initializer2$P, _initializer3$D, _dec2$Q, _class4$b, _class5$a, _initializer4$x, _initializer5$q;
       var QuatInterpolationMode = exports("QuatInterpolationMode", {
         SLERP: 0,
         CONSTANT: 1
       });
-      var QuatKeyframeValue = (_dec$1s = ccclass$6('cc.QuatKeyframeValue'), _dec$1s(_class$1t = uniquelyReferenced(_class$1t = (_class2$1b = function QuatKeyframeValue(_temp) {
+      var QuatKeyframeValue = (_dec$1q = ccclass$5('cc.QuatKeyframeValue'), _dec$1q(_class$1r = uniquelyReferenced(_class$1r = (_class2$1a = function QuatKeyframeValue(_temp) {
         var _ref = _temp === undefined ? {} : _temp,
           value = _ref.value,
           interpolationMode = _ref.interpolationMode,
           easingMethod = _ref.easingMethod;
-        this.interpolationMode = _initializer$15 && _initializer$15();
-        this.value = _initializer2$Q && _initializer2$Q();
-        this.easingMethod = _initializer3$E && _initializer3$E();
+        this.interpolationMode = _initializer$14 && _initializer$14();
+        this.value = _initializer2$P && _initializer2$P();
+        this.easingMethod = _initializer3$D && _initializer3$D();
         this.value = value ? Quat.clone(value) : this.value;
         this.interpolationMode = interpolationMode !== null && interpolationMode !== undefined ? interpolationMode : this.interpolationMode;
         this.easingMethod = easingMethod !== null && easingMethod !== undefined ? easingMethod : this.easingMethod;
-      }, (_initializer$15 = applyDecoratedInitializer(_class2$1b.prototype, "interpolationMode", [serializable$5], function () {
+      }, (_initializer$14 = applyDecoratedInitializer(_class2$1a.prototype, "interpolationMode", [serializable$4], function () {
         return 0;
-      }), _initializer2$Q = applyDecoratedInitializer(_class2$1b.prototype, "value", [serializable$5], function () {
+      }), _initializer2$P = applyDecoratedInitializer(_class2$1a.prototype, "value", [serializable$4], function () {
         return Quat.clone(Quat.IDENTITY);
-      }), _initializer3$E = applyDecoratedInitializer(_class2$1b.prototype, "easingMethod", [serializable$5], function () {
+      }), _initializer3$D = applyDecoratedInitializer(_class2$1a.prototype, "easingMethod", [serializable$4], function () {
         return 0;
-      })), _class2$1b)) || _class$1t) || _class$1t);
+      })), _class2$1a)) || _class$1r) || _class$1r);
       function createQuatKeyframeValue(params) {
         return new QuatKeyframeValue(params);
       }
-      var QuatCurve = exports("QuatCurve", (_dec2$R = ccclass$6('cc.QuatCurve'), _dec2$R(_class4$c = (_class5$b = function (_KeyframeCurve) {
+      var QuatCurve = exports("QuatCurve", (_dec2$Q = ccclass$5('cc.QuatCurve'), _dec2$Q(_class4$b = (_class5$a = function (_KeyframeCurve) {
         _inheritsLoose(QuatCurve, _KeyframeCurve);
         function QuatCurve() {
           var _this;
           _this = _KeyframeCurve.call(this) || this;
-          _this.preExtrapolation = _initializer4$y && _initializer4$y();
-          _this.postExtrapolation = _initializer5$r && _initializer5$r();
+          _this.preExtrapolation = _initializer4$x && _initializer4$x();
+          _this.postExtrapolation = _initializer5$q && _initializer5$q();
           return _this;
         }
         var _proto = QuatCurve.prototype;
@@ -15759,11 +15759,11 @@ System.register([], (function (exports, module) {
           this._values = keyframeValues;
         };
         return QuatCurve;
-      }(KeyframeCurve), (_initializer4$y = applyDecoratedInitializer(_class5$b.prototype, "preExtrapolation", [serializable$5], function () {
+      }(KeyframeCurve), (_initializer4$x = applyDecoratedInitializer(_class5$a.prototype, "preExtrapolation", [serializable$4], function () {
         return 1;
-      }), _initializer5$r = applyDecoratedInitializer(_class5$b.prototype, "postExtrapolation", [serializable$5], function () {
+      }), _initializer5$q = applyDecoratedInitializer(_class5$a.prototype, "postExtrapolation", [serializable$4], function () {
         return 1;
-      })), _class5$b)) || _class4$c));
+      })), _class5$a)) || _class4$b));
       var FLAGS_BYTES = 1;
       var FRAME_COUNT_BYTES = 4;
       var TIME_BYTES = 4;
@@ -15773,8 +15773,8 @@ System.register([], (function (exports, module) {
       var EASING_METHOD_BEZIER_TAG = 255;
       var EASING_METHOD_BEZIER_COMPONENT_BYTES = 4;
 
-      var _dec$1r, _class$1s;
-      var ObjectCurve = exports("ObjectCurve", (_dec$1r = ccclass$6('cc.ObjectCurve'), _dec$1r(_class$1s = function (_KeyframeCurve) {
+      var _dec$1p, _class$1q;
+      var ObjectCurve = exports("ObjectCurve", (_dec$1p = ccclass$5('cc.ObjectCurve'), _dec$1p(_class$1q = function (_KeyframeCurve) {
         _inheritsLoose(ObjectCurve, _KeyframeCurve);
         function ObjectCurve() {
           return _KeyframeCurve.apply(this, arguments) || this;
@@ -15789,7 +15789,7 @@ System.register([], (function (exports, module) {
           return this._values[iPrev];
         };
         return ObjectCurve;
-      }(KeyframeCurve)) || _class$1s));
+      }(KeyframeCurve)) || _class$1q));
 
       var GradientMode = {
         Blend: 0,
@@ -23223,11 +23223,11 @@ System.register([], (function (exports, module) {
         transform: transform
       });
 
-      var _dec$1q, _class$1r, _class2$1a, _initializer$14;
-      var ccclass$5 = ccclass$6,
-        serializable$4 = serializable$5,
+      var _dec$1o, _class$1p, _class2$19, _initializer$13;
+      var ccclass$4 = ccclass$5,
+        serializable$3 = serializable$4,
         property = property$1;
-      var Asset = exports("Asset", (_dec$1q = ccclass$5('cc.Asset'), _dec$1q(_class$1r = (_class2$1a = function (_Eventify) {
+      var Asset = exports("Asset", (_dec$1o = ccclass$4('cc.Asset'), _dec$1o(_class$1p = (_class2$19 = function (_Eventify) {
         _inheritsLoose(Asset, _Eventify);
         Asset.deserialize = function deserialize(data) {
           return cclegacy.deserialize(data);
@@ -23236,7 +23236,7 @@ System.register([], (function (exports, module) {
           var _this;
           _this = _Eventify.call(this, name) || this;
           _this.loaded = true;
-          _this._native = _initializer$14 && _initializer$14();
+          _this._native = _initializer$13 && _initializer$13();
           _this._nativeUrl = '';
           _this._file = null;
           _this._ref = 0;
@@ -23352,13 +23352,13 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Asset;
-      }(Eventify(CCObject)), (_initializer$14 = applyDecoratedInitializer(_class2$1a.prototype, "_native", [serializable$4], function () {
+      }(Eventify(CCObject)), (_initializer$13 = applyDecoratedInitializer(_class2$19.prototype, "_native", [serializable$3], function () {
         return '';
-      }), _applyDecoratedDescriptor(_class2$1a.prototype, "_nativeAsset", [property], Object.getOwnPropertyDescriptor(_class2$1a.prototype, "_nativeAsset"), _class2$1a.prototype)), _class2$1a)) || _class$1r));
+      }), _applyDecoratedDescriptor(_class2$19.prototype, "_nativeAsset", [property], Object.getOwnPropertyDescriptor(_class2$19.prototype, "_nativeAsset"), _class2$19.prototype)), _class2$19)) || _class$1p));
       Asset.prototype.createNode = null;
       cclegacy.Asset = Asset;
 
-      var _dec$1p, _class$1q, _class2$19, _class3$w;
+      var _dec$1n, _class$1o, _class2$18, _class3$v;
       var COMPRESSED_HEADER_LENGTH = 4;
       var COMPRESSED_MIPMAP_DATA_SIZE_LENGTH = 4;
       var COMPRESSED_MIPMAP_LEVEL_COUNT_LENGTH = 4;
@@ -23437,7 +23437,7 @@ System.register([], (function (exports, module) {
       function isNativeImage(imageSource) {
         return imageSource instanceof HTMLImageElement || imageSource instanceof HTMLCanvasElement || isImageBitmap(imageSource);
       }
-      var ImageAsset = exports("ImageAsset", (_dec$1p = ccclass$6('cc.ImageAsset'), _dec$1p(_class$1q = (_class2$19 = (_class3$w = function (_Asset) {
+      var ImageAsset = exports("ImageAsset", (_dec$1n = ccclass$5('cc.ImageAsset'), _dec$1n(_class$1o = (_class2$18 = (_class3$v = function (_Asset) {
         _inheritsLoose(ImageAsset, _Asset);
         ImageAsset.mergeCompressedTextureMips = function mergeCompressedTextureMips(files) {
           var out = new Uint8Array(0);
@@ -23810,7 +23810,7 @@ System.register([], (function (exports, module) {
           }
         }]);
         return ImageAsset;
-      }(Asset), _class3$w.extnames = ['.png', '.jpg', '.jpeg', '.bmp', '.webp', '.pvr', '.pkm', '.astc'], _class3$w._sharedPlaceHolderCanvas = null, _class3$w), (_applyDecoratedDescriptor(_class2$19.prototype, "_nativeAsset", [override], Object.getOwnPropertyDescriptor(_class2$19.prototype, "_nativeAsset"), _class2$19.prototype)), _class2$19)) || _class$1q));
+      }(Asset), _class3$v.extnames = ['.png', '.jpg', '.jpeg', '.bmp', '.webp', '.pvr', '.pkm', '.astc'], _class3$v._sharedPlaceHolderCanvas = null, _class3$v), (_applyDecoratedDescriptor(_class2$18.prototype, "_nativeAsset", [override], Object.getOwnPropertyDescriptor(_class2$18.prototype, "_nativeAsset"), _class2$18.prototype)), _class2$18)) || _class$1o));
       function _getGlobalDevice() {
         return deviceManager.gfxDevice;
       }
@@ -23865,22 +23865,22 @@ System.register([], (function (exports, module) {
         NEAREST: 1
       };
 
-      var _dec$1o, _class$1p, _class2$18, _initializer$13, _initializer2$P, _initializer3$D, _initializer4$x, _initializer5$q, _initializer6$k, _initializer7$g, _initializer8$g, _class3$v;
+      var _dec$1m, _class$1n, _class2$17, _initializer$12, _initializer2$O, _initializer3$C, _initializer4$w, _initializer5$p, _initializer6$j, _initializer7$f, _initializer8$f, _class3$u;
       ccenum(Format);
       var idGenerator$2 = new IDGenerator('Tex');
-      var TextureBase = (_dec$1o = ccclass$6('cc.TextureBase'), _dec$1o(_class$1p = (_class2$18 = (_class3$v = function (_Asset) {
+      var TextureBase = (_dec$1m = ccclass$5('cc.TextureBase'), _dec$1m(_class$1n = (_class2$17 = (_class3$u = function (_Asset) {
         _inheritsLoose(TextureBase, _Asset);
         function TextureBase(name) {
           var _this;
           _this = _Asset.call(this, name) || this;
-          _this._format = _initializer$13 && _initializer$13();
-          _this._minFilter = _initializer2$P && _initializer2$P();
-          _this._magFilter = _initializer3$D && _initializer3$D();
-          _this._mipFilter = _initializer4$x && _initializer4$x();
-          _this._wrapS = _initializer5$q && _initializer5$q();
-          _this._wrapT = _initializer6$k && _initializer6$k();
-          _this._wrapR = _initializer7$g && _initializer7$g();
-          _this._anisotropy = _initializer8$g && _initializer8$g();
+          _this._format = _initializer$12 && _initializer$12();
+          _this._minFilter = _initializer2$O && _initializer2$O();
+          _this._magFilter = _initializer3$C && _initializer3$C();
+          _this._mipFilter = _initializer4$w && _initializer4$w();
+          _this._wrapS = _initializer5$p && _initializer5$p();
+          _this._wrapT = _initializer6$j && _initializer6$j();
+          _this._wrapR = _initializer7$f && _initializer7$f();
+          _this._anisotropy = _initializer8$f && _initializer8$f();
           _this._width = 1;
           _this._height = 1;
           _this._samplerInfo = new SamplerInfo();
@@ -24022,59 +24022,59 @@ System.register([], (function (exports, module) {
           }
         }]);
         return TextureBase;
-      }(Asset), _class3$v.PixelFormat = PixelFormat, _class3$v.WrapMode = WrapMode$1, _class3$v.Filter = TextureFilter, _class3$v), (_initializer$13 = applyDecoratedInitializer(_class2$18.prototype, "_format", [serializable$5], function () {
+      }(Asset), _class3$u.PixelFormat = PixelFormat, _class3$u.WrapMode = WrapMode$1, _class3$u.Filter = TextureFilter, _class3$u), (_initializer$12 = applyDecoratedInitializer(_class2$17.prototype, "_format", [serializable$4], function () {
         return 35;
-      }), _initializer2$P = applyDecoratedInitializer(_class2$18.prototype, "_minFilter", [serializable$5], function () {
+      }), _initializer2$O = applyDecoratedInitializer(_class2$17.prototype, "_minFilter", [serializable$4], function () {
         return 2;
-      }), _initializer3$D = applyDecoratedInitializer(_class2$18.prototype, "_magFilter", [serializable$5], function () {
+      }), _initializer3$C = applyDecoratedInitializer(_class2$17.prototype, "_magFilter", [serializable$4], function () {
         return 2;
-      }), _initializer4$x = applyDecoratedInitializer(_class2$18.prototype, "_mipFilter", [serializable$5], function () {
+      }), _initializer4$w = applyDecoratedInitializer(_class2$17.prototype, "_mipFilter", [serializable$4], function () {
         return 0;
-      }), _initializer5$q = applyDecoratedInitializer(_class2$18.prototype, "_wrapS", [serializable$5], function () {
+      }), _initializer5$p = applyDecoratedInitializer(_class2$17.prototype, "_wrapS", [serializable$4], function () {
         return 0;
-      }), _initializer6$k = applyDecoratedInitializer(_class2$18.prototype, "_wrapT", [serializable$5], function () {
+      }), _initializer6$j = applyDecoratedInitializer(_class2$17.prototype, "_wrapT", [serializable$4], function () {
         return 0;
-      }), _initializer7$g = applyDecoratedInitializer(_class2$18.prototype, "_wrapR", [serializable$5], function () {
+      }), _initializer7$f = applyDecoratedInitializer(_class2$17.prototype, "_wrapR", [serializable$4], function () {
         return 0;
-      }), _initializer8$g = applyDecoratedInitializer(_class2$18.prototype, "_anisotropy", [serializable$5], function () {
+      }), _initializer8$f = applyDecoratedInitializer(_class2$17.prototype, "_anisotropy", [serializable$4], function () {
         return 0;
-      })), _class2$18)) || _class$1p);
+      })), _class2$17)) || _class$1n);
       cclegacy.TextureBase = TextureBase;
 
-      var _dec$1n, _class$1o, _dec2$Q, _class2$17, _dec3$B, _class3$u;
-      var Script = exports("Script", (_dec$1n = ccclass$6('cc.Script'), _dec$1n(_class$1o = function (_Asset) {
+      var _dec$1l, _class$1m, _dec2$P, _class2$16, _dec3$A, _class3$t;
+      var Script = exports("Script", (_dec$1l = ccclass$5('cc.Script'), _dec$1l(_class$1m = function (_Asset) {
         _inheritsLoose(Script, _Asset);
         function Script(name) {
           return _Asset.call(this, name) || this;
         }
         return Script;
-      }(Asset)) || _class$1o));
+      }(Asset)) || _class$1m));
       cclegacy._Script = Script;
-      var JavaScript = exports("JavaScript", (_dec2$Q = ccclass$6('cc.JavaScript'), _dec2$Q(_class2$17 = function (_Script) {
+      var JavaScript = exports("JavaScript", (_dec2$P = ccclass$5('cc.JavaScript'), _dec2$P(_class2$16 = function (_Script) {
         _inheritsLoose(JavaScript, _Script);
         function JavaScript(name) {
           return _Script.call(this, name) || this;
         }
         return JavaScript;
-      }(Script)) || _class2$17));
+      }(Script)) || _class2$16));
       cclegacy._JavaScript = JavaScript;
-      var TypeScript = exports("TypeScript", (_dec3$B = ccclass$6('cc.TypeScript'), _dec3$B(_class3$u = function (_Script2) {
+      var TypeScript = exports("TypeScript", (_dec3$A = ccclass$5('cc.TypeScript'), _dec3$A(_class3$t = function (_Script2) {
         _inheritsLoose(TypeScript, _Script2);
         function TypeScript(name) {
           return _Script2.call(this, name) || this;
         }
         return TypeScript;
-      }(Script)) || _class3$u));
+      }(Script)) || _class3$t));
       cclegacy._TypeScript = TypeScript;
 
-      var _dec$1m, _class$1n, _class2$16, _initializer$12, _initializer2$O, _initializer3$C, _initializer4$w, _initializer5$p;
-      var EventHandler = exports("EventHandler", (_dec$1m = ccclass$6('cc.ClickEvent'), _dec$1m(_class$1n = (_class2$16 = function () {
+      var _dec$1k, _class$1l, _class2$15, _initializer$11, _initializer2$N, _initializer3$B, _initializer4$v, _initializer5$o;
+      var EventHandler = exports("EventHandler", (_dec$1k = ccclass$5('cc.ClickEvent'), _dec$1k(_class$1l = (_class2$15 = function () {
         function EventHandler() {
-          this.target = _initializer$12 && _initializer$12();
-          this.component = _initializer2$O && _initializer2$O();
-          this._componentId = _initializer3$C && _initializer3$C();
-          this.handler = _initializer4$w && _initializer4$w();
-          this.customEventData = _initializer5$p && _initializer5$p();
+          this.target = _initializer$11 && _initializer$11();
+          this.component = _initializer2$N && _initializer2$N();
+          this._componentId = _initializer3$B && _initializer3$B();
+          this.handler = _initializer4$v && _initializer4$v();
+          this.customEventData = _initializer5$o && _initializer5$o();
         }
         EventHandler.emitEvents = function emitEvents(events) {
           for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -24135,30 +24135,30 @@ System.register([], (function (exports, module) {
           }
         }]);
         return EventHandler;
-      }(), (_initializer$12 = applyDecoratedInitializer(_class2$16.prototype, "target", [serializable$5], function () {
+      }(), (_initializer$11 = applyDecoratedInitializer(_class2$15.prototype, "target", [serializable$4], function () {
         return null;
-      }), _initializer2$O = applyDecoratedInitializer(_class2$16.prototype, "component", [serializable$5], function () {
+      }), _initializer2$N = applyDecoratedInitializer(_class2$15.prototype, "component", [serializable$4], function () {
         return '';
-      }), _initializer3$C = applyDecoratedInitializer(_class2$16.prototype, "_componentId", [serializable$5], function () {
+      }), _initializer3$B = applyDecoratedInitializer(_class2$15.prototype, "_componentId", [serializable$4], function () {
         return '';
-      }), _initializer4$w = applyDecoratedInitializer(_class2$16.prototype, "handler", [serializable$5], function () {
+      }), _initializer4$v = applyDecoratedInitializer(_class2$15.prototype, "handler", [serializable$4], function () {
         return '';
-      }), _initializer5$p = applyDecoratedInitializer(_class2$16.prototype, "customEventData", [serializable$5], function () {
+      }), _initializer5$o = applyDecoratedInitializer(_class2$15.prototype, "customEventData", [serializable$4], function () {
         return '';
-      })), _class2$16)) || _class$1n));
+      })), _class2$15)) || _class$1l));
 
-      var _dec$1l, _dec2$P, _class$1m, _class2$15, _initializer$11, _initializer2$N, _initializer3$B, _class3$t;
+      var _dec$1j, _dec2$O, _class$1k, _class2$14, _initializer$10, _initializer2$M, _initializer3$A, _class3$s;
       var idGenerator$1 = new IDGenerator('Comp');
       var IsOnLoadCalled$1 = 16384;
       var NullNode = null;
-      var Component = exports("Component", (_dec$1l = ccclass$6('cc.Component'), _dec2$P = type$3(Script), _dec$1l(_class$1m = (_class2$15 = (_class3$t = function (_CCObject) {
+      var Component = exports("Component", (_dec$1j = ccclass$5('cc.Component'), _dec2$O = type$2(Script), _dec$1j(_class$1k = (_class2$14 = (_class3$s = function (_CCObject) {
         _inheritsLoose(Component, _CCObject);
         function Component() {
           var _this;
           _this = _CCObject.call(this) || this;
-          _this.node = _initializer$11 && _initializer$11();
-          _this._enabled = _initializer2$N && _initializer2$N();
-          _this.__prefab = _initializer3$B && _initializer3$B();
+          _this.node = _initializer$10 && _initializer$10();
+          _this._enabled = _initializer2$M && _initializer2$M();
+          _this.__prefab = _initializer3$A && _initializer3$A();
           _this._sceneGetter = null;
           _this._id = idGenerator$1.getNewId();
           return _this;
@@ -24342,13 +24342,13 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Component;
-      }(CCObject), _class3$t.EventHandler = EventHandler, _class3$t._executionOrder = 0, _class3$t._requireComponent = null, _class3$t.system = null, _class3$t), (_applyDecoratedDescriptor(_class2$15.prototype, "__scriptAsset", [_dec2$P], Object.getOwnPropertyDescriptor(_class2$15.prototype, "__scriptAsset"), _class2$15.prototype), _initializer$11 = applyDecoratedInitializer(_class2$15.prototype, "node", [serializable$5], function () {
+      }(CCObject), _class3$s.EventHandler = EventHandler, _class3$s._executionOrder = 0, _class3$s._requireComponent = null, _class3$s.system = null, _class3$s), (_applyDecoratedDescriptor(_class2$14.prototype, "__scriptAsset", [_dec2$O], Object.getOwnPropertyDescriptor(_class2$14.prototype, "__scriptAsset"), _class2$14.prototype), _initializer$10 = applyDecoratedInitializer(_class2$14.prototype, "node", [serializable$4], function () {
         return NullNode;
-      }), _initializer2$N = applyDecoratedInitializer(_class2$15.prototype, "_enabled", [serializable$5], function () {
+      }), _initializer2$M = applyDecoratedInitializer(_class2$14.prototype, "_enabled", [serializable$4], function () {
         return true;
-      }), _initializer3$B = applyDecoratedInitializer(_class2$15.prototype, "__prefab", [serializable$5], function () {
+      }), _initializer3$A = applyDecoratedInitializer(_class2$14.prototype, "__prefab", [serializable$4], function () {
         return null;
-      })), _class2$15)) || _class$1m));
+      })), _class2$14)) || _class$1k));
       value(Component, '_registerEditorProps', function (cls, props) {
         var reqComp = props.requireComponent;
         if (reqComp) {
@@ -24364,8 +24364,8 @@ System.register([], (function (exports, module) {
       });
       legacyCC.Component = Component;
 
-      var _dec$1k, _class$1l, _class2$14, _initializer$10;
-      var MissingScript = exports("MissingScript", (_dec$1k = ccclass$6('cc.MissingScript'), _dec$1k(_class$1l = (_class2$14 = function (_Component) {
+      var _dec$1i, _class$1j, _class2$13, _initializer$$;
+      var MissingScript = exports("MissingScript", (_dec$1i = ccclass$5('cc.MissingScript'), _dec$1i(_class$1j = (_class2$13 = function (_Component) {
         _inheritsLoose(MissingScript, _Component);
         MissingScript.safeFindClass = function safeFindClass(id) {
           var cls = getClassById(id);
@@ -24378,7 +24378,7 @@ System.register([], (function (exports, module) {
         function MissingScript() {
           var _this;
           _this = _Component.call(this) || this;
-          _this._$erialized = _initializer$10 && _initializer$10();
+          _this._$erialized = _initializer$$ && _initializer$$();
           return _this;
         }
         var _proto = MissingScript.prototype;
@@ -24386,9 +24386,9 @@ System.register([], (function (exports, module) {
           warnID(4600, this.node.name);
         };
         return MissingScript;
-      }(Component), (_initializer$10 = applyDecoratedInitializer(_class2$14.prototype, "_$erialized", [serializable$5, editorOnly], function () {
+      }(Component), (_initializer$$ = applyDecoratedInitializer(_class2$13.prototype, "_$erialized", [serializable$4, editorOnly], function () {
         return null;
-      })), _class2$14)) || _class$1l));
+      })), _class2$13)) || _class$1j));
       cclegacy._MissingScript = MissingScript;
       try {
         var props = MissingScript.__values__;
@@ -25855,7 +25855,7 @@ System.register([], (function (exports, module) {
       DependUtil._instance = undefined;
       var dependUtil = DependUtil.instance;
 
-      var _dec$1j, _class$1k;
+      var _dec$1h, _class$1i;
       var _regions = [new BufferTextureCopy()];
       function getMipLevel(width, height) {
         var size = Math.max(width, height);
@@ -25876,7 +25876,7 @@ System.register([], (function (exports, module) {
         }
         return true;
       }
-      var SimpleTexture = (_dec$1j = ccclass$6('cc.SimpleTexture'), _dec$1j(_class$1k = function (_TextureBase) {
+      var SimpleTexture = (_dec$1h = ccclass$5('cc.SimpleTexture'), _dec$1h(_class$1i = function (_TextureBase) {
         _inheritsLoose(SimpleTexture, _TextureBase);
         function SimpleTexture(name) {
           var _this;
@@ -26052,16 +26052,16 @@ System.register([], (function (exports, module) {
           }
         }]);
         return SimpleTexture;
-      }(TextureBase)) || _class$1k);
+      }(TextureBase)) || _class$1i);
       cclegacy.SimpleTexture = SimpleTexture;
 
-      var _dec$1i, _dec2$O, _class$1j, _class2$13, _initializer$$;
-      var Texture2D = exports("Texture2D", (_dec$1i = ccclass$6('cc.Texture2D'), _dec2$O = type$3([ImageAsset]), _dec$1i(_class$1j = (_class2$13 = function (_SimpleTexture) {
+      var _dec$1g, _dec2$N, _class$1h, _class2$12, _initializer$_;
+      var Texture2D = exports("Texture2D", (_dec$1g = ccclass$5('cc.Texture2D'), _dec2$N = type$2([ImageAsset]), _dec$1g(_class$1h = (_class2$12 = function (_SimpleTexture) {
         _inheritsLoose(Texture2D, _SimpleTexture);
         function Texture2D(name) {
           var _this;
           _this = _SimpleTexture.call(this, name) || this;
-          _this._mipmaps = _initializer$$ && _initializer$$();
+          _this._mipmaps = _initializer$_ && _initializer$_();
           _this._generatedMipmaps = [];
           return _this;
         }
@@ -26233,9 +26233,9 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Texture2D;
-      }(SimpleTexture), (_initializer$$ = applyDecoratedInitializer(_class2$13.prototype, "_mipmaps", [_dec2$O], function () {
+      }(SimpleTexture), (_initializer$_ = applyDecoratedInitializer(_class2$12.prototype, "_mipmaps", [_dec2$N], function () {
         return [];
-      })), _class2$13)) || _class$1j));
+      })), _class2$12)) || _class$1h));
       cclegacy.Texture2D = Texture2D;
 
       var space$1 = 2;
@@ -27773,7 +27773,7 @@ System.register([], (function (exports, module) {
       NodeEventProcessor.callbacksInvoker = globalCallbacksInvoker;
       cclegacy.NodeEventProcessor = NodeEventProcessor;
 
-      var _dec$1h, _dec2$N, _dec3$A, _class$1i, _class2$12, _initializer$_, _initializer2$M, _initializer3$A, _initializer4$v, _initializer5$o, _initializer6$j, _initializer7$f, _initializer8$f, _initializer9$f, _initializer10$f, _initializer11$e, _class3$s;
+      var _dec$1f, _dec2$M, _dec3$z, _class$1g, _class2$11, _initializer$Z, _initializer2$L, _initializer3$z, _initializer4$u, _initializer5$n, _initializer6$i, _initializer7$e, _initializer8$e, _initializer9$e, _initializer10$e, _initializer11$d, _class3$r;
       var Destroying = 128;
       var DontDestroy = 64;
       var Deactivating$1 = 256;
@@ -27803,7 +27803,7 @@ System.register([], (function (exports, module) {
       var dirtyNodes = [];
       var reserveContentsForAllSyncablePrefabTag = Symbol('ReserveContentsForAllSyncablePrefab');
       var globalFlagChangeVersion = 0;
-      var Node$1 = (_dec$1h = ccclass$6('cc.Node'), _dec2$N = type$3(Vec3), _dec3$A = type$3(MobilityMode), _dec$1h(_class$1i = (_class2$12 = (_class3$s = function (_CCObject) {
+      var Node$1 = (_dec$1f = ccclass$5('cc.Node'), _dec2$M = type$2(Vec3), _dec3$z = type$2(MobilityMode), _dec$1f(_class$1g = (_class2$11 = (_class3$r = function (_CCObject) {
         _inheritsLoose(Node, _CCObject);
         var _proto = Node.prototype;
         _proto._setActiveInHierarchy = function _setActiveInHierarchy(v) {
@@ -28365,11 +28365,11 @@ System.register([], (function (exports, module) {
           var _this;
           if (name === undefined) name = 'New Node';
           _this = _CCObject.call(this, name) || this;
-          _this._parent = _initializer$_ && _initializer$_();
-          _this._children = _initializer2$M && _initializer2$M();
-          _this._active = _initializer3$A && _initializer3$A();
-          _this._components = _initializer4$v && _initializer4$v();
-          _this._prefab = _initializer5$o && _initializer5$o();
+          _this._parent = _initializer$Z && _initializer$Z();
+          _this._children = _initializer2$L && _initializer2$L();
+          _this._active = _initializer3$z && _initializer3$z();
+          _this._components = _initializer4$u && _initializer4$u();
+          _this._prefab = _initializer5$n && _initializer5$n();
           _this._scene = null;
           _this._activeInHierarchy = false;
           _this._id = idGenerator.getNewId();
@@ -28379,12 +28379,12 @@ System.register([], (function (exports, module) {
           _this._originalSceneId = '';
           _this._uiProps = new NodeUIProperties(_assertThisInitialized(_this));
           _this._static = false;
-          _this._lpos = _initializer6$j && _initializer6$j();
-          _this._lrot = _initializer7$f && _initializer7$f();
-          _this._lscale = _initializer8$f && _initializer8$f();
-          _this._mobility = _initializer9$f && _initializer9$f();
-          _this._layer = _initializer10$f && _initializer10$f();
-          _this._euler = _initializer11$e && _initializer11$e();
+          _this._lpos = _initializer6$i && _initializer6$i();
+          _this._lrot = _initializer7$e && _initializer7$e();
+          _this._lscale = _initializer8$e && _initializer8$e();
+          _this._mobility = _initializer9$e && _initializer9$e();
+          _this._layer = _initializer10$e && _initializer10$e();
+          _this._euler = _initializer11$d && _initializer11$d();
           _this._transformFlags = 7 | 8;
           _this._eulerDirty = false;
           _this._flagChangeVersion = 0;
@@ -29223,32 +29223,32 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Node;
-      }(CCObject), _class3$s.idGenerator = idGenerator, _class3$s._stacks = [[]], _class3$s._stackId = 0, _class3$s.EventType = NodeEventType, _class3$s.NodeSpace = NodeSpace, _class3$s.TransformDirtyBit = TransformBit, _class3$s.TransformBit = TransformBit, _class3$s.reserveContentsForAllSyncablePrefabTag = reserveContentsForAllSyncablePrefabTag, _class3$s.ClearFrame = 0, _class3$s.ClearRound = 1000, _class3$s), (_applyDecoratedDescriptor(_class2$12.prototype, "_persistNode", [property$1], Object.getOwnPropertyDescriptor(_class2$12.prototype, "_persistNode"), _class2$12.prototype), _initializer$_ = applyDecoratedInitializer(_class2$12.prototype, "_parent", [serializable$5], function () {
+      }(CCObject), _class3$r.idGenerator = idGenerator, _class3$r._stacks = [[]], _class3$r._stackId = 0, _class3$r.EventType = NodeEventType, _class3$r.NodeSpace = NodeSpace, _class3$r.TransformDirtyBit = TransformBit, _class3$r.TransformBit = TransformBit, _class3$r.reserveContentsForAllSyncablePrefabTag = reserveContentsForAllSyncablePrefabTag, _class3$r.ClearFrame = 0, _class3$r.ClearRound = 1000, _class3$r), (_applyDecoratedDescriptor(_class2$11.prototype, "_persistNode", [property$1], Object.getOwnPropertyDescriptor(_class2$11.prototype, "_persistNode"), _class2$11.prototype), _initializer$Z = applyDecoratedInitializer(_class2$11.prototype, "_parent", [serializable$4], function () {
         return null;
-      }), _initializer2$M = applyDecoratedInitializer(_class2$12.prototype, "_children", [serializable$5], function () {
+      }), _initializer2$L = applyDecoratedInitializer(_class2$11.prototype, "_children", [serializable$4], function () {
         return [];
-      }), _initializer3$A = applyDecoratedInitializer(_class2$12.prototype, "_active", [serializable$5], function () {
+      }), _initializer3$z = applyDecoratedInitializer(_class2$11.prototype, "_active", [serializable$4], function () {
         return true;
-      }), _initializer4$v = applyDecoratedInitializer(_class2$12.prototype, "_components", [serializable$5], function () {
+      }), _initializer4$u = applyDecoratedInitializer(_class2$11.prototype, "_components", [serializable$4], function () {
         return [];
-      }), _initializer5$o = applyDecoratedInitializer(_class2$12.prototype, "_prefab", [serializable$5], function () {
+      }), _initializer5$n = applyDecoratedInitializer(_class2$11.prototype, "_prefab", [serializable$4], function () {
         return null;
-      }), _initializer6$j = applyDecoratedInitializer(_class2$12.prototype, "_lpos", [serializable$5], function () {
+      }), _initializer6$i = applyDecoratedInitializer(_class2$11.prototype, "_lpos", [serializable$4], function () {
         return new Vec3();
-      }), _initializer7$f = applyDecoratedInitializer(_class2$12.prototype, "_lrot", [serializable$5], function () {
+      }), _initializer7$e = applyDecoratedInitializer(_class2$11.prototype, "_lrot", [serializable$4], function () {
         return new Quat();
-      }), _initializer8$f = applyDecoratedInitializer(_class2$12.prototype, "_lscale", [serializable$5], function () {
+      }), _initializer8$e = applyDecoratedInitializer(_class2$11.prototype, "_lscale", [serializable$4], function () {
         return new Vec3(1, 1, 1);
-      }), _initializer9$f = applyDecoratedInitializer(_class2$12.prototype, "_mobility", [serializable$5], function () {
+      }), _initializer9$e = applyDecoratedInitializer(_class2$11.prototype, "_mobility", [serializable$4], function () {
         return MobilityMode.Static;
-      }), _initializer10$f = applyDecoratedInitializer(_class2$12.prototype, "_layer", [serializable$5], function () {
+      }), _initializer10$e = applyDecoratedInitializer(_class2$11.prototype, "_layer", [serializable$4], function () {
         return Layers.Enum.DEFAULT;
-      }), _initializer11$e = applyDecoratedInitializer(_class2$12.prototype, "_euler", [serializable$5], function () {
+      }), _initializer11$d = applyDecoratedInitializer(_class2$11.prototype, "_euler", [serializable$4], function () {
         return new Vec3();
-      }), _applyDecoratedDescriptor(_class2$12.prototype, "eulerAngles", [_dec2$N], Object.getOwnPropertyDescriptor(_class2$12.prototype, "eulerAngles"), _class2$12.prototype), _applyDecoratedDescriptor(_class2$12.prototype, "mobility", [_dec3$A], Object.getOwnPropertyDescriptor(_class2$12.prototype, "mobility"), _class2$12.prototype)), _class2$12)) || _class$1i); exports({ Node: Node$1, BaseNode: Node$1 });
+      }), _applyDecoratedDescriptor(_class2$11.prototype, "eulerAngles", [_dec2$M], Object.getOwnPropertyDescriptor(_class2$11.prototype, "eulerAngles"), _class2$11.prototype), _applyDecoratedDescriptor(_class2$11.prototype, "mobility", [_dec3$z], Object.getOwnPropertyDescriptor(_class2$11.prototype, "mobility"), _class2$11.prototype)), _class2$11)) || _class$1g); exports({ Node: Node$1, BaseNode: Node$1 });
       cclegacy.Node = Node$1;
 
-      var _dec$1g, _class$1h, _class2$11, _initializer$Z, _initializer2$L, _initializer3$z, _initializer4$u, _class3$r;
+      var _dec$1e, _class$1f, _class2$10, _initializer$Y, _initializer2$K, _initializer3$y, _initializer4$t, _class3$q;
       var FaceIndex = {
         right: 0,
         left: 1,
@@ -29257,15 +29257,15 @@ System.register([], (function (exports, module) {
         front: 4,
         back: 5
       };
-      var TextureCube = exports("TextureCube", (_dec$1g = ccclass$6('cc.TextureCube'), _dec$1g(_class$1h = (_class2$11 = (_class3$r = function (_SimpleTexture) {
+      var TextureCube = exports("TextureCube", (_dec$1e = ccclass$5('cc.TextureCube'), _dec$1e(_class$1f = (_class2$10 = (_class3$q = function (_SimpleTexture) {
         _inheritsLoose(TextureCube, _SimpleTexture);
         function TextureCube(name) {
           var _this;
           _this = _SimpleTexture.call(this, name) || this;
-          _this.isRGBE = _initializer$Z && _initializer$Z();
-          _this._mipmapAtlas = _initializer2$L && _initializer2$L();
-          _this._mipmapMode = _initializer3$z && _initializer3$z();
-          _this._mipmaps = _initializer4$u && _initializer4$u();
+          _this.isRGBE = _initializer$Y && _initializer$Y();
+          _this._mipmapAtlas = _initializer2$K && _initializer2$K();
+          _this._mipmapMode = _initializer3$y && _initializer3$y();
+          _this._mipmaps = _initializer4$t && _initializer4$t();
           _this._generatedMipmaps = [];
           return _this;
         }
@@ -29615,15 +29615,15 @@ System.register([], (function (exports, module) {
           }
         }]);
         return TextureCube;
-      }(SimpleTexture), _class3$r.FaceIndex = FaceIndex, _class3$r), (_initializer$Z = applyDecoratedInitializer(_class2$11.prototype, "isRGBE", [serializable$5], function () {
+      }(SimpleTexture), _class3$q.FaceIndex = FaceIndex, _class3$q), (_initializer$Y = applyDecoratedInitializer(_class2$10.prototype, "isRGBE", [serializable$4], function () {
         return false;
-      }), _initializer2$L = applyDecoratedInitializer(_class2$11.prototype, "_mipmapAtlas", [serializable$5], function () {
+      }), _initializer2$K = applyDecoratedInitializer(_class2$10.prototype, "_mipmapAtlas", [serializable$4], function () {
         return null;
-      }), _initializer3$z = applyDecoratedInitializer(_class2$11.prototype, "_mipmapMode", [serializable$5], function () {
+      }), _initializer3$y = applyDecoratedInitializer(_class2$10.prototype, "_mipmapMode", [serializable$4], function () {
         return 0;
-      }), _initializer4$u = applyDecoratedInitializer(_class2$11.prototype, "_mipmaps", [serializable$5], function () {
+      }), _initializer4$t = applyDecoratedInitializer(_class2$10.prototype, "_mipmaps", [serializable$4], function () {
         return [];
-      })), _class2$11)) || _class$1h));
+      })), _class2$10)) || _class$1f));
       legacyCC.TextureCube = TextureCube;
       function _forEachFace(mipmap, callback) {
         callback(mipmap.front, 4);
@@ -29727,7 +29727,7 @@ System.register([], (function (exports, module) {
       Ambient.SKY_ILLUM = 20000.0;
       cclegacy.Ambient = Ambient;
 
-      var _class$1g, _class2$10, _class3$q, _class4$b, _class5$a, _class6$2, _class7$5, _class8$4, _class10$4, _class11$4, _class12$1, _class13$4, _class14$3, _class15;
+      var _class$1e, _class2$$, _class3$p, _class4$a, _class5$9, _class6$1, _class7$5, _class8$4, _class10$4, _class11$4, _class12$1, _class13$4, _class14$3, _class15;
       var PIPELINE_FLOW_MAIN = 'MainFlow';
       var PIPELINE_FLOW_FORWARD = 'ForwardFlow';
       var PIPELINE_FLOW_SHADOW = 'ShadowFlow';
@@ -29803,7 +29803,7 @@ System.register([], (function (exports, module) {
         SIZE: 80
       };
       var UBOGlobal = function UBOGlobal() {};
-      _class$1g = UBOGlobal;
+      _class$1e = UBOGlobal;
       UBOGlobal.TIME_OFFSET = 0;
       UBOGlobal.SCREEN_SIZE_OFFSET = 4;
       UBOGlobal.NATIVE_SIZE_OFFSET = 8;
@@ -29813,8 +29813,8 @@ System.register([], (function (exports, module) {
       UBOGlobal.SIZE = 80;
       UBOGlobal.NAME = 'CCGlobal';
       UBOGlobal.BINDING = 0;
-      UBOGlobal.DESCRIPTOR = new DescriptorSetLayoutBinding(_class$1g.BINDING, 1, 1, 63);
-      UBOGlobal.LAYOUT = new UniformBlock(0, _class$1g.BINDING, _class$1g.NAME, [new Uniform('cc_time', 16, 1), new Uniform('cc_screenSize', 16, 1), new Uniform('cc_nativeSize', 16, 1), new Uniform('cc_probeInfo', 16, 1), new Uniform('cc_debug_view_mode', 16, 1)], 1);
+      UBOGlobal.DESCRIPTOR = new DescriptorSetLayoutBinding(_class$1e.BINDING, 1, 1, 63);
+      UBOGlobal.LAYOUT = new UniformBlock(0, _class$1e.BINDING, _class$1e.NAME, [new Uniform('cc_time', 16, 1), new Uniform('cc_screenSize', 16, 1), new Uniform('cc_nativeSize', 16, 1), new Uniform('cc_probeInfo', 16, 1), new Uniform('cc_debug_view_mode', 16, 1)], 1);
       globalDescriptorSetLayout.layouts[UBOGlobal.NAME] = UBOGlobal.LAYOUT;
       globalDescriptorSetLayout.bindings[UBOGlobal.BINDING] = UBOGlobal.DESCRIPTOR;
       var UBOCameraEnum = {
@@ -29841,7 +29841,7 @@ System.register([], (function (exports, module) {
         SIZE: 592
       };
       var UBOCamera = function UBOCamera() {};
-      _class2$10 = UBOCamera;
+      _class2$$ = UBOCamera;
       UBOCamera.MAT_VIEW_OFFSET = 0;
       UBOCamera.MAT_VIEW_INV_OFFSET = 16;
       UBOCamera.MAT_PROJ_OFFSET = 32;
@@ -29865,8 +29865,8 @@ System.register([], (function (exports, module) {
       UBOCamera.SIZE = 592;
       UBOCamera.NAME = 'CCCamera';
       UBOCamera.BINDING = 1;
-      UBOCamera.DESCRIPTOR = new DescriptorSetLayoutBinding(_class2$10.BINDING, 1, 1, 63);
-      UBOCamera.LAYOUT = new UniformBlock(0, _class2$10.BINDING, _class2$10.NAME, [new Uniform('cc_matView', 25, 1), new Uniform('cc_matViewInv', 25, 1), new Uniform('cc_matProj', 25, 1), new Uniform('cc_matProjInv', 25, 1), new Uniform('cc_matViewProj', 25, 1), new Uniform('cc_matViewProjInv', 25, 1), new Uniform('cc_cameraPos', 16, 1), new Uniform('cc_surfaceTransform', 16, 1), new Uniform('cc_screenScale', 16, 1), new Uniform('cc_exposure', 16, 1), new Uniform('cc_mainLitDir', 16, 1), new Uniform('cc_mainLitColor', 16, 1), new Uniform('cc_ambientSky', 16, 1), new Uniform('cc_ambientGround', 16, 1), new Uniform('cc_fogColor', 16, 1), new Uniform('cc_fogBase', 16, 1), new Uniform('cc_fogAdd', 16, 1), new Uniform('cc_nearFar', 16, 1), new Uniform('cc_viewPort', 16, 1)], 1);
+      UBOCamera.DESCRIPTOR = new DescriptorSetLayoutBinding(_class2$$.BINDING, 1, 1, 63);
+      UBOCamera.LAYOUT = new UniformBlock(0, _class2$$.BINDING, _class2$$.NAME, [new Uniform('cc_matView', 25, 1), new Uniform('cc_matViewInv', 25, 1), new Uniform('cc_matProj', 25, 1), new Uniform('cc_matProjInv', 25, 1), new Uniform('cc_matViewProj', 25, 1), new Uniform('cc_matViewProjInv', 25, 1), new Uniform('cc_cameraPos', 16, 1), new Uniform('cc_surfaceTransform', 16, 1), new Uniform('cc_screenScale', 16, 1), new Uniform('cc_exposure', 16, 1), new Uniform('cc_mainLitDir', 16, 1), new Uniform('cc_mainLitColor', 16, 1), new Uniform('cc_ambientSky', 16, 1), new Uniform('cc_ambientGround', 16, 1), new Uniform('cc_fogColor', 16, 1), new Uniform('cc_fogBase', 16, 1), new Uniform('cc_fogAdd', 16, 1), new Uniform('cc_nearFar', 16, 1), new Uniform('cc_viewPort', 16, 1)], 1);
       globalDescriptorSetLayout.layouts[UBOCamera.NAME] = UBOCamera.LAYOUT;
       globalDescriptorSetLayout.bindings[UBOCamera.BINDING] = UBOCamera.DESCRIPTOR;
       var UBOShadowEnum = {
@@ -29884,7 +29884,7 @@ System.register([], (function (exports, module) {
         SIZE: 256
       };
       var UBOShadow = function UBOShadow() {};
-      _class3$q = UBOShadow;
+      _class3$p = UBOShadow;
       UBOShadow.MAT_LIGHT_VIEW_OFFSET = 0;
       UBOShadow.MAT_LIGHT_VIEW_PROJ_OFFSET = 16;
       UBOShadow.SHADOW_INV_PROJ_DEPTH_INFO_OFFSET = 32;
@@ -29899,8 +29899,8 @@ System.register([], (function (exports, module) {
       UBOShadow.SIZE = 256;
       UBOShadow.NAME = 'CCShadow';
       UBOShadow.BINDING = 2;
-      UBOShadow.DESCRIPTOR = new DescriptorSetLayoutBinding(_class3$q.BINDING, 1, 1, 63);
-      UBOShadow.LAYOUT = new UniformBlock(0, _class3$q.BINDING, _class3$q.NAME, [new Uniform('cc_matLightView', 25, 1), new Uniform('cc_matLightViewProj', 25, 1), new Uniform('cc_shadowInvProjDepthInfo', 16, 1), new Uniform('cc_shadowProjDepthInfo', 16, 1), new Uniform('cc_shadowProjInfo', 16, 1), new Uniform('cc_shadowNFLSInfo', 16, 1), new Uniform('cc_shadowWHPBInfo', 16, 1), new Uniform('cc_shadowLPNNInfo', 16, 1), new Uniform('cc_shadowColor', 16, 1), new Uniform('cc_planarNDInfo', 16, 1)], 1);
+      UBOShadow.DESCRIPTOR = new DescriptorSetLayoutBinding(_class3$p.BINDING, 1, 1, 63);
+      UBOShadow.LAYOUT = new UniformBlock(0, _class3$p.BINDING, _class3$p.NAME, [new Uniform('cc_matLightView', 25, 1), new Uniform('cc_matLightViewProj', 25, 1), new Uniform('cc_shadowInvProjDepthInfo', 16, 1), new Uniform('cc_shadowProjDepthInfo', 16, 1), new Uniform('cc_shadowProjInfo', 16, 1), new Uniform('cc_shadowNFLSInfo', 16, 1), new Uniform('cc_shadowWHPBInfo', 16, 1), new Uniform('cc_shadowLPNNInfo', 16, 1), new Uniform('cc_shadowColor', 16, 1), new Uniform('cc_planarNDInfo', 16, 1)], 1);
       globalDescriptorSetLayout.layouts[UBOShadow.NAME] = UBOShadow.LAYOUT;
       globalDescriptorSetLayout.bindings[UBOShadow.BINDING] = UBOShadow.DESCRIPTOR;
       var UBOCSMEnum = {
@@ -29917,7 +29917,7 @@ System.register([], (function (exports, module) {
         SIZE: 656
       };
       var UBOCSM = function UBOCSM() {};
-      _class4$b = UBOCSM;
+      _class4$a = UBOCSM;
       UBOCSM.CSM_LEVEL_COUNT = 4;
       UBOCSM.CSM_VIEW_DIR_0_OFFSET = 0;
       UBOCSM.CSM_VIEW_DIR_1_OFFSET = 16;
@@ -29931,8 +29931,8 @@ System.register([], (function (exports, module) {
       UBOCSM.SIZE = 656;
       UBOCSM.NAME = 'CCCSM';
       UBOCSM.BINDING = 3;
-      UBOCSM.DESCRIPTOR = new DescriptorSetLayoutBinding(_class4$b.BINDING, 1, 1, 16);
-      UBOCSM.LAYOUT = new UniformBlock(0, _class4$b.BINDING, _class4$b.NAME, [new Uniform('cc_csmViewDir0', 16, _class4$b.CSM_LEVEL_COUNT), new Uniform('cc_csmViewDir1', 16, _class4$b.CSM_LEVEL_COUNT), new Uniform('cc_csmViewDir2', 16, _class4$b.CSM_LEVEL_COUNT), new Uniform('cc_csmAtlas', 16, _class4$b.CSM_LEVEL_COUNT), new Uniform('cc_matCSMViewProj', 25, _class4$b.CSM_LEVEL_COUNT), new Uniform('cc_csmProjDepthInfo', 16, _class4$b.CSM_LEVEL_COUNT), new Uniform('cc_csmProjInfo', 16, _class4$b.CSM_LEVEL_COUNT), new Uniform('cc_csmSplitsInfo', 16, 1)], 1);
+      UBOCSM.DESCRIPTOR = new DescriptorSetLayoutBinding(_class4$a.BINDING, 1, 1, 16);
+      UBOCSM.LAYOUT = new UniformBlock(0, _class4$a.BINDING, _class4$a.NAME, [new Uniform('cc_csmViewDir0', 16, _class4$a.CSM_LEVEL_COUNT), new Uniform('cc_csmViewDir1', 16, _class4$a.CSM_LEVEL_COUNT), new Uniform('cc_csmViewDir2', 16, _class4$a.CSM_LEVEL_COUNT), new Uniform('cc_csmAtlas', 16, _class4$a.CSM_LEVEL_COUNT), new Uniform('cc_matCSMViewProj', 25, _class4$a.CSM_LEVEL_COUNT), new Uniform('cc_csmProjDepthInfo', 16, _class4$a.CSM_LEVEL_COUNT), new Uniform('cc_csmProjInfo', 16, _class4$a.CSM_LEVEL_COUNT), new Uniform('cc_csmSplitsInfo', 16, 1)], 1);
       globalDescriptorSetLayout.layouts[UBOCSM.NAME] = UBOCSM.LAYOUT;
       globalDescriptorSetLayout.bindings[UBOCSM.BINDING] = UBOCSM.DESCRIPTOR;
       var UNIFORM_SHADOWMAP_NAME = 'cc_shadowMap';
@@ -29973,7 +29973,7 @@ System.register([], (function (exports, module) {
         BINDING: 0
       };
       var UBOLocal = function UBOLocal() {};
-      _class5$a = UBOLocal;
+      _class5$9 = UBOLocal;
       UBOLocal.MAT_WORLD_OFFSET = 0;
       UBOLocal.MAT_WORLD_IT_OFFSET = 16;
       UBOLocal.LIGHTINGMAP_UVPARAM = 32;
@@ -29987,19 +29987,19 @@ System.register([], (function (exports, module) {
       UBOLocal.NAME = 'CCLocal';
       UBOLocal.BINDING = 0;
       UBOLocal.DESCRIPTOR = new DescriptorSetLayoutBinding(0, 1, 1, 1 | 16 | 32, 1, 1);
-      UBOLocal.LAYOUT = new UniformBlock(2, 0, _class5$a.NAME, [new Uniform('cc_matWorld', 25, 1), new Uniform('cc_matWorldIT', 25, 1), new Uniform('cc_lightingMapUVParam', 16, 1), new Uniform('cc_localShadowBias', 16, 1), new Uniform('cc_reflectionProbeData1', 16, 1), new Uniform('cc_reflectionProbeData2', 16, 1), new Uniform('cc_reflectionProbeBlendData1', 16, 1), new Uniform('cc_reflectionProbeBlendData2', 16, 1)], 1);
+      UBOLocal.LAYOUT = new UniformBlock(2, 0, _class5$9.NAME, [new Uniform('cc_matWorld', 25, 1), new Uniform('cc_matWorldIT', 25, 1), new Uniform('cc_lightingMapUVParam', 16, 1), new Uniform('cc_localShadowBias', 16, 1), new Uniform('cc_reflectionProbeData1', 16, 1), new Uniform('cc_reflectionProbeData2', 16, 1), new Uniform('cc_reflectionProbeBlendData1', 16, 1), new Uniform('cc_reflectionProbeBlendData2', 16, 1)], 1);
       localDescriptorSetLayout.layouts[UBOLocal.NAME] = UBOLocal.LAYOUT;
       localDescriptorSetLayout.bindings[0] = UBOLocal.DESCRIPTOR;
       var UBOWorldBound = function UBOWorldBound() {};
-      _class6$2 = UBOWorldBound;
+      _class6$1 = UBOWorldBound;
       UBOWorldBound.WORLD_BOUND_CENTER = 0;
-      UBOWorldBound.WORLD_BOUND_HALF_EXTENTS = _class6$2.WORLD_BOUND_CENTER + 4;
-      UBOWorldBound.COUNT = _class6$2.WORLD_BOUND_HALF_EXTENTS + 4;
-      UBOWorldBound.SIZE = _class6$2.COUNT * 4;
+      UBOWorldBound.WORLD_BOUND_HALF_EXTENTS = _class6$1.WORLD_BOUND_CENTER + 4;
+      UBOWorldBound.COUNT = _class6$1.WORLD_BOUND_HALF_EXTENTS + 4;
+      UBOWorldBound.SIZE = _class6$1.COUNT * 4;
       UBOWorldBound.NAME = 'CCWorldBound';
       UBOWorldBound.BINDING = 0;
-      UBOWorldBound.DESCRIPTOR = new DescriptorSetLayoutBinding(_class6$2.BINDING, 1, 1, 1 | 32, 1, 1);
-      UBOWorldBound.LAYOUT = new UniformBlock(2, _class6$2.BINDING, _class6$2.NAME, [new Uniform('cc_worldBoundCenter', 16, 1), new Uniform('cc_worldBoundHalfExtents', 16, 1)], 1);
+      UBOWorldBound.DESCRIPTOR = new DescriptorSetLayoutBinding(_class6$1.BINDING, 1, 1, 1 | 32, 1, 1);
+      UBOWorldBound.LAYOUT = new UniformBlock(2, _class6$1.BINDING, _class6$1.NAME, [new Uniform('cc_worldBoundCenter', 16, 1), new Uniform('cc_worldBoundHalfExtents', 16, 1)], 1);
       localDescriptorSetLayout.layouts[UBOWorldBound.NAME] = UBOWorldBound.LAYOUT;
       localDescriptorSetLayout.bindings[UBOWorldBound.BINDING] = UBOWorldBound.DESCRIPTOR;
       var INST_MAT_WORLD = 'a_matWorld0';
@@ -30982,9 +30982,9 @@ System.register([], (function (exports, module) {
       var programLib$1 = new ProgramLib();
       cclegacy.programLib = programLib$1;
 
-      var _dec$1f, _class$1f, _class2$$, _initializer$Y, _initializer2$K, _initializer3$y, _initializer4$t, _class3$p;
+      var _dec$1d, _class$1d, _class2$_, _initializer$X, _initializer2$J, _initializer3$x, _initializer4$s, _class3$o;
       var legacyBuiltinEffectNames = ['planar-shadow', 'skybox', 'deferred-lighting', 'bloom', 'hbao', 'copy-pass', 'post-process', 'profiler', 'splash-screen', 'unlit', 'sprite', 'particle', 'particle-gpu', 'particle-trail', 'billboard', 'terrain', 'graphics', 'clear-stencil', 'spine', 'occlusion-query', 'geometry-renderer', 'debug-renderer', 'ssss-blur', 'float-output-process'];
-      var EffectAsset = exports("EffectAsset", (_dec$1f = ccclass$6('cc.EffectAsset'), _dec$1f(_class$1f = (_class2$$ = (_class3$p = function (_Asset) {
+      var EffectAsset = exports("EffectAsset", (_dec$1d = ccclass$5('cc.EffectAsset'), _dec$1d(_class$1d = (_class2$_ = (_class3$o = function (_Asset) {
         _inheritsLoose(EffectAsset, _Asset);
         EffectAsset.register = function register(asset) {
           EffectAsset._effects[asset.name] = asset;
@@ -31034,10 +31034,10 @@ System.register([], (function (exports, module) {
         function EffectAsset(name) {
           var _this;
           _this = _Asset.call(this, name) || this;
-          _this.techniques = _initializer$Y && _initializer$Y();
-          _this.shaders = _initializer2$K && _initializer2$K();
-          _this.combinations = _initializer3$y && _initializer3$y();
-          _this.hideInEditor = _initializer4$t && _initializer4$t();
+          _this.techniques = _initializer$X && _initializer$X();
+          _this.shaders = _initializer2$J && _initializer2$J();
+          _this.combinations = _initializer3$x && _initializer3$x();
+          _this.hideInEditor = _initializer4$s && _initializer4$s();
           return _this;
         }
         var _proto = EffectAsset.prototype;
@@ -31093,15 +31093,15 @@ System.register([], (function (exports, module) {
           return this.techniques.length > 0 && this.shaders.length > 0;
         };
         return EffectAsset;
-      }(Asset), _class3$p._effects = {}, _class3$p._layoutValid = true, _class3$p), (_initializer$Y = applyDecoratedInitializer(_class2$$.prototype, "techniques", [serializable$5], function () {
+      }(Asset), _class3$o._effects = {}, _class3$o._layoutValid = true, _class3$o), (_initializer$X = applyDecoratedInitializer(_class2$_.prototype, "techniques", [serializable$4], function () {
         return [];
-      }), _initializer2$K = applyDecoratedInitializer(_class2$$.prototype, "shaders", [serializable$5], function () {
+      }), _initializer2$J = applyDecoratedInitializer(_class2$_.prototype, "shaders", [serializable$4], function () {
         return [];
-      }), _initializer3$y = applyDecoratedInitializer(_class2$$.prototype, "combinations", [serializable$5], function () {
+      }), _initializer3$x = applyDecoratedInitializer(_class2$_.prototype, "combinations", [serializable$4], function () {
         return [];
-      }), _initializer4$t = applyDecoratedInitializer(_class2$$.prototype, "hideInEditor", [serializable$5, editorOnly], function () {
+      }), _initializer4$s = applyDecoratedInitializer(_class2$_.prototype, "hideInEditor", [serializable$4, editorOnly], function () {
         return false;
-      })), _class2$$)) || _class$1f));
+      })), _class2$_)) || _class$1d));
       cclegacy.EffectAsset = EffectAsset;
 
       var isMatchByWord = function isMatchByWord(path, test) {
@@ -32459,23 +32459,23 @@ System.register([], (function (exports, module) {
       var downloader = Downloader.instance;
       var downloader$1 = Downloader.instance;
 
-      var _dec$1e, _class$1e, _class2$_, _initializer$X;
-      var JsonAsset = exports("JsonAsset", (_dec$1e = ccclass$6('cc.JsonAsset'), _dec$1e(_class$1e = (_class2$_ = function (_Asset) {
+      var _dec$1c, _class$1c, _class2$Z, _initializer$W;
+      var JsonAsset = exports("JsonAsset", (_dec$1c = ccclass$5('cc.JsonAsset'), _dec$1c(_class$1c = (_class2$Z = function (_Asset) {
         _inheritsLoose(JsonAsset, _Asset);
         function JsonAsset(name) {
           var _this;
           _this = _Asset.call(this, name) || this;
-          _this.json = _initializer$X && _initializer$X();
+          _this.json = _initializer$W && _initializer$W();
           return _this;
         }
         return JsonAsset;
-      }(Asset), (_initializer$X = applyDecoratedInitializer(_class2$_.prototype, "json", [serializable$5], function () {
+      }(Asset), (_initializer$W = applyDecoratedInitializer(_class2$Z.prototype, "json", [serializable$4], function () {
         return null;
-      })), _class2$_)) || _class$1e));
+      })), _class2$Z)) || _class$1c));
       cclegacy.JsonAsset = JsonAsset;
 
-      var _dec$1d, _class$1d, _class2$Z, _initializer$W;
-      var TextAsset = exports("TextAsset", (_dec$1d = ccclass$6('cc.TextAsset'), _dec$1d(_class$1d = (_class2$Z = function (_Asset) {
+      var _dec$1b, _class$1b, _class2$Y, _initializer$V;
+      var TextAsset = exports("TextAsset", (_dec$1b = ccclass$5('cc.TextAsset'), _dec$1b(_class$1b = (_class2$Y = function (_Asset) {
         _inheritsLoose(TextAsset, _Asset);
         var _proto = TextAsset.prototype;
         _proto.toString = function toString() {
@@ -32484,17 +32484,17 @@ System.register([], (function (exports, module) {
         function TextAsset(name) {
           var _this;
           _this = _Asset.call(this, name) || this;
-          _this.text = _initializer$W && _initializer$W();
+          _this.text = _initializer$V && _initializer$V();
           return _this;
         }
         return TextAsset;
-      }(Asset), (_initializer$W = applyDecoratedInitializer(_class2$Z.prototype, "text", [serializable$5], function () {
+      }(Asset), (_initializer$V = applyDecoratedInitializer(_class2$Y.prototype, "text", [serializable$4], function () {
         return '';
-      })), _class2$Z)) || _class$1d));
+      })), _class2$Y)) || _class$1b));
       cclegacy.TextAsset = TextAsset;
 
-      var _dec$1c, _class$1c, _class2$Y;
-      var BufferAsset = exports("BufferAsset", (_dec$1c = ccclass$6('cc.BufferAsset'), _dec$1c(_class$1c = (_class2$Y = function (_Asset) {
+      var _dec$1a, _class$1a, _class2$X;
+      var BufferAsset = exports("BufferAsset", (_dec$1a = ccclass$5('cc.BufferAsset'), _dec$1a(_class$1a = (_class2$X = function (_Asset) {
         _inheritsLoose(BufferAsset, _Asset);
         function BufferAsset(name) {
           var _this;
@@ -32524,7 +32524,7 @@ System.register([], (function (exports, module) {
           }
         }]);
         return BufferAsset;
-      }(Asset), (_applyDecoratedDescriptor(_class2$Y.prototype, "_nativeAsset", [override], Object.getOwnPropertyDescriptor(_class2$Y.prototype, "_nativeAsset"), _class2$Y.prototype)), _class2$Y)) || _class$1c));
+      }(Asset), (_applyDecoratedDescriptor(_class2$X.prototype, "_nativeAsset", [override], Object.getOwnPropertyDescriptor(_class2$X.prototype, "_nativeAsset"), _class2$X.prototype)), _class2$X)) || _class$1a));
       cclegacy.BufferAsset = BufferAsset;
 
       function createImageAsset(id, data, options, onComplete) {
@@ -35143,9 +35143,9 @@ System.register([], (function (exports, module) {
         }
       }
 
-      var _dec$1b, _dec2$M, _class$1b, _class2$X, _initializer$V, _initializer2$J, _initializer3$x, _initializer4$s, _initializer5$n;
+      var _dec$19, _dec2$L, _class$19, _class2$W, _initializer$U, _initializer2$I, _initializer3$w, _initializer4$r, _initializer5$m;
       var v4_1 = new Vec4();
-      var Material = exports("Material", (_dec$1b = ccclass$6('cc.Material'), _dec2$M = type$3(EffectAsset), _dec$1b(_class$1b = (_class2$X = function (_Asset) {
+      var Material = exports("Material", (_dec$19 = ccclass$5('cc.Material'), _dec2$L = type$2(EffectAsset), _dec$19(_class$19 = (_class2$W = function (_Asset) {
         _inheritsLoose(Material, _Asset);
         Material.getHash = function getHash(material) {
           var hash = 0;
@@ -35158,11 +35158,11 @@ System.register([], (function (exports, module) {
         function Material(name) {
           var _this;
           _this = _Asset.call(this, name) || this;
-          _this._effectAsset = _initializer$V && _initializer$V();
-          _this._techIdx = _initializer2$J && _initializer2$J();
-          _this._defines = _initializer3$x && _initializer3$x();
-          _this._states = _initializer4$s && _initializer4$s();
-          _this._props = _initializer5$n && _initializer5$n();
+          _this._effectAsset = _initializer$U && _initializer$U();
+          _this._techIdx = _initializer2$I && _initializer2$I();
+          _this._defines = _initializer3$w && _initializer3$w();
+          _this._states = _initializer4$r && _initializer4$r();
+          _this._props = _initializer5$m && _initializer5$m();
           _this._passes = [];
           _this._hash = 0;
           return _this;
@@ -35473,17 +35473,17 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Material;
-      }(Asset), (_initializer$V = applyDecoratedInitializer(_class2$X.prototype, "_effectAsset", [_dec2$M], function () {
+      }(Asset), (_initializer$U = applyDecoratedInitializer(_class2$W.prototype, "_effectAsset", [_dec2$L], function () {
         return null;
-      }), _initializer2$J = applyDecoratedInitializer(_class2$X.prototype, "_techIdx", [serializable$5], function () {
+      }), _initializer2$I = applyDecoratedInitializer(_class2$W.prototype, "_techIdx", [serializable$4], function () {
         return 0;
-      }), _initializer3$x = applyDecoratedInitializer(_class2$X.prototype, "_defines", [serializable$5], function () {
+      }), _initializer3$w = applyDecoratedInitializer(_class2$W.prototype, "_defines", [serializable$4], function () {
         return [];
-      }), _initializer4$s = applyDecoratedInitializer(_class2$X.prototype, "_states", [serializable$5], function () {
+      }), _initializer4$r = applyDecoratedInitializer(_class2$W.prototype, "_states", [serializable$4], function () {
         return [];
-      }), _initializer5$n = applyDecoratedInitializer(_class2$X.prototype, "_props", [serializable$5], function () {
+      }), _initializer5$m = applyDecoratedInitializer(_class2$W.prototype, "_props", [serializable$4], function () {
         return [];
-      })), _class2$X)) || _class$1b));
+      })), _class2$W)) || _class$19));
       cclegacy.Material = Material;
 
       var ShadowSize = Enum({
@@ -36342,7 +36342,7 @@ System.register([], (function (exports, module) {
         return PostSettings;
       }();
 
-      var _dec$1a, _dec2$L, _dec3$z, _dec4$o, _dec5$l, _class$1a, _class2$W, _initializer$U, _initializer2$I, _initializer3$w, _initializer4$r, _initializer5$m, _initializer6$i, _dec6$d, _dec7$c, _dec8$8, _dec9$8, _dec10$5, _dec11$3, _dec12$3, _dec13$3, _dec14$2, _dec15$2, _dec16$1, _dec17$1, _dec18$1, _dec19$1, _dec20$1, _class4$a, _class5$9, _initializer7$e, _initializer8$e, _initializer9$e, _initializer10$e, _initializer11$d, _initializer12$c, _initializer13$b, _initializer14$9, _initializer15$6, _initializer16$6, _initializer17$5, _dec21$1, _dec22$1, _dec23$1, _dec24$1, _dec25$1, _dec26$1, _dec27$1, _dec28$1, _class7$4, _class8$3, _initializer18$5, _initializer19$4, _initializer20$4, _initializer21$4, _initializer22$3, _initializer23$2, _initializer24$2, _initializer25$1, _initializer26$1, _initializer27, _class9, _dec29, _dec30, _dec31, _dec32, _dec33, _dec34, _class10$3, _class11$3, _initializer28, _initializer29, _initializer30, _initializer31, _initializer32, _initializer33, _initializer34, _initializer35, _dec35, _dec36, _class13$3, _class14$2, _initializer36, _initializer37, _initializer38, _initializer39, _dec37, _dec38, _dec39, _class16$1, _class17$1, _initializer40, _initializer41, _initializer42, _dec40, _dec41, _class19$1, _class20$2, _initializer43, _dec42, _dec43, _dec44, _dec45, _dec46, _dec47, _class22$1, _class23$1, _initializer44, _initializer45, _initializer46, _initializer47, _initializer48, _initializer49, _initializer50, _initializer51, _initializer52, _dec48, _dec49, _class25, _class26, _initializer53, _initializer54, _initializer55, _initializer56, _initializer57, _initializer58, _initializer59, _initializer60, _initializer61, _initializer62;
+      var _dec$18, _dec2$K, _dec3$y, _dec4$n, _dec5$k, _class$18, _class2$V, _initializer$T, _initializer2$H, _initializer3$v, _initializer4$q, _initializer5$l, _initializer6$h, _dec6$c, _dec7$b, _dec8$7, _dec9$7, _dec10$4, _dec11$2, _dec12$2, _dec13$2, _dec14$1, _dec15$1, _dec16$1, _dec17$1, _dec18$1, _dec19$1, _dec20$1, _class4$9, _class5$8, _initializer7$d, _initializer8$d, _initializer9$d, _initializer10$d, _initializer11$c, _initializer12$b, _initializer13$a, _initializer14$8, _initializer15$5, _initializer16$5, _initializer17$4, _dec21$1, _dec22$1, _dec23$1, _dec24$1, _dec25$1, _dec26$1, _dec27$1, _dec28$1, _class7$4, _class8$3, _initializer18$4, _initializer19$3, _initializer20$3, _initializer21$3, _initializer22$3, _initializer23$2, _initializer24$2, _initializer25$1, _initializer26$1, _initializer27, _class9, _dec29, _dec30, _dec31, _dec32, _dec33, _dec34, _class10$3, _class11$3, _initializer28, _initializer29, _initializer30, _initializer31, _initializer32, _initializer33, _initializer34, _initializer35, _dec35, _dec36, _class13$3, _class14$2, _initializer36, _initializer37, _initializer38, _initializer39, _dec37, _dec38, _dec39, _class16$1, _class17$1, _initializer40, _initializer41, _initializer42, _dec40, _dec41, _class19$1, _class20$2, _initializer43, _dec42, _dec43, _dec44, _dec45, _dec46, _dec47, _class22$1, _class23$1, _initializer44, _initializer45, _initializer46, _initializer47, _initializer48, _initializer49, _initializer50, _initializer51, _initializer52, _dec48, _dec49, _class25, _class26, _initializer53, _initializer54, _initializer55, _initializer56, _initializer57, _initializer58, _initializer59, _initializer60, _initializer61, _initializer62;
       var _up = new Vec3(0, 1, 0);
       var _v3$1 = new Vec3();
       var _v4 = new Vec4();
@@ -36356,14 +36356,14 @@ System.register([], (function (exports, module) {
           color.z *= intensity;
         }
       };
-      var AmbientInfo = exports("AmbientInfo", (_dec$1a = ccclass$6('cc.AmbientInfo'), _dec2$L = type$3(CCFloat), _dec3$z = formerlySerializedAs$1('_skyColor'), _dec4$o = formerlySerializedAs$1('_skyIllum'), _dec5$l = formerlySerializedAs$1('_groundAlbedo'), _dec$1a(_class$1a = (_class2$W = function () {
+      var AmbientInfo = exports("AmbientInfo", (_dec$18 = ccclass$5('cc.AmbientInfo'), _dec2$K = type$2(CCFloat), _dec3$y = formerlySerializedAs('_skyColor'), _dec4$n = formerlySerializedAs('_skyIllum'), _dec5$k = formerlySerializedAs('_groundAlbedo'), _dec$18(_class$18 = (_class2$V = function () {
         function AmbientInfo() {
-          this._skyColorHDR = _initializer$U && _initializer$U();
-          this._skyIllumHDR = _initializer2$I && _initializer2$I();
-          this._groundAlbedoHDR = _initializer3$w && _initializer3$w();
-          this._skyColorLDR = _initializer4$r && _initializer4$r();
-          this._skyIllumLDR = _initializer5$m && _initializer5$m();
-          this._groundAlbedoLDR = _initializer6$i && _initializer6$i();
+          this._skyColorHDR = _initializer$T && _initializer$T();
+          this._skyIllumHDR = _initializer2$H && _initializer2$H();
+          this._groundAlbedoHDR = _initializer3$v && _initializer3$v();
+          this._skyColorLDR = _initializer4$q && _initializer4$q();
+          this._skyIllumLDR = _initializer5$l && _initializer5$l();
+          this._groundAlbedoLDR = _initializer6$h && _initializer6$h();
           this._resource = null;
         }
         var _proto = AmbientInfo.prototype;
@@ -36484,33 +36484,33 @@ System.register([], (function (exports, module) {
           }
         }]);
         return AmbientInfo;
-      }(), (_applyDecoratedDescriptor(_class2$W.prototype, "skyIllum", [_dec2$L], Object.getOwnPropertyDescriptor(_class2$W.prototype, "skyIllum"), _class2$W.prototype), _initializer$U = applyDecoratedInitializer(_class2$W.prototype, "_skyColorHDR", [serializable$5, _dec3$z], function () {
+      }(), (_applyDecoratedDescriptor(_class2$V.prototype, "skyIllum", [_dec2$K], Object.getOwnPropertyDescriptor(_class2$V.prototype, "skyIllum"), _class2$V.prototype), _initializer$T = applyDecoratedInitializer(_class2$V.prototype, "_skyColorHDR", [serializable$4, _dec3$y], function () {
         return new Vec4(0.2, 0.5, 0.8, 1.0);
-      }), _initializer2$I = applyDecoratedInitializer(_class2$W.prototype, "_skyIllumHDR", [serializable$5, _dec4$o], function () {
+      }), _initializer2$H = applyDecoratedInitializer(_class2$V.prototype, "_skyIllumHDR", [serializable$4, _dec4$n], function () {
         return Ambient.SKY_ILLUM;
-      }), _initializer3$w = applyDecoratedInitializer(_class2$W.prototype, "_groundAlbedoHDR", [serializable$5, _dec5$l], function () {
+      }), _initializer3$v = applyDecoratedInitializer(_class2$V.prototype, "_groundAlbedoHDR", [serializable$4, _dec5$k], function () {
         return new Vec4(0.2, 0.2, 0.2, 1.0);
-      }), _initializer4$r = applyDecoratedInitializer(_class2$W.prototype, "_skyColorLDR", [serializable$5], function () {
+      }), _initializer4$q = applyDecoratedInitializer(_class2$V.prototype, "_skyColorLDR", [serializable$4], function () {
         return new Vec4(0.2, 0.5, 0.8, 1.0);
-      }), _initializer5$m = applyDecoratedInitializer(_class2$W.prototype, "_skyIllumLDR", [serializable$5], function () {
+      }), _initializer5$l = applyDecoratedInitializer(_class2$V.prototype, "_skyIllumLDR", [serializable$4], function () {
         return Ambient.SKY_ILLUM;
-      }), _initializer6$i = applyDecoratedInitializer(_class2$W.prototype, "_groundAlbedoLDR", [serializable$5], function () {
+      }), _initializer6$h = applyDecoratedInitializer(_class2$V.prototype, "_groundAlbedoLDR", [serializable$4], function () {
         return new Vec4(0.2, 0.2, 0.2, 1.0);
-      })), _class2$W)) || _class$1a));
+      })), _class2$V)) || _class$18));
       legacyCC.AmbientInfo = AmbientInfo;
-      var SkyboxInfo = exports("SkyboxInfo", (_dec6$d = ccclass$6('cc.SkyboxInfo'), _dec7$c = type$3(EnvironmentLightingType), _dec8$8 = type$3(TextureCube), _dec9$8 = type$3(CCFloat), _dec10$5 = type$3(TextureCube), _dec11$3 = type$3(TextureCube), _dec12$3 = type$3(Material), _dec13$3 = type$3(TextureCube), _dec14$2 = formerlySerializedAs$1('_envmap'), _dec15$2 = type$3(TextureCube), _dec16$1 = type$3(TextureCube), _dec17$1 = type$3(TextureCube), _dec18$1 = type$3(Material), _dec19$1 = type$3(TextureCube), _dec20$1 = type$3(TextureCube), _dec6$d(_class4$a = (_class5$9 = function () {
+      var SkyboxInfo = exports("SkyboxInfo", (_dec6$c = ccclass$5('cc.SkyboxInfo'), _dec7$b = type$2(EnvironmentLightingType), _dec8$7 = type$2(TextureCube), _dec9$7 = type$2(CCFloat), _dec10$4 = type$2(TextureCube), _dec11$2 = type$2(TextureCube), _dec12$2 = type$2(Material), _dec13$2 = type$2(TextureCube), _dec14$1 = formerlySerializedAs('_envmap'), _dec15$1 = type$2(TextureCube), _dec16$1 = type$2(TextureCube), _dec17$1 = type$2(TextureCube), _dec18$1 = type$2(Material), _dec19$1 = type$2(TextureCube), _dec20$1 = type$2(TextureCube), _dec6$c(_class4$9 = (_class5$8 = function () {
         function SkyboxInfo() {
-          this._envLightingType = _initializer7$e && _initializer7$e();
-          this._envmapHDR = _initializer8$e && _initializer8$e();
-          this._envmapLDR = _initializer9$e && _initializer9$e();
-          this._diffuseMapHDR = _initializer10$e && _initializer10$e();
-          this._diffuseMapLDR = _initializer11$d && _initializer11$d();
-          this._enabled = _initializer12$c && _initializer12$c();
-          this._useHDR = _initializer13$b && _initializer13$b();
-          this._editableMaterial = _initializer14$9 && _initializer14$9();
-          this._reflectionHDR = _initializer15$6 && _initializer15$6();
-          this._reflectionLDR = _initializer16$6 && _initializer16$6();
-          this._rotationAngle = _initializer17$5 && _initializer17$5();
+          this._envLightingType = _initializer7$d && _initializer7$d();
+          this._envmapHDR = _initializer8$d && _initializer8$d();
+          this._envmapLDR = _initializer9$d && _initializer9$d();
+          this._diffuseMapHDR = _initializer10$d && _initializer10$d();
+          this._diffuseMapLDR = _initializer11$c && _initializer11$c();
+          this._enabled = _initializer12$b && _initializer12$b();
+          this._useHDR = _initializer13$a && _initializer13$a();
+          this._editableMaterial = _initializer14$8 && _initializer14$8();
+          this._reflectionHDR = _initializer15$5 && _initializer15$5();
+          this._reflectionLDR = _initializer16$5 && _initializer16$5();
+          this._rotationAngle = _initializer17$4 && _initializer17$4();
           this._resource = null;
         }
         var _proto2 = SkyboxInfo.prototype;
@@ -36745,36 +36745,36 @@ System.register([], (function (exports, module) {
           }
         }]);
         return SkyboxInfo;
-      }(), (_applyDecoratedDescriptor(_class5$9.prototype, "envLightingType", [_dec7$c], Object.getOwnPropertyDescriptor(_class5$9.prototype, "envLightingType"), _class5$9.prototype), _applyDecoratedDescriptor(_class5$9.prototype, "envmap", [_dec8$8], Object.getOwnPropertyDescriptor(_class5$9.prototype, "envmap"), _class5$9.prototype), _applyDecoratedDescriptor(_class5$9.prototype, "rotationAngle", [_dec9$8], Object.getOwnPropertyDescriptor(_class5$9.prototype, "rotationAngle"), _class5$9.prototype), _applyDecoratedDescriptor(_class5$9.prototype, "diffuseMap", [_dec10$5], Object.getOwnPropertyDescriptor(_class5$9.prototype, "diffuseMap"), _class5$9.prototype), _applyDecoratedDescriptor(_class5$9.prototype, "reflectionMap", [_dec11$3], Object.getOwnPropertyDescriptor(_class5$9.prototype, "reflectionMap"), _class5$9.prototype), _applyDecoratedDescriptor(_class5$9.prototype, "skyboxMaterial", [_dec12$3], Object.getOwnPropertyDescriptor(_class5$9.prototype, "skyboxMaterial"), _class5$9.prototype), _initializer7$e = applyDecoratedInitializer(_class5$9.prototype, "_envLightingType", [serializable$5], function () {
+      }(), (_applyDecoratedDescriptor(_class5$8.prototype, "envLightingType", [_dec7$b], Object.getOwnPropertyDescriptor(_class5$8.prototype, "envLightingType"), _class5$8.prototype), _applyDecoratedDescriptor(_class5$8.prototype, "envmap", [_dec8$7], Object.getOwnPropertyDescriptor(_class5$8.prototype, "envmap"), _class5$8.prototype), _applyDecoratedDescriptor(_class5$8.prototype, "rotationAngle", [_dec9$7], Object.getOwnPropertyDescriptor(_class5$8.prototype, "rotationAngle"), _class5$8.prototype), _applyDecoratedDescriptor(_class5$8.prototype, "diffuseMap", [_dec10$4], Object.getOwnPropertyDescriptor(_class5$8.prototype, "diffuseMap"), _class5$8.prototype), _applyDecoratedDescriptor(_class5$8.prototype, "reflectionMap", [_dec11$2], Object.getOwnPropertyDescriptor(_class5$8.prototype, "reflectionMap"), _class5$8.prototype), _applyDecoratedDescriptor(_class5$8.prototype, "skyboxMaterial", [_dec12$2], Object.getOwnPropertyDescriptor(_class5$8.prototype, "skyboxMaterial"), _class5$8.prototype), _initializer7$d = applyDecoratedInitializer(_class5$8.prototype, "_envLightingType", [serializable$4], function () {
         return 0;
-      }), _initializer8$e = applyDecoratedInitializer(_class5$9.prototype, "_envmapHDR", [serializable$5, _dec13$3, _dec14$2], function () {
+      }), _initializer8$d = applyDecoratedInitializer(_class5$8.prototype, "_envmapHDR", [serializable$4, _dec13$2, _dec14$1], function () {
         return null;
-      }), _initializer9$e = applyDecoratedInitializer(_class5$9.prototype, "_envmapLDR", [serializable$5, _dec15$2], function () {
+      }), _initializer9$d = applyDecoratedInitializer(_class5$8.prototype, "_envmapLDR", [serializable$4, _dec15$1], function () {
         return null;
-      }), _initializer10$e = applyDecoratedInitializer(_class5$9.prototype, "_diffuseMapHDR", [serializable$5, _dec16$1], function () {
+      }), _initializer10$d = applyDecoratedInitializer(_class5$8.prototype, "_diffuseMapHDR", [serializable$4, _dec16$1], function () {
         return null;
-      }), _initializer11$d = applyDecoratedInitializer(_class5$9.prototype, "_diffuseMapLDR", [serializable$5, _dec17$1], function () {
+      }), _initializer11$c = applyDecoratedInitializer(_class5$8.prototype, "_diffuseMapLDR", [serializable$4, _dec17$1], function () {
         return null;
-      }), _initializer12$c = applyDecoratedInitializer(_class5$9.prototype, "_enabled", [serializable$5], function () {
+      }), _initializer12$b = applyDecoratedInitializer(_class5$8.prototype, "_enabled", [serializable$4], function () {
         return false;
-      }), _initializer13$b = applyDecoratedInitializer(_class5$9.prototype, "_useHDR", [serializable$5], function () {
+      }), _initializer13$a = applyDecoratedInitializer(_class5$8.prototype, "_useHDR", [serializable$4], function () {
         return true;
-      }), _initializer14$9 = applyDecoratedInitializer(_class5$9.prototype, "_editableMaterial", [serializable$5, _dec18$1], function () {
+      }), _initializer14$8 = applyDecoratedInitializer(_class5$8.prototype, "_editableMaterial", [serializable$4, _dec18$1], function () {
         return null;
-      }), _initializer15$6 = applyDecoratedInitializer(_class5$9.prototype, "_reflectionHDR", [serializable$5, _dec19$1], function () {
+      }), _initializer15$5 = applyDecoratedInitializer(_class5$8.prototype, "_reflectionHDR", [serializable$4, _dec19$1], function () {
         return null;
-      }), _initializer16$6 = applyDecoratedInitializer(_class5$9.prototype, "_reflectionLDR", [serializable$5, _dec20$1], function () {
+      }), _initializer16$5 = applyDecoratedInitializer(_class5$8.prototype, "_reflectionLDR", [serializable$4, _dec20$1], function () {
         return null;
-      }), _initializer17$5 = applyDecoratedInitializer(_class5$9.prototype, "_rotationAngle", [serializable$5], function () {
+      }), _initializer17$4 = applyDecoratedInitializer(_class5$8.prototype, "_rotationAngle", [serializable$4], function () {
         return 0;
-      })), _class5$9)) || _class4$a));
+      })), _class5$8)) || _class4$9));
       legacyCC.SkyboxInfo = SkyboxInfo;
-      var FogInfo = exports("FogInfo", (_dec21$1 = ccclass$6('cc.FogInfo'), _dec22$1 = type$3(FogType), _dec23$1 = type$3(CCFloat), _dec24$1 = type$3(CCFloat), _dec25$1 = type$3(CCFloat), _dec26$1 = type$3(CCFloat), _dec27$1 = type$3(CCFloat), _dec28$1 = type$3(CCFloat), _dec21$1(_class7$4 = (_class8$3 = (_class9 = function () {
+      var FogInfo = exports("FogInfo", (_dec21$1 = ccclass$5('cc.FogInfo'), _dec22$1 = type$2(FogType), _dec23$1 = type$2(CCFloat), _dec24$1 = type$2(CCFloat), _dec25$1 = type$2(CCFloat), _dec26$1 = type$2(CCFloat), _dec27$1 = type$2(CCFloat), _dec28$1 = type$2(CCFloat), _dec21$1(_class7$4 = (_class8$3 = (_class9 = function () {
         function FogInfo() {
-          this._type = _initializer18$5 && _initializer18$5();
-          this._fogColor = _initializer19$4 && _initializer19$4();
-          this._enabled = _initializer20$4 && _initializer20$4();
-          this._fogDensity = _initializer21$4 && _initializer21$4();
+          this._type = _initializer18$4 && _initializer18$4();
+          this._fogColor = _initializer19$3 && _initializer19$3();
+          this._enabled = _initializer20$3 && _initializer20$3();
+          this._fogDensity = _initializer21$3 && _initializer21$3();
           this._fogStart = _initializer22$3 && _initializer22$3();
           this._fogEnd = _initializer23$2 && _initializer23$2();
           this._fogAtten = _initializer24$2 && _initializer24$2();
@@ -36911,28 +36911,28 @@ System.register([], (function (exports, module) {
           }
         }]);
         return FogInfo;
-      }(), _class9.FogType = FogType, _class9), (_applyDecoratedDescriptor(_class8$3.prototype, "type", [_dec22$1], Object.getOwnPropertyDescriptor(_class8$3.prototype, "type"), _class8$3.prototype), _applyDecoratedDescriptor(_class8$3.prototype, "fogDensity", [_dec23$1], Object.getOwnPropertyDescriptor(_class8$3.prototype, "fogDensity"), _class8$3.prototype), _applyDecoratedDescriptor(_class8$3.prototype, "fogStart", [_dec24$1], Object.getOwnPropertyDescriptor(_class8$3.prototype, "fogStart"), _class8$3.prototype), _applyDecoratedDescriptor(_class8$3.prototype, "fogEnd", [_dec25$1], Object.getOwnPropertyDescriptor(_class8$3.prototype, "fogEnd"), _class8$3.prototype), _applyDecoratedDescriptor(_class8$3.prototype, "fogAtten", [_dec26$1], Object.getOwnPropertyDescriptor(_class8$3.prototype, "fogAtten"), _class8$3.prototype), _applyDecoratedDescriptor(_class8$3.prototype, "fogTop", [_dec27$1], Object.getOwnPropertyDescriptor(_class8$3.prototype, "fogTop"), _class8$3.prototype), _applyDecoratedDescriptor(_class8$3.prototype, "fogRange", [_dec28$1], Object.getOwnPropertyDescriptor(_class8$3.prototype, "fogRange"), _class8$3.prototype), _initializer18$5 = applyDecoratedInitializer(_class8$3.prototype, "_type", [serializable$5], function () {
+      }(), _class9.FogType = FogType, _class9), (_applyDecoratedDescriptor(_class8$3.prototype, "type", [_dec22$1], Object.getOwnPropertyDescriptor(_class8$3.prototype, "type"), _class8$3.prototype), _applyDecoratedDescriptor(_class8$3.prototype, "fogDensity", [_dec23$1], Object.getOwnPropertyDescriptor(_class8$3.prototype, "fogDensity"), _class8$3.prototype), _applyDecoratedDescriptor(_class8$3.prototype, "fogStart", [_dec24$1], Object.getOwnPropertyDescriptor(_class8$3.prototype, "fogStart"), _class8$3.prototype), _applyDecoratedDescriptor(_class8$3.prototype, "fogEnd", [_dec25$1], Object.getOwnPropertyDescriptor(_class8$3.prototype, "fogEnd"), _class8$3.prototype), _applyDecoratedDescriptor(_class8$3.prototype, "fogAtten", [_dec26$1], Object.getOwnPropertyDescriptor(_class8$3.prototype, "fogAtten"), _class8$3.prototype), _applyDecoratedDescriptor(_class8$3.prototype, "fogTop", [_dec27$1], Object.getOwnPropertyDescriptor(_class8$3.prototype, "fogTop"), _class8$3.prototype), _applyDecoratedDescriptor(_class8$3.prototype, "fogRange", [_dec28$1], Object.getOwnPropertyDescriptor(_class8$3.prototype, "fogRange"), _class8$3.prototype), _initializer18$4 = applyDecoratedInitializer(_class8$3.prototype, "_type", [serializable$4], function () {
         return FogType.LINEAR;
-      }), _initializer19$4 = applyDecoratedInitializer(_class8$3.prototype, "_fogColor", [serializable$5], function () {
+      }), _initializer19$3 = applyDecoratedInitializer(_class8$3.prototype, "_fogColor", [serializable$4], function () {
         return new Color$1('#C8C8C8');
-      }), _initializer20$4 = applyDecoratedInitializer(_class8$3.prototype, "_enabled", [serializable$5], function () {
+      }), _initializer20$3 = applyDecoratedInitializer(_class8$3.prototype, "_enabled", [serializable$4], function () {
         return false;
-      }), _initializer21$4 = applyDecoratedInitializer(_class8$3.prototype, "_fogDensity", [serializable$5], function () {
+      }), _initializer21$3 = applyDecoratedInitializer(_class8$3.prototype, "_fogDensity", [serializable$4], function () {
         return 0.3;
-      }), _initializer22$3 = applyDecoratedInitializer(_class8$3.prototype, "_fogStart", [serializable$5], function () {
+      }), _initializer22$3 = applyDecoratedInitializer(_class8$3.prototype, "_fogStart", [serializable$4], function () {
         return 0.5;
-      }), _initializer23$2 = applyDecoratedInitializer(_class8$3.prototype, "_fogEnd", [serializable$5], function () {
+      }), _initializer23$2 = applyDecoratedInitializer(_class8$3.prototype, "_fogEnd", [serializable$4], function () {
         return 300;
-      }), _initializer24$2 = applyDecoratedInitializer(_class8$3.prototype, "_fogAtten", [serializable$5], function () {
+      }), _initializer24$2 = applyDecoratedInitializer(_class8$3.prototype, "_fogAtten", [serializable$4], function () {
         return 5;
-      }), _initializer25$1 = applyDecoratedInitializer(_class8$3.prototype, "_fogTop", [serializable$5], function () {
+      }), _initializer25$1 = applyDecoratedInitializer(_class8$3.prototype, "_fogTop", [serializable$4], function () {
         return 1.5;
-      }), _initializer26$1 = applyDecoratedInitializer(_class8$3.prototype, "_fogRange", [serializable$5], function () {
+      }), _initializer26$1 = applyDecoratedInitializer(_class8$3.prototype, "_fogRange", [serializable$4], function () {
         return 1.2;
-      }), _initializer27 = applyDecoratedInitializer(_class8$3.prototype, "_accurate", [serializable$5], function () {
+      }), _initializer27 = applyDecoratedInitializer(_class8$3.prototype, "_accurate", [serializable$4], function () {
         return false;
       })), _class8$3)) || _class7$4));
-      var ShadowsInfo = exports("ShadowsInfo", (_dec29 = ccclass$6('cc.ShadowsInfo'), _dec30 = type$3(ShadowType), _dec31 = type$3(CCFloat), _dec32 = type$3(CCFloat), _dec33 = type$3(CCInteger), _dec34 = type$3(ShadowSize), _dec29(_class10$3 = (_class11$3 = function () {
+      var ShadowsInfo = exports("ShadowsInfo", (_dec29 = ccclass$5('cc.ShadowsInfo'), _dec30 = type$2(ShadowType), _dec31 = type$2(CCFloat), _dec32 = type$2(CCFloat), _dec33 = type$2(CCInteger), _dec34 = type$2(ShadowSize), _dec29(_class10$3 = (_class11$3 = function () {
         function ShadowsInfo() {
           this._enabled = _initializer28 && _initializer28();
           this._type = _initializer29 && _initializer29();
@@ -37053,28 +37053,28 @@ System.register([], (function (exports, module) {
           }
         }]);
         return ShadowsInfo;
-      }(), (_applyDecoratedDescriptor(_class11$3.prototype, "type", [_dec30], Object.getOwnPropertyDescriptor(_class11$3.prototype, "type"), _class11$3.prototype), _applyDecoratedDescriptor(_class11$3.prototype, "planeHeight", [_dec31], Object.getOwnPropertyDescriptor(_class11$3.prototype, "planeHeight"), _class11$3.prototype), _applyDecoratedDescriptor(_class11$3.prototype, "planeBias", [_dec32], Object.getOwnPropertyDescriptor(_class11$3.prototype, "planeBias"), _class11$3.prototype), _applyDecoratedDescriptor(_class11$3.prototype, "maxReceived", [_dec33], Object.getOwnPropertyDescriptor(_class11$3.prototype, "maxReceived"), _class11$3.prototype), _applyDecoratedDescriptor(_class11$3.prototype, "shadowMapSize", [_dec34], Object.getOwnPropertyDescriptor(_class11$3.prototype, "shadowMapSize"), _class11$3.prototype), _initializer28 = applyDecoratedInitializer(_class11$3.prototype, "_enabled", [serializable$5], function () {
+      }(), (_applyDecoratedDescriptor(_class11$3.prototype, "type", [_dec30], Object.getOwnPropertyDescriptor(_class11$3.prototype, "type"), _class11$3.prototype), _applyDecoratedDescriptor(_class11$3.prototype, "planeHeight", [_dec31], Object.getOwnPropertyDescriptor(_class11$3.prototype, "planeHeight"), _class11$3.prototype), _applyDecoratedDescriptor(_class11$3.prototype, "planeBias", [_dec32], Object.getOwnPropertyDescriptor(_class11$3.prototype, "planeBias"), _class11$3.prototype), _applyDecoratedDescriptor(_class11$3.prototype, "maxReceived", [_dec33], Object.getOwnPropertyDescriptor(_class11$3.prototype, "maxReceived"), _class11$3.prototype), _applyDecoratedDescriptor(_class11$3.prototype, "shadowMapSize", [_dec34], Object.getOwnPropertyDescriptor(_class11$3.prototype, "shadowMapSize"), _class11$3.prototype), _initializer28 = applyDecoratedInitializer(_class11$3.prototype, "_enabled", [serializable$4], function () {
         return false;
-      }), _initializer29 = applyDecoratedInitializer(_class11$3.prototype, "_type", [serializable$5], function () {
+      }), _initializer29 = applyDecoratedInitializer(_class11$3.prototype, "_type", [serializable$4], function () {
         return ShadowType.Planar;
-      }), _initializer30 = applyDecoratedInitializer(_class11$3.prototype, "_normal", [serializable$5], function () {
+      }), _initializer30 = applyDecoratedInitializer(_class11$3.prototype, "_normal", [serializable$4], function () {
         return new Vec3(0, 1, 0);
-      }), _initializer31 = applyDecoratedInitializer(_class11$3.prototype, "_distance", [serializable$5], function () {
+      }), _initializer31 = applyDecoratedInitializer(_class11$3.prototype, "_distance", [serializable$4], function () {
         return 0;
-      }), _initializer32 = applyDecoratedInitializer(_class11$3.prototype, "_planeBias", [serializable$5], function () {
+      }), _initializer32 = applyDecoratedInitializer(_class11$3.prototype, "_planeBias", [serializable$4], function () {
         return 1.0;
-      }), _initializer33 = applyDecoratedInitializer(_class11$3.prototype, "_shadowColor", [serializable$5], function () {
+      }), _initializer33 = applyDecoratedInitializer(_class11$3.prototype, "_shadowColor", [serializable$4], function () {
         return new Color$1(0, 0, 0, 76);
-      }), _initializer34 = applyDecoratedInitializer(_class11$3.prototype, "_maxReceived", [serializable$5], function () {
+      }), _initializer34 = applyDecoratedInitializer(_class11$3.prototype, "_maxReceived", [serializable$4], function () {
         return 4;
-      }), _initializer35 = applyDecoratedInitializer(_class11$3.prototype, "_size", [serializable$5], function () {
+      }), _initializer35 = applyDecoratedInitializer(_class11$3.prototype, "_size", [serializable$4], function () {
         return new Vec2(1024, 1024);
       })), _class11$3)) || _class10$3));
       legacyCC.ShadowsInfo = ShadowsInfo;
       var DEFAULT_WORLD_MIN_POS = exports("DEFAULT_WORLD_MIN_POS", new Vec3(-1024, -1024, -1024));
       var DEFAULT_WORLD_MAX_POS = exports("DEFAULT_WORLD_MAX_POS", new Vec3(1024.0, 1024.0, 1024.0));
       var DEFAULT_OCTREE_DEPTH = exports("DEFAULT_OCTREE_DEPTH", 8);
-      var OctreeInfo = exports("OctreeInfo", (_dec35 = ccclass$6('cc.OctreeInfo'), _dec36 = type$3(CCInteger), _dec35(_class13$3 = (_class14$2 = function () {
+      var OctreeInfo = exports("OctreeInfo", (_dec35 = ccclass$5('cc.OctreeInfo'), _dec36 = type$2(CCInteger), _dec35(_class13$3 = (_class14$2 = function () {
         function OctreeInfo() {
           this._enabled = _initializer36 && _initializer36();
           this._minPos = _initializer37 && _initializer37();
@@ -37134,17 +37134,17 @@ System.register([], (function (exports, module) {
           }
         }]);
         return OctreeInfo;
-      }(), (_applyDecoratedDescriptor(_class14$2.prototype, "depth", [_dec36], Object.getOwnPropertyDescriptor(_class14$2.prototype, "depth"), _class14$2.prototype), _initializer36 = applyDecoratedInitializer(_class14$2.prototype, "_enabled", [serializable$5], function () {
+      }(), (_applyDecoratedDescriptor(_class14$2.prototype, "depth", [_dec36], Object.getOwnPropertyDescriptor(_class14$2.prototype, "depth"), _class14$2.prototype), _initializer36 = applyDecoratedInitializer(_class14$2.prototype, "_enabled", [serializable$4], function () {
         return false;
-      }), _initializer37 = applyDecoratedInitializer(_class14$2.prototype, "_minPos", [serializable$5], function () {
+      }), _initializer37 = applyDecoratedInitializer(_class14$2.prototype, "_minPos", [serializable$4], function () {
         return new Vec3(DEFAULT_WORLD_MIN_POS);
-      }), _initializer38 = applyDecoratedInitializer(_class14$2.prototype, "_maxPos", [serializable$5], function () {
+      }), _initializer38 = applyDecoratedInitializer(_class14$2.prototype, "_maxPos", [serializable$4], function () {
         return new Vec3(DEFAULT_WORLD_MAX_POS);
-      }), _initializer39 = applyDecoratedInitializer(_class14$2.prototype, "_depth", [serializable$5], function () {
+      }), _initializer39 = applyDecoratedInitializer(_class14$2.prototype, "_depth", [serializable$4], function () {
         return DEFAULT_OCTREE_DEPTH;
       })), _class14$2)) || _class13$3));
       legacyCC.OctreeInfo = OctreeInfo;
-      var SkinInfo = exports("SkinInfo", (_dec37 = ccclass$6('cc.SkinInfo'), _dec38 = type$3(CCFloat), _dec39 = type$3(CCFloat), _dec37(_class16$1 = (_class17$1 = function () {
+      var SkinInfo = exports("SkinInfo", (_dec37 = ccclass$5('cc.SkinInfo'), _dec38 = type$2(CCFloat), _dec39 = type$2(CCFloat), _dec37(_class16$1 = (_class17$1 = function () {
         function SkinInfo() {
           this._enabled = _initializer40 && _initializer40();
           this._blurRadius = _initializer41 && _initializer41();
@@ -37192,15 +37192,15 @@ System.register([], (function (exports, module) {
           }
         }]);
         return SkinInfo;
-      }(), (_applyDecoratedDescriptor(_class17$1.prototype, "blurRadius", [_dec38], Object.getOwnPropertyDescriptor(_class17$1.prototype, "blurRadius"), _class17$1.prototype), _applyDecoratedDescriptor(_class17$1.prototype, "sssIntensity", [_dec39], Object.getOwnPropertyDescriptor(_class17$1.prototype, "sssIntensity"), _class17$1.prototype), _initializer40 = applyDecoratedInitializer(_class17$1.prototype, "_enabled", [serializable$5], function () {
+      }(), (_applyDecoratedDescriptor(_class17$1.prototype, "blurRadius", [_dec38], Object.getOwnPropertyDescriptor(_class17$1.prototype, "blurRadius"), _class17$1.prototype), _applyDecoratedDescriptor(_class17$1.prototype, "sssIntensity", [_dec39], Object.getOwnPropertyDescriptor(_class17$1.prototype, "sssIntensity"), _class17$1.prototype), _initializer40 = applyDecoratedInitializer(_class17$1.prototype, "_enabled", [serializable$4], function () {
         return true;
-      }), _initializer41 = applyDecoratedInitializer(_class17$1.prototype, "_blurRadius", [serializable$5], function () {
+      }), _initializer41 = applyDecoratedInitializer(_class17$1.prototype, "_blurRadius", [serializable$4], function () {
         return 0.01;
-      }), _initializer42 = applyDecoratedInitializer(_class17$1.prototype, "_sssIntensity", [serializable$5], function () {
+      }), _initializer42 = applyDecoratedInitializer(_class17$1.prototype, "_sssIntensity", [serializable$4], function () {
         return 3.0;
       })), _class17$1)) || _class16$1));
       legacyCC.SkinInfo = SkinInfo;
-      var PostSettingsInfo = exports("PostSettingsInfo", (_dec40 = ccclass$6('cc.PostSettingsInfo'), _dec41 = type$3(ToneMappingType), _dec40(_class19$1 = (_class20$2 = function () {
+      var PostSettingsInfo = exports("PostSettingsInfo", (_dec40 = ccclass$5('cc.PostSettingsInfo'), _dec41 = type$2(ToneMappingType), _dec40(_class19$1 = (_class20$2 = function () {
         function PostSettingsInfo() {
           this._toneMappingType = _initializer43 && _initializer43();
           this._resource = null;
@@ -37224,11 +37224,11 @@ System.register([], (function (exports, module) {
           }
         }]);
         return PostSettingsInfo;
-      }(), (_applyDecoratedDescriptor(_class20$2.prototype, "toneMappingType", [_dec41], Object.getOwnPropertyDescriptor(_class20$2.prototype, "toneMappingType"), _class20$2.prototype), _initializer43 = applyDecoratedInitializer(_class20$2.prototype, "_toneMappingType", [serializable$5], function () {
+      }(), (_applyDecoratedDescriptor(_class20$2.prototype, "toneMappingType", [_dec41], Object.getOwnPropertyDescriptor(_class20$2.prototype, "toneMappingType"), _class20$2.prototype), _initializer43 = applyDecoratedInitializer(_class20$2.prototype, "_toneMappingType", [serializable$4], function () {
         return ToneMappingType.DEFAULT;
       })), _class20$2)) || _class19$1));
       legacyCC.PostSettingsInfo = PostSettingsInfo;
-      var LightProbeInfo = exports("LightProbeInfo", (_dec42 = ccclass$6('cc.LightProbeInfo'), _dec43 = type$3(CCFloat), _dec44 = type$3(CCInteger), _dec45 = type$3(CCInteger), _dec46 = type$3(CCFloat), _dec47 = type$3(CCFloat), _dec42(_class22$1 = (_class23$1 = function () {
+      var LightProbeInfo = exports("LightProbeInfo", (_dec42 = ccclass$5('cc.LightProbeInfo'), _dec43 = type$2(CCFloat), _dec44 = type$2(CCInteger), _dec45 = type$2(CCInteger), _dec46 = type$2(CCFloat), _dec47 = type$2(CCFloat), _dec42(_class22$1 = (_class23$1 = function () {
         function LightProbeInfo() {
           this._giScale = _initializer44 && _initializer44();
           this._giSamples = _initializer45 && _initializer45();
@@ -37490,26 +37490,26 @@ System.register([], (function (exports, module) {
           }
         }]);
         return LightProbeInfo;
-      }(), (_applyDecoratedDescriptor(_class23$1.prototype, "giScale", [_dec43], Object.getOwnPropertyDescriptor(_class23$1.prototype, "giScale"), _class23$1.prototype), _applyDecoratedDescriptor(_class23$1.prototype, "giSamples", [_dec44], Object.getOwnPropertyDescriptor(_class23$1.prototype, "giSamples"), _class23$1.prototype), _applyDecoratedDescriptor(_class23$1.prototype, "bounces", [_dec45], Object.getOwnPropertyDescriptor(_class23$1.prototype, "bounces"), _class23$1.prototype), _applyDecoratedDescriptor(_class23$1.prototype, "reduceRinging", [_dec46], Object.getOwnPropertyDescriptor(_class23$1.prototype, "reduceRinging"), _class23$1.prototype), _applyDecoratedDescriptor(_class23$1.prototype, "lightProbeSphereVolume", [_dec47], Object.getOwnPropertyDescriptor(_class23$1.prototype, "lightProbeSphereVolume"), _class23$1.prototype), _initializer44 = applyDecoratedInitializer(_class23$1.prototype, "_giScale", [serializable$5], function () {
+      }(), (_applyDecoratedDescriptor(_class23$1.prototype, "giScale", [_dec43], Object.getOwnPropertyDescriptor(_class23$1.prototype, "giScale"), _class23$1.prototype), _applyDecoratedDescriptor(_class23$1.prototype, "giSamples", [_dec44], Object.getOwnPropertyDescriptor(_class23$1.prototype, "giSamples"), _class23$1.prototype), _applyDecoratedDescriptor(_class23$1.prototype, "bounces", [_dec45], Object.getOwnPropertyDescriptor(_class23$1.prototype, "bounces"), _class23$1.prototype), _applyDecoratedDescriptor(_class23$1.prototype, "reduceRinging", [_dec46], Object.getOwnPropertyDescriptor(_class23$1.prototype, "reduceRinging"), _class23$1.prototype), _applyDecoratedDescriptor(_class23$1.prototype, "lightProbeSphereVolume", [_dec47], Object.getOwnPropertyDescriptor(_class23$1.prototype, "lightProbeSphereVolume"), _class23$1.prototype), _initializer44 = applyDecoratedInitializer(_class23$1.prototype, "_giScale", [serializable$4], function () {
         return 1.0;
-      }), _initializer45 = applyDecoratedInitializer(_class23$1.prototype, "_giSamples", [serializable$5], function () {
+      }), _initializer45 = applyDecoratedInitializer(_class23$1.prototype, "_giSamples", [serializable$4], function () {
         return 1024;
-      }), _initializer46 = applyDecoratedInitializer(_class23$1.prototype, "_bounces", [serializable$5], function () {
+      }), _initializer46 = applyDecoratedInitializer(_class23$1.prototype, "_bounces", [serializable$4], function () {
         return 2;
-      }), _initializer47 = applyDecoratedInitializer(_class23$1.prototype, "_reduceRinging", [serializable$5], function () {
+      }), _initializer47 = applyDecoratedInitializer(_class23$1.prototype, "_reduceRinging", [serializable$4], function () {
         return 0.0;
-      }), _initializer48 = applyDecoratedInitializer(_class23$1.prototype, "_showProbe", [serializable$5], function () {
+      }), _initializer48 = applyDecoratedInitializer(_class23$1.prototype, "_showProbe", [serializable$4], function () {
         return true;
-      }), _initializer49 = applyDecoratedInitializer(_class23$1.prototype, "_showWireframe", [serializable$5], function () {
+      }), _initializer49 = applyDecoratedInitializer(_class23$1.prototype, "_showWireframe", [serializable$4], function () {
         return true;
-      }), _initializer50 = applyDecoratedInitializer(_class23$1.prototype, "_showConvex", [serializable$5], function () {
+      }), _initializer50 = applyDecoratedInitializer(_class23$1.prototype, "_showConvex", [serializable$4], function () {
         return false;
-      }), _initializer51 = applyDecoratedInitializer(_class23$1.prototype, "_data", [serializable$5], function () {
+      }), _initializer51 = applyDecoratedInitializer(_class23$1.prototype, "_data", [serializable$4], function () {
         return null;
-      }), _initializer52 = applyDecoratedInitializer(_class23$1.prototype, "_lightProbeSphereVolume", [serializable$5], function () {
+      }), _initializer52 = applyDecoratedInitializer(_class23$1.prototype, "_lightProbeSphereVolume", [serializable$4], function () {
         return 1.0;
       })), _class23$1)) || _class22$1));
-      var SceneGlobals = exports("SceneGlobals", (_dec48 = ccclass$6('cc.SceneGlobals'), _dec49 = type$3(SkyboxInfo), _dec48(_class25 = (_class26 = function () {
+      var SceneGlobals = exports("SceneGlobals", (_dec48 = ccclass$5('cc.SceneGlobals'), _dec49 = type$2(SkyboxInfo), _dec48(_class25 = (_class26 = function () {
         function SceneGlobals() {
           this.ambient = _initializer53 && _initializer53();
           this.shadows = _initializer54 && _initializer54();
@@ -37549,108 +37549,108 @@ System.register([], (function (exports, module) {
           }
         }]);
         return SceneGlobals;
-      }(), (_initializer53 = applyDecoratedInitializer(_class26.prototype, "ambient", [serializable$5], function () {
+      }(), (_initializer53 = applyDecoratedInitializer(_class26.prototype, "ambient", [serializable$4], function () {
         return new AmbientInfo();
-      }), _initializer54 = applyDecoratedInitializer(_class26.prototype, "shadows", [serializable$5], function () {
+      }), _initializer54 = applyDecoratedInitializer(_class26.prototype, "shadows", [serializable$4], function () {
         return new ShadowsInfo();
-      }), _initializer55 = applyDecoratedInitializer(_class26.prototype, "_skybox", [serializable$5], function () {
+      }), _initializer55 = applyDecoratedInitializer(_class26.prototype, "_skybox", [serializable$4], function () {
         return new SkyboxInfo();
-      }), _initializer56 = applyDecoratedInitializer(_class26.prototype, "fog", [serializable$5], function () {
+      }), _initializer56 = applyDecoratedInitializer(_class26.prototype, "fog", [serializable$4], function () {
         return new FogInfo();
-      }), _applyDecoratedDescriptor(_class26.prototype, "skybox", [_dec49], Object.getOwnPropertyDescriptor(_class26.prototype, "skybox"), _class26.prototype), _initializer57 = applyDecoratedInitializer(_class26.prototype, "octree", [serializable$5], function () {
+      }), _applyDecoratedDescriptor(_class26.prototype, "skybox", [_dec49], Object.getOwnPropertyDescriptor(_class26.prototype, "skybox"), _class26.prototype), _initializer57 = applyDecoratedInitializer(_class26.prototype, "octree", [serializable$4], function () {
         return new OctreeInfo();
-      }), _initializer58 = applyDecoratedInitializer(_class26.prototype, "skin", [serializable$5], function () {
+      }), _initializer58 = applyDecoratedInitializer(_class26.prototype, "skin", [serializable$4], function () {
         return new SkinInfo();
-      }), _initializer59 = applyDecoratedInitializer(_class26.prototype, "lightProbeInfo", [serializable$5], function () {
+      }), _initializer59 = applyDecoratedInitializer(_class26.prototype, "lightProbeInfo", [serializable$4], function () {
         return new LightProbeInfo();
-      }), _initializer60 = applyDecoratedInitializer(_class26.prototype, "postSettings", [serializable$5], function () {
+      }), _initializer60 = applyDecoratedInitializer(_class26.prototype, "postSettings", [serializable$4], function () {
         return new PostSettingsInfo();
-      }), _initializer61 = applyDecoratedInitializer(_class26.prototype, "bakedWithStationaryMainLight", [serializable$5], function () {
+      }), _initializer61 = applyDecoratedInitializer(_class26.prototype, "bakedWithStationaryMainLight", [serializable$4], function () {
         return false;
-      }), _initializer62 = applyDecoratedInitializer(_class26.prototype, "bakedWithHighpLightmap", [serializable$5], function () {
+      }), _initializer62 = applyDecoratedInitializer(_class26.prototype, "bakedWithHighpLightmap", [serializable$4], function () {
         return false;
       })), _class26)) || _class25));
       legacyCC.SceneGlobals = SceneGlobals;
 
-      var _dec$19, _dec2$K, _class$19, _class2$V, _initializer$T, _dec3$y, _dec4$n, _dec5$k, _dec6$c, _dec7$b, _dec8$7, _class4$9, _class5$8, _initializer2$H, _initializer3$v, _initializer4$q, _initializer5$l, _initializer6$h, _dec9$7, _class7$3, _class8$2, _initializer7$d, _dec10$4, _dec11$2, _dec12$2, _class10$2, _class11$2, _initializer8$d, _initializer9$d, _initializer10$d, _dec13$2, _dec14$1, _dec15$1, _class13$2, _class14$1, _initializer11$c, _initializer12$b, _dec16, _dec17, _dec18, _class16, _class17, _initializer13$a, _initializer14$8, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _class19, _class20$1, _initializer15$5, _initializer16$5, _initializer17$4, _initializer18$4, _initializer19$3, _initializer20$3, _dec25, _dec26, _dec27, _dec28, _class22, _class23, _initializer21$3, _initializer22$2, _initializer23$1, _initializer24$1, _initializer25, _initializer26;
-      var TargetInfo = (_dec$19 = ccclass$6('cc.TargetInfo'), _dec2$K = type$3([CCString]), _dec$19(_class$19 = (_class2$V = function TargetInfo() {
-        this.localID = _initializer$T && _initializer$T();
-      }, (_initializer$T = applyDecoratedInitializer(_class2$V.prototype, "localID", [serializable$5, _dec2$K], function () {
+      var _dec$17, _dec2$J, _class$17, _class2$U, _initializer$S, _dec3$x, _dec4$m, _dec5$j, _dec6$b, _dec7$a, _dec8$6, _class4$8, _class5$7, _initializer2$G, _initializer3$u, _initializer4$p, _initializer5$k, _initializer6$g, _dec9$6, _class7$3, _class8$2, _initializer7$c, _dec10$3, _dec11$1, _dec12$1, _class10$2, _class11$2, _initializer8$c, _initializer9$c, _initializer10$c, _dec13$1, _dec14, _dec15, _class13$2, _class14$1, _initializer11$b, _initializer12$a, _dec16, _dec17, _dec18, _class16, _class17, _initializer13$9, _initializer14$7, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _class19, _class20$1, _initializer15$4, _initializer16$4, _initializer17$3, _initializer18$3, _initializer19$2, _initializer20$2, _dec25, _dec26, _dec27, _dec28, _class22, _class23, _initializer21$2, _initializer22$2, _initializer23$1, _initializer24$1, _initializer25, _initializer26;
+      var TargetInfo = (_dec$17 = ccclass$5('cc.TargetInfo'), _dec2$J = type$2([CCString]), _dec$17(_class$17 = (_class2$U = function TargetInfo() {
+        this.localID = _initializer$S && _initializer$S();
+      }, (_initializer$S = applyDecoratedInitializer(_class2$U.prototype, "localID", [serializable$4, _dec2$J], function () {
         return [];
-      })), _class2$V)) || _class$19);
-      var TargetOverrideInfo = (_dec3$y = ccclass$6('cc.TargetOverrideInfo'), _dec4$n = type$3(CCObject), _dec5$k = type$3(TargetInfo), _dec6$c = type$3([CCString]), _dec7$b = type$3(Node$1), _dec8$7 = type$3(TargetInfo), _dec3$y(_class4$9 = (_class5$8 = function TargetOverrideInfo() {
-        this.source = _initializer2$H && _initializer2$H();
-        this.sourceInfo = _initializer3$v && _initializer3$v();
-        this.propertyPath = _initializer4$q && _initializer4$q();
-        this.target = _initializer5$l && _initializer5$l();
-        this.targetInfo = _initializer6$h && _initializer6$h();
-      }, (_initializer2$H = applyDecoratedInitializer(_class5$8.prototype, "source", [serializable$5, _dec4$n], function () {
+      })), _class2$U)) || _class$17);
+      var TargetOverrideInfo = (_dec3$x = ccclass$5('cc.TargetOverrideInfo'), _dec4$m = type$2(CCObject), _dec5$j = type$2(TargetInfo), _dec6$b = type$2([CCString]), _dec7$a = type$2(Node$1), _dec8$6 = type$2(TargetInfo), _dec3$x(_class4$8 = (_class5$7 = function TargetOverrideInfo() {
+        this.source = _initializer2$G && _initializer2$G();
+        this.sourceInfo = _initializer3$u && _initializer3$u();
+        this.propertyPath = _initializer4$p && _initializer4$p();
+        this.target = _initializer5$k && _initializer5$k();
+        this.targetInfo = _initializer6$g && _initializer6$g();
+      }, (_initializer2$G = applyDecoratedInitializer(_class5$7.prototype, "source", [serializable$4, _dec4$m], function () {
         return null;
-      }), _initializer3$v = applyDecoratedInitializer(_class5$8.prototype, "sourceInfo", [serializable$5, _dec5$k], function () {
+      }), _initializer3$u = applyDecoratedInitializer(_class5$7.prototype, "sourceInfo", [serializable$4, _dec5$j], function () {
         return null;
-      }), _initializer4$q = applyDecoratedInitializer(_class5$8.prototype, "propertyPath", [serializable$5, _dec6$c], function () {
+      }), _initializer4$p = applyDecoratedInitializer(_class5$7.prototype, "propertyPath", [serializable$4, _dec6$b], function () {
         return [];
-      }), _initializer5$l = applyDecoratedInitializer(_class5$8.prototype, "target", [serializable$5, _dec7$b], function () {
+      }), _initializer5$k = applyDecoratedInitializer(_class5$7.prototype, "target", [serializable$4, _dec7$a], function () {
         return null;
-      }), _initializer6$h = applyDecoratedInitializer(_class5$8.prototype, "targetInfo", [serializable$5, _dec8$7], function () {
+      }), _initializer6$g = applyDecoratedInitializer(_class5$7.prototype, "targetInfo", [serializable$4, _dec8$6], function () {
         return null;
-      })), _class5$8)) || _class4$9);
-      var CompPrefabInfo = (_dec9$7 = ccclass$6('cc.CompPrefabInfo'), _dec9$7(_class7$3 = (_class8$2 = function CompPrefabInfo() {
-        this.fileId = _initializer7$d && _initializer7$d();
-      }, (_initializer7$d = applyDecoratedInitializer(_class8$2.prototype, "fileId", [serializable$5], function () {
+      })), _class5$7)) || _class4$8);
+      var CompPrefabInfo = (_dec9$6 = ccclass$5('cc.CompPrefabInfo'), _dec9$6(_class7$3 = (_class8$2 = function CompPrefabInfo() {
+        this.fileId = _initializer7$c && _initializer7$c();
+      }, (_initializer7$c = applyDecoratedInitializer(_class8$2.prototype, "fileId", [serializable$4], function () {
         return '';
       })), _class8$2)) || _class7$3);
-      var PropertyOverrideInfo = (_dec10$4 = ccclass$6('CCPropertyOverrideInfo'), _dec11$2 = type$3(TargetInfo), _dec12$2 = type$3([CCString]), _dec10$4(_class10$2 = (_class11$2 = function () {
+      var PropertyOverrideInfo = (_dec10$3 = ccclass$5('CCPropertyOverrideInfo'), _dec11$1 = type$2(TargetInfo), _dec12$1 = type$2([CCString]), _dec10$3(_class10$2 = (_class11$2 = function () {
         function PropertyOverrideInfo() {
-          this.targetInfo = _initializer8$d && _initializer8$d();
-          this.propertyPath = _initializer9$d && _initializer9$d();
-          this.value = _initializer10$d && _initializer10$d();
+          this.targetInfo = _initializer8$c && _initializer8$c();
+          this.propertyPath = _initializer9$c && _initializer9$c();
+          this.value = _initializer10$c && _initializer10$c();
         }
         var _proto = PropertyOverrideInfo.prototype;
         _proto.isTarget = function isTarget(localID, propPath) {
         };
         return PropertyOverrideInfo;
-      }(), (_initializer8$d = applyDecoratedInitializer(_class11$2.prototype, "targetInfo", [serializable$5, _dec11$2], function () {
+      }(), (_initializer8$c = applyDecoratedInitializer(_class11$2.prototype, "targetInfo", [serializable$4, _dec11$1], function () {
         return null;
-      }), _initializer9$d = applyDecoratedInitializer(_class11$2.prototype, "propertyPath", [serializable$5, _dec12$2], function () {
+      }), _initializer9$c = applyDecoratedInitializer(_class11$2.prototype, "propertyPath", [serializable$4, _dec12$1], function () {
         return [];
-      }), _initializer10$d = applyDecoratedInitializer(_class11$2.prototype, "value", [serializable$5], null)), _class11$2)) || _class10$2);
-      var MountedChildrenInfo = (_dec13$2 = ccclass$6('cc.MountedChildrenInfo'), _dec14$1 = type$3(TargetInfo), _dec15$1 = type$3([Node$1]), _dec13$2(_class13$2 = (_class14$1 = function () {
+      }), _initializer10$c = applyDecoratedInitializer(_class11$2.prototype, "value", [serializable$4], null)), _class11$2)) || _class10$2);
+      var MountedChildrenInfo = (_dec13$1 = ccclass$5('cc.MountedChildrenInfo'), _dec14 = type$2(TargetInfo), _dec15 = type$2([Node$1]), _dec13$1(_class13$2 = (_class14$1 = function () {
         function MountedChildrenInfo() {
-          this.targetInfo = _initializer11$c && _initializer11$c();
-          this.nodes = _initializer12$b && _initializer12$b();
+          this.targetInfo = _initializer11$b && _initializer11$b();
+          this.nodes = _initializer12$a && _initializer12$a();
         }
         var _proto2 = MountedChildrenInfo.prototype;
         _proto2.isTarget = function isTarget(localID) {
         };
         return MountedChildrenInfo;
-      }(), (_initializer11$c = applyDecoratedInitializer(_class14$1.prototype, "targetInfo", [serializable$5, _dec14$1], function () {
+      }(), (_initializer11$b = applyDecoratedInitializer(_class14$1.prototype, "targetInfo", [serializable$4, _dec14], function () {
         return null;
-      }), _initializer12$b = applyDecoratedInitializer(_class14$1.prototype, "nodes", [serializable$5, _dec15$1], function () {
+      }), _initializer12$a = applyDecoratedInitializer(_class14$1.prototype, "nodes", [serializable$4, _dec15], function () {
         return [];
       })), _class14$1)) || _class13$2);
-      var MountedComponentsInfo = (_dec16 = ccclass$6('cc.MountedComponentsInfo'), _dec17 = type$3(TargetInfo), _dec18 = type$3([Component]), _dec16(_class16 = (_class17 = function () {
+      var MountedComponentsInfo = (_dec16 = ccclass$5('cc.MountedComponentsInfo'), _dec17 = type$2(TargetInfo), _dec18 = type$2([Component]), _dec16(_class16 = (_class17 = function () {
         function MountedComponentsInfo() {
-          this.targetInfo = _initializer13$a && _initializer13$a();
-          this.components = _initializer14$8 && _initializer14$8();
+          this.targetInfo = _initializer13$9 && _initializer13$9();
+          this.components = _initializer14$7 && _initializer14$7();
         }
         var _proto3 = MountedComponentsInfo.prototype;
         _proto3.isTarget = function isTarget(localID) {
         };
         return MountedComponentsInfo;
-      }(), (_initializer13$a = applyDecoratedInitializer(_class17.prototype, "targetInfo", [serializable$5, _dec17], function () {
+      }(), (_initializer13$9 = applyDecoratedInitializer(_class17.prototype, "targetInfo", [serializable$4, _dec17], function () {
         return null;
-      }), _initializer14$8 = applyDecoratedInitializer(_class17.prototype, "components", [serializable$5, _dec18], function () {
+      }), _initializer14$7 = applyDecoratedInitializer(_class17.prototype, "components", [serializable$4, _dec18], function () {
         return [];
       })), _class17)) || _class16);
-      var PrefabInstance = (_dec19 = ccclass$6('cc.PrefabInstance'), _dec20 = type$3(Node$1), _dec21 = type$3([MountedChildrenInfo]), _dec22 = type$3([MountedComponentsInfo]), _dec23 = type$3([PropertyOverrideInfo]), _dec24 = type$3([TargetInfo]), _dec19(_class19 = (_class20$1 = function () {
+      var PrefabInstance = (_dec19 = ccclass$5('cc.PrefabInstance'), _dec20 = type$2(Node$1), _dec21 = type$2([MountedChildrenInfo]), _dec22 = type$2([MountedComponentsInfo]), _dec23 = type$2([PropertyOverrideInfo]), _dec24 = type$2([TargetInfo]), _dec19(_class19 = (_class20$1 = function () {
         function PrefabInstance() {
-          this.fileId = _initializer15$5 && _initializer15$5();
-          this.prefabRootNode = _initializer16$5 && _initializer16$5();
-          this.mountedChildren = _initializer17$4 && _initializer17$4();
-          this.mountedComponents = _initializer18$4 && _initializer18$4();
-          this.propertyOverrides = _initializer19$3 && _initializer19$3();
-          this.removedComponents = _initializer20$3 && _initializer20$3();
+          this.fileId = _initializer15$4 && _initializer15$4();
+          this.prefabRootNode = _initializer16$4 && _initializer16$4();
+          this.mountedChildren = _initializer17$3 && _initializer17$3();
+          this.mountedComponents = _initializer18$3 && _initializer18$3();
+          this.propertyOverrides = _initializer19$2 && _initializer19$2();
+          this.removedComponents = _initializer20$2 && _initializer20$2();
           this.targetMap = {};
           this.expanded = false;
         }
@@ -37660,27 +37660,27 @@ System.register([], (function (exports, module) {
         _proto4.removePropertyOverride = function removePropertyOverride(localID, propPath) {
         };
         return PrefabInstance;
-      }(), (_initializer15$5 = applyDecoratedInitializer(_class20$1.prototype, "fileId", [serializable$5], function () {
+      }(), (_initializer15$4 = applyDecoratedInitializer(_class20$1.prototype, "fileId", [serializable$4], function () {
         return '';
-      }), _initializer16$5 = applyDecoratedInitializer(_class20$1.prototype, "prefabRootNode", [serializable$5, _dec20], null), _initializer17$4 = applyDecoratedInitializer(_class20$1.prototype, "mountedChildren", [serializable$5, _dec21], function () {
+      }), _initializer16$4 = applyDecoratedInitializer(_class20$1.prototype, "prefabRootNode", [serializable$4, _dec20], null), _initializer17$3 = applyDecoratedInitializer(_class20$1.prototype, "mountedChildren", [serializable$4, _dec21], function () {
         return [];
-      }), _initializer18$4 = applyDecoratedInitializer(_class20$1.prototype, "mountedComponents", [serializable$5, _dec22], function () {
+      }), _initializer18$3 = applyDecoratedInitializer(_class20$1.prototype, "mountedComponents", [serializable$4, _dec22], function () {
         return [];
-      }), _initializer19$3 = applyDecoratedInitializer(_class20$1.prototype, "propertyOverrides", [serializable$5, _dec23], function () {
+      }), _initializer19$2 = applyDecoratedInitializer(_class20$1.prototype, "propertyOverrides", [serializable$4, _dec23], function () {
         return [];
-      }), _initializer20$3 = applyDecoratedInitializer(_class20$1.prototype, "removedComponents", [serializable$5, _dec24], function () {
+      }), _initializer20$2 = applyDecoratedInitializer(_class20$1.prototype, "removedComponents", [serializable$4, _dec24], function () {
         return [];
       })), _class20$1)) || _class19);
-      var PrefabInfo = (_dec25 = ccclass$6('cc.PrefabInfo'), _dec26 = type$3(Node$1), _dec27 = type$3(PrefabInstance), _dec28 = type$3([TargetOverrideInfo]), _dec25(_class22 = (_class23 = function PrefabInfo() {
-        this.root = _initializer21$3 && _initializer21$3();
+      var PrefabInfo = (_dec25 = ccclass$5('cc.PrefabInfo'), _dec26 = type$2(Node$1), _dec27 = type$2(PrefabInstance), _dec28 = type$2([TargetOverrideInfo]), _dec25(_class22 = (_class23 = function PrefabInfo() {
+        this.root = _initializer21$2 && _initializer21$2();
         this.asset = _initializer22$2 && _initializer22$2();
         this.fileId = _initializer23$1 && _initializer23$1();
         this.instance = _initializer24$1 && _initializer24$1();
         this.targetOverrides = _initializer25 && _initializer25();
         this.nestedPrefabInstanceRoots = _initializer26 && _initializer26();
-      }, (_initializer21$3 = applyDecoratedInitializer(_class23.prototype, "root", [serializable$5, _dec26], null), _initializer22$2 = applyDecoratedInitializer(_class23.prototype, "asset", [serializable$5], null), _initializer23$1 = applyDecoratedInitializer(_class23.prototype, "fileId", [serializable$5], function () {
+      }, (_initializer21$2 = applyDecoratedInitializer(_class23.prototype, "root", [serializable$4, _dec26], null), _initializer22$2 = applyDecoratedInitializer(_class23.prototype, "asset", [serializable$4], null), _initializer23$1 = applyDecoratedInitializer(_class23.prototype, "fileId", [serializable$4], function () {
         return '';
-      }), _initializer24$1 = applyDecoratedInitializer(_class23.prototype, "instance", [serializable$5, _dec27], null), _initializer25 = applyDecoratedInitializer(_class23.prototype, "targetOverrides", [serializable$5, _dec28], null), _initializer26 = applyDecoratedInitializer(_class23.prototype, "nestedPrefabInstanceRoots", [serializable$5], null)), _class23)) || _class22);
+      }), _initializer24$1 = applyDecoratedInitializer(_class23.prototype, "instance", [serializable$4, _dec27], null), _initializer25 = applyDecoratedInitializer(_class23.prototype, "targetOverrides", [serializable$4, _dec28], null), _initializer26 = applyDecoratedInitializer(_class23.prototype, "nestedPrefabInstanceRoots", [serializable$4], null)), _class23)) || _class22);
       cclegacy._PrefabInfo = PrefabInfo;
 
       function createNodeWithPrefab(node) {
@@ -38021,8 +38021,8 @@ System.register([], (function (exports, module) {
         getTarget: getTarget
       });
 
-      var _dec$18, _class$18, _class2$U, _initializer$S, _initializer2$G;
-      var Scene = exports("Scene", (_dec$18 = ccclass$6('cc.Scene'), _dec$18(_class$18 = (_class2$U = function (_Node) {
+      var _dec$16, _class$16, _class2$T, _initializer$R, _initializer2$F;
+      var Scene = exports("Scene", (_dec$16 = ccclass$5('cc.Scene'), _dec$16(_class$16 = (_class2$T = function (_Node) {
         _inheritsLoose(Scene, _Node);
         var _proto = Scene.prototype;
         _proto._updateScene = function _updateScene() {
@@ -38031,8 +38031,8 @@ System.register([], (function (exports, module) {
         function Scene(name) {
           var _this;
           _this = _Node.call(this, name) || this;
-          _this.autoReleaseAssets = _initializer$S && _initializer$S();
-          _this._globals = _initializer2$G && _initializer2$G();
+          _this.autoReleaseAssets = _initializer$R && _initializer$R();
+          _this._globals = _initializer2$F && _initializer2$F();
           _this.dependAssets = null;
           _this._renderScene = null;
           _this._prefabSyncedInLiveReload = false;
@@ -38102,20 +38102,20 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Scene;
-      }(Node$1), (_initializer$S = applyDecoratedInitializer(_class2$U.prototype, "autoReleaseAssets", [serializable$5], function () {
+      }(Node$1), (_initializer$R = applyDecoratedInitializer(_class2$T.prototype, "autoReleaseAssets", [serializable$4], function () {
         return false;
-      }), _initializer2$G = applyDecoratedInitializer(_class2$U.prototype, "_globals", [serializable$5], function () {
+      }), _initializer2$F = applyDecoratedInitializer(_class2$T.prototype, "_globals", [serializable$4], function () {
         return new SceneGlobals();
-      })), _class2$U)) || _class$18));
+      })), _class2$T)) || _class$16));
       legacyCC.Scene = Scene;
 
-      var _dec$17, _class$17, _class2$T, _initializer$R;
-      var SceneAsset = exports("SceneAsset", (_dec$17 = ccclass$6('cc.SceneAsset'), _dec$17(_class$17 = (_class2$T = function (_Asset) {
+      var _dec$15, _class$15, _class2$S, _initializer$Q;
+      var SceneAsset = exports("SceneAsset", (_dec$15 = ccclass$5('cc.SceneAsset'), _dec$15(_class$15 = (_class2$S = function (_Asset) {
         _inheritsLoose(SceneAsset, _Asset);
         function SceneAsset(name) {
           var _this;
           _this = _Asset.call(this, name) || this;
-          _this.scene = _initializer$R && _initializer$R();
+          _this.scene = _initializer$Q && _initializer$Q();
           return _this;
         }
         var _proto = SceneAsset.prototype;
@@ -38127,9 +38127,9 @@ System.register([], (function (exports, module) {
           return !!this.scene;
         };
         return SceneAsset;
-      }(Asset), (_initializer$R = applyDecoratedInitializer(_class2$T.prototype, "scene", [serializable$5], function () {
+      }(Asset), (_initializer$Q = applyDecoratedInitializer(_class2$S.prototype, "scene", [serializable$4], function () {
         return null;
-      })), _class2$T)) || _class$17));
+      })), _class2$S)) || _class$15));
       cclegacy.SceneAsset = SceneAsset;
 
       deprecateModuleExportedName({
@@ -43637,7 +43637,7 @@ System.register([], (function (exports, module) {
         return RangedDirectionalLight;
       }(Light);
 
-      var _dec$16, _class$16;
+      var _dec$14, _class$14;
       var _colorAttachment = new ColorAttachment();
       _colorAttachment.format = 35;
       var _depthStencilAttachment = new DepthStencilAttachment();
@@ -43648,7 +43648,7 @@ System.register([], (function (exports, module) {
         height: 1,
         renderPassInfo: passInfo
       };
-      var RenderTexture = exports("RenderTexture", (_dec$16 = ccclass$6('cc.RenderTexture'), _dec$16(_class$16 = function (_TextureBase) {
+      var RenderTexture = exports("RenderTexture", (_dec$14 = ccclass$5('cc.RenderTexture'), _dec$14(_class$14 = function (_TextureBase) {
         _inheritsLoose(RenderTexture, _TextureBase);
         function RenderTexture(name) {
           var _this;
@@ -43763,7 +43763,7 @@ System.register([], (function (exports, module) {
           }
         }]);
         return RenderTexture;
-      }(TextureBase)) || _class$16));
+      }(TextureBase)) || _class$14));
       cclegacy.RenderTexture = RenderTexture;
 
       var ProbeClearFlag = {
@@ -45573,7 +45573,7 @@ System.register([], (function (exports, module) {
       CCClass.Attr.setClassAttr(EventHandler, 'target', 'type', 'Object');
       CCClass.Attr.setClassAttr(EventHandler, 'target', 'ctor', Node$1);
 
-      var _dec$15, _class$15;
+      var _dec$13, _class$13;
       replaceProperty(Node$1.prototype, 'Node', [{
         name: 'childrenCount',
         newName: 'children.length',
@@ -45770,7 +45770,7 @@ System.register([], (function (exports, module) {
       }]);
       var HideInHierarchy = 1024;
       var DontSave = 8;
-      var PrivateNode = exports("PrivateNode", (_dec$15 = ccclass$6('cc.PrivateNode'), _dec$15(_class$15 = function (_Node) {
+      var PrivateNode = exports("PrivateNode", (_dec$13 = ccclass$5('cc.PrivateNode'), _dec$13(_class$13 = function (_Node) {
         _inheritsLoose(PrivateNode, _Node);
         function PrivateNode(name) {
           var _this;
@@ -45780,7 +45780,7 @@ System.register([], (function (exports, module) {
           return _this;
         }
         return PrivateNode;
-      }(Node$1)) || _class$15));
+      }(Node$1)) || _class$13));
       replaceProperty(SystemEventType, 'SystemEventType', ['MOUSE_ENTER', 'MOUSE_LEAVE', 'TRANSFORM_CHANGED', 'SCENE_CHANGED_FOR_PERSISTS', 'SIZE_CHANGED', 'ANCHOR_CHANGED', 'COLOR_CHANGED', 'CHILD_ADDED', 'CHILD_REMOVED', 'PARENT_CHANGED', 'NODE_DESTROYED', 'LAYER_CHANGED', 'SIBLING_ORDER_CHANGED'].map(function (name) {
         return {
           name: name,
@@ -46672,20 +46672,20 @@ System.register([], (function (exports, module) {
         return parser.result;
       }
 
-      var _dec$14, _class$14, _class2$S, _initializer$Q, _initializer2$F, _initializer3$u, _class3$o;
+      var _dec$12, _class$12, _class2$R, _initializer$P, _initializer2$E, _initializer3$t, _class3$n;
       var OptimizationPolicy = Enum({
         AUTO: 0,
         SINGLE_INSTANCE: 1,
         MULTI_INSTANCE: 2
       });
-      var Prefab = exports("Prefab", (_dec$14 = ccclass$6('cc.Prefab'), _dec$14(_class$14 = (_class2$S = (_class3$o = function (_Asset) {
+      var Prefab = exports("Prefab", (_dec$12 = ccclass$5('cc.Prefab'), _dec$12(_class$12 = (_class2$R = (_class3$n = function (_Asset) {
         _inheritsLoose(Prefab, _Asset);
         function Prefab() {
           var _this;
           _this = _Asset.call(this) || this;
-          _this.data = _initializer$Q && _initializer$Q();
-          _this.optimizationPolicy = _initializer2$F && _initializer2$F();
-          _this.persistent = _initializer3$u && _initializer3$u();
+          _this.data = _initializer$P && _initializer$P();
+          _this.optimizationPolicy = _initializer2$E && _initializer2$E();
+          _this.persistent = _initializer3$t && _initializer3$t();
           _this._createFunction = null;
           _this._instantiatedTimes = 0;
           return _this;
@@ -46749,13 +46749,13 @@ System.register([], (function (exports, module) {
           applyTargetOverrides(rootNode);
         };
         return Prefab;
-      }(Asset), _class3$o.OptimizationPolicy = OptimizationPolicy, _class3$o.OptimizationPolicyThreshold = 3, _class3$o), (_initializer$Q = applyDecoratedInitializer(_class2$S.prototype, "data", [serializable$5], function () {
+      }(Asset), _class3$n.OptimizationPolicy = OptimizationPolicy, _class3$n.OptimizationPolicyThreshold = 3, _class3$n), (_initializer$P = applyDecoratedInitializer(_class2$R.prototype, "data", [serializable$4], function () {
         return null;
-      }), _initializer2$F = applyDecoratedInitializer(_class2$S.prototype, "optimizationPolicy", [serializable$5], function () {
+      }), _initializer2$E = applyDecoratedInitializer(_class2$R.prototype, "optimizationPolicy", [serializable$4], function () {
         return OptimizationPolicy.AUTO;
-      }), _initializer3$u = applyDecoratedInitializer(_class2$S.prototype, "persistent", [serializable$5], function () {
+      }), _initializer3$t = applyDecoratedInitializer(_class2$R.prototype, "persistent", [serializable$4], function () {
         return false;
-      })), _class2$S)) || _class$14));
+      })), _class2$R)) || _class$12));
       value(Prefab, '_utils', utils);
       legacyCC.Prefab = Prefab;
       {
@@ -51393,7 +51393,7 @@ System.register([], (function (exports, module) {
       _p.Inflate.BufferType = _p.Inflate["BufferType"];
       _p.Inflate.prototype.decompress = _p.Inflate.prototype["decompress"];
 
-      var _dec$13, _class$13, _class2$R, _initializer$P, _initializer2$E, _initializer3$t;
+      var _dec$11, _class$11, _class2$Q, _initializer$O, _initializer2$D, _initializer3$s;
       var vec3Add = Vec3.add;
       var vec3MultiplyScalar = Vec3.multiplyScalar;
       var vec3Subtract = Vec3.subtract;
@@ -51418,17 +51418,17 @@ System.register([], (function (exports, module) {
       var v3_1$1 = new Vec3();
       var v3_2 = new Vec3();
       var globalEmptyMeshBuffer = new Uint8Array();
-      var Mesh = (_dec$13 = ccclass$6('cc.Mesh'), _dec$13(_class$13 = (_class2$R = function (_Asset) {
+      var Mesh = (_dec$11 = ccclass$5('cc.Mesh'), _dec$11(_class$11 = (_class2$Q = function (_Asset) {
         _inheritsLoose(Mesh, _Asset);
         function Mesh(name) {
           var _this;
           _this = _Asset.call(this, name) || this;
           _this.morphRendering = null;
-          _this._struct = _initializer$P && _initializer$P();
-          _this._hash = _initializer2$E && _initializer2$E();
+          _this._struct = _initializer$O && _initializer$O();
+          _this._hash = _initializer2$D && _initializer2$D();
           _this._data = globalEmptyMeshBuffer;
           _this._initialized = false;
-          _this._allowDataAccess = _initializer3$t && _initializer3$t();
+          _this._allowDataAccess = _initializer3$s && _initializer3$s();
           _this._isMeshDataUploaded = false;
           _this._renderingSubMeshes = null;
           _this._boneSpaceBounds = new Map();
@@ -52228,16 +52228,16 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Mesh;
-      }(Asset), (_initializer$P = applyDecoratedInitializer(_class2$R.prototype, "_struct", [serializable$5], function () {
+      }(Asset), (_initializer$O = applyDecoratedInitializer(_class2$Q.prototype, "_struct", [serializable$4], function () {
         return {
           vertexBundles: [],
           primitives: []
         };
-      }), _initializer2$E = applyDecoratedInitializer(_class2$R.prototype, "_hash", [serializable$5], function () {
+      }), _initializer2$D = applyDecoratedInitializer(_class2$Q.prototype, "_hash", [serializable$4], function () {
         return 0;
-      }), _initializer3$t = applyDecoratedInitializer(_class2$R.prototype, "_allowDataAccess", [serializable$5], function () {
+      }), _initializer3$s = applyDecoratedInitializer(_class2$Q.prototype, "_allowDataAccess", [serializable$4], function () {
         return true;
-      })), _class2$R)) || _class$13);
+      })), _class2$Q)) || _class$11);
       cclegacy.Mesh = Mesh;
       function getOffset(attributes, attributeIndex) {
         var result = 0;
@@ -52812,7 +52812,7 @@ System.register([], (function (exports, module) {
         return out;
       }
 
-      var _dec$12, _class$12, _class2$Q;
+      var _dec$10, _class$10, _class2$P;
       var INSET_LEFT = 0;
       var INSET_TOP = 1;
       var INSET_RIGHT = 2;
@@ -52841,7 +52841,7 @@ System.register([], (function (exports, module) {
       var SpriteFrameEvent = exports("SpriteFrameEvent", {
         UV_UPDATED: "uv_updated"
       });
-      var SpriteFrame = exports("SpriteFrame", (_dec$12 = ccclass$6('cc.SpriteFrame'), _dec$12(_class$12 = (_class2$Q = function (_Asset) {
+      var SpriteFrame = exports("SpriteFrame", (_dec$10 = ccclass$5('cc.SpriteFrame'), _dec$10(_class$10 = (_class2$P = function (_Asset) {
         _inheritsLoose(SpriteFrame, _Asset);
         SpriteFrame.createWithImage = function createWithImage(imageSourceOrImageAsset) {
           var img = imageSourceOrImageAsset instanceof ImageAsset ? imageSourceOrImageAsset : new ImageAsset(imageSourceOrImageAsset);
@@ -53644,16 +53644,16 @@ System.register([], (function (exports, module) {
           }
         }]);
         return SpriteFrame;
-      }(Asset), _class2$Q.EVENT_UV_UPDATED = "uv_updated", _class2$Q.MeshType = MeshType, _class2$Q)) || _class$12));
+      }(Asset), _class2$P.EVENT_UV_UPDATED = "uv_updated", _class2$P.MeshType = MeshType, _class2$P)) || _class$10));
       cclegacy.SpriteFrame = SpriteFrame;
 
-      var _dec$11, _class$11, _class2$P, _initializer$O;
-      var SpriteAtlas = exports("SpriteAtlas", (_dec$11 = ccclass$6('cc.SpriteAtlas'), _dec$11(_class$11 = (_class2$P = function (_Asset) {
+      var _dec$$, _class$$, _class2$O, _initializer$N;
+      var SpriteAtlas = exports("SpriteAtlas", (_dec$$ = ccclass$5('cc.SpriteAtlas'), _dec$$(_class$$ = (_class2$O = function (_Asset) {
         _inheritsLoose(SpriteAtlas, _Asset);
         function SpriteAtlas(name) {
           var _this;
           _this = _Asset.call(this, name) || this;
-          _this.spriteFrames = _initializer$O && _initializer$O();
+          _this.spriteFrames = _initializer$N && _initializer$N();
           return _this;
         }
         var _proto = SpriteAtlas.prototype;
@@ -53697,28 +53697,28 @@ System.register([], (function (exports, module) {
           }
         };
         return SpriteAtlas;
-      }(Asset), (_initializer$O = applyDecoratedInitializer(_class2$P.prototype, "spriteFrames", [serializable$5], function () {
+      }(Asset), (_initializer$N = applyDecoratedInitializer(_class2$O.prototype, "spriteFrames", [serializable$4], function () {
         return createMap();
-      })), _class2$P)) || _class$11));
+      })), _class2$O)) || _class$$));
       cclegacy.SpriteAtlas = SpriteAtlas;
 
-      var _dec$10, _class$10;
-      var Font = exports("Font", (_dec$10 = ccclass$6('cc.Font'), _dec$10(_class$10 = function (_Asset) {
+      var _dec$_, _class$_;
+      var Font = exports("Font", (_dec$_ = ccclass$5('cc.Font'), _dec$_(_class$_ = function (_Asset) {
         _inheritsLoose(Font, _Asset);
         function Font(name) {
           return _Asset.call(this, name) || this;
         }
         return Font;
-      }(Asset)) || _class$10));
+      }(Asset)) || _class$_));
       cclegacy.Font = Font;
 
-      var _dec$$, _class$$, _class2$O, _initializer$N;
-      var TTFFont = exports("TTFFont", (_dec$$ = ccclass$6('cc.TTFFont'), _dec$$(_class$$ = (_class2$O = function (_Font) {
+      var _dec$Z, _class$Z, _class2$N, _initializer$M;
+      var TTFFont = exports("TTFFont", (_dec$Z = ccclass$5('cc.TTFFont'), _dec$Z(_class$Z = (_class2$N = function (_Font) {
         _inheritsLoose(TTFFont, _Font);
         function TTFFont() {
           var _this;
           _this = _Font.call(this) || this;
-          _this._fontFamily = _initializer$N && _initializer$N();
+          _this._fontFamily = _initializer$M && _initializer$M();
           return _this;
         }
         var _proto = TTFFont.prototype;
@@ -53746,9 +53746,9 @@ System.register([], (function (exports, module) {
           }
         }]);
         return TTFFont;
-      }(Font), (_initializer$N = applyDecoratedInitializer(_class2$O.prototype, "_fontFamily", [serializable$5], function () {
+      }(Font), (_initializer$M = applyDecoratedInitializer(_class2$N.prototype, "_fontFamily", [serializable$4], function () {
         return null;
-      }), _applyDecoratedDescriptor(_class2$O.prototype, "_nativeAsset", [override, string], Object.getOwnPropertyDescriptor(_class2$O.prototype, "_nativeAsset"), _class2$O.prototype), _applyDecoratedDescriptor(_class2$O.prototype, "_nativeDep", [override], Object.getOwnPropertyDescriptor(_class2$O.prototype, "_nativeDep"), _class2$O.prototype)), _class2$O)) || _class$$));
+      }), _applyDecoratedDescriptor(_class2$N.prototype, "_nativeAsset", [override, string], Object.getOwnPropertyDescriptor(_class2$N.prototype, "_nativeAsset"), _class2$N.prototype), _applyDecoratedDescriptor(_class2$N.prototype, "_nativeDep", [override], Object.getOwnPropertyDescriptor(_class2$N.prototype, "_nativeDep"), _class2$N.prototype)), _class2$N)) || _class$Z));
       cclegacy.TTFFont = TTFFont;
 
       var minigame = {};
@@ -54629,7 +54629,7 @@ System.register([], (function (exports, module) {
         return HtmlTextParser;
       }());
 
-      var _dec$_, _dec2$J, _class3$n, _class4$8, _initializer$M, _initializer2$D, _initializer3$s, _initializer4$p;
+      var _dec$Y, _dec2$I, _class3$m, _class4$7, _initializer$L, _initializer2$C, _initializer3$r, _initializer4$o;
       var FontLetterDefinition = function FontLetterDefinition() {
         this.u = 0;
         this.v = 0;
@@ -54699,15 +54699,15 @@ System.register([], (function (exports, module) {
         }]);
         return FontAtlas;
       }();
-      var BitmapFont = exports("BitmapFont", (_dec$_ = ccclass$6('cc.BitmapFont'), _dec2$J = type$3(SpriteFrame), _dec$_(_class3$n = (_class4$8 = function (_Font) {
+      var BitmapFont = exports("BitmapFont", (_dec$Y = ccclass$5('cc.BitmapFont'), _dec2$I = type$2(SpriteFrame), _dec$Y(_class3$m = (_class4$7 = function (_Font) {
         _inheritsLoose(BitmapFont, _Font);
         function BitmapFont() {
           var _this;
           _this = _Font.call(this) || this;
-          _this.fntDataStr = _initializer$M && _initializer$M();
-          _this.spriteFrame = _initializer2$D && _initializer2$D();
-          _this.fontSize = _initializer3$s && _initializer3$s();
-          _this.fntConfig = _initializer4$p && _initializer4$p();
+          _this.fntDataStr = _initializer$L && _initializer$L();
+          _this.spriteFrame = _initializer2$C && _initializer2$C();
+          _this.fontSize = _initializer3$r && _initializer3$r();
+          _this.fntConfig = _initializer4$o && _initializer4$o();
           return _this;
         }
         var _proto2 = BitmapFont.prototype;
@@ -54738,25 +54738,25 @@ System.register([], (function (exports, module) {
           }
         };
         return BitmapFont;
-      }(Font), (_initializer$M = applyDecoratedInitializer(_class4$8.prototype, "fntDataStr", [serializable$5], function () {
+      }(Font), (_initializer$L = applyDecoratedInitializer(_class4$7.prototype, "fntDataStr", [serializable$4], function () {
         return '';
-      }), _initializer2$D = applyDecoratedInitializer(_class4$8.prototype, "spriteFrame", [_dec2$J], function () {
+      }), _initializer2$C = applyDecoratedInitializer(_class4$7.prototype, "spriteFrame", [_dec2$I], function () {
         return null;
-      }), _initializer3$s = applyDecoratedInitializer(_class4$8.prototype, "fontSize", [serializable$5], function () {
+      }), _initializer3$r = applyDecoratedInitializer(_class4$7.prototype, "fontSize", [serializable$4], function () {
         return -1;
-      }), _initializer4$p = applyDecoratedInitializer(_class4$8.prototype, "fntConfig", [serializable$5], function () {
+      }), _initializer4$o = applyDecoratedInitializer(_class4$7.prototype, "fntConfig", [serializable$4], function () {
         return null;
-      })), _class4$8)) || _class3$n));
+      })), _class4$7)) || _class3$m));
       cclegacy.BitmapFont = BitmapFont;
 
-      var _dec$Z, _class$_;
-      var LabelAtlas = exports("LabelAtlas", (_dec$Z = ccclass$6('cc.LabelAtlas'), _dec$Z(_class$_ = function (_BitmapFont) {
+      var _dec$X, _class$Y;
+      var LabelAtlas = exports("LabelAtlas", (_dec$X = ccclass$5('cc.LabelAtlas'), _dec$X(_class$Y = function (_BitmapFont) {
         _inheritsLoose(LabelAtlas, _BitmapFont);
         function LabelAtlas() {
           return _BitmapFont.apply(this, arguments) || this;
         }
         return LabelAtlas;
-      }(BitmapFont)) || _class$_));
+      }(BitmapFont)) || _class$Y));
       cclegacy.LabelAtlas = LabelAtlas;
 
       var _canvasPool;
@@ -56233,7 +56233,7 @@ System.register([], (function (exports, module) {
         return MeshRenderData;
       }(BaseRenderData));
 
-      var _dec$Y, _dec2$I, _class$Z, _class2$N, _initializer$L, _initializer2$C, _class3$m;
+      var _dec$W, _dec2$H, _class$X, _class2$M, _initializer$K, _initializer2$B, _class3$l;
       var _vec2a = new Vec2();
       var _vec2b = new Vec2();
       var _vec3a = new Vec3();
@@ -56242,14 +56242,14 @@ System.register([], (function (exports, module) {
       var _worldMatrix$1 = new Mat4();
       var _zeroMatrix = new Mat4(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
       var _rect = new Rect$1();
-      var UITransform = (_dec$Y = ccclass$6('cc.UITransform'), _dec2$I = executionOrder$1(110), _dec$Y(_class$Z = _dec2$I(_class$Z = disallowMultiple$1(_class$Z = (_class2$N = (_class3$m = function (_Component) {
+      var UITransform = (_dec$W = ccclass$5('cc.UITransform'), _dec2$H = executionOrder(110), _dec$W(_class$X = _dec2$H(_class$X = disallowMultiple$1(_class$X = (_class2$M = (_class3$l = function (_Component) {
         _inheritsLoose(UITransform, _Component);
         function UITransform() {
           var _this;
           _this = _Component.call(this) || this;
           _this._priority = 0;
-          _this._contentSize = _initializer$L && _initializer$L();
-          _this._anchorPoint = _initializer2$C && _initializer2$C();
+          _this._contentSize = _initializer$K && _initializer$K();
+          _this._anchorPoint = _initializer2$B && _initializer2$B();
           return _this;
         }
         var _proto = UITransform.prototype;
@@ -56685,29 +56685,29 @@ System.register([], (function (exports, module) {
           }
         }]);
         return UITransform;
-      }(Component), _class3$m.EventType = NodeEventType, _class3$m.priorityChangeNodeMap = new Map(), _class3$m), (_initializer$L = applyDecoratedInitializer(_class2$N.prototype, "_contentSize", [serializable$5], function () {
+      }(Component), _class3$l.EventType = NodeEventType, _class3$l.priorityChangeNodeMap = new Map(), _class3$l), (_initializer$K = applyDecoratedInitializer(_class2$M.prototype, "_contentSize", [serializable$4], function () {
         return new Size$1(100, 100);
-      }), _initializer2$C = applyDecoratedInitializer(_class2$N.prototype, "_anchorPoint", [serializable$5], function () {
+      }), _initializer2$B = applyDecoratedInitializer(_class2$M.prototype, "_anchorPoint", [serializable$4], function () {
         return new Vec2(0.5, 0.5);
-      })), _class2$N)) || _class$Z) || _class$Z) || _class$Z); exports({ UITransform: UITransform, UITransformComponent: UITransform });
+      })), _class2$M)) || _class$X) || _class$X) || _class$X); exports({ UITransform: UITransform, UITransformComponent: UITransform });
       director.on("director_after_update", UITransform._sortSiblings);
       director.on("director_before_scene_launch", UITransform._cleanChangeMap);
 
-      var _dec$X, _dec2$H, _dec3$x, _class$Y, _class2$M, _initializer$K;
+      var _dec$V, _dec2$G, _dec3$w, _class$W, _class2$L, _initializer$J;
       var _matInsInfo = {
         parent: null,
         owner: null,
         subModelIdx: 0
       };
-      var ccclass$4 = ccclass$6,
+      var ccclass$3 = ccclass$5,
         disallowMultiple = disallowMultiple$1,
-        type$2 = type$3;
-      var Renderer = exports("Renderer", (_dec$X = ccclass$4('cc.Renderer'), _dec2$H = type$2(Material), _dec3$x = type$2([Material]), _dec$X(_class$Y = disallowMultiple(_class$Y = (_class2$M = function (_Component) {
+        type$1 = type$2;
+      var Renderer = exports("Renderer", (_dec$V = ccclass$3('cc.Renderer'), _dec2$G = type$1(Material), _dec3$w = type$1([Material]), _dec$V(_class$W = disallowMultiple(_class$W = (_class2$L = function (_Component) {
         _inheritsLoose(Renderer, _Component);
         function Renderer() {
           var _this;
           _this = _Component.call(this) || this;
-          _this._materials = _initializer$K && _initializer$K();
+          _this._materials = _initializer$J && _initializer$J();
           _this._materialInstances = [];
           return _this;
         }
@@ -56840,9 +56840,9 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Renderer;
-      }(Component), (_applyDecoratedDescriptor(_class2$M.prototype, "sharedMaterials", [_dec2$H], Object.getOwnPropertyDescriptor(_class2$M.prototype, "sharedMaterials"), _class2$M.prototype), _initializer$K = applyDecoratedInitializer(_class2$M.prototype, "_materials", [_dec3$x], function () {
+      }(Component), (_applyDecoratedDescriptor(_class2$L.prototype, "sharedMaterials", [_dec2$G], Object.getOwnPropertyDescriptor(_class2$L.prototype, "sharedMaterials"), _class2$L.prototype), _initializer$J = applyDecoratedInitializer(_class2$L.prototype, "_materials", [_dec3$w], function () {
         return [];
-      })), _class2$M)) || _class$Y) || _class$Y));
+      })), _class2$L)) || _class$W) || _class$W));
 
       var RenderEntity = function () {
         var _proto = RenderEntity.prototype;
@@ -57046,7 +57046,7 @@ System.register([], (function (exports, module) {
       SortingLayers.indexMap = new Map();
       SortingLayers.Enum = Enum(SortingLayer);
 
-      var _dec$W, _dec2$G, _dec3$w, _dec4$m, _class$X, _class2$L, _initializer$J, _initializer2$B, _initializer3$r, _initializer4$o, _initializer5$k, _class3$l;
+      var _dec$U, _dec2$F, _dec3$v, _dec4$l, _class$V, _class2$K, _initializer$I, _initializer2$A, _initializer3$q, _initializer4$n, _initializer5$j, _class3$k;
       ccenum(BlendFactor);
       ccenum(BlendOp);
       ccenum(ColorMask);
@@ -57057,17 +57057,17 @@ System.register([], (function (exports, module) {
         USE_ALPHA_SEPARATED: 3,
         USE_ALPHA_SEPARATED_AND_GRAY: 4
       });
-      var UIRenderer = (_dec$W = ccclass$6('cc.UIRenderer'), _dec2$G = requireComponent(UITransform), _dec3$w = type$3(Material), _dec4$m = type$3(Material), _dec$W(_class$X = _dec2$G(_class$X = (_class2$L = (_class3$l = function (_Renderer) {
+      var UIRenderer = (_dec$U = ccclass$5('cc.UIRenderer'), _dec2$F = requireComponent(UITransform), _dec3$v = type$2(Material), _dec4$l = type$2(Material), _dec$U(_class$V = _dec2$F(_class$V = (_class2$K = (_class3$k = function (_Renderer) {
         _inheritsLoose(UIRenderer, _Renderer);
         function UIRenderer() {
           var _this;
           _this = _Renderer.call(this) || this;
           _this._renderData = null;
-          _this._materials = _initializer$J && _initializer$J();
-          _this._customMaterial = _initializer2$B && _initializer2$B();
-          _this._srcBlendFactor = _initializer3$r && _initializer3$r();
-          _this._dstBlendFactor = _initializer4$o && _initializer4$o();
-          _this._color = _initializer5$k && _initializer5$k();
+          _this._materials = _initializer$I && _initializer$I();
+          _this._customMaterial = _initializer2$A && _initializer2$A();
+          _this._srcBlendFactor = _initializer3$q && _initializer3$q();
+          _this._dstBlendFactor = _initializer4$n && _initializer4$n();
+          _this._color = _initializer5$j && _initializer5$j();
           _this._stencilStage = 0;
           _this._assembler = null;
           _this._postAssembler = null;
@@ -57419,17 +57419,17 @@ System.register([], (function (exports, module) {
           }
         }]);
         return UIRenderer;
-      }(Renderer), _class3$l.BlendState = BlendFactor, _class3$l.Assembler = null, _class3$l.PostAssembler = null, _class3$l), (_applyDecoratedDescriptor(_class2$L.prototype, "sharedMaterials", [override], Object.getOwnPropertyDescriptor(_class2$L.prototype, "sharedMaterials"), _class2$L.prototype), _applyDecoratedDescriptor(_class2$L.prototype, "customMaterial", [_dec3$w], Object.getOwnPropertyDescriptor(_class2$L.prototype, "customMaterial"), _class2$L.prototype), _initializer$J = applyDecoratedInitializer(_class2$L.prototype, "_materials", [override], function () {
+      }(Renderer), _class3$k.BlendState = BlendFactor, _class3$k.Assembler = null, _class3$k.PostAssembler = null, _class3$k), (_applyDecoratedDescriptor(_class2$K.prototype, "sharedMaterials", [override], Object.getOwnPropertyDescriptor(_class2$K.prototype, "sharedMaterials"), _class2$K.prototype), _applyDecoratedDescriptor(_class2$K.prototype, "customMaterial", [_dec3$v], Object.getOwnPropertyDescriptor(_class2$K.prototype, "customMaterial"), _class2$K.prototype), _initializer$I = applyDecoratedInitializer(_class2$K.prototype, "_materials", [override], function () {
         return [];
-      }), _initializer2$B = applyDecoratedInitializer(_class2$L.prototype, "_customMaterial", [_dec4$m], function () {
+      }), _initializer2$A = applyDecoratedInitializer(_class2$K.prototype, "_customMaterial", [_dec4$l], function () {
         return null;
-      }), _initializer3$r = applyDecoratedInitializer(_class2$L.prototype, "_srcBlendFactor", [serializable$5], function () {
+      }), _initializer3$q = applyDecoratedInitializer(_class2$K.prototype, "_srcBlendFactor", [serializable$4], function () {
         return 2;
-      }), _initializer4$o = applyDecoratedInitializer(_class2$L.prototype, "_dstBlendFactor", [serializable$5], function () {
+      }), _initializer4$n = applyDecoratedInitializer(_class2$K.prototype, "_dstBlendFactor", [serializable$4], function () {
         return 4;
-      }), _initializer5$k = applyDecoratedInitializer(_class2$L.prototype, "_color", [serializable$5], function () {
+      }), _initializer5$j = applyDecoratedInitializer(_class2$K.prototype, "_color", [serializable$4], function () {
         return Color$1.WHITE.clone();
-      })), _class2$L)) || _class$X) || _class$X); exports({ UIRenderer: UIRenderer, RenderComponent: UIRenderer, UIRenderable: UIRenderer, Renderable2D: UIRenderer });
+      })), _class2$K)) || _class$V) || _class$V); exports({ UIRenderer: UIRenderer, RenderComponent: UIRenderer, UIRenderable: UIRenderer, Renderable2D: UIRenderer });
       cclegacy.internal.UIRenderer = UIRenderer;
 
       var TextStyle = function () {
@@ -57560,7 +57560,7 @@ System.register([], (function (exports, module) {
         return TextOutputRenderData;
       }();
 
-      var _dec$V, _dec2$F, _dec3$v, _dec4$l, _dec5$j, _dec6$b, _dec7$a, _class$W, _class2$K, _initializer$I, _initializer2$A, _initializer3$q, _initializer4$n, _initializer5$j, _initializer6$g, _initializer7$c, _initializer8$c, _initializer9$c, _initializer10$c, _initializer11$b, _initializer12$a, _initializer13$9, _initializer14$7, _initializer15$4, _initializer16$4, _initializer17$3, _initializer18$3, _initializer19$2, _initializer20$2, _initializer21$2, _initializer22$1, _initializer23, _initializer24, _class3$k;
+      var _dec$T, _dec2$E, _dec3$u, _dec4$k, _dec5$i, _dec6$a, _dec7$9, _class$U, _class2$J, _initializer$H, _initializer2$z, _initializer3$p, _initializer4$m, _initializer5$i, _initializer6$f, _initializer7$b, _initializer8$b, _initializer9$b, _initializer10$b, _initializer11$a, _initializer12$9, _initializer13$8, _initializer14$6, _initializer15$3, _initializer16$3, _initializer17$2, _initializer18$2, _initializer19$1, _initializer20$1, _initializer21$1, _initializer22$1, _initializer23, _initializer24, _class3$j;
       Color$1.WHITE.clone();
       var HorizontalTextAlignment = exports("HorizontalTextAlignment", {
         LEFT: 0,
@@ -57587,32 +57587,32 @@ System.register([], (function (exports, module) {
         CHAR: 2
       });
       ccenum(CacheMode);
-      var Label = (_dec$V = ccclass$6('cc.Label'), _dec2$F = executionOrder$1(110), _dec3$v = type$3(HorizontalTextAlignment), _dec4$l = type$3(VerticalTextAlignment), _dec5$j = type$3(Overflow), _dec6$b = type$3(Font), _dec7$a = type$3(CacheMode), _dec$V(_class$W = _dec2$F(_class$W = (_class2$K = (_class3$k = function (_UIRenderer) {
+      var Label = (_dec$T = ccclass$5('cc.Label'), _dec2$E = executionOrder(110), _dec3$u = type$2(HorizontalTextAlignment), _dec4$k = type$2(VerticalTextAlignment), _dec5$i = type$2(Overflow), _dec6$a = type$2(Font), _dec7$9 = type$2(CacheMode), _dec$T(_class$U = _dec2$E(_class$U = (_class2$J = (_class3$j = function (_UIRenderer) {
         _inheritsLoose(Label, _UIRenderer);
         function Label() {
           var _this;
           _this = _UIRenderer.call(this) || this;
-          _this._string = _initializer$I && _initializer$I();
-          _this._horizontalAlign = _initializer2$A && _initializer2$A();
-          _this._verticalAlign = _initializer3$q && _initializer3$q();
-          _this._actualFontSize = _initializer4$n && _initializer4$n();
-          _this._fontSize = _initializer5$j && _initializer5$j();
-          _this._fontFamily = _initializer6$g && _initializer6$g();
-          _this._lineHeight = _initializer7$c && _initializer7$c();
-          _this._overflow = _initializer8$c && _initializer8$c();
-          _this._enableWrapText = _initializer9$c && _initializer9$c();
-          _this._font = _initializer10$c && _initializer10$c();
-          _this._isSystemFontUsed = _initializer11$b && _initializer11$b();
-          _this._spacingX = _initializer12$a && _initializer12$a();
-          _this._isItalic = _initializer13$9 && _initializer13$9();
-          _this._isBold = _initializer14$7 && _initializer14$7();
-          _this._isUnderline = _initializer15$4 && _initializer15$4();
-          _this._underlineHeight = _initializer16$4 && _initializer16$4();
-          _this._cacheMode = _initializer17$3 && _initializer17$3();
-          _this._enableOutline = _initializer18$3 && _initializer18$3();
-          _this._outlineColor = _initializer19$2 && _initializer19$2();
-          _this._outlineWidth = _initializer20$2 && _initializer20$2();
-          _this._enableShadow = _initializer21$2 && _initializer21$2();
+          _this._string = _initializer$H && _initializer$H();
+          _this._horizontalAlign = _initializer2$z && _initializer2$z();
+          _this._verticalAlign = _initializer3$p && _initializer3$p();
+          _this._actualFontSize = _initializer4$m && _initializer4$m();
+          _this._fontSize = _initializer5$i && _initializer5$i();
+          _this._fontFamily = _initializer6$f && _initializer6$f();
+          _this._lineHeight = _initializer7$b && _initializer7$b();
+          _this._overflow = _initializer8$b && _initializer8$b();
+          _this._enableWrapText = _initializer9$b && _initializer9$b();
+          _this._font = _initializer10$b && _initializer10$b();
+          _this._isSystemFontUsed = _initializer11$a && _initializer11$a();
+          _this._spacingX = _initializer12$9 && _initializer12$9();
+          _this._isItalic = _initializer13$8 && _initializer13$8();
+          _this._isBold = _initializer14$6 && _initializer14$6();
+          _this._isUnderline = _initializer15$3 && _initializer15$3();
+          _this._underlineHeight = _initializer16$3 && _initializer16$3();
+          _this._cacheMode = _initializer17$2 && _initializer17$2();
+          _this._enableOutline = _initializer18$2 && _initializer18$2();
+          _this._outlineColor = _initializer19$1 && _initializer19$1();
+          _this._outlineWidth = _initializer20$1 && _initializer20$1();
+          _this._enableShadow = _initializer21$1 && _initializer21$1();
           _this._shadowColor = _initializer22$1 && _initializer22$1();
           _this._shadowOffset = _initializer23 && _initializer23();
           _this._shadowBlur = _initializer24 && _initializer24();
@@ -58154,58 +58154,58 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Label;
-      }(UIRenderer), _class3$k.HorizontalAlign = HorizontalTextAlignment, _class3$k.VerticalAlign = VerticalTextAlignment, _class3$k.Overflow = Overflow, _class3$k.CacheMode = CacheMode, _class3$k._canvasPool = CanvasPool.getInstance(), _class3$k), (_applyDecoratedDescriptor(_class2$K.prototype, "horizontalAlign", [_dec3$v], Object.getOwnPropertyDescriptor(_class2$K.prototype, "horizontalAlign"), _class2$K.prototype), _applyDecoratedDescriptor(_class2$K.prototype, "verticalAlign", [_dec4$l], Object.getOwnPropertyDescriptor(_class2$K.prototype, "verticalAlign"), _class2$K.prototype), _applyDecoratedDescriptor(_class2$K.prototype, "overflow", [_dec5$j], Object.getOwnPropertyDescriptor(_class2$K.prototype, "overflow"), _class2$K.prototype), _applyDecoratedDescriptor(_class2$K.prototype, "font", [_dec6$b], Object.getOwnPropertyDescriptor(_class2$K.prototype, "font"), _class2$K.prototype), _applyDecoratedDescriptor(_class2$K.prototype, "cacheMode", [_dec7$a], Object.getOwnPropertyDescriptor(_class2$K.prototype, "cacheMode"), _class2$K.prototype), _initializer$I = applyDecoratedInitializer(_class2$K.prototype, "_string", [serializable$5], function () {
+      }(UIRenderer), _class3$j.HorizontalAlign = HorizontalTextAlignment, _class3$j.VerticalAlign = VerticalTextAlignment, _class3$j.Overflow = Overflow, _class3$j.CacheMode = CacheMode, _class3$j._canvasPool = CanvasPool.getInstance(), _class3$j), (_applyDecoratedDescriptor(_class2$J.prototype, "horizontalAlign", [_dec3$u], Object.getOwnPropertyDescriptor(_class2$J.prototype, "horizontalAlign"), _class2$J.prototype), _applyDecoratedDescriptor(_class2$J.prototype, "verticalAlign", [_dec4$k], Object.getOwnPropertyDescriptor(_class2$J.prototype, "verticalAlign"), _class2$J.prototype), _applyDecoratedDescriptor(_class2$J.prototype, "overflow", [_dec5$i], Object.getOwnPropertyDescriptor(_class2$J.prototype, "overflow"), _class2$J.prototype), _applyDecoratedDescriptor(_class2$J.prototype, "font", [_dec6$a], Object.getOwnPropertyDescriptor(_class2$J.prototype, "font"), _class2$J.prototype), _applyDecoratedDescriptor(_class2$J.prototype, "cacheMode", [_dec7$9], Object.getOwnPropertyDescriptor(_class2$J.prototype, "cacheMode"), _class2$J.prototype), _initializer$H = applyDecoratedInitializer(_class2$J.prototype, "_string", [serializable$4], function () {
         return 'label';
-      }), _initializer2$A = applyDecoratedInitializer(_class2$K.prototype, "_horizontalAlign", [serializable$5], function () {
+      }), _initializer2$z = applyDecoratedInitializer(_class2$J.prototype, "_horizontalAlign", [serializable$4], function () {
         return 1;
-      }), _initializer3$q = applyDecoratedInitializer(_class2$K.prototype, "_verticalAlign", [serializable$5], function () {
+      }), _initializer3$p = applyDecoratedInitializer(_class2$J.prototype, "_verticalAlign", [serializable$4], function () {
         return 1;
-      }), _initializer4$n = applyDecoratedInitializer(_class2$K.prototype, "_actualFontSize", [serializable$5], function () {
+      }), _initializer4$m = applyDecoratedInitializer(_class2$J.prototype, "_actualFontSize", [serializable$4], function () {
         return 0;
-      }), _initializer5$j = applyDecoratedInitializer(_class2$K.prototype, "_fontSize", [serializable$5], function () {
+      }), _initializer5$i = applyDecoratedInitializer(_class2$J.prototype, "_fontSize", [serializable$4], function () {
         return 40;
-      }), _initializer6$g = applyDecoratedInitializer(_class2$K.prototype, "_fontFamily", [serializable$5], function () {
+      }), _initializer6$f = applyDecoratedInitializer(_class2$J.prototype, "_fontFamily", [serializable$4], function () {
         return 'Arial';
-      }), _initializer7$c = applyDecoratedInitializer(_class2$K.prototype, "_lineHeight", [serializable$5], function () {
+      }), _initializer7$b = applyDecoratedInitializer(_class2$J.prototype, "_lineHeight", [serializable$4], function () {
         return 40;
-      }), _initializer8$c = applyDecoratedInitializer(_class2$K.prototype, "_overflow", [serializable$5], function () {
+      }), _initializer8$b = applyDecoratedInitializer(_class2$J.prototype, "_overflow", [serializable$4], function () {
         return 0;
-      }), _initializer9$c = applyDecoratedInitializer(_class2$K.prototype, "_enableWrapText", [serializable$5], function () {
+      }), _initializer9$b = applyDecoratedInitializer(_class2$J.prototype, "_enableWrapText", [serializable$4], function () {
         return true;
-      }), _initializer10$c = applyDecoratedInitializer(_class2$K.prototype, "_font", [serializable$5], function () {
+      }), _initializer10$b = applyDecoratedInitializer(_class2$J.prototype, "_font", [serializable$4], function () {
         return null;
-      }), _initializer11$b = applyDecoratedInitializer(_class2$K.prototype, "_isSystemFontUsed", [serializable$5], function () {
+      }), _initializer11$a = applyDecoratedInitializer(_class2$J.prototype, "_isSystemFontUsed", [serializable$4], function () {
         return true;
-      }), _initializer12$a = applyDecoratedInitializer(_class2$K.prototype, "_spacingX", [serializable$5], function () {
+      }), _initializer12$9 = applyDecoratedInitializer(_class2$J.prototype, "_spacingX", [serializable$4], function () {
         return 0;
-      }), _initializer13$9 = applyDecoratedInitializer(_class2$K.prototype, "_isItalic", [serializable$5], function () {
+      }), _initializer13$8 = applyDecoratedInitializer(_class2$J.prototype, "_isItalic", [serializable$4], function () {
         return false;
-      }), _initializer14$7 = applyDecoratedInitializer(_class2$K.prototype, "_isBold", [serializable$5], function () {
+      }), _initializer14$6 = applyDecoratedInitializer(_class2$J.prototype, "_isBold", [serializable$4], function () {
         return false;
-      }), _initializer15$4 = applyDecoratedInitializer(_class2$K.prototype, "_isUnderline", [serializable$5], function () {
+      }), _initializer15$3 = applyDecoratedInitializer(_class2$J.prototype, "_isUnderline", [serializable$4], function () {
         return false;
-      }), _initializer16$4 = applyDecoratedInitializer(_class2$K.prototype, "_underlineHeight", [serializable$5], function () {
+      }), _initializer16$3 = applyDecoratedInitializer(_class2$J.prototype, "_underlineHeight", [serializable$4], function () {
         return 2;
-      }), _initializer17$3 = applyDecoratedInitializer(_class2$K.prototype, "_cacheMode", [serializable$5], function () {
+      }), _initializer17$2 = applyDecoratedInitializer(_class2$J.prototype, "_cacheMode", [serializable$4], function () {
         return 0;
-      }), _initializer18$3 = applyDecoratedInitializer(_class2$K.prototype, "_enableOutline", [serializable$5], function () {
+      }), _initializer18$2 = applyDecoratedInitializer(_class2$J.prototype, "_enableOutline", [serializable$4], function () {
         return false;
-      }), _initializer19$2 = applyDecoratedInitializer(_class2$K.prototype, "_outlineColor", [serializable$5], function () {
+      }), _initializer19$1 = applyDecoratedInitializer(_class2$J.prototype, "_outlineColor", [serializable$4], function () {
         return new Color$1(0, 0, 0, 255);
-      }), _initializer20$2 = applyDecoratedInitializer(_class2$K.prototype, "_outlineWidth", [serializable$5], function () {
+      }), _initializer20$1 = applyDecoratedInitializer(_class2$J.prototype, "_outlineWidth", [serializable$4], function () {
         return 2;
-      }), _initializer21$2 = applyDecoratedInitializer(_class2$K.prototype, "_enableShadow", [serializable$5], function () {
+      }), _initializer21$1 = applyDecoratedInitializer(_class2$J.prototype, "_enableShadow", [serializable$4], function () {
         return false;
-      }), _initializer22$1 = applyDecoratedInitializer(_class2$K.prototype, "_shadowColor", [serializable$5], function () {
+      }), _initializer22$1 = applyDecoratedInitializer(_class2$J.prototype, "_shadowColor", [serializable$4], function () {
         return new Color$1(0, 0, 0, 255);
-      }), _initializer23 = applyDecoratedInitializer(_class2$K.prototype, "_shadowOffset", [serializable$5], function () {
+      }), _initializer23 = applyDecoratedInitializer(_class2$J.prototype, "_shadowOffset", [serializable$4], function () {
         return new Vec2(2, 2);
-      }), _initializer24 = applyDecoratedInitializer(_class2$K.prototype, "_shadowBlur", [serializable$5], function () {
+      }), _initializer24 = applyDecoratedInitializer(_class2$J.prototype, "_shadowBlur", [serializable$4], function () {
         return 2;
-      })), _class2$K)) || _class$W) || _class$W); exports({ Label: Label, LabelComponent: Label });
+      })), _class2$J)) || _class$U) || _class$U); exports({ Label: Label, LabelComponent: Label });
       cclegacy.Label = Label;
 
-      var _dec$U, _dec2$E, _dec3$u, _dec4$k, _dec5$i, _dec6$a, _dec7$9, _class$V, _class2$J, _initializer$H, _initializer2$z, _initializer3$p, _initializer4$m, _initializer5$i, _initializer6$f, _initializer7$b, _initializer8$b, _initializer9$b, _initializer10$b, _class3$j;
+      var _dec$S, _dec2$D, _dec3$t, _dec4$j, _dec5$h, _dec6$9, _dec7$8, _class$T, _class2$I, _initializer$G, _initializer2$y, _initializer3$o, _initializer4$l, _initializer5$h, _initializer6$e, _initializer7$a, _initializer8$a, _initializer9$a, _initializer10$a, _class3$i;
       var SpriteType = {
         SIMPLE: 0,
         SLICED: 1,
@@ -58228,21 +58228,21 @@ System.register([], (function (exports, module) {
       var SpriteEventType = {
         SPRITE_FRAME_CHANGED: "spriteframe-changed"
       };
-      var Sprite = (_dec$U = ccclass$6('cc.Sprite'), _dec2$E = executionOrder$1(110), _dec3$u = type$3(SpriteAtlas), _dec4$k = type$3(SpriteFrame), _dec5$i = type$3(SpriteType), _dec6$a = type$3(FillType), _dec7$9 = type$3(SizeMode$1), _dec$U(_class$V = _dec2$E(_class$V = (_class2$J = (_class3$j = function (_UIRenderer) {
+      var Sprite = (_dec$S = ccclass$5('cc.Sprite'), _dec2$D = executionOrder(110), _dec3$t = type$2(SpriteAtlas), _dec4$j = type$2(SpriteFrame), _dec5$h = type$2(SpriteType), _dec6$9 = type$2(FillType), _dec7$8 = type$2(SizeMode$1), _dec$S(_class$T = _dec2$D(_class$T = (_class2$I = (_class3$i = function (_UIRenderer) {
         _inheritsLoose(Sprite, _UIRenderer);
         function Sprite() {
           var _this;
           _this = _UIRenderer.call(this) || this;
-          _this._spriteFrame = _initializer$H && _initializer$H();
-          _this._type = _initializer2$z && _initializer2$z();
-          _this._fillType = _initializer3$p && _initializer3$p();
-          _this._sizeMode = _initializer4$m && _initializer4$m();
-          _this._fillCenter = _initializer5$i && _initializer5$i();
-          _this._fillStart = _initializer6$f && _initializer6$f();
-          _this._fillRange = _initializer7$b && _initializer7$b();
-          _this._isTrimmedMode = _initializer8$b && _initializer8$b();
-          _this._useGrayscale = _initializer9$b && _initializer9$b();
-          _this._atlas = _initializer10$b && _initializer10$b();
+          _this._spriteFrame = _initializer$G && _initializer$G();
+          _this._type = _initializer2$y && _initializer2$y();
+          _this._fillType = _initializer3$o && _initializer3$o();
+          _this._sizeMode = _initializer4$l && _initializer4$l();
+          _this._fillCenter = _initializer5$h && _initializer5$h();
+          _this._fillStart = _initializer6$e && _initializer6$e();
+          _this._fillRange = _initializer7$a && _initializer7$a();
+          _this._isTrimmedMode = _initializer8$a && _initializer8$a();
+          _this._useGrayscale = _initializer9$a && _initializer9$a();
+          _this._atlas = _initializer10$a && _initializer10$a();
           return _this;
         }
         var _proto = Sprite.prototype;
@@ -58555,31 +58555,31 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Sprite;
-      }(UIRenderer), _class3$j.FillType = FillType, _class3$j.Type = SpriteType, _class3$j.SizeMode = SizeMode$1, _class3$j.EventType = SpriteEventType, _class3$j), (_applyDecoratedDescriptor(_class2$J.prototype, "spriteAtlas", [_dec3$u], Object.getOwnPropertyDescriptor(_class2$J.prototype, "spriteAtlas"), _class2$J.prototype), _applyDecoratedDescriptor(_class2$J.prototype, "spriteFrame", [_dec4$k], Object.getOwnPropertyDescriptor(_class2$J.prototype, "spriteFrame"), _class2$J.prototype), _applyDecoratedDescriptor(_class2$J.prototype, "type", [_dec5$i], Object.getOwnPropertyDescriptor(_class2$J.prototype, "type"), _class2$J.prototype), _applyDecoratedDescriptor(_class2$J.prototype, "fillType", [_dec6$a], Object.getOwnPropertyDescriptor(_class2$J.prototype, "fillType"), _class2$J.prototype), _applyDecoratedDescriptor(_class2$J.prototype, "sizeMode", [_dec7$9], Object.getOwnPropertyDescriptor(_class2$J.prototype, "sizeMode"), _class2$J.prototype), _initializer$H = applyDecoratedInitializer(_class2$J.prototype, "_spriteFrame", [serializable$5], function () {
+      }(UIRenderer), _class3$i.FillType = FillType, _class3$i.Type = SpriteType, _class3$i.SizeMode = SizeMode$1, _class3$i.EventType = SpriteEventType, _class3$i), (_applyDecoratedDescriptor(_class2$I.prototype, "spriteAtlas", [_dec3$t], Object.getOwnPropertyDescriptor(_class2$I.prototype, "spriteAtlas"), _class2$I.prototype), _applyDecoratedDescriptor(_class2$I.prototype, "spriteFrame", [_dec4$j], Object.getOwnPropertyDescriptor(_class2$I.prototype, "spriteFrame"), _class2$I.prototype), _applyDecoratedDescriptor(_class2$I.prototype, "type", [_dec5$h], Object.getOwnPropertyDescriptor(_class2$I.prototype, "type"), _class2$I.prototype), _applyDecoratedDescriptor(_class2$I.prototype, "fillType", [_dec6$9], Object.getOwnPropertyDescriptor(_class2$I.prototype, "fillType"), _class2$I.prototype), _applyDecoratedDescriptor(_class2$I.prototype, "sizeMode", [_dec7$8], Object.getOwnPropertyDescriptor(_class2$I.prototype, "sizeMode"), _class2$I.prototype), _initializer$G = applyDecoratedInitializer(_class2$I.prototype, "_spriteFrame", [serializable$4], function () {
         return null;
-      }), _initializer2$z = applyDecoratedInitializer(_class2$J.prototype, "_type", [serializable$5], function () {
+      }), _initializer2$y = applyDecoratedInitializer(_class2$I.prototype, "_type", [serializable$4], function () {
         return 0;
-      }), _initializer3$p = applyDecoratedInitializer(_class2$J.prototype, "_fillType", [serializable$5], function () {
+      }), _initializer3$o = applyDecoratedInitializer(_class2$I.prototype, "_fillType", [serializable$4], function () {
         return 0;
-      }), _initializer4$m = applyDecoratedInitializer(_class2$J.prototype, "_sizeMode", [serializable$5], function () {
+      }), _initializer4$l = applyDecoratedInitializer(_class2$I.prototype, "_sizeMode", [serializable$4], function () {
         return 1;
-      }), _initializer5$i = applyDecoratedInitializer(_class2$J.prototype, "_fillCenter", [serializable$5], function () {
+      }), _initializer5$h = applyDecoratedInitializer(_class2$I.prototype, "_fillCenter", [serializable$4], function () {
         return new Vec2(0, 0);
-      }), _initializer6$f = applyDecoratedInitializer(_class2$J.prototype, "_fillStart", [serializable$5], function () {
+      }), _initializer6$e = applyDecoratedInitializer(_class2$I.prototype, "_fillStart", [serializable$4], function () {
         return 0;
-      }), _initializer7$b = applyDecoratedInitializer(_class2$J.prototype, "_fillRange", [serializable$5], function () {
+      }), _initializer7$a = applyDecoratedInitializer(_class2$I.prototype, "_fillRange", [serializable$4], function () {
         return 0;
-      }), _initializer8$b = applyDecoratedInitializer(_class2$J.prototype, "_isTrimmedMode", [serializable$5], function () {
+      }), _initializer8$a = applyDecoratedInitializer(_class2$I.prototype, "_isTrimmedMode", [serializable$4], function () {
         return true;
-      }), _initializer9$b = applyDecoratedInitializer(_class2$J.prototype, "_useGrayscale", [serializable$5], function () {
+      }), _initializer9$a = applyDecoratedInitializer(_class2$I.prototype, "_useGrayscale", [serializable$4], function () {
         return false;
-      }), _initializer10$b = applyDecoratedInitializer(_class2$J.prototype, "_atlas", [serializable$5], function () {
+      }), _initializer10$a = applyDecoratedInitializer(_class2$I.prototype, "_atlas", [serializable$4], function () {
         return null;
-      })), _class2$J)) || _class$V) || _class$V); exports({ Sprite: Sprite, SpriteComponent: Sprite });
+      })), _class2$I)) || _class$T) || _class$T); exports({ Sprite: Sprite, SpriteComponent: Sprite });
       cclegacy.Sprite = Sprite;
 
-      var _dec$T, _dec2$D, _class$U;
-      var UIMeshRenderer = (_dec$T = ccclass$6('cc.UIMeshRenderer'), _dec2$D = executionOrder$1(110), _dec$T(_class$U = _dec2$D(_class$U = function (_Component) {
+      var _dec$R, _dec2$C, _class$S;
+      var UIMeshRenderer = (_dec$R = ccclass$5('cc.UIMeshRenderer'), _dec2$C = executionOrder(110), _dec$R(_class$S = _dec2$C(_class$S = function (_Component) {
         _inheritsLoose(UIMeshRenderer, _Component);
         function UIMeshRenderer() {
           var _this;
@@ -58707,11 +58707,11 @@ System.register([], (function (exports, module) {
           }
         }]);
         return UIMeshRenderer;
-      }(Component)) || _class$U) || _class$U); exports({ UIMeshRenderer: UIMeshRenderer, UIModelComponent: UIMeshRenderer });
+      }(Component)) || _class$S) || _class$S); exports({ UIMeshRenderer: UIMeshRenderer, UIModelComponent: UIMeshRenderer });
       cclegacy.UIMeshRenderer = UIMeshRenderer;
 
-      var _dec$S, _dec2$C, _dec3$t, _class$T;
-      var LabelOutline = (_dec$S = ccclass$6('cc.LabelOutline'), _dec2$C = executionOrder$1(110), _dec3$t = requireComponent(Label), _dec$S(_class$T = _dec2$C(_class$T = _dec3$t(_class$T = function (_Component) {
+      var _dec$Q, _dec2$B, _dec3$s, _class$R;
+      var LabelOutline = (_dec$Q = ccclass$5('cc.LabelOutline'), _dec2$B = executionOrder(110), _dec3$s = requireComponent(Label), _dec$Q(_class$R = _dec2$B(_class$R = _dec3$s(_class$R = function (_Component) {
         _inheritsLoose(LabelOutline, _Component);
         function LabelOutline() {
           return _Component.apply(this, arguments) || this;
@@ -58753,7 +58753,7 @@ System.register([], (function (exports, module) {
           }
         }]);
         return LabelOutline;
-      }(Component)) || _class$T) || _class$T) || _class$T); exports({ LabelOutline: LabelOutline, LabelOutlineComponent: LabelOutline });
+      }(Component)) || _class$R) || _class$R) || _class$R); exports({ LabelOutline: LabelOutline, LabelOutlineComponent: LabelOutline });
       cclegacy.LabelOutline = LabelOutline;
 
       var UI_VIS_FLAG = Layers.Enum.NONE | Layers.Enum.UI_3D;
@@ -58825,8 +58825,8 @@ System.register([], (function (exports, module) {
         return DrawBatch2D;
       }();
 
-      var _dec$R, _dec2$B, _class$S, _class2$I;
-      var UIStaticBatch = (_dec$R = ccclass$6('cc.UIStaticBatch'), _dec2$B = executionOrder$1(110), _dec$R(_class$S = _dec2$B(_class$S = (_class2$I = function (_UIRenderer) {
+      var _dec$P, _dec2$A, _class$Q, _class2$H;
+      var UIStaticBatch = (_dec$P = ccclass$5('cc.UIStaticBatch'), _dec2$A = executionOrder(110), _dec$P(_class$Q = _dec2$A(_class$Q = (_class2$H = function (_UIRenderer) {
         _inheritsLoose(UIStaticBatch, _UIRenderer);
         function UIStaticBatch() {
           var _this;
@@ -58883,10 +58883,10 @@ System.register([], (function (exports, module) {
           }
         }]);
         return UIStaticBatch;
-      }(UIRenderer), (_applyDecoratedDescriptor(_class2$I.prototype, "color", [override], Object.getOwnPropertyDescriptor(_class2$I.prototype, "color"), _class2$I.prototype)), _class2$I)) || _class$S) || _class$S); exports({ UIStaticBatch: UIStaticBatch, UIStaticBatchComponent: UIStaticBatch });
+      }(UIRenderer), (_applyDecoratedDescriptor(_class2$H.prototype, "color", [override], Object.getOwnPropertyDescriptor(_class2$H.prototype, "color"), _class2$H.prototype)), _class2$H)) || _class$Q) || _class$Q); exports({ UIStaticBatch: UIStaticBatch, UIStaticBatchComponent: UIStaticBatch });
 
-      var _dec$Q, _dec2$A, _dec3$s, _class$R;
-      var LabelShadow = exports("LabelShadow", (_dec$Q = ccclass$6('cc.LabelShadow'), _dec2$A = executionOrder$1(110), _dec3$s = requireComponent(Label), _dec$Q(_class$R = _dec2$A(_class$R = _dec3$s(_class$R = function (_Component) {
+      var _dec$O, _dec2$z, _dec3$r, _class$P;
+      var LabelShadow = exports("LabelShadow", (_dec$O = ccclass$5('cc.LabelShadow'), _dec2$z = executionOrder(110), _dec3$r = requireComponent(Label), _dec$O(_class$P = _dec2$z(_class$P = _dec3$r(_class$P = function (_Component) {
         _inheritsLoose(LabelShadow, _Component);
         function LabelShadow() {
           return _Component.apply(this, arguments) || this;
@@ -58940,15 +58940,15 @@ System.register([], (function (exports, module) {
           }
         }]);
         return LabelShadow;
-      }(Component)) || _class$R) || _class$R) || _class$R));
+      }(Component)) || _class$P) || _class$P) || _class$P));
 
-      var _dec$P, _dec2$z, _class$Q, _class2$H, _initializer$G;
-      var UIOpacity = (_dec$P = ccclass$6('cc.UIOpacity'), _dec2$z = executionOrder$1(110), _dec$P(_class$Q = _dec2$z(_class$Q = disallowMultiple$1(_class$Q = (_class2$H = function (_Component) {
+      var _dec$N, _dec2$y, _class$O, _class2$G, _initializer$F;
+      var UIOpacity = (_dec$N = ccclass$5('cc.UIOpacity'), _dec2$y = executionOrder(110), _dec$N(_class$O = _dec2$y(_class$O = disallowMultiple$1(_class$O = (_class2$G = function (_Component) {
         _inheritsLoose(UIOpacity, _Component);
         function UIOpacity() {
           var _this;
           _this = _Component.call(this) || this;
-          _this._opacity = _initializer$G && _initializer$G();
+          _this._opacity = _initializer$F && _initializer$F();
           return _this;
         }
         var _proto = UIOpacity.prototype;
@@ -58976,9 +58976,9 @@ System.register([], (function (exports, module) {
           }
         }]);
         return UIOpacity;
-      }(Component), (_initializer$G = applyDecoratedInitializer(_class2$H.prototype, "_opacity", [serializable$5], function () {
+      }(Component), (_initializer$F = applyDecoratedInitializer(_class2$G.prototype, "_opacity", [serializable$4], function () {
         return 255;
-      })), _class2$H)) || _class$Q) || _class$Q) || _class$Q); exports({ UIOpacity: UIOpacity, UIOpacityComponent: UIOpacity });
+      })), _class2$G)) || _class$O) || _class$O) || _class$O); exports({ UIOpacity: UIOpacity, UIOpacityComponent: UIOpacity });
 
       function createIA(device, data) {
         if (!data.positions) {
@@ -59814,23 +59814,23 @@ System.register([], (function (exports, module) {
         return Impl;
       }();
 
-      var _dec$O, _dec2$y, _dec3$r, _dec4$j, _class$P, _class2$G, _initializer$F, _initializer2$y, _initializer3$o, _initializer4$l, _initializer5$h, _initializer6$e, _class3$i;
+      var _dec$M, _dec2$x, _dec3$q, _dec4$i, _class$N, _class2$F, _initializer$E, _initializer2$x, _initializer3$n, _initializer4$k, _initializer5$g, _initializer6$d, _class3$h;
       var attributes = vfmtPosColor.concat([new Attribute('a_dist', 11)]);
       var componentPerVertex = getComponentPerVertex(attributes);
       var stride = getAttributeStride(attributes);
-      var Graphics = (_dec$O = ccclass$6('cc.Graphics'), _dec2$y = executionOrder$1(110), _dec3$r = type$3(LineJoin), _dec4$j = type$3(LineCap), _dec$O(_class$P = _dec2$y(_class$P = (_class2$G = (_class3$i = function (_UIRenderer) {
+      var Graphics = (_dec$M = ccclass$5('cc.Graphics'), _dec2$x = executionOrder(110), _dec3$q = type$2(LineJoin), _dec4$i = type$2(LineCap), _dec$M(_class$N = _dec2$x(_class$N = (_class2$F = (_class3$h = function (_UIRenderer) {
         _inheritsLoose(Graphics, _UIRenderer);
         function Graphics() {
           var _this;
           _this = _UIRenderer.call(this) || this;
           _this.impl = null;
           _this.model = null;
-          _this._lineWidth = _initializer$F && _initializer$F();
-          _this._strokeColor = _initializer2$y && _initializer2$y();
-          _this._lineJoin = _initializer3$o && _initializer3$o();
-          _this._lineCap = _initializer4$l && _initializer4$l();
-          _this._fillColor = _initializer5$h && _initializer5$h();
-          _this._miterLimit = _initializer6$e && _initializer6$e();
+          _this._lineWidth = _initializer$E && _initializer$E();
+          _this._strokeColor = _initializer2$x && _initializer2$x();
+          _this._lineJoin = _initializer3$n && _initializer3$n();
+          _this._lineCap = _initializer4$k && _initializer4$k();
+          _this._fillColor = _initializer5$g && _initializer5$g();
+          _this._miterLimit = _initializer6$d && _initializer6$d();
           _this._isDrawing = false;
           _this._isNeedUploadData = true;
           _this._graphicsUseSubMeshes = [];
@@ -60150,22 +60150,22 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Graphics;
-      }(UIRenderer), _class3$i.LineJoin = LineJoin, _class3$i.LineCap = LineCap, _class3$i), (_applyDecoratedDescriptor(_class2$G.prototype, "lineJoin", [_dec3$r], Object.getOwnPropertyDescriptor(_class2$G.prototype, "lineJoin"), _class2$G.prototype), _applyDecoratedDescriptor(_class2$G.prototype, "lineCap", [_dec4$j], Object.getOwnPropertyDescriptor(_class2$G.prototype, "lineCap"), _class2$G.prototype), _applyDecoratedDescriptor(_class2$G.prototype, "color", [override], Object.getOwnPropertyDescriptor(_class2$G.prototype, "color"), _class2$G.prototype), _initializer$F = applyDecoratedInitializer(_class2$G.prototype, "_lineWidth", [serializable$5], function () {
+      }(UIRenderer), _class3$h.LineJoin = LineJoin, _class3$h.LineCap = LineCap, _class3$h), (_applyDecoratedDescriptor(_class2$F.prototype, "lineJoin", [_dec3$q], Object.getOwnPropertyDescriptor(_class2$F.prototype, "lineJoin"), _class2$F.prototype), _applyDecoratedDescriptor(_class2$F.prototype, "lineCap", [_dec4$i], Object.getOwnPropertyDescriptor(_class2$F.prototype, "lineCap"), _class2$F.prototype), _applyDecoratedDescriptor(_class2$F.prototype, "color", [override], Object.getOwnPropertyDescriptor(_class2$F.prototype, "color"), _class2$F.prototype), _initializer$E = applyDecoratedInitializer(_class2$F.prototype, "_lineWidth", [serializable$4], function () {
         return 1;
-      }), _initializer2$y = applyDecoratedInitializer(_class2$G.prototype, "_strokeColor", [serializable$5], function () {
+      }), _initializer2$x = applyDecoratedInitializer(_class2$F.prototype, "_strokeColor", [serializable$4], function () {
         return Color$1.BLACK.clone();
-      }), _initializer3$o = applyDecoratedInitializer(_class2$G.prototype, "_lineJoin", [serializable$5], function () {
+      }), _initializer3$n = applyDecoratedInitializer(_class2$F.prototype, "_lineJoin", [serializable$4], function () {
         return 2;
-      }), _initializer4$l = applyDecoratedInitializer(_class2$G.prototype, "_lineCap", [serializable$5], function () {
+      }), _initializer4$k = applyDecoratedInitializer(_class2$F.prototype, "_lineCap", [serializable$4], function () {
         return 0;
-      }), _initializer5$h = applyDecoratedInitializer(_class2$G.prototype, "_fillColor", [serializable$5], function () {
+      }), _initializer5$g = applyDecoratedInitializer(_class2$F.prototype, "_fillColor", [serializable$4], function () {
         return Color$1.WHITE.clone();
-      }), _initializer6$e = applyDecoratedInitializer(_class2$G.prototype, "_miterLimit", [serializable$5], function () {
+      }), _initializer6$d = applyDecoratedInitializer(_class2$F.prototype, "_miterLimit", [serializable$4], function () {
         return 10;
-      })), _class2$G)) || _class$P) || _class$P); exports({ GraphicsComponent: Graphics, Graphics: Graphics });
+      })), _class2$F)) || _class$N) || _class$N); exports({ GraphicsComponent: Graphics, Graphics: Graphics });
       cclegacy.Graphics = Graphics;
 
-      var _dec$N, _dec2$x, _dec3$q, _class$O, _class2$F, _initializer$E, _initializer2$x, _initializer3$n, _initializer4$k, _class3$h;
+      var _dec$L, _dec2$w, _dec3$p, _class$M, _class2$E, _initializer$D, _initializer2$w, _initializer3$m, _initializer4$j, _class3$g;
       var _worldMatrix = new Mat4();
       var _vec2_temp = new Vec2();
       var _mat4_temp = new Mat4();
@@ -60187,15 +60187,15 @@ System.register([], (function (exports, module) {
       ccenum(MaskType);
       var SEGMENTS_MIN = 3;
       var SEGMENTS_MAX = 10000;
-      var Mask = (_dec$N = ccclass$6('cc.Mask'), _dec2$x = executionOrder$1(110), _dec3$q = type$3(MaskType), _dec$N(_class$O = _dec2$x(_class$O = (_class2$F = (_class3$h = function (_Component) {
+      var Mask = (_dec$L = ccclass$5('cc.Mask'), _dec2$w = executionOrder(110), _dec3$p = type$2(MaskType), _dec$L(_class$M = _dec2$w(_class$M = (_class2$E = (_class3$g = function (_Component) {
         _inheritsLoose(Mask, _Component);
         function Mask() {
           var _this;
           _this = _Component.call(this) || this;
-          _this._type = _initializer$E && _initializer$E();
-          _this._inverted = _initializer2$x && _initializer2$x();
-          _this._segments = _initializer3$n && _initializer3$n();
-          _this._alphaThreshold = _initializer4$k && _initializer4$k();
+          _this._type = _initializer$D && _initializer$D();
+          _this._inverted = _initializer2$w && _initializer2$w();
+          _this._segments = _initializer3$m && _initializer3$m();
+          _this._alphaThreshold = _initializer4$j && _initializer4$j();
           _this._sprite = null;
           _this._graphics = null;
           _this._stencilStage = 0;
@@ -60582,15 +60582,15 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Mask;
-      }(Component), _class3$h.Type = MaskType, _class3$h), (_applyDecoratedDescriptor(_class2$F.prototype, "type", [_dec3$q], Object.getOwnPropertyDescriptor(_class2$F.prototype, "type"), _class2$F.prototype), _initializer$E = applyDecoratedInitializer(_class2$F.prototype, "_type", [serializable$5], function () {
+      }(Component), _class3$g.Type = MaskType, _class3$g), (_applyDecoratedDescriptor(_class2$E.prototype, "type", [_dec3$p], Object.getOwnPropertyDescriptor(_class2$E.prototype, "type"), _class2$E.prototype), _initializer$D = applyDecoratedInitializer(_class2$E.prototype, "_type", [serializable$4], function () {
         return 0;
-      }), _initializer2$x = applyDecoratedInitializer(_class2$F.prototype, "_inverted", [serializable$5], function () {
+      }), _initializer2$w = applyDecoratedInitializer(_class2$E.prototype, "_inverted", [serializable$4], function () {
         return false;
-      }), _initializer3$n = applyDecoratedInitializer(_class2$F.prototype, "_segments", [serializable$5], function () {
+      }), _initializer3$m = applyDecoratedInitializer(_class2$E.prototype, "_segments", [serializable$4], function () {
         return 64;
-      }), _initializer4$k = applyDecoratedInitializer(_class2$F.prototype, "_alphaThreshold", [serializable$5], function () {
+      }), _initializer4$j = applyDecoratedInitializer(_class2$E.prototype, "_alphaThreshold", [serializable$4], function () {
         return 0.1;
-      })), _class2$F)) || _class$O) || _class$O); exports({ MaskComponent: Mask, Mask: Mask });
+      })), _class2$E)) || _class$M) || _class$M); exports({ MaskComponent: Mask, Mask: Mask });
       NodeEventProcessor._maskComp = Mask;
       cclegacy.Mask = Mask;
 
@@ -60628,15 +60628,15 @@ System.register([], (function (exports, module) {
         }
       });
 
-      var _dec$M, _class$N, _class2$E, _initializer$D, _initializer2$w, _initializer3$m, _class3$g;
-      var PostProcess = (_dec$M = ccclass$6('cc.PostProcess'), _dec$M(_class$N = disallowMultiple$1(_class$N = (_class2$E = (_class3$g = function (_Component) {
+      var _dec$K, _class$L, _class2$D, _initializer$C, _initializer2$v, _initializer3$l, _class3$f;
+      var PostProcess = (_dec$K = ccclass$5('cc.PostProcess'), _dec$K(_class$L = disallowMultiple$1(_class$L = (_class2$D = (_class3$f = function (_Component) {
         _inheritsLoose(PostProcess, _Component);
         function PostProcess() {
           var _this;
           _this = _Component.call(this) || this;
-          _this.global = _initializer$D && _initializer$D();
-          _this._shadingScale = _initializer2$w && _initializer2$w();
-          _this.enableShadingScaleInEditor = _initializer3$m && _initializer3$m();
+          _this.global = _initializer$C && _initializer$C();
+          _this._shadingScale = _initializer2$v && _initializer2$v();
+          _this.enableShadingScaleInEditor = _initializer3$l && _initializer3$l();
           _this.settings = new Map();
           return _this;
         }
@@ -60669,15 +60669,15 @@ System.register([], (function (exports, module) {
           }
         }]);
         return PostProcess;
-      }(Component), _class3$g.all = [], _class3$g), (_initializer$D = applyDecoratedInitializer(_class2$E.prototype, "global", [property$1, serializable$5], function () {
+      }(Component), _class3$f.all = [], _class3$f), (_initializer$C = applyDecoratedInitializer(_class2$D.prototype, "global", [property$1, serializable$4], function () {
         return true;
-      }), _initializer2$w = applyDecoratedInitializer(_class2$E.prototype, "_shadingScale", [serializable$5], function () {
+      }), _initializer2$v = applyDecoratedInitializer(_class2$D.prototype, "_shadingScale", [serializable$4], function () {
         return 1;
-      }), _applyDecoratedDescriptor(_class2$E.prototype, "shadingScale", [property$1], Object.getOwnPropertyDescriptor(_class2$E.prototype, "shadingScale"), _class2$E.prototype), _initializer3$m = applyDecoratedInitializer(_class2$E.prototype, "enableShadingScaleInEditor", [property$1, serializable$5], function () {
+      }), _applyDecoratedDescriptor(_class2$D.prototype, "shadingScale", [property$1], Object.getOwnPropertyDescriptor(_class2$D.prototype, "shadingScale"), _class2$D.prototype), _initializer3$l = applyDecoratedInitializer(_class2$D.prototype, "enableShadingScaleInEditor", [property$1, serializable$4], function () {
         return false;
-      })), _class2$E)) || _class$N) || _class$N);
+      })), _class2$D)) || _class$L) || _class$L);
 
-      var _dec$L, _dec2$w, _dec3$p, _dec4$i, _dec5$h, _dec6$9, _dec7$8, _dec8$6, _dec9$6, _dec10$3, _class$M, _class2$D, _initializer$C, _initializer2$v, _initializer3$l, _initializer4$j, _initializer5$g, _initializer6$d, _initializer7$a, _initializer8$a, _initializer9$a, _initializer10$a, _initializer11$a, _initializer12$9, _initializer13$8, _initializer14$6, _initializer15$3, _initializer16$3, _initializer17$2, _initializer18$2, _initializer19$1, _initializer20$1, _initializer21$1, _initializer22, _class3$f;
+      var _dec$J, _dec2$v, _dec3$o, _dec4$h, _dec5$g, _dec6$8, _dec7$7, _dec8$5, _dec9$5, _dec10$2, _class$K, _class2$C, _initializer$B, _initializer2$u, _initializer3$k, _initializer4$i, _initializer5$f, _initializer6$c, _initializer7$9, _initializer8$9, _initializer9$9, _initializer10$9, _initializer11$9, _initializer12$8, _initializer13$7, _initializer14$5, _initializer15$2, _initializer16$2, _initializer17$1, _initializer18$1, _initializer19, _initializer20, _initializer21, _initializer22, _class3$e;
       var _temp_vec3_1 = new Vec3();
       var ProjectionType = Enum(CameraProjection);
       var FOVAxis = Enum(CameraFOVAxis);
@@ -60690,35 +60690,35 @@ System.register([], (function (exports, module) {
         DEPTH_ONLY: 6,
         DONT_CLEAR: 0
       });
-      var Camera = (_dec$L = ccclass$6('cc.Camera'), _dec2$w = type$3(Layers.BitMask), _dec3$p = type$3(ClearFlag), _dec4$i = type$3(ProjectionType), _dec5$h = type$3(FOVAxis), _dec6$9 = type$3(Aperture), _dec7$8 = type$3(Shutter), _dec8$6 = type$3(ISO), _dec9$6 = type$3(RenderTexture), _dec10$3 = type$3(PostProcess), _dec$L(_class$M = (_class2$D = (_class3$f = function (_Component) {
+      var Camera = (_dec$J = ccclass$5('cc.Camera'), _dec2$v = type$2(Layers.BitMask), _dec3$o = type$2(ClearFlag), _dec4$h = type$2(ProjectionType), _dec5$g = type$2(FOVAxis), _dec6$8 = type$2(Aperture), _dec7$7 = type$2(Shutter), _dec8$5 = type$2(ISO), _dec9$5 = type$2(RenderTexture), _dec10$2 = type$2(PostProcess), _dec$J(_class$K = (_class2$C = (_class3$e = function (_Component) {
         _inheritsLoose(Camera, _Component);
         function Camera() {
           var _this;
           _this = _Component.call(this) || this;
-          _this._projection = _initializer$C && _initializer$C();
-          _this._priority = _initializer2$v && _initializer2$v();
-          _this._fov = _initializer3$l && _initializer3$l();
-          _this._fovAxis = _initializer4$j && _initializer4$j();
-          _this._orthoHeight = _initializer5$g && _initializer5$g();
-          _this._near = _initializer6$d && _initializer6$d();
-          _this._far = _initializer7$a && _initializer7$a();
-          _this._color = _initializer8$a && _initializer8$a();
-          _this._depth = _initializer9$a && _initializer9$a();
-          _this._stencil = _initializer10$a && _initializer10$a();
-          _this._clearFlags = _initializer11$a && _initializer11$a();
-          _this._rect = _initializer12$9 && _initializer12$9();
-          _this._aperture = _initializer13$8 && _initializer13$8();
-          _this._shutter = _initializer14$6 && _initializer14$6();
-          _this._iso = _initializer15$3 && _initializer15$3();
-          _this._screenScale = _initializer16$3 && _initializer16$3();
-          _this._visibility = _initializer17$2 && _initializer17$2();
-          _this._targetTexture = _initializer18$2 && _initializer18$2();
-          _this._postProcess = _initializer19$1 && _initializer19$1();
-          _this._usePostProcess = _initializer20$1 && _initializer20$1();
+          _this._projection = _initializer$B && _initializer$B();
+          _this._priority = _initializer2$u && _initializer2$u();
+          _this._fov = _initializer3$k && _initializer3$k();
+          _this._fovAxis = _initializer4$i && _initializer4$i();
+          _this._orthoHeight = _initializer5$f && _initializer5$f();
+          _this._near = _initializer6$c && _initializer6$c();
+          _this._far = _initializer7$9 && _initializer7$9();
+          _this._color = _initializer8$9 && _initializer8$9();
+          _this._depth = _initializer9$9 && _initializer9$9();
+          _this._stencil = _initializer10$9 && _initializer10$9();
+          _this._clearFlags = _initializer11$9 && _initializer11$9();
+          _this._rect = _initializer12$8 && _initializer12$8();
+          _this._aperture = _initializer13$7 && _initializer13$7();
+          _this._shutter = _initializer14$5 && _initializer14$5();
+          _this._iso = _initializer15$2 && _initializer15$2();
+          _this._screenScale = _initializer16$2 && _initializer16$2();
+          _this._visibility = _initializer17$1 && _initializer17$1();
+          _this._targetTexture = _initializer18$1 && _initializer18$1();
+          _this._postProcess = _initializer19 && _initializer19();
+          _this._usePostProcess = _initializer20 && _initializer20();
           _this._camera = null;
           _this._inEditorMode = false;
           _this._flows = undefined;
-          _this._cameraType = _initializer21$1 && _initializer21$1();
+          _this._cameraType = _initializer21 && _initializer21();
           _this._trackingType = _initializer22 && _initializer22();
           return _this;
         }
@@ -61146,55 +61146,55 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Camera;
-      }(Component), _class3$f.ProjectionType = ProjectionType, _class3$f.FOVAxis = FOVAxis, _class3$f.ClearFlag = ClearFlag, _class3$f.Aperture = Aperture, _class3$f.Shutter = Shutter, _class3$f.ISO = ISO, _class3$f.TARGET_TEXTURE_CHANGE = "tex-change", _class3$f), (_initializer$C = applyDecoratedInitializer(_class2$D.prototype, "_projection", [serializable$5], function () {
+      }(Component), _class3$e.ProjectionType = ProjectionType, _class3$e.FOVAxis = FOVAxis, _class3$e.ClearFlag = ClearFlag, _class3$e.Aperture = Aperture, _class3$e.Shutter = Shutter, _class3$e.ISO = ISO, _class3$e.TARGET_TEXTURE_CHANGE = "tex-change", _class3$e), (_initializer$B = applyDecoratedInitializer(_class2$C.prototype, "_projection", [serializable$4], function () {
         return ProjectionType.PERSPECTIVE;
-      }), _initializer2$v = applyDecoratedInitializer(_class2$D.prototype, "_priority", [serializable$5], function () {
+      }), _initializer2$u = applyDecoratedInitializer(_class2$C.prototype, "_priority", [serializable$4], function () {
         return 0;
-      }), _initializer3$l = applyDecoratedInitializer(_class2$D.prototype, "_fov", [serializable$5], function () {
+      }), _initializer3$k = applyDecoratedInitializer(_class2$C.prototype, "_fov", [serializable$4], function () {
         return 45;
-      }), _initializer4$j = applyDecoratedInitializer(_class2$D.prototype, "_fovAxis", [serializable$5], function () {
+      }), _initializer4$i = applyDecoratedInitializer(_class2$C.prototype, "_fovAxis", [serializable$4], function () {
         return FOVAxis.VERTICAL;
-      }), _initializer5$g = applyDecoratedInitializer(_class2$D.prototype, "_orthoHeight", [serializable$5], function () {
+      }), _initializer5$f = applyDecoratedInitializer(_class2$C.prototype, "_orthoHeight", [serializable$4], function () {
         return 10;
-      }), _initializer6$d = applyDecoratedInitializer(_class2$D.prototype, "_near", [serializable$5], function () {
+      }), _initializer6$c = applyDecoratedInitializer(_class2$C.prototype, "_near", [serializable$4], function () {
         return 1;
-      }), _initializer7$a = applyDecoratedInitializer(_class2$D.prototype, "_far", [serializable$5], function () {
+      }), _initializer7$9 = applyDecoratedInitializer(_class2$C.prototype, "_far", [serializable$4], function () {
         return 1000;
-      }), _initializer8$a = applyDecoratedInitializer(_class2$D.prototype, "_color", [serializable$5], function () {
+      }), _initializer8$9 = applyDecoratedInitializer(_class2$C.prototype, "_color", [serializable$4], function () {
         return new Color$1('#333333');
-      }), _initializer9$a = applyDecoratedInitializer(_class2$D.prototype, "_depth", [serializable$5], function () {
+      }), _initializer9$9 = applyDecoratedInitializer(_class2$C.prototype, "_depth", [serializable$4], function () {
         return 1;
-      }), _initializer10$a = applyDecoratedInitializer(_class2$D.prototype, "_stencil", [serializable$5], function () {
+      }), _initializer10$9 = applyDecoratedInitializer(_class2$C.prototype, "_stencil", [serializable$4], function () {
         return 0;
-      }), _initializer11$a = applyDecoratedInitializer(_class2$D.prototype, "_clearFlags", [serializable$5], function () {
+      }), _initializer11$9 = applyDecoratedInitializer(_class2$C.prototype, "_clearFlags", [serializable$4], function () {
         return ClearFlag.SOLID_COLOR;
-      }), _initializer12$9 = applyDecoratedInitializer(_class2$D.prototype, "_rect", [serializable$5], function () {
+      }), _initializer12$8 = applyDecoratedInitializer(_class2$C.prototype, "_rect", [serializable$4], function () {
         return new Rect$1(0, 0, 1, 1);
-      }), _initializer13$8 = applyDecoratedInitializer(_class2$D.prototype, "_aperture", [serializable$5], function () {
+      }), _initializer13$7 = applyDecoratedInitializer(_class2$C.prototype, "_aperture", [serializable$4], function () {
         return Aperture.F16_0;
-      }), _initializer14$6 = applyDecoratedInitializer(_class2$D.prototype, "_shutter", [serializable$5], function () {
+      }), _initializer14$5 = applyDecoratedInitializer(_class2$C.prototype, "_shutter", [serializable$4], function () {
         return Shutter.D125;
-      }), _initializer15$3 = applyDecoratedInitializer(_class2$D.prototype, "_iso", [serializable$5], function () {
+      }), _initializer15$2 = applyDecoratedInitializer(_class2$C.prototype, "_iso", [serializable$4], function () {
         return ISO.ISO100;
-      }), _initializer16$3 = applyDecoratedInitializer(_class2$D.prototype, "_screenScale", [serializable$5], function () {
+      }), _initializer16$2 = applyDecoratedInitializer(_class2$C.prototype, "_screenScale", [serializable$4], function () {
         return 1;
-      }), _initializer17$2 = applyDecoratedInitializer(_class2$D.prototype, "_visibility", [serializable$5], function () {
+      }), _initializer17$1 = applyDecoratedInitializer(_class2$C.prototype, "_visibility", [serializable$4], function () {
         return CAMERA_DEFAULT_MASK;
-      }), _initializer18$2 = applyDecoratedInitializer(_class2$D.prototype, "_targetTexture", [serializable$5], function () {
+      }), _initializer18$1 = applyDecoratedInitializer(_class2$C.prototype, "_targetTexture", [serializable$4], function () {
         return null;
-      }), _initializer19$1 = applyDecoratedInitializer(_class2$D.prototype, "_postProcess", [serializable$5], function () {
+      }), _initializer19 = applyDecoratedInitializer(_class2$C.prototype, "_postProcess", [serializable$4], function () {
         return null;
-      }), _initializer20$1 = applyDecoratedInitializer(_class2$D.prototype, "_usePostProcess", [serializable$5], function () {
+      }), _initializer20 = applyDecoratedInitializer(_class2$C.prototype, "_usePostProcess", [serializable$4], function () {
         return false;
-      }), _initializer21$1 = applyDecoratedInitializer(_class2$D.prototype, "_cameraType", [serializable$5], function () {
+      }), _initializer21 = applyDecoratedInitializer(_class2$C.prototype, "_cameraType", [serializable$4], function () {
         return -1;
-      }), _initializer22 = applyDecoratedInitializer(_class2$D.prototype, "_trackingType", [serializable$5], function () {
+      }), _initializer22 = applyDecoratedInitializer(_class2$C.prototype, "_trackingType", [serializable$4], function () {
         return 0;
-      }), _applyDecoratedDescriptor(_class2$D.prototype, "visibility", [_dec2$w], Object.getOwnPropertyDescriptor(_class2$D.prototype, "visibility"), _class2$D.prototype), _applyDecoratedDescriptor(_class2$D.prototype, "clearFlags", [_dec3$p], Object.getOwnPropertyDescriptor(_class2$D.prototype, "clearFlags"), _class2$D.prototype), _applyDecoratedDescriptor(_class2$D.prototype, "projection", [_dec4$i], Object.getOwnPropertyDescriptor(_class2$D.prototype, "projection"), _class2$D.prototype), _applyDecoratedDescriptor(_class2$D.prototype, "fovAxis", [_dec5$h], Object.getOwnPropertyDescriptor(_class2$D.prototype, "fovAxis"), _class2$D.prototype), _applyDecoratedDescriptor(_class2$D.prototype, "aperture", [_dec6$9], Object.getOwnPropertyDescriptor(_class2$D.prototype, "aperture"), _class2$D.prototype), _applyDecoratedDescriptor(_class2$D.prototype, "shutter", [_dec7$8], Object.getOwnPropertyDescriptor(_class2$D.prototype, "shutter"), _class2$D.prototype), _applyDecoratedDescriptor(_class2$D.prototype, "iso", [_dec8$6], Object.getOwnPropertyDescriptor(_class2$D.prototype, "iso"), _class2$D.prototype), _applyDecoratedDescriptor(_class2$D.prototype, "targetTexture", [_dec9$6], Object.getOwnPropertyDescriptor(_class2$D.prototype, "targetTexture"), _class2$D.prototype), _applyDecoratedDescriptor(_class2$D.prototype, "usePostProcess", [property$1], Object.getOwnPropertyDescriptor(_class2$D.prototype, "usePostProcess"), _class2$D.prototype), _applyDecoratedDescriptor(_class2$D.prototype, "postProcess", [_dec10$3], Object.getOwnPropertyDescriptor(_class2$D.prototype, "postProcess"), _class2$D.prototype)), _class2$D)) || _class$M); exports({ Camera: Camera, CameraComponent: Camera });
+      }), _applyDecoratedDescriptor(_class2$C.prototype, "visibility", [_dec2$v], Object.getOwnPropertyDescriptor(_class2$C.prototype, "visibility"), _class2$C.prototype), _applyDecoratedDescriptor(_class2$C.prototype, "clearFlags", [_dec3$o], Object.getOwnPropertyDescriptor(_class2$C.prototype, "clearFlags"), _class2$C.prototype), _applyDecoratedDescriptor(_class2$C.prototype, "projection", [_dec4$h], Object.getOwnPropertyDescriptor(_class2$C.prototype, "projection"), _class2$C.prototype), _applyDecoratedDescriptor(_class2$C.prototype, "fovAxis", [_dec5$g], Object.getOwnPropertyDescriptor(_class2$C.prototype, "fovAxis"), _class2$C.prototype), _applyDecoratedDescriptor(_class2$C.prototype, "aperture", [_dec6$8], Object.getOwnPropertyDescriptor(_class2$C.prototype, "aperture"), _class2$C.prototype), _applyDecoratedDescriptor(_class2$C.prototype, "shutter", [_dec7$7], Object.getOwnPropertyDescriptor(_class2$C.prototype, "shutter"), _class2$C.prototype), _applyDecoratedDescriptor(_class2$C.prototype, "iso", [_dec8$5], Object.getOwnPropertyDescriptor(_class2$C.prototype, "iso"), _class2$C.prototype), _applyDecoratedDescriptor(_class2$C.prototype, "targetTexture", [_dec9$5], Object.getOwnPropertyDescriptor(_class2$C.prototype, "targetTexture"), _class2$C.prototype), _applyDecoratedDescriptor(_class2$C.prototype, "usePostProcess", [property$1], Object.getOwnPropertyDescriptor(_class2$C.prototype, "usePostProcess"), _class2$C.prototype), _applyDecoratedDescriptor(_class2$C.prototype, "postProcess", [_dec10$2], Object.getOwnPropertyDescriptor(_class2$C.prototype, "postProcess"), _class2$C.prototype)), _class2$C)) || _class$K); exports({ Camera: Camera, CameraComponent: Camera });
       cclegacy.Camera = Camera;
 
-      var _dec$K, _dec2$v, _dec3$o, _class$L;
-      var RenderRoot2D = exports("RenderRoot2D", (_dec$K = ccclass$6('cc.RenderRoot2D'), _dec2$v = executionOrder$1(100), _dec3$o = requireComponent(UITransform), _dec$K(_class$L = _dec2$v(_class$L = _dec3$o(_class$L = disallowMultiple$1(_class$L = function (_Component) {
+      var _dec$I, _dec2$u, _dec3$n, _class$J;
+      var RenderRoot2D = exports("RenderRoot2D", (_dec$I = ccclass$5('cc.RenderRoot2D'), _dec2$u = executionOrder(100), _dec3$n = requireComponent(UITransform), _dec$I(_class$J = _dec2$u(_class$J = _dec3$n(_class$J = disallowMultiple$1(_class$J = function (_Component) {
         _inheritsLoose(RenderRoot2D, _Component);
         function RenderRoot2D() {
           return _Component.apply(this, arguments) || this;
@@ -61210,17 +61210,17 @@ System.register([], (function (exports, module) {
           cclegacy.director.root.batcher2D.removeScreen(this);
         };
         return RenderRoot2D;
-      }(Component)) || _class$L) || _class$L) || _class$L) || _class$L));
+      }(Component)) || _class$J) || _class$J) || _class$J) || _class$J));
 
-      var _dec$J, _dec2$u, _dec3$n, _dec4$h, _class$K, _class2$C, _initializer$B, _initializer2$u;
+      var _dec$H, _dec2$t, _dec3$m, _dec4$g, _class$I, _class2$B, _initializer$A, _initializer2$t;
       var _worldPos = new Vec3();
-      var Canvas = (_dec$J = ccclass$6('cc.Canvas'), _dec2$u = executionOrder$1(100), _dec3$n = type$3(Camera), _dec4$h = type$3(Camera), _dec$J(_class$K = _dec2$u(_class$K = disallowMultiple$1(_class$K = (_class2$C = function (_RenderRoot2D) {
+      var Canvas = (_dec$H = ccclass$5('cc.Canvas'), _dec2$t = executionOrder(100), _dec3$m = type$2(Camera), _dec4$g = type$2(Camera), _dec$H(_class$I = _dec2$t(_class$I = disallowMultiple$1(_class$I = (_class2$B = function (_RenderRoot2D) {
         _inheritsLoose(Canvas, _RenderRoot2D);
         function Canvas() {
           var _this;
           _this = _RenderRoot2D.call(this) || this;
-          _this._cameraComponent = _initializer$B && _initializer$B();
-          _this._alignCanvasWithScreen = _initializer2$u && _initializer2$u();
+          _this._cameraComponent = _initializer$A && _initializer$A();
+          _this._alignCanvasWithScreen = _initializer2$t && _initializer2$t();
           _this._pos = new Vec3();
           _this._renderMode = 0;
           _this._thisOnCameraResized = _this._onResizeCamera.bind(_assertThisInitialized(_this));
@@ -61316,15 +61316,15 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Canvas;
-      }(RenderRoot2D), (_applyDecoratedDescriptor(_class2$C.prototype, "cameraComponent", [_dec3$n], Object.getOwnPropertyDescriptor(_class2$C.prototype, "cameraComponent"), _class2$C.prototype), _initializer$B = applyDecoratedInitializer(_class2$C.prototype, "_cameraComponent", [_dec4$h], function () {
+      }(RenderRoot2D), (_applyDecoratedDescriptor(_class2$B.prototype, "cameraComponent", [_dec3$m], Object.getOwnPropertyDescriptor(_class2$B.prototype, "cameraComponent"), _class2$B.prototype), _initializer$A = applyDecoratedInitializer(_class2$B.prototype, "_cameraComponent", [_dec4$g], function () {
         return null;
-      }), _initializer2$u = applyDecoratedInitializer(_class2$C.prototype, "_alignCanvasWithScreen", [serializable$5], function () {
+      }), _initializer2$t = applyDecoratedInitializer(_class2$B.prototype, "_alignCanvasWithScreen", [serializable$4], function () {
         return true;
-      })), _class2$C)) || _class$K) || _class$K) || _class$K); exports({ Canvas: Canvas, CanvasComponent: Canvas });
+      })), _class2$B)) || _class$I) || _class$I) || _class$I); exports({ Canvas: Canvas, CanvasComponent: Canvas });
       cclegacy.Canvas = Canvas;
 
-      var _dec$I, _dec2$t, _dec3$m, _class$J;
-      var UIComponent = exports("UIComponent", (_dec$I = ccclass$6('cc.UIComponent'), _dec2$t = requireComponent(UITransform), _dec3$m = executionOrder$1(110), _dec$I(_class$J = _dec2$t(_class$J = _dec3$m(_class$J = disallowMultiple$1(_class$J = function (_Component) {
+      var _dec$G, _dec2$s, _dec3$l, _class$H;
+      var UIComponent = exports("UIComponent", (_dec$G = ccclass$5('cc.UIComponent'), _dec2$s = requireComponent(UITransform), _dec3$l = executionOrder(110), _dec$G(_class$H = _dec2$s(_class$H = _dec3$l(_class$H = disallowMultiple$1(_class$H = function (_Component) {
         _inheritsLoose(UIComponent, _Component);
         function UIComponent() {
           var _this;
@@ -61351,7 +61351,7 @@ System.register([], (function (exports, module) {
         _proto.setNodeDirty = function setNodeDirty() {};
         _proto.setTextureDirty = function setTextureDirty() {};
         return UIComponent;
-      }(Component)) || _class$J) || _class$J) || _class$J) || _class$J));
+      }(Component)) || _class$H) || _class$H) || _class$H) || _class$H));
 
       removeProperty(UIComponent.prototype, 'UIComponent', [{
         name: '_visibility'
@@ -61636,14 +61636,14 @@ System.register([], (function (exports, module) {
       intersect.raySubMesh = raySubMesh;
       intersect.rayMesh = rayMesh;
 
-      var _dec$H, _class$I, _class2$B, _initializer$A;
+      var _dec$F, _class$G, _class2$A, _initializer$z;
       getPhaseID$1('specular-pass');
-      var ModelRenderer = (_dec$H = ccclass$6('cc.ModelRenderer'), _dec$H(_class$I = (_class2$B = function (_Renderer) {
+      var ModelRenderer = (_dec$F = ccclass$5('cc.ModelRenderer'), _dec$F(_class$G = (_class2$A = function (_Renderer) {
         _inheritsLoose(ModelRenderer, _Renderer);
         function ModelRenderer() {
           var _this;
           _this = _Renderer.call(this) || this;
-          _this._visFlags = _initializer$A && _initializer$A();
+          _this._visFlags = _initializer$z && _initializer$z();
           _this._models = [];
           _this._priority = 0;
           return _this;
@@ -61686,26 +61686,26 @@ System.register([], (function (exports, module) {
           }
         }]);
         return ModelRenderer;
-      }(Renderer), (_initializer$A = applyDecoratedInitializer(_class2$B.prototype, "_visFlags", [serializable$5], function () {
+      }(Renderer), (_initializer$z = applyDecoratedInitializer(_class2$A.prototype, "_visFlags", [serializable$4], function () {
         return Layers.Enum.NONE;
-      })), _class2$B)) || _class$I); exports({ ModelRenderer: ModelRenderer, RenderableComponent: ModelRenderer });
+      })), _class2$A)) || _class$G); exports({ ModelRenderer: ModelRenderer, RenderableComponent: ModelRenderer });
 
-      var _dec$G, _dec2$s, _class$H, _class2$A, _initializer$z;
-      var ccclass$3 = ccclass$6,
-        serializable$3 = serializable$5,
-        type$1 = type$3;
-      var PrefabLink = exports("PrefabLink", (_dec$G = ccclass$3('cc.PrefabLink'), _dec2$s = type$1(Prefab), _dec$G(_class$H = (_class2$A = function (_Component) {
+      var _dec$E, _dec2$r, _class$F, _class2$z, _initializer$y;
+      var ccclass$2 = ccclass$5,
+        serializable$2 = serializable$4,
+        type = type$2;
+      var PrefabLink = exports("PrefabLink", (_dec$E = ccclass$2('cc.PrefabLink'), _dec2$r = type(Prefab), _dec$E(_class$F = (_class2$z = function (_Component) {
         _inheritsLoose(PrefabLink, _Component);
         function PrefabLink() {
           var _this;
           _this = _Component.call(this) || this;
-          _this.prefab = _initializer$z && _initializer$z();
+          _this.prefab = _initializer$y && _initializer$y();
           return _this;
         }
         return PrefabLink;
-      }(Component), (_initializer$z = applyDecoratedInitializer(_class2$A.prototype, "prefab", [_dec2$s, serializable$3], function () {
+      }(Component), (_initializer$y = applyDecoratedInitializer(_class2$z.prototype, "prefab", [_dec2$r, serializable$2], function () {
         return null;
-      })), _class2$A)) || _class$H));
+      })), _class2$z)) || _class$F));
 
       replaceProperty(Camera, 'Camera', [{
         name: 'CameraClearFlag',
@@ -61730,18 +61730,18 @@ System.register([], (function (exports, module) {
       cclegacy.RenderableComponent = ModelRenderer;
       setClassAlias(ModelRenderer, 'cc.RenderableComponent');
 
-      var _dec$F, _dec2$r, _dec3$l, _class$G, _class2$z, _initializer$y, _initializer2$t, _initializer3$k, _initializer4$i, _initializer5$f, _initializer6$c;
-      var SpriteRenderer = exports("SpriteRenderer", (_dec$F = ccclass$6('cc.SpriteRenderer'), _dec2$r = executionOrder$1(100), _dec3$l = type$3(SpriteFrame), _dec$F(_class$G = _dec2$r(_class$G = (_class2$z = function (_ModelRenderer) {
+      var _dec$D, _dec2$q, _dec3$k, _class$E, _class2$y, _initializer$x, _initializer2$s, _initializer3$j, _initializer4$h, _initializer5$e, _initializer6$b;
+      var SpriteRenderer = exports("SpriteRenderer", (_dec$D = ccclass$5('cc.SpriteRenderer'), _dec2$q = executionOrder(100), _dec3$k = type$2(SpriteFrame), _dec$D(_class$E = _dec2$q(_class$E = (_class2$y = function (_ModelRenderer) {
         _inheritsLoose(SpriteRenderer, _ModelRenderer);
         function SpriteRenderer() {
           var _this;
           _this = _ModelRenderer.call(this) || this;
-          _this._spriteFrame = _initializer$y && _initializer$y();
-          _this._mode = _initializer2$t && _initializer2$t();
-          _this._color = _initializer3$k && _initializer3$k();
-          _this._flipX = _initializer4$i && _initializer4$i();
-          _this._flipY = _initializer5$f && _initializer5$f();
-          _this._size = _initializer6$c && _initializer6$c();
+          _this._spriteFrame = _initializer$x && _initializer$x();
+          _this._mode = _initializer2$s && _initializer2$s();
+          _this._color = _initializer3$j && _initializer3$j();
+          _this._flipX = _initializer4$h && _initializer4$h();
+          _this._flipY = _initializer5$e && _initializer5$e();
+          _this._size = _initializer6$b && _initializer6$b();
           _this._model = null;
           return _this;
         }
@@ -61905,21 +61905,21 @@ System.register([], (function (exports, module) {
           }
         }]);
         return SpriteRenderer;
-      }(ModelRenderer), (_applyDecoratedDescriptor(_class2$z.prototype, "spriteFrame", [_dec3$l], Object.getOwnPropertyDescriptor(_class2$z.prototype, "spriteFrame"), _class2$z.prototype), _initializer$y = applyDecoratedInitializer(_class2$z.prototype, "_spriteFrame", [serializable$5], function () {
+      }(ModelRenderer), (_applyDecoratedDescriptor(_class2$y.prototype, "spriteFrame", [_dec3$k], Object.getOwnPropertyDescriptor(_class2$y.prototype, "spriteFrame"), _class2$y.prototype), _initializer$x = applyDecoratedInitializer(_class2$y.prototype, "_spriteFrame", [serializable$4], function () {
         return null;
-      }), _initializer2$t = applyDecoratedInitializer(_class2$z.prototype, "_mode", [serializable$5], function () {
+      }), _initializer2$s = applyDecoratedInitializer(_class2$y.prototype, "_mode", [serializable$4], function () {
         return 0;
-      }), _initializer3$k = applyDecoratedInitializer(_class2$z.prototype, "_color", [serializable$5], function () {
+      }), _initializer3$j = applyDecoratedInitializer(_class2$y.prototype, "_color", [serializable$4], function () {
         return Color$1.WHITE.clone();
-      }), _initializer4$i = applyDecoratedInitializer(_class2$z.prototype, "_flipX", [serializable$5], function () {
+      }), _initializer4$h = applyDecoratedInitializer(_class2$y.prototype, "_flipX", [serializable$4], function () {
         return false;
-      }), _initializer5$f = applyDecoratedInitializer(_class2$z.prototype, "_flipY", [serializable$5], function () {
+      }), _initializer5$e = applyDecoratedInitializer(_class2$y.prototype, "_flipY", [serializable$4], function () {
         return false;
-      }), _initializer6$c = applyDecoratedInitializer(_class2$z.prototype, "_size", [serializable$5], function () {
+      }), _initializer6$b = applyDecoratedInitializer(_class2$y.prototype, "_size", [serializable$4], function () {
         return new Vec2();
-      })), _class2$z)) || _class$G) || _class$G));
+      })), _class2$y)) || _class$E) || _class$E));
 
-      var _dec$E, _dec2$q, _dec3$k, _dec4$g, _dec5$g, _dec6$8, _dec7$7, _dec8$5, _dec9$5, _class$F, _class2$y, _initializer$x, _initializer2$s, _initializer3$j, _initializer4$h, _initializer5$e, _initializer6$b, _initializer7$9, _initializer8$9, _initializer9$9, _initializer10$9, _initializer11$9, _initializer12$8, _initializer13$7, _initializer14$5, _class3$e;
+      var _dec$C, _dec2$p, _dec3$j, _dec4$f, _dec5$f, _dec6$7, _dec7$6, _dec8$4, _dec9$4, _class$D, _class2$x, _initializer$w, _initializer2$r, _initializer3$i, _initializer4$g, _initializer5$d, _initializer6$a, _initializer7$8, _initializer8$8, _initializer9$8, _initializer10$8, _initializer11$8, _initializer12$7, _initializer13$6, _initializer14$4, _class3$d;
       var _htmlTextParser = new HtmlTextParser();
       var RichTextChildName = 'RICHTEXT_CHILD';
       var RichTextChildImageName = 'RICHTEXT_Image_CHILD';
@@ -61988,25 +61988,25 @@ System.register([], (function (exports, module) {
         seg.clickHandler = '';
         return seg;
       }
-      var RichText = (_dec$E = ccclass$6('cc.RichText'), _dec2$q = requireComponent(UITransform), _dec3$k = executionOrder$1(110), _dec4$g = type$3(HorizontalTextAlignment), _dec5$g = type$3(VerticalTextAlignment), _dec6$8 = type$3(Color$1), _dec7$7 = type$3(Font), _dec8$5 = type$3(CacheMode), _dec9$5 = type$3(SpriteAtlas), _dec$E(_class$F = _dec2$q(_class$F = _dec3$k(_class$F = (_class2$y = (_class3$e = function (_Component) {
+      var RichText = (_dec$C = ccclass$5('cc.RichText'), _dec2$p = requireComponent(UITransform), _dec3$j = executionOrder(110), _dec4$f = type$2(HorizontalTextAlignment), _dec5$f = type$2(VerticalTextAlignment), _dec6$7 = type$2(Color$1), _dec7$6 = type$2(Font), _dec8$4 = type$2(CacheMode), _dec9$4 = type$2(SpriteAtlas), _dec$C(_class$D = _dec2$p(_class$D = _dec3$j(_class$D = (_class2$x = (_class3$d = function (_Component) {
         _inheritsLoose(RichText, _Component);
         function RichText() {
           var _this;
           _this = _Component.call(this) || this;
-          _this._lineHeight = _initializer$x && _initializer$x();
-          _this._string = _initializer2$s && _initializer2$s();
-          _this._horizontalAlign = _initializer3$j && _initializer3$j();
-          _this._verticalAlign = _initializer4$h && _initializer4$h();
-          _this._fontSize = _initializer5$e && _initializer5$e();
-          _this._fontColor = _initializer6$b && _initializer6$b();
-          _this._maxWidth = _initializer7$9 && _initializer7$9();
-          _this._fontFamily = _initializer8$9 && _initializer8$9();
-          _this._font = _initializer9$9 && _initializer9$9();
-          _this._isSystemFontUsed = _initializer10$9 && _initializer10$9();
-          _this._userDefinedFont = _initializer11$9 && _initializer11$9();
-          _this._cacheMode = _initializer12$8 && _initializer12$8();
-          _this._imageAtlas = _initializer13$7 && _initializer13$7();
-          _this._handleTouchEvent = _initializer14$5 && _initializer14$5();
+          _this._lineHeight = _initializer$w && _initializer$w();
+          _this._string = _initializer2$r && _initializer2$r();
+          _this._horizontalAlign = _initializer3$i && _initializer3$i();
+          _this._verticalAlign = _initializer4$g && _initializer4$g();
+          _this._fontSize = _initializer5$d && _initializer5$d();
+          _this._fontColor = _initializer6$a && _initializer6$a();
+          _this._maxWidth = _initializer7$8 && _initializer7$8();
+          _this._fontFamily = _initializer8$8 && _initializer8$8();
+          _this._font = _initializer9$8 && _initializer9$8();
+          _this._isSystemFontUsed = _initializer10$8 && _initializer10$8();
+          _this._userDefinedFont = _initializer11$8 && _initializer11$8();
+          _this._cacheMode = _initializer12$7 && _initializer12$7();
+          _this._imageAtlas = _initializer13$6 && _initializer13$6();
+          _this._handleTouchEvent = _initializer14$4 && _initializer14$4();
           _this._textArray = [];
           _this._segments = [];
           _this._labelSegmentsCache = [];
@@ -62866,35 +62866,35 @@ System.register([], (function (exports, module) {
           }
         }]);
         return RichText;
-      }(Component), _class3$e.HorizontalAlign = HorizontalTextAlignment, _class3$e.VerticalAlign = VerticalTextAlignment, _class3$e), (_applyDecoratedDescriptor(_class2$y.prototype, "horizontalAlign", [_dec4$g], Object.getOwnPropertyDescriptor(_class2$y.prototype, "horizontalAlign"), _class2$y.prototype), _applyDecoratedDescriptor(_class2$y.prototype, "verticalAlign", [_dec5$g], Object.getOwnPropertyDescriptor(_class2$y.prototype, "verticalAlign"), _class2$y.prototype), _applyDecoratedDescriptor(_class2$y.prototype, "fontColor", [_dec6$8], Object.getOwnPropertyDescriptor(_class2$y.prototype, "fontColor"), _class2$y.prototype), _applyDecoratedDescriptor(_class2$y.prototype, "font", [_dec7$7], Object.getOwnPropertyDescriptor(_class2$y.prototype, "font"), _class2$y.prototype), _applyDecoratedDescriptor(_class2$y.prototype, "cacheMode", [_dec8$5], Object.getOwnPropertyDescriptor(_class2$y.prototype, "cacheMode"), _class2$y.prototype), _applyDecoratedDescriptor(_class2$y.prototype, "imageAtlas", [_dec9$5], Object.getOwnPropertyDescriptor(_class2$y.prototype, "imageAtlas"), _class2$y.prototype), _initializer$x = applyDecoratedInitializer(_class2$y.prototype, "_lineHeight", [serializable$5], function () {
+      }(Component), _class3$d.HorizontalAlign = HorizontalTextAlignment, _class3$d.VerticalAlign = VerticalTextAlignment, _class3$d), (_applyDecoratedDescriptor(_class2$x.prototype, "horizontalAlign", [_dec4$f], Object.getOwnPropertyDescriptor(_class2$x.prototype, "horizontalAlign"), _class2$x.prototype), _applyDecoratedDescriptor(_class2$x.prototype, "verticalAlign", [_dec5$f], Object.getOwnPropertyDescriptor(_class2$x.prototype, "verticalAlign"), _class2$x.prototype), _applyDecoratedDescriptor(_class2$x.prototype, "fontColor", [_dec6$7], Object.getOwnPropertyDescriptor(_class2$x.prototype, "fontColor"), _class2$x.prototype), _applyDecoratedDescriptor(_class2$x.prototype, "font", [_dec7$6], Object.getOwnPropertyDescriptor(_class2$x.prototype, "font"), _class2$x.prototype), _applyDecoratedDescriptor(_class2$x.prototype, "cacheMode", [_dec8$4], Object.getOwnPropertyDescriptor(_class2$x.prototype, "cacheMode"), _class2$x.prototype), _applyDecoratedDescriptor(_class2$x.prototype, "imageAtlas", [_dec9$4], Object.getOwnPropertyDescriptor(_class2$x.prototype, "imageAtlas"), _class2$x.prototype), _initializer$w = applyDecoratedInitializer(_class2$x.prototype, "_lineHeight", [serializable$4], function () {
         return 40;
-      }), _initializer2$s = applyDecoratedInitializer(_class2$y.prototype, "_string", [serializable$5], function () {
+      }), _initializer2$r = applyDecoratedInitializer(_class2$x.prototype, "_string", [serializable$4], function () {
         return '<color=#00ff00>Rich</color><color=#0fffff>Text</color>';
-      }), _initializer3$j = applyDecoratedInitializer(_class2$y.prototype, "_horizontalAlign", [serializable$5], function () {
+      }), _initializer3$i = applyDecoratedInitializer(_class2$x.prototype, "_horizontalAlign", [serializable$4], function () {
         return 0;
-      }), _initializer4$h = applyDecoratedInitializer(_class2$y.prototype, "_verticalAlign", [serializable$5], function () {
+      }), _initializer4$g = applyDecoratedInitializer(_class2$x.prototype, "_verticalAlign", [serializable$4], function () {
         return 0;
-      }), _initializer5$e = applyDecoratedInitializer(_class2$y.prototype, "_fontSize", [serializable$5], function () {
+      }), _initializer5$d = applyDecoratedInitializer(_class2$x.prototype, "_fontSize", [serializable$4], function () {
         return 40;
-      }), _initializer6$b = applyDecoratedInitializer(_class2$y.prototype, "_fontColor", [serializable$5], function () {
+      }), _initializer6$a = applyDecoratedInitializer(_class2$x.prototype, "_fontColor", [serializable$4], function () {
         return Color$1.WHITE.clone();
-      }), _initializer7$9 = applyDecoratedInitializer(_class2$y.prototype, "_maxWidth", [serializable$5], function () {
+      }), _initializer7$8 = applyDecoratedInitializer(_class2$x.prototype, "_maxWidth", [serializable$4], function () {
         return 0;
-      }), _initializer8$9 = applyDecoratedInitializer(_class2$y.prototype, "_fontFamily", [serializable$5], function () {
+      }), _initializer8$8 = applyDecoratedInitializer(_class2$x.prototype, "_fontFamily", [serializable$4], function () {
         return 'Arial';
-      }), _initializer9$9 = applyDecoratedInitializer(_class2$y.prototype, "_font", [serializable$5], function () {
+      }), _initializer9$8 = applyDecoratedInitializer(_class2$x.prototype, "_font", [serializable$4], function () {
         return null;
-      }), _initializer10$9 = applyDecoratedInitializer(_class2$y.prototype, "_isSystemFontUsed", [serializable$5], function () {
+      }), _initializer10$8 = applyDecoratedInitializer(_class2$x.prototype, "_isSystemFontUsed", [serializable$4], function () {
         return true;
-      }), _initializer11$9 = applyDecoratedInitializer(_class2$y.prototype, "_userDefinedFont", [serializable$5], function () {
+      }), _initializer11$8 = applyDecoratedInitializer(_class2$x.prototype, "_userDefinedFont", [serializable$4], function () {
         return null;
-      }), _initializer12$8 = applyDecoratedInitializer(_class2$y.prototype, "_cacheMode", [serializable$5], function () {
+      }), _initializer12$7 = applyDecoratedInitializer(_class2$x.prototype, "_cacheMode", [serializable$4], function () {
         return 0;
-      }), _initializer13$7 = applyDecoratedInitializer(_class2$y.prototype, "_imageAtlas", [serializable$5], function () {
+      }), _initializer13$6 = applyDecoratedInitializer(_class2$x.prototype, "_imageAtlas", [serializable$4], function () {
         return null;
-      }), _initializer14$5 = applyDecoratedInitializer(_class2$y.prototype, "_handleTouchEvent", [serializable$5], function () {
+      }), _initializer14$4 = applyDecoratedInitializer(_class2$x.prototype, "_handleTouchEvent", [serializable$4], function () {
         return true;
-      })), _class2$y)) || _class$F) || _class$F) || _class$F); exports({ RichTextComponent: RichText, RichText: RichText });
+      })), _class2$x)) || _class$D) || _class$D) || _class$D); exports({ RichTextComponent: RichText, RichText: RichText });
       cclegacy.RichText = RichText;
 
       cclegacy.MaskComponent = Mask;
@@ -67061,16 +67061,16 @@ System.register([], (function (exports, module) {
         MeshRenderData: MeshRenderData
       };
 
-      var _dec$D, _dec2$p, _class$E, _class2$x, _initializer$w, _initializer2$r;
+      var _dec$B, _dec2$o, _class$C, _class2$w, _initializer$v, _initializer2$q;
       var MAX_INT16 = (1 << 15) - 1;
       var MIN_INT16 = -1 << 15;
-      var Sorting = exports("Sorting", (_dec$D = ccclass$6('cc.Sorting'), _dec2$p = type$3(SortingLayers.Enum), _dec$D(_class$E = disallowMultiple$1(_class$E = (_class2$x = function (_Component) {
+      var Sorting = exports("Sorting", (_dec$B = ccclass$5('cc.Sorting'), _dec2$o = type$2(SortingLayers.Enum), _dec$B(_class$C = disallowMultiple$1(_class$C = (_class2$w = function (_Component) {
         _inheritsLoose(Sorting, _Component);
         function Sorting() {
           var _this;
           _this = _Component.call(this) || this;
-          _this._sortingLayer = _initializer$w && _initializer$w();
-          _this._sortingOrder = _initializer2$r && _initializer2$r();
+          _this._sortingLayer = _initializer$v && _initializer$v();
+          _this._sortingOrder = _initializer2$q && _initializer2$q();
           _this._modelRenderer = null;
           return _this;
         }
@@ -67111,11 +67111,11 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Sorting;
-      }(Component), (_applyDecoratedDescriptor(_class2$x.prototype, "sortingLayer", [_dec2$p], Object.getOwnPropertyDescriptor(_class2$x.prototype, "sortingLayer"), _class2$x.prototype), _initializer$w = applyDecoratedInitializer(_class2$x.prototype, "_sortingLayer", [serializable$5], function () {
+      }(Component), (_applyDecoratedDescriptor(_class2$w.prototype, "sortingLayer", [_dec2$o], Object.getOwnPropertyDescriptor(_class2$w.prototype, "sortingLayer"), _class2$w.prototype), _initializer$v = applyDecoratedInitializer(_class2$w.prototype, "_sortingLayer", [serializable$4], function () {
         return SortingLayers.Enum["default"];
-      }), _initializer2$r = applyDecoratedInitializer(_class2$x.prototype, "_sortingOrder", [serializable$5], function () {
+      }), _initializer2$q = applyDecoratedInitializer(_class2$w.prototype, "_sortingOrder", [serializable$4], function () {
         return 0;
-      })), _class2$x)) || _class$E) || _class$E));
+      })), _class2$w)) || _class$C) || _class$C));
 
       var AffineTransform = exports("AffineTransform", function () {
         AffineTransform.identity = function identity() {
@@ -67256,8 +67256,8 @@ System.register([], (function (exports, module) {
       var CLASS_NAME_PREFIX_ANIM = 'cc.animation.';
       var createEvalSymbol = Symbol('CreateEval');
 
-      var _dec$C, _class$D, _class2$w, _initializer$v, _initializer2$q, _initializer3$i, _initializer4$g;
-      (_dec$C = ccclass$6(CLASS_NAME_PREFIX_ANIM + "EmbeddedPlayer"), _dec$C(_class$D = (_class2$w = function (_EditorExtendable) {
+      var _dec$A, _class$B, _class2$v, _initializer$u, _initializer2$p, _initializer3$h, _initializer4$f;
+      (_dec$A = ccclass$5(CLASS_NAME_PREFIX_ANIM + "EmbeddedPlayer"), _dec$A(_class$B = (_class2$v = function (_EditorExtendable) {
         _inheritsLoose(EmbeddedPlayer, _EditorExtendable);
         function EmbeddedPlayer() {
           var _this;
@@ -67265,22 +67265,22 @@ System.register([], (function (exports, module) {
             args[_key] = arguments[_key];
           }
           _this = _EditorExtendable.call.apply(_EditorExtendable, [this].concat(args)) || this;
-          _this.begin = _initializer$v && _initializer$v();
-          _this.end = _initializer2$q && _initializer2$q();
-          _this.reconciledSpeed = _initializer3$i && _initializer3$i();
-          _this.playable = _initializer4$g && _initializer4$g();
+          _this.begin = _initializer$u && _initializer$u();
+          _this.end = _initializer2$p && _initializer2$p();
+          _this.reconciledSpeed = _initializer3$h && _initializer3$h();
+          _this.playable = _initializer4$f && _initializer4$f();
           return _this;
         }
         return EmbeddedPlayer;
-      }(EditorExtendable), (_initializer$v = applyDecoratedInitializer(_class2$w.prototype, "begin", [serializable$5], function () {
+      }(EditorExtendable), (_initializer$u = applyDecoratedInitializer(_class2$v.prototype, "begin", [serializable$4], function () {
         return 0.0;
-      }), _initializer2$q = applyDecoratedInitializer(_class2$w.prototype, "end", [serializable$5], function () {
+      }), _initializer2$p = applyDecoratedInitializer(_class2$v.prototype, "end", [serializable$4], function () {
         return 0.0;
-      }), _initializer3$i = applyDecoratedInitializer(_class2$w.prototype, "reconciledSpeed", [serializable$5], function () {
+      }), _initializer3$h = applyDecoratedInitializer(_class2$v.prototype, "reconciledSpeed", [serializable$4], function () {
         return false;
-      }), _initializer4$g = applyDecoratedInitializer(_class2$w.prototype, "playable", [serializable$5], function () {
+      }), _initializer4$f = applyDecoratedInitializer(_class2$v.prototype, "playable", [serializable$4], function () {
         return null;
-      })), _class2$w)) || _class$D);
+      })), _class2$v)) || _class$B);
       var EmbeddedPlayable = function EmbeddedPlayable() {};
       var EmbeddedPlayableState = function () {
         function EmbeddedPlayableState(randomAccess) {
@@ -67916,8 +67916,8 @@ System.register([], (function (exports, module) {
       }(Playable));
       cclegacy.AnimationState = AnimationState;
 
-      var _dec$B, _class$C, _class2$v, _initializer$u, _initializer2$p;
-      (_dec$B = ccclass$6(CLASS_NAME_PREFIX_ANIM + "EmbeddedAnimationClipPlayable"), _dec$B(_class$C = (_class2$v = function (_EmbeddedPlayable) {
+      var _dec$z, _class$A, _class2$u, _initializer$t, _initializer2$o;
+      (_dec$z = ccclass$5(CLASS_NAME_PREFIX_ANIM + "EmbeddedAnimationClipPlayable"), _dec$z(_class$A = (_class2$u = function (_EmbeddedPlayable) {
         _inheritsLoose(EmbeddedAnimationClipPlayable, _EmbeddedPlayable);
         function EmbeddedAnimationClipPlayable() {
           var _this;
@@ -67925,8 +67925,8 @@ System.register([], (function (exports, module) {
             args[_key] = arguments[_key];
           }
           _this = _EmbeddedPlayable.call.apply(_EmbeddedPlayable, [this].concat(args)) || this;
-          _this.path = _initializer$u && _initializer$u();
-          _this.clip = _initializer2$p && _initializer2$p();
+          _this.path = _initializer$t && _initializer$t();
+          _this.clip = _initializer2$o && _initializer2$o();
           return _this;
         }
         var _proto = EmbeddedAnimationClipPlayable.prototype;
@@ -67946,11 +67946,11 @@ System.register([], (function (exports, module) {
           return new EmbeddedAnimationClipPlayableState(state);
         };
         return EmbeddedAnimationClipPlayable;
-      }(EmbeddedPlayable), (_initializer$u = applyDecoratedInitializer(_class2$v.prototype, "path", [serializable$5], function () {
+      }(EmbeddedPlayable), (_initializer$t = applyDecoratedInitializer(_class2$u.prototype, "path", [serializable$4], function () {
         return '';
-      }), _initializer2$p = applyDecoratedInitializer(_class2$v.prototype, "clip", [serializable$5], function () {
+      }), _initializer2$o = applyDecoratedInitializer(_class2$u.prototype, "clip", [serializable$4], function () {
         return null;
-      })), _class2$v)) || _class$C);
+      })), _class2$u)) || _class$A);
       var EmbeddedAnimationClipPlayableState = function (_EmbeddedPlayableStat) {
         _inheritsLoose(EmbeddedAnimationClipPlayableState, _EmbeddedPlayableStat);
         function EmbeddedAnimationClipPlayableState(animationState) {
@@ -67982,8 +67982,8 @@ System.register([], (function (exports, module) {
         return EmbeddedAnimationClipPlayableState;
       }(EmbeddedPlayableState);
 
-      var _dec$A, _class$B, _class2$u, _initializer$t;
-      (_dec$A = ccclass$6(CLASS_NAME_PREFIX_ANIM + "EmbeddedParticleSystemPlayable"), _dec$A(_class$B = (_class2$u = function (_EmbeddedPlayable) {
+      var _dec$y, _class$z, _class2$t, _initializer$s;
+      (_dec$y = ccclass$5(CLASS_NAME_PREFIX_ANIM + "EmbeddedParticleSystemPlayable"), _dec$y(_class$z = (_class2$t = function (_EmbeddedPlayable) {
         _inheritsLoose(EmbeddedParticleSystemPlayable, _EmbeddedPlayable);
         function EmbeddedParticleSystemPlayable() {
           var _this;
@@ -67991,7 +67991,7 @@ System.register([], (function (exports, module) {
             args[_key] = arguments[_key];
           }
           _this = _EmbeddedPlayable.call.apply(_EmbeddedPlayable, [this].concat(args)) || this;
-          _this.path = _initializer$t && _initializer$t();
+          _this.path = _initializer$s && _initializer$s();
           return _this;
         }
         var _proto = EmbeddedParticleSystemPlayable.prototype;
@@ -68014,9 +68014,9 @@ System.register([], (function (exports, module) {
           return new EmbeddedParticleSystemPlayableState(particleSystem);
         };
         return EmbeddedParticleSystemPlayable;
-      }(EmbeddedPlayable), (_initializer$t = applyDecoratedInitializer(_class2$u.prototype, "path", [serializable$5], function () {
+      }(EmbeddedPlayable), (_initializer$s = applyDecoratedInitializer(_class2$t.prototype, "path", [serializable$4], function () {
         return '';
-      })), _class2$u)) || _class$B);
+      })), _class2$t)) || _class$z);
       var EmbeddedParticleSystemPlayableState = function (_EmbeddedPlayableStat) {
         _inheritsLoose(EmbeddedParticleSystemPlayableState, _EmbeddedPlayableStat);
         function EmbeddedParticleSystemPlayableState(particleSystem) {
@@ -68043,16 +68043,16 @@ System.register([], (function (exports, module) {
         return EmbeddedParticleSystemPlayableState;
       }(EmbeddedPlayableState);
 
-      var _dec$z, _class$A, _class2$t, _initializer$s, _dec2$o, _class4$7, _class5$7, _initializer2$o;
+      var _dec$x, _class$y, _class2$s, _initializer$r, _dec2$n, _class4$6, _class5$6, _initializer2$n;
       function isPropertyPath(path) {
         return typeof path === 'string' || typeof path === 'number';
       }
       function isCustomPath(path, constructor) {
         return path instanceof constructor;
       }
-      var HierarchyPath = (_dec$z = ccclass$6('cc.animation.HierarchyPath'), _dec$z(_class$A = (_class2$t = function () {
+      var HierarchyPath = (_dec$x = ccclass$5('cc.animation.HierarchyPath'), _dec$x(_class$y = (_class2$s = function () {
         function HierarchyPath(path) {
-          this.path = _initializer$s && _initializer$s();
+          this.path = _initializer$r && _initializer$r();
           this.path = path || '';
         }
         var _proto = HierarchyPath.prototype;
@@ -68069,12 +68069,12 @@ System.register([], (function (exports, module) {
           return result;
         };
         return HierarchyPath;
-      }(), (_initializer$s = applyDecoratedInitializer(_class2$t.prototype, "path", [serializable$5], function () {
+      }(), (_initializer$r = applyDecoratedInitializer(_class2$s.prototype, "path", [serializable$4], function () {
         return '';
-      })), _class2$t)) || _class$A);
-      var ComponentPath = (_dec2$o = ccclass$6('cc.animation.ComponentPath'), _dec2$o(_class4$7 = (_class5$7 = function () {
+      })), _class2$s)) || _class$y);
+      var ComponentPath = (_dec2$n = ccclass$5('cc.animation.ComponentPath'), _dec2$n(_class4$6 = (_class5$6 = function () {
         function ComponentPath(component) {
-          this.component = _initializer2$o && _initializer2$o();
+          this.component = _initializer2$n && _initializer2$n();
           this.component = component || '';
         }
         var _proto2 = ComponentPath.prototype;
@@ -68091,17 +68091,17 @@ System.register([], (function (exports, module) {
           return result;
         };
         return ComponentPath;
-      }(), (_initializer2$o = applyDecoratedInitializer(_class5$7.prototype, "component", [serializable$5], function () {
+      }(), (_initializer2$n = applyDecoratedInitializer(_class5$6.prototype, "component", [serializable$4], function () {
         return '';
-      })), _class5$7)) || _class4$7);
+      })), _class5$6)) || _class4$6);
 
-      var _dec$y, _class$z, _class2$s, _initializer$r, _dec2$n, _class4$6, _class5$6, _initializer2$n, _initializer3$h, _class6$1, _dec3$j, _class7$2, _class8$1, _initializer4$f, _dec4$f, _class10$1, _class11$1, _initializer5$d, _dec5$f, _class13$1, _class14, _initializer6$a;
+      var _dec$w, _class$x, _class2$r, _initializer$q, _dec2$m, _class4$5, _class5$5, _initializer2$m, _initializer3$g, _class6, _dec3$i, _class7$2, _class8$1, _initializer4$e, _dec4$e, _class10$1, _class11$1, _initializer5$c, _dec5$e, _class13$1, _class14, _initializer6$9;
       var normalizedFollowTag = Symbol('NormalizedFollow');
       var parseTrsPathTag = Symbol('ConvertAsTrsPath');
       var trackBindingTag = Symbol('TrackBinding');
-      var TrackPath = (_dec$y = ccclass$6(CLASS_NAME_PREFIX_ANIM + "TrackPath"), _dec$y(_class$z = (_class2$s = function () {
+      var TrackPath = (_dec$w = ccclass$5(CLASS_NAME_PREFIX_ANIM + "TrackPath"), _dec$w(_class$x = (_class2$r = function () {
         function TrackPath() {
-          this._paths = _initializer$r && _initializer$r();
+          this._paths = _initializer$q && _initializer$q();
         }
         var _proto = TrackPath.prototype;
         _proto.toProperty = function toProperty(name) {
@@ -68240,13 +68240,13 @@ System.register([], (function (exports, module) {
           }
         }]);
         return TrackPath;
-      }(), (_initializer$r = applyDecoratedInitializer(_class2$s.prototype, "_paths", [serializable$5], function () {
+      }(), (_initializer$q = applyDecoratedInitializer(_class2$r.prototype, "_paths", [serializable$4], function () {
         return [];
-      })), _class2$s)) || _class$z);
-      var TrackBinding = (_dec2$n = ccclass$6(CLASS_NAME_PREFIX_ANIM + "TrackBinding"), _dec2$n(_class4$6 = uniquelyReferenced(_class4$6 = (_class5$6 = (_class6$1 = function () {
+      })), _class2$r)) || _class$x);
+      var TrackBinding = (_dec2$m = ccclass$5(CLASS_NAME_PREFIX_ANIM + "TrackBinding"), _dec2$m(_class4$5 = uniquelyReferenced(_class4$5 = (_class5$5 = (_class6 = function () {
         function TrackBinding() {
-          this.path = _initializer2$n && _initializer2$n();
-          this.proxy = _initializer3$h && _initializer3$h();
+          this.path = _initializer2$m && _initializer2$m();
+          this.proxy = _initializer3$g && _initializer3$g();
         }
         var _proto2 = TrackBinding.prototype;
         _proto2.parseTrsPath = function parseTrsPath() {
@@ -68338,15 +68338,15 @@ System.register([], (function (exports, module) {
           return false;
         };
         return TrackBinding;
-      }(), _class6$1._animationFunctions = new WeakMap(), _class6$1), (_initializer2$n = applyDecoratedInitializer(_class5$6.prototype, "path", [serializable$5], function () {
+      }(), _class6._animationFunctions = new WeakMap(), _class6), (_initializer2$m = applyDecoratedInitializer(_class5$5.prototype, "path", [serializable$4], function () {
         return new TrackPath();
-      }), _initializer3$h = applyDecoratedInitializer(_class5$6.prototype, "proxy", [serializable$5], null)), _class5$6)) || _class4$6) || _class4$6);
+      }), _initializer3$g = applyDecoratedInitializer(_class5$5.prototype, "proxy", [serializable$4], null)), _class5$5)) || _class4$5) || _class4$5);
       function isTrsPropertyName(name) {
         return name === 'position' || name === 'rotation' || name === 'scale' || name === 'eulerAngles';
       }
-      var Track = (_dec3$j = ccclass$6(CLASS_NAME_PREFIX_ANIM + "Track"), _dec3$j(_class7$2 = (_class8$1 = function () {
+      var Track = (_dec3$i = ccclass$5(CLASS_NAME_PREFIX_ANIM + "Track"), _dec3$i(_class7$2 = (_class8$1 = function () {
         function Track() {
-          this._binding = _initializer4$f && _initializer4$f();
+          this._binding = _initializer4$e && _initializer4$e();
         }
         var _proto3 = Track.prototype;
         _proto3.channels = function channels() {
@@ -68387,13 +68387,13 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Track;
-      }(), (_initializer4$f = applyDecoratedInitializer(_class8$1.prototype, "_binding", [serializable$5], function () {
+      }(), (_initializer4$e = applyDecoratedInitializer(_class8$1.prototype, "_binding", [serializable$4], function () {
         return new TrackBinding();
       })), _class8$1)) || _class7$2);
-      var Channel = (_dec4$f = ccclass$6(CLASS_NAME_PREFIX_ANIM + "Channel"), _dec4$f(_class10$1 = (_class11$1 = function () {
+      var Channel = (_dec4$e = ccclass$5(CLASS_NAME_PREFIX_ANIM + "Channel"), _dec4$e(_class10$1 = (_class11$1 = function () {
         function Channel(curve) {
           this.name = '';
-          this._curve = _initializer5$d && _initializer5$d();
+          this._curve = _initializer5$c && _initializer5$c();
           this._curve = curve;
         }
         _createClass(Channel, [{
@@ -68403,13 +68403,13 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Channel;
-      }(), (_initializer5$d = applyDecoratedInitializer(_class11$1.prototype, "_curve", [serializable$5], null)), _class11$1)) || _class10$1);
-      var SingleChannelTrack = (_dec5$f = ccclass$6(CLASS_NAME_PREFIX_ANIM + "SingleChannelTrack"), _dec5$f(_class13$1 = (_class14 = function (_Track) {
+      }(), (_initializer5$c = applyDecoratedInitializer(_class11$1.prototype, "_curve", [serializable$4], null)), _class11$1)) || _class10$1);
+      var SingleChannelTrack = (_dec5$e = ccclass$5(CLASS_NAME_PREFIX_ANIM + "SingleChannelTrack"), _dec5$e(_class13$1 = (_class14 = function (_Track) {
         _inheritsLoose(SingleChannelTrack, _Track);
         function SingleChannelTrack() {
           var _this;
           _this = _Track.call(this) || this;
-          _this._channel = _initializer6$a && _initializer6$a();
+          _this._channel = _initializer6$9 && _initializer6$9();
           _this._channel = new Channel(_this.createCurve());
           return _this;
         }
@@ -68431,7 +68431,7 @@ System.register([], (function (exports, module) {
           }
         }]);
         return SingleChannelTrack;
-      }(Track), (_initializer6$a = applyDecoratedInitializer(_class14.prototype, "_channel", [serializable$5], null)), _class14)) || _class13$1);
+      }(Track), (_initializer6$9 = applyDecoratedInitializer(_class14.prototype, "_channel", [serializable$4], null)), _class14)) || _class13$1);
       var SingleChannelTrackEval = function () {
         function SingleChannelTrackEval(_curve) {
           this._curve = _curve;
@@ -68449,10 +68449,10 @@ System.register([], (function (exports, module) {
         return SingleChannelTrackEval;
       }();
 
-      var _dec$x, _class$y, _class2$r, _initializer$q;
-      var ccclass$2 = ccclass$6,
-        serializable$2 = serializable$5;
-      (_dec$x = ccclass$2(CLASS_NAME_PREFIX_ANIM + "RealArrayTrack"), _dec$x(_class$y = (_class2$r = function (_Track) {
+      var _dec$v, _class$w, _class2$q, _initializer$p;
+      var ccclass$1 = ccclass$5,
+        serializable$1 = serializable$4;
+      (_dec$v = ccclass$1(CLASS_NAME_PREFIX_ANIM + "RealArrayTrack"), _dec$v(_class$w = (_class2$q = function (_Track) {
         _inheritsLoose(RealArrayTrack, _Track);
         function RealArrayTrack() {
           var _this;
@@ -68460,7 +68460,7 @@ System.register([], (function (exports, module) {
             args[_key] = arguments[_key];
           }
           _this = _Track.call.apply(_Track, [this].concat(args)) || this;
-          _this._channels = _initializer$q && _initializer$q();
+          _this._channels = _initializer$p && _initializer$p();
           return _this;
         }
         var _proto = RealArrayTrack.prototype;
@@ -68494,9 +68494,9 @@ System.register([], (function (exports, module) {
           }
         }]);
         return RealArrayTrack;
-      }(Track), (_initializer$q = applyDecoratedInitializer(_class2$r.prototype, "_channels", [serializable$2], function () {
+      }(Track), (_initializer$p = applyDecoratedInitializer(_class2$q.prototype, "_channels", [serializable$1], function () {
         return [];
-      })), _class2$r)) || _class$y);
+      })), _class2$q)) || _class$w);
       var RealArrayTrackEval = function () {
         function RealArrayTrackEval(_curves) {
           this._curves = _curves;
@@ -68520,11 +68520,11 @@ System.register([], (function (exports, module) {
         return RealArrayTrackEval;
       }();
 
-      var _dec$w, _class$x, _class2$q, _initializer$p, _initializer2$m, _descriptor;
-      var UniformProxyFactory = (_dec$w = ccclass$6('cc.animation.UniformProxyFactory'), _dec$w(_class$x = (_class2$q = function () {
+      var _dec$u, _class$v, _class2$p, _initializer$o, _initializer2$l, _descriptor;
+      var UniformProxyFactory = (_dec$u = ccclass$5('cc.animation.UniformProxyFactory'), _dec$u(_class$v = (_class2$p = function () {
         function UniformProxyFactory(uniformName, passIndex) {
-          this.passIndex = _initializer$p && _initializer$p();
-          this.uniformName = _initializer2$m && _initializer2$m();
+          this.passIndex = _initializer$o && _initializer$o();
+          this.uniformName = _initializer2$l && _initializer2$l();
           _initializerDefineProperty(this, "channelIndex", _descriptor, this);
           this.passIndex = passIndex || 0;
           this.uniformName = uniformName || '';
@@ -68594,18 +68594,18 @@ System.register([], (function (exports, module) {
           }
         };
         return UniformProxyFactory;
-      }(), (_initializer$p = applyDecoratedInitializer(_class2$q.prototype, "passIndex", [serializable$5], function () {
+      }(), (_initializer$o = applyDecoratedInitializer(_class2$p.prototype, "passIndex", [serializable$4], function () {
         return 0;
-      }), _initializer2$m = applyDecoratedInitializer(_class2$q.prototype, "uniformName", [serializable$5], function () {
+      }), _initializer2$l = applyDecoratedInitializer(_class2$p.prototype, "uniformName", [serializable$4], function () {
         return '';
-      }), _descriptor = _applyDecoratedDescriptor(_class2$q.prototype, "channelIndex", [_float], {
+      }), _descriptor = _applyDecoratedDescriptor(_class2$p.prototype, "channelIndex", [_float], {
         configurable: true,
         enumerable: true,
         writable: true,
         initializer: function initializer() {
           return undefined;
         }
-      })), _class2$q)) || _class$x);
+      })), _class2$p)) || _class$v);
       function isUniformArray(pass, name) {
         for (var _iterator = _createForOfIteratorHelperLoose(pass.shaderInfo.blocks), _step; !(_step = _iterator()).done;) {
           var block = _step.value;
@@ -68619,11 +68619,11 @@ System.register([], (function (exports, module) {
         return false;
       }
 
-      var _dec$v, _class$w, _class2$p, _initializer$o, _initializer2$l, _dec2$m, _class4$5, _class5$5, _initializer3$g, _dec3$i, _class7$1;
-      var MorphWeightValueProxy = (_dec$v = ccclass$6('cc.animation.MorphWeightValueProxy'), _dec$v(_class$w = (_class2$p = function () {
+      var _dec$t, _class$u, _class2$o, _initializer$n, _initializer2$k, _dec2$l, _class4$4, _class5$4, _initializer3$f, _dec3$h, _class7$1;
+      var MorphWeightValueProxy = (_dec$t = ccclass$5('cc.animation.MorphWeightValueProxy'), _dec$t(_class$u = (_class2$o = function () {
         function MorphWeightValueProxy() {
-          this.subMeshIndex = _initializer$o && _initializer$o();
-          this.shapeIndex = _initializer2$l && _initializer2$l();
+          this.subMeshIndex = _initializer$n && _initializer$n();
+          this.shapeIndex = _initializer2$k && _initializer2$k();
         }
         var _proto = MorphWeightValueProxy.prototype;
         _proto.forTarget = function forTarget(target) {
@@ -68635,14 +68635,14 @@ System.register([], (function (exports, module) {
           };
         };
         return MorphWeightValueProxy;
-      }(), (_initializer$o = applyDecoratedInitializer(_class2$p.prototype, "subMeshIndex", [serializable$5], function () {
+      }(), (_initializer$n = applyDecoratedInitializer(_class2$o.prototype, "subMeshIndex", [serializable$4], function () {
         return 0;
-      }), _initializer2$l = applyDecoratedInitializer(_class2$p.prototype, "shapeIndex", [serializable$5], function () {
+      }), _initializer2$k = applyDecoratedInitializer(_class2$o.prototype, "shapeIndex", [serializable$4], function () {
         return 0;
-      })), _class2$p)) || _class$w);
-      var MorphWeightsValueProxy = (_dec2$m = ccclass$6('cc.animation.MorphWeightsValueProxy'), _dec2$m(_class4$5 = (_class5$5 = function () {
+      })), _class2$o)) || _class$u);
+      var MorphWeightsValueProxy = (_dec2$l = ccclass$5('cc.animation.MorphWeightsValueProxy'), _dec2$l(_class4$4 = (_class5$4 = function () {
         function MorphWeightsValueProxy() {
-          this.subMeshIndex = _initializer3$g && _initializer3$g();
+          this.subMeshIndex = _initializer3$f && _initializer3$f();
         }
         var _proto2 = MorphWeightsValueProxy.prototype;
         _proto2.forTarget = function forTarget(target) {
@@ -68654,10 +68654,10 @@ System.register([], (function (exports, module) {
           };
         };
         return MorphWeightsValueProxy;
-      }(), (_initializer3$g = applyDecoratedInitializer(_class5$5.prototype, "subMeshIndex", [serializable$5], function () {
+      }(), (_initializer3$f = applyDecoratedInitializer(_class5$4.prototype, "subMeshIndex", [serializable$4], function () {
         return 0;
-      })), _class5$5)) || _class4$5);
-      var MorphWeightsAllValueProxy = (_dec3$i = ccclass$6('cc.animation.MorphWeightsAllValueProxy'), _dec3$i(_class7$1 = function () {
+      })), _class5$4)) || _class4$4);
+      var MorphWeightsAllValueProxy = (_dec3$h = ccclass$5('cc.animation.MorphWeightsAllValueProxy'), _dec3$h(_class7$1 = function () {
         function MorphWeightsAllValueProxy() {}
         var _proto3 = MorphWeightsAllValueProxy.prototype;
         _proto3.forTarget = function forTarget(target) {
@@ -68674,13 +68674,13 @@ System.register([], (function (exports, module) {
         return MorphWeightsAllValueProxy;
       }()) || _class7$1);
 
-      var _dec2$l, _class4$4, _class5$4, _initializer4$e, _initializer5$c, _initializer6$9;
+      var _dec2$k, _class4$3, _class5$3, _initializer4$d, _initializer5$b, _initializer6$8;
       function makeCubicSplineValueConstructor(name, ConstructorX, scaleFx, scaleAndAdd) {
         var _dec, _class, _class2, _initializer, _initializer2, _initializer3;
         var tempValue = new ConstructorX();
         var m0 = new ConstructorX();
         var m1 = new ConstructorX();
-        var CubicSplineValueClass = (_dec = ccclass$6(name), _dec(_class = (_class2 = function () {
+        var CubicSplineValueClass = (_dec = ccclass$5(name), _dec(_class = (_class2 = function () {
           function CubicSplineValueClass(dataPoint, inTangent, outTangent) {
             this.dataPoint = _initializer && _initializer();
             this.inTangent = _initializer2 && _initializer2();
@@ -68711,11 +68711,11 @@ System.register([], (function (exports, module) {
             return this.dataPoint;
           };
           return CubicSplineValueClass;
-        }(), (_initializer = applyDecoratedInitializer(_class2.prototype, "dataPoint", [serializable$5], function () {
+        }(), (_initializer = applyDecoratedInitializer(_class2.prototype, "dataPoint", [serializable$4], function () {
           return new ConstructorX();
-        }), _initializer2 = applyDecoratedInitializer(_class2.prototype, "inTangent", [serializable$5], function () {
+        }), _initializer2 = applyDecoratedInitializer(_class2.prototype, "inTangent", [serializable$4], function () {
           return new ConstructorX();
-        }), _initializer3 = applyDecoratedInitializer(_class2.prototype, "outTangent", [serializable$5], function () {
+        }), _initializer3 = applyDecoratedInitializer(_class2.prototype, "outTangent", [serializable$4], function () {
           return new ConstructorX();
         })), _class2)) || _class);
         if (ConstructorX === Quat) {
@@ -68732,11 +68732,11 @@ System.register([], (function (exports, module) {
       var CubicSplineVec3Value = makeCubicSplineValueConstructor('cc.CubicSplineVec3Value', Vec3, Vec3.multiplyScalar, Vec3.scaleAndAdd);
       var CubicSplineVec4Value = makeCubicSplineValueConstructor('cc.CubicSplineVec4Value', Vec4, Vec4.multiplyScalar, Vec4.scaleAndAdd);
       var CubicSplineQuatValue = makeCubicSplineValueConstructor('cc.CubicSplineQuatValue', Quat, Quat.multiplyScalar, Quat.scaleAndAdd);
-      var CubicSplineNumberValue = (_dec2$l = ccclass$6('cc.CubicSplineNumberValue'), _dec2$l(_class4$4 = (_class5$4 = function () {
+      var CubicSplineNumberValue = (_dec2$k = ccclass$5('cc.CubicSplineNumberValue'), _dec2$k(_class4$3 = (_class5$3 = function () {
         function CubicSplineNumberValue(dataPoint, inTangent, outTangent) {
-          this.dataPoint = _initializer4$e && _initializer4$e();
-          this.inTangent = _initializer5$c && _initializer5$c();
-          this.outTangent = _initializer6$9 && _initializer6$9();
+          this.dataPoint = _initializer4$d && _initializer4$d();
+          this.inTangent = _initializer5$b && _initializer5$b();
+          this.outTangent = _initializer6$8 && _initializer6$8();
           this.dataPoint = dataPoint;
           this.inTangent = inTangent;
           this.outTangent = outTangent;
@@ -68759,16 +68759,16 @@ System.register([], (function (exports, module) {
           return this.dataPoint;
         };
         return CubicSplineNumberValue;
-      }(), (_initializer4$e = applyDecoratedInitializer(_class5$4.prototype, "dataPoint", [serializable$5], function () {
+      }(), (_initializer4$d = applyDecoratedInitializer(_class5$3.prototype, "dataPoint", [serializable$4], function () {
         return 0;
-      }), _initializer5$c = applyDecoratedInitializer(_class5$4.prototype, "inTangent", [serializable$5], function () {
+      }), _initializer5$b = applyDecoratedInitializer(_class5$3.prototype, "inTangent", [serializable$4], function () {
         return 0;
-      }), _initializer6$9 = applyDecoratedInitializer(_class5$4.prototype, "outTangent", [serializable$5], function () {
+      }), _initializer6$8 = applyDecoratedInitializer(_class5$3.prototype, "outTangent", [serializable$4], function () {
         return 0;
-      })), _class5$4)) || _class4$4);
+      })), _class5$3)) || _class4$3);
 
-      var _dec$u, _class$v;
-      var RealTrack = (_dec$u = ccclass$6(CLASS_NAME_PREFIX_ANIM + "RealTrack"), _dec$u(_class$v = function (_SingleChannelTrack) {
+      var _dec$s, _class$t;
+      var RealTrack = (_dec$s = ccclass$5(CLASS_NAME_PREFIX_ANIM + "RealTrack"), _dec$s(_class$t = function (_SingleChannelTrack) {
         _inheritsLoose(RealTrack, _SingleChannelTrack);
         function RealTrack() {
           return _SingleChannelTrack.apply(this, arguments) || this;
@@ -68778,21 +68778,21 @@ System.register([], (function (exports, module) {
           return new RealCurve();
         };
         return RealTrack;
-      }(SingleChannelTrack)) || _class$v);
+      }(SingleChannelTrack)) || _class$t);
 
       function maskIfEmpty(curve) {
         return curve.keyFramesCount === 0 ? undefined : curve;
       }
 
-      var _dec$t, _class$u, _class2$o, _initializer$n, _initializer2$k;
+      var _dec$r, _class$s, _class2$n, _initializer$m, _initializer2$j;
       var CHANNEL_NAMES$2 = ['X', 'Y', 'Z', 'W'];
-      var VectorTrack = (_dec$t = ccclass$6(CLASS_NAME_PREFIX_ANIM + "VectorTrack"), _dec$t(_class$u = (_class2$o = function (_Track) {
+      var VectorTrack = (_dec$r = ccclass$5(CLASS_NAME_PREFIX_ANIM + "VectorTrack"), _dec$r(_class$s = (_class2$n = function (_Track) {
         _inheritsLoose(VectorTrack, _Track);
         function VectorTrack() {
           var _this;
           _this = _Track.call(this) || this;
-          _this._channels = _initializer$n && _initializer$n();
-          _this._nComponents = _initializer2$k && _initializer2$k();
+          _this._channels = _initializer$m && _initializer$m();
+          _this._nComponents = _initializer2$j && _initializer2$j();
           _this._channels = new Array(4);
           for (var i = 0; i < _this._channels.length; ++i) {
             var channel = new Channel(new RealCurve());
@@ -68826,9 +68826,9 @@ System.register([], (function (exports, module) {
           }
         }]);
         return VectorTrack;
-      }(Track), (_initializer$n = applyDecoratedInitializer(_class2$o.prototype, "_channels", [serializable$5], null), _initializer2$k = applyDecoratedInitializer(_class2$o.prototype, "_nComponents", [serializable$5], function () {
+      }(Track), (_initializer$m = applyDecoratedInitializer(_class2$n.prototype, "_channels", [serializable$4], null), _initializer2$j = applyDecoratedInitializer(_class2$n.prototype, "_nComponents", [serializable$4], function () {
         return 4;
-      })), _class2$o)) || _class$u);
+      })), _class2$n)) || _class$s);
       var Vec2TrackEval = function () {
         function Vec2TrackEval(_x, _y) {
           this._result = new Vec2();
@@ -68927,8 +68927,8 @@ System.register([], (function (exports, module) {
         return Vec4TrackEval;
       }();
 
-      var _dec$s, _class$t;
-      var QuatTrack = (_dec$s = ccclass$6(CLASS_NAME_PREFIX_ANIM + "QuatTrack"), _dec$s(_class$t = function (_SingleChannelTrack) {
+      var _dec$q, _class$r;
+      var QuatTrack = (_dec$q = ccclass$5(CLASS_NAME_PREFIX_ANIM + "QuatTrack"), _dec$q(_class$r = function (_SingleChannelTrack) {
         _inheritsLoose(QuatTrack, _SingleChannelTrack);
         function QuatTrack() {
           return _SingleChannelTrack.apply(this, arguments) || this;
@@ -68941,7 +68941,7 @@ System.register([], (function (exports, module) {
           return new QuatTrackEval(this.channels()[0].curve);
         };
         return QuatTrack;
-      }(SingleChannelTrack)) || _class$t);
+      }(SingleChannelTrack)) || _class$r);
       var QuatTrackEval = function () {
         function QuatTrackEval(_curve) {
           this._result = new Quat();
@@ -68961,14 +68961,14 @@ System.register([], (function (exports, module) {
         return QuatTrackEval;
       }();
 
-      var _dec$r, _class$s, _class2$n, _initializer$m;
+      var _dec$p, _class$q, _class2$m, _initializer$l;
       var CHANNEL_NAMES$1 = ['Red', 'Green', 'Blue', 'Alpha'];
-      var ColorTrack = (_dec$r = ccclass$6(CLASS_NAME_PREFIX_ANIM + "ColorTrack"), _dec$r(_class$s = (_class2$n = function (_Track) {
+      var ColorTrack = (_dec$p = ccclass$5(CLASS_NAME_PREFIX_ANIM + "ColorTrack"), _dec$p(_class$q = (_class2$m = function (_Track) {
         _inheritsLoose(ColorTrack, _Track);
         function ColorTrack() {
           var _this;
           _this = _Track.call(this) || this;
-          _this._channels = _initializer$m && _initializer$m();
+          _this._channels = _initializer$l && _initializer$l();
           _this._channels = new Array(4);
           for (var i = 0; i < _this._channels.length; ++i) {
             var channel = new Channel(new RealCurve());
@@ -68985,7 +68985,7 @@ System.register([], (function (exports, module) {
           return new ColorTrackEval(maskIfEmpty(this._channels[0].curve), maskIfEmpty(this._channels[1].curve), maskIfEmpty(this._channels[2].curve), maskIfEmpty(this._channels[3].curve));
         };
         return ColorTrack;
-      }(Track), (_initializer$m = applyDecoratedInitializer(_class2$n.prototype, "_channels", [serializable$5], null)), _class2$n)) || _class$s);
+      }(Track), (_initializer$l = applyDecoratedInitializer(_class2$m.prototype, "_channels", [serializable$4], null)), _class2$m)) || _class$q);
       var ColorTrackEval = function () {
         function ColorTrackEval(_x, _y, _z, _w) {
           this._result = new Color$1();
@@ -69022,14 +69022,14 @@ System.register([], (function (exports, module) {
         return ColorTrackEval;
       }();
 
-      var _dec$q, _class$r, _class2$m, _initializer$l;
+      var _dec$o, _class$p, _class2$l, _initializer$k;
       var CHANNEL_NAMES = ['Width', 'Height'];
-      var SizeTrack = (_dec$q = ccclass$6(CLASS_NAME_PREFIX_ANIM + "SizeTrack"), _dec$q(_class$r = (_class2$m = function (_Track) {
+      var SizeTrack = (_dec$o = ccclass$5(CLASS_NAME_PREFIX_ANIM + "SizeTrack"), _dec$o(_class$p = (_class2$l = function (_Track) {
         _inheritsLoose(SizeTrack, _Track);
         function SizeTrack() {
           var _this;
           _this = _Track.call(this) || this;
-          _this._channels = _initializer$l && _initializer$l();
+          _this._channels = _initializer$k && _initializer$k();
           _this._channels = new Array(2);
           for (var i = 0; i < _this._channels.length; ++i) {
             var channel = new Channel(new RealCurve());
@@ -69046,7 +69046,7 @@ System.register([], (function (exports, module) {
           return new SizeTrackEval(maskIfEmpty(this._channels[0].curve), maskIfEmpty(this._channels[1].curve));
         };
         return SizeTrack;
-      }(Track), (_initializer$l = applyDecoratedInitializer(_class2$m.prototype, "_channels", [serializable$5], null)), _class2$m)) || _class$r);
+      }(Track), (_initializer$k = applyDecoratedInitializer(_class2$l.prototype, "_channels", [serializable$4], null)), _class2$l)) || _class$p);
       var SizeTrackEval = function () {
         function SizeTrackEval(_width, _height) {
           this._result = new Size$1();
@@ -69076,8 +69076,8 @@ System.register([], (function (exports, module) {
         return SizeTrackEval;
       }();
 
-      var _dec$p, _class$q;
-      var ObjectTrack = (_dec$p = ccclass$6(CLASS_NAME_PREFIX_ANIM + "ObjectTrack"), _dec$p(_class$q = function (_SingleChannelTrack) {
+      var _dec$n, _class$o;
+      var ObjectTrack = (_dec$n = ccclass$5(CLASS_NAME_PREFIX_ANIM + "ObjectTrack"), _dec$n(_class$o = function (_SingleChannelTrack) {
         _inheritsLoose(ObjectTrack, _SingleChannelTrack);
         function ObjectTrack() {
           return _SingleChannelTrack.apply(this, arguments) || this;
@@ -69087,7 +69087,7 @@ System.register([], (function (exports, module) {
           return new ObjectCurve();
         };
         return ObjectTrack;
-      }(SingleChannelTrack)) || _class$q);
+      }(SingleChannelTrack)) || _class$o);
 
       var animation = /*#__PURE__*/Object.freeze({
         __proto__: null,
@@ -69377,20 +69377,20 @@ System.register([], (function (exports, module) {
       }();
       SkelAnimDataHub.pool = new Map();
 
-      var _dec$o, _class$p, _class2$l, _initializer$k, _dec2$k, _class4$3, _class5$3, _initializer2$j;
-      var UntypedTrackChannel = (_dec$o = ccclass$6(CLASS_NAME_PREFIX_ANIM + "UntypedTrackChannel"), _dec$o(_class$p = (_class2$l = function (_Channel) {
+      var _dec$m, _class$n, _class2$k, _initializer$j, _dec2$j, _class4$2, _class5$2, _initializer2$i;
+      var UntypedTrackChannel = (_dec$m = ccclass$5(CLASS_NAME_PREFIX_ANIM + "UntypedTrackChannel"), _dec$m(_class$n = (_class2$k = function (_Channel) {
         _inheritsLoose(UntypedTrackChannel, _Channel);
         function UntypedTrackChannel() {
           var _this;
           _this = _Channel.call(this, new RealCurve()) || this;
-          _this.property = _initializer$k && _initializer$k();
+          _this.property = _initializer$j && _initializer$j();
           return _this;
         }
         return UntypedTrackChannel;
-      }(Channel), (_initializer$k = applyDecoratedInitializer(_class2$l.prototype, "property", [serializable$5], function () {
+      }(Channel), (_initializer$j = applyDecoratedInitializer(_class2$k.prototype, "property", [serializable$4], function () {
         return '';
-      })), _class2$l)) || _class$p);
-      var UntypedTrack = (_dec2$k = ccclass$6(CLASS_NAME_PREFIX_ANIM + "UntypedTrack"), _dec2$k(_class4$3 = (_class5$3 = function (_Track) {
+      })), _class2$k)) || _class$n);
+      var UntypedTrack = (_dec2$j = ccclass$5(CLASS_NAME_PREFIX_ANIM + "UntypedTrack"), _dec2$j(_class4$2 = (_class5$2 = function (_Track) {
         _inheritsLoose(UntypedTrack, _Track);
         function UntypedTrack() {
           var _this2;
@@ -69398,7 +69398,7 @@ System.register([], (function (exports, module) {
             args[_key] = arguments[_key];
           }
           _this2 = _Track.call.apply(_Track, [this].concat(args)) || this;
-          _this2._channels = _initializer2$j && _initializer2$j();
+          _this2._channels = _initializer2$i && _initializer2$i();
           return _this2;
         }
         var _proto = UntypedTrack.prototype;
@@ -69501,9 +69501,9 @@ System.register([], (function (exports, module) {
           return null;
         };
         return UntypedTrack;
-      }(Track), (_initializer2$j = applyDecoratedInitializer(_class5$3.prototype, "_channels", [serializable$5], function () {
+      }(Track), (_initializer2$i = applyDecoratedInitializer(_class5$2.prototype, "_channels", [serializable$4], function () {
         return [];
-      })), _class5$3)) || _class4$3);
+      })), _class5$2)) || _class4$2);
 
       var AnimationClipLegacyData = function () {
         function AnimationClipLegacyData(duration) {
@@ -70071,15 +70071,15 @@ System.register([], (function (exports, module) {
         }
       }
 
-      var _dec$n, _class$o, _class2$k, _initializer$j, _dec2$j, _class4$2, _class5$2, _initializer2$i, _initializer3$f, _initializer4$d, _initializer5$b, _dec3$h, _class7, _class8, _initializer6$8, _initializer7$8, _dec4$e, _class10, _dec5$e, _class11, _dec6$7, _class12, _class13, _initializer8$8, _initializer9$8, _dec7$6, _class20, _class21, _initializer10$8, _initializer11$8, _initializer12$7, _initializer13$6;
-      var ccclass$1 = ccclass$6,
-        serializable$1 = serializable$5;
+      var _dec$l, _class$m, _class2$j, _initializer$i, _dec2$i, _class4$1, _class5$1, _initializer2$h, _initializer3$e, _initializer4$c, _initializer5$a, _dec3$g, _class7, _class8, _initializer6$7, _initializer7$7, _dec4$d, _class10, _dec5$d, _class11, _dec6$6, _class12, _class13, _initializer8$7, _initializer9$7, _dec7$5, _class20, _class21, _initializer10$7, _initializer11$7, _initializer12$6, _initializer13$5;
+      var ccclass = ccclass$5,
+        serializable = serializable$4;
       function throwIfSplitMethodIsNotValid() {
         throw new Error("split() only valid in Editor.");
       }
-      (_dec$n = ccclass$1(CLASS_NAME_PREFIX_ANIM + "ExoticAnimation"), _dec$n(_class$o = (_class2$k = function () {
+      (_dec$l = ccclass(CLASS_NAME_PREFIX_ANIM + "ExoticAnimation"), _dec$l(_class$m = (_class2$j = function () {
         function ExoticAnimation() {
-          this._nodeAnimations = _initializer$j && _initializer$j();
+          this._nodeAnimations = _initializer$i && _initializer$i();
         }
         var _proto = ExoticAnimation.prototype;
         _proto.createEvaluator = function createEvaluator(binder) {
@@ -70110,15 +70110,15 @@ System.register([], (function (exports, module) {
           }).join('\n');
         };
         return ExoticAnimation;
-      }(), (_initializer$j = applyDecoratedInitializer(_class2$k.prototype, "_nodeAnimations", [serializable$1], function () {
+      }(), (_initializer$i = applyDecoratedInitializer(_class2$j.prototype, "_nodeAnimations", [serializable], function () {
         return [];
-      })), _class2$k)) || _class$o);
-      var ExoticNodeAnimation = (_dec2$j = ccclass$1(CLASS_NAME_PREFIX_ANIM + "ExoticNodeAnimation"), _dec2$j(_class4$2 = (_class5$2 = function () {
+      })), _class2$j)) || _class$m);
+      var ExoticNodeAnimation = (_dec2$i = ccclass(CLASS_NAME_PREFIX_ANIM + "ExoticNodeAnimation"), _dec2$i(_class4$1 = (_class5$1 = function () {
         function ExoticNodeAnimation(path) {
-          this._path = _initializer2$i && _initializer2$i();
-          this._position = _initializer3$f && _initializer3$f();
-          this._rotation = _initializer4$d && _initializer4$d();
-          this._scale = _initializer5$b && _initializer5$b();
+          this._path = _initializer2$h && _initializer2$h();
+          this._position = _initializer3$e && _initializer3$e();
+          this._rotation = _initializer4$c && _initializer4$c();
+          this._scale = _initializer5$a && _initializer5$a();
           this._path = path;
         }
         var _proto2 = ExoticNodeAnimation.prototype;
@@ -70157,15 +70157,15 @@ System.register([], (function (exports, module) {
           }
         }]);
         return ExoticNodeAnimation;
-      }(), (_initializer2$i = applyDecoratedInitializer(_class5$2.prototype, "_path", [serializable$1], function () {
+      }(), (_initializer2$h = applyDecoratedInitializer(_class5$1.prototype, "_path", [serializable], function () {
         return '';
-      }), _initializer3$f = applyDecoratedInitializer(_class5$2.prototype, "_position", [serializable$1], function () {
+      }), _initializer3$e = applyDecoratedInitializer(_class5$1.prototype, "_position", [serializable], function () {
         return null;
-      }), _initializer4$d = applyDecoratedInitializer(_class5$2.prototype, "_rotation", [serializable$1], function () {
+      }), _initializer4$c = applyDecoratedInitializer(_class5$1.prototype, "_rotation", [serializable], function () {
         return null;
-      }), _initializer5$b = applyDecoratedInitializer(_class5$2.prototype, "_scale", [serializable$1], function () {
+      }), _initializer5$a = applyDecoratedInitializer(_class5$1.prototype, "_scale", [serializable], function () {
         return null;
-      })), _class5$2)) || _class4$2);
+      })), _class5$1)) || _class4$1);
       function floatToHashString(value) {
         return value.toPrecision(2);
       }
@@ -70174,10 +70174,10 @@ System.register([], (function (exports, module) {
           return Number.parseFloat(floatToHashString(v));
         }).join(' ');
       }
-      var ExoticVectorLikeTrackValues = (_dec3$h = ccclass$1(CLASS_NAME_PREFIX_ANIM + "ExoticVectorLikeTrackValues"), _dec3$h(_class7 = (_class8 = function () {
+      var ExoticVectorLikeTrackValues = (_dec3$g = ccclass(CLASS_NAME_PREFIX_ANIM + "ExoticVectorLikeTrackValues"), _dec3$g(_class7 = (_class8 = function () {
         function ExoticVectorLikeTrackValues(values) {
-          this._values = _initializer6$8 && _initializer6$8();
-          this._isQuantized = _initializer7$8 && _initializer7$8();
+          this._values = _initializer6$7 && _initializer6$7();
+          this._isQuantized = _initializer7$7 && _initializer7$7();
           this._values = values;
         }
         var _proto3 = ExoticVectorLikeTrackValues.prototype;
@@ -70198,10 +70198,10 @@ System.register([], (function (exports, module) {
           }
         }]);
         return ExoticVectorLikeTrackValues;
-      }(), (_initializer6$8 = applyDecoratedInitializer(_class8.prototype, "_values", [serializable$1], null), _initializer7$8 = applyDecoratedInitializer(_class8.prototype, "_isQuantized", [serializable$1], function () {
+      }(), (_initializer6$7 = applyDecoratedInitializer(_class8.prototype, "_values", [serializable], null), _initializer7$7 = applyDecoratedInitializer(_class8.prototype, "_isQuantized", [serializable], function () {
         return false;
       })), _class8)) || _class7);
-      var ExoticVec3TrackValues = (_dec4$e = ccclass$1(CLASS_NAME_PREFIX_ANIM + "ExoticVec3TrackValues"), _dec4$e(_class10 = function (_ExoticVectorLikeTrac) {
+      var ExoticVec3TrackValues = (_dec4$d = ccclass(CLASS_NAME_PREFIX_ANIM + "ExoticVec3TrackValues"), _dec4$d(_class10 = function (_ExoticVectorLikeTrac) {
         _inheritsLoose(ExoticVec3TrackValues, _ExoticVectorLikeTrac);
         function ExoticVec3TrackValues() {
           return _ExoticVectorLikeTrac.apply(this, arguments) || this;
@@ -70237,7 +70237,7 @@ System.register([], (function (exports, module) {
         };
         return ExoticVec3TrackValues;
       }(ExoticVectorLikeTrackValues)) || _class10);
-      var ExoticQuatTrackValues = (_dec5$e = ccclass$1(CLASS_NAME_PREFIX_ANIM + "ExoticQuatTrackValues"), _dec5$e(_class11 = function (_ExoticVectorLikeTrac2) {
+      var ExoticQuatTrackValues = (_dec5$d = ccclass(CLASS_NAME_PREFIX_ANIM + "ExoticQuatTrackValues"), _dec5$d(_class11 = function (_ExoticVectorLikeTrac2) {
         _inheritsLoose(ExoticQuatTrackValues, _ExoticVectorLikeTrac2);
         function ExoticQuatTrackValues() {
           return _ExoticVectorLikeTrac2.apply(this, arguments) || this;
@@ -70273,10 +70273,10 @@ System.register([], (function (exports, module) {
         };
         return ExoticQuatTrackValues;
       }(ExoticVectorLikeTrackValues)) || _class11);
-      var ExoticTrack = (_dec6$7 = ccclass$1(CLASS_NAME_PREFIX_ANIM + "ExoticTrack"), _dec6$7(_class12 = (_class13 = function () {
+      var ExoticTrack = (_dec6$6 = ccclass(CLASS_NAME_PREFIX_ANIM + "ExoticTrack"), _dec6$6(_class12 = (_class13 = function () {
         function ExoticTrack(times, values) {
-          this.times = _initializer8$8 && _initializer8$8();
-          this.values = _initializer9$8 && _initializer9$8();
+          this.times = _initializer8$7 && _initializer8$7();
+          this.values = _initializer9$7 && _initializer9$7();
           this.times = times;
           this.values = values;
         }
@@ -70287,7 +70287,7 @@ System.register([], (function (exports, module) {
           return "times: " + floatArrayToHashString(times) + "; values: " + values.toHashString();
         };
         return ExoticTrack;
-      }(), (_initializer8$8 = applyDecoratedInitializer(_class13.prototype, "times", [serializable$1], null), _initializer9$8 = applyDecoratedInitializer(_class13.prototype, "values", [serializable$1], null)), _class13)) || _class12);
+      }(), (_initializer8$7 = applyDecoratedInitializer(_class13.prototype, "times", [serializable], null), _initializer9$7 = applyDecoratedInitializer(_class13.prototype, "values", [serializable], null)), _class13)) || _class12);
       (function () {
         function SplitInfo() {
           this._reset();
@@ -70588,15 +70588,15 @@ System.register([], (function (exports, module) {
             return 1;
         }
       }
-      var QuantizedFloatArray = (_dec7$6 = ccclass$1(CLASS_NAME_PREFIX_ANIM + "QuantizedFloatArray"), _dec7$6(_class20 = (_class21 = function () {
+      var QuantizedFloatArray = (_dec7$5 = ccclass(CLASS_NAME_PREFIX_ANIM + "QuantizedFloatArray"), _dec7$5(_class20 = (_class21 = function () {
         function QuantizedFloatArray(originalPrecision, values, extent, min) {
           if (min === undefined) {
             min = 0.0;
           }
-          this.originalPrecision = _initializer10$8 && _initializer10$8();
-          this.min = _initializer11$8 && _initializer11$8();
-          this.extent = _initializer12$7 && _initializer12$7();
-          this.values = _initializer13$6 && _initializer13$6();
+          this.originalPrecision = _initializer10$7 && _initializer10$7();
+          this.min = _initializer11$7 && _initializer11$7();
+          this.extent = _initializer12$6 && _initializer12$6();
+          this.values = _initializer13$5 && _initializer13$5();
           this.originalPrecision = originalPrecision;
           this.values = values;
           this.extent = extent;
@@ -70623,7 +70623,7 @@ System.register([], (function (exports, module) {
           }
         }]);
         return QuantizedFloatArray;
-      }(), (_initializer10$8 = applyDecoratedInitializer(_class21.prototype, "originalPrecision", [serializable$1], null), _initializer11$8 = applyDecoratedInitializer(_class21.prototype, "min", [serializable$1], null), _initializer12$7 = applyDecoratedInitializer(_class21.prototype, "extent", [serializable$1], null), _initializer13$6 = applyDecoratedInitializer(_class21.prototype, "values", [serializable$1], null)), _class21)) || _class20);
+      }(), (_initializer10$7 = applyDecoratedInitializer(_class21.prototype, "originalPrecision", [serializable], null), _initializer11$7 = applyDecoratedInitializer(_class21.prototype, "min", [serializable], null), _initializer12$6 = applyDecoratedInitializer(_class21.prototype, "extent", [serializable], null), _initializer13$5 = applyDecoratedInitializer(_class21.prototype, "values", [serializable], null)), _class21)) || _class20);
       function _quantize(values, type) {
         var TypedArrayViewConstructor = QUANTIZATION_TYPE_TO_ARRAY_VIEW_CONSTRUCTOR_MAP[type];
         var MAX = 1 << TypedArrayViewConstructor.BYTES_PER_ELEMENT;
@@ -70664,15 +70664,15 @@ System.register([], (function (exports, module) {
         Quat.set(out, indexQuantized(values, 4 * index + 0), indexQuantized(values, 4 * index + 1), indexQuantized(values, 4 * index + 2), indexQuantized(values, 4 * index + 3));
       }
 
-      var _dec$m, _class$n, _class2$j, _initializer$i, _initializer2$h;
-      var AuxiliaryCurveEntry = (_dec$m = ccclass$6(CLASS_NAME_PREFIX_ANIM + "AuxiliaryCurveEntry"), _dec$m(_class$n = (_class2$j = function AuxiliaryCurveEntry() {
-        this.name = _initializer$i && _initializer$i();
-        this.curve = _initializer2$h && _initializer2$h();
-      }, (_initializer$i = applyDecoratedInitializer(_class2$j.prototype, "name", [serializable$5], function () {
+      var _dec$k, _class$l, _class2$i, _initializer$h, _initializer2$g;
+      var AuxiliaryCurveEntry = (_dec$k = ccclass$5(CLASS_NAME_PREFIX_ANIM + "AuxiliaryCurveEntry"), _dec$k(_class$l = (_class2$i = function AuxiliaryCurveEntry() {
+        this.name = _initializer$h && _initializer$h();
+        this.curve = _initializer2$g && _initializer2$g();
+      }, (_initializer$h = applyDecoratedInitializer(_class2$i.prototype, "name", [serializable$4], function () {
         return '';
-      }), _initializer2$h = applyDecoratedInitializer(_class2$j.prototype, "curve", [serializable$5], function () {
+      }), _initializer2$g = applyDecoratedInitializer(_class2$i.prototype, "curve", [serializable$4], function () {
         return new RealCurve();
-      })), _class2$j)) || _class$n);
+      })), _class2$i)) || _class$l);
 
       function invokeComponentMethodsEngagedInAnimationEvent(node, methodName, args) {
         var components = node.components;
@@ -70686,7 +70686,7 @@ System.register([], (function (exports, module) {
         }
       }
 
-      var _dec$l, _class$m, _class2$i, _initializer$h, _initializer2$g, _initializer3$e, _initializer4$c, _initializer5$a, _initializer6$7, _initializer7$7, _initializer8$7, _initializer9$7, _initializer10$7, _initializer11$7, _initializer12$6, _class3$d, _dec2$i, _class4$1, _class5$1, _initializer13$5, _initializer14$4;
+      var _dec$j, _class$k, _class2$h, _initializer$g, _initializer2$f, _initializer3$d, _initializer4$b, _initializer5$9, _initializer6$6, _initializer7$6, _initializer8$6, _initializer9$6, _initializer10$6, _initializer11$6, _initializer12$5, _class3$c, _dec2$h, _class4, _class5, _initializer13$4, _initializer14$3;
       var searchForRootBonePathSymbol = Symbol('SearchForRootBonePath');
       var exoticAnimationTag = Symbol('ExoticAnimation');
       var embeddedPlayerCountTag = Symbol('[[EmbeddedPlayerCount]]');
@@ -70695,7 +70695,7 @@ System.register([], (function (exports, module) {
       var removeEmbeddedPlayerTag = Symbol('[[RemoveEmbeddedPlayer]]');
       var clearEmbeddedPlayersTag = Symbol('[[ClearEmbeddedPlayers]]');
       var additiveSettingsTag = Symbol('[[Additive Settings]]');
-      var AnimationClip = exports("AnimationClip", (_dec$l = ccclass$6('cc.AnimationClip'), _dec$l(_class$m = (_class2$i = (_class3$d = function (_Asset) {
+      var AnimationClip = exports("AnimationClip", (_dec$j = ccclass$5('cc.AnimationClip'), _dec$j(_class$k = (_class2$h = (_class3$c = function (_Asset) {
         _inheritsLoose(AnimationClip, _Asset);
         AnimationClip.createWithSpriteFrames = function createWithSpriteFrames(spriteFrames, sample) {
           var clip = new AnimationClip();
@@ -70714,21 +70714,21 @@ System.register([], (function (exports, module) {
         function AnimationClip(name) {
           var _this;
           _this = _Asset.call(this, name) || this;
-          _this.sample = _initializer$h && _initializer$h();
-          _this.speed = _initializer2$g && _initializer2$g();
-          _this.wrapMode = _initializer3$e && _initializer3$e();
-          _this.enableTrsBlending = _initializer4$c && _initializer4$c();
-          _this._duration = _initializer5$a && _initializer5$a();
-          _this._hash = _initializer6$7 && _initializer6$7();
+          _this.sample = _initializer$g && _initializer$g();
+          _this.speed = _initializer2$f && _initializer2$f();
+          _this.wrapMode = _initializer3$d && _initializer3$d();
+          _this.enableTrsBlending = _initializer4$b && _initializer4$b();
+          _this._duration = _initializer5$9 && _initializer5$9();
+          _this._hash = _initializer6$6 && _initializer6$6();
           _this.frameRate = 0;
-          _this._tracks = _initializer7$7 && _initializer7$7();
-          _this._exoticAnimation = _initializer8$7 && _initializer8$7();
+          _this._tracks = _initializer7$6 && _initializer7$6();
+          _this._exoticAnimation = _initializer8$6 && _initializer8$6();
           _this._legacyData = undefined;
           _this._legacyDataDirty = false;
-          _this._events = _initializer9$7 && _initializer9$7();
-          _this._embeddedPlayers = _initializer10$7 && _initializer10$7();
-          _this._additiveSettings = _initializer11$7 && _initializer11$7();
-          _this._auxiliaryCurveEntries = _initializer12$6 && _initializer12$6();
+          _this._events = _initializer9$6 && _initializer9$6();
+          _this._embeddedPlayers = _initializer10$6 && _initializer10$6();
+          _this._additiveSettings = _initializer11$6 && _initializer11$6();
+          _this._auxiliaryCurveEntries = _initializer12$5 && _initializer12$5();
           _this._runtimeEvents = {
             ratios: [],
             eventGroups: []
@@ -71280,39 +71280,39 @@ System.register([], (function (exports, module) {
           }
         }]);
         return AnimationClip;
-      }(Asset), _class3$d.WrapMode = WrapMode, _class3$d), (_initializer$h = applyDecoratedInitializer(_class2$i.prototype, "sample", [serializable$5], function () {
+      }(Asset), _class3$c.WrapMode = WrapMode, _class3$c), (_initializer$g = applyDecoratedInitializer(_class2$h.prototype, "sample", [serializable$4], function () {
         return 60;
-      }), _initializer2$g = applyDecoratedInitializer(_class2$i.prototype, "speed", [serializable$5], function () {
+      }), _initializer2$f = applyDecoratedInitializer(_class2$h.prototype, "speed", [serializable$4], function () {
         return 1;
-      }), _initializer3$e = applyDecoratedInitializer(_class2$i.prototype, "wrapMode", [serializable$5], function () {
+      }), _initializer3$d = applyDecoratedInitializer(_class2$h.prototype, "wrapMode", [serializable$4], function () {
         return WrapMode.Normal;
-      }), _initializer4$c = applyDecoratedInitializer(_class2$i.prototype, "enableTrsBlending", [serializable$5], function () {
+      }), _initializer4$b = applyDecoratedInitializer(_class2$h.prototype, "enableTrsBlending", [serializable$4], function () {
         return false;
-      }), _initializer5$a = applyDecoratedInitializer(_class2$i.prototype, "_duration", [serializable$5], function () {
+      }), _initializer5$9 = applyDecoratedInitializer(_class2$h.prototype, "_duration", [serializable$4], function () {
         return 0;
-      }), _initializer6$7 = applyDecoratedInitializer(_class2$i.prototype, "_hash", [serializable$5], function () {
+      }), _initializer6$6 = applyDecoratedInitializer(_class2$h.prototype, "_hash", [serializable$4], function () {
         return 0;
-      }), _initializer7$7 = applyDecoratedInitializer(_class2$i.prototype, "_tracks", [serializable$5], function () {
+      }), _initializer7$6 = applyDecoratedInitializer(_class2$h.prototype, "_tracks", [serializable$4], function () {
         return [];
-      }), _initializer8$7 = applyDecoratedInitializer(_class2$i.prototype, "_exoticAnimation", [serializable$5], function () {
+      }), _initializer8$6 = applyDecoratedInitializer(_class2$h.prototype, "_exoticAnimation", [serializable$4], function () {
         return null;
-      }), _initializer9$7 = applyDecoratedInitializer(_class2$i.prototype, "_events", [serializable$5], function () {
+      }), _initializer9$6 = applyDecoratedInitializer(_class2$h.prototype, "_events", [serializable$4], function () {
         return [];
-      }), _initializer10$7 = applyDecoratedInitializer(_class2$i.prototype, "_embeddedPlayers", [serializable$5], function () {
+      }), _initializer10$6 = applyDecoratedInitializer(_class2$h.prototype, "_embeddedPlayers", [serializable$4], function () {
         return [];
-      }), _initializer11$7 = applyDecoratedInitializer(_class2$i.prototype, "_additiveSettings", [serializable$5], function () {
+      }), _initializer11$6 = applyDecoratedInitializer(_class2$h.prototype, "_additiveSettings", [serializable$4], function () {
         return new AdditiveSettings();
-      }), _initializer12$6 = applyDecoratedInitializer(_class2$i.prototype, "_auxiliaryCurveEntries", [serializable$5], function () {
+      }), _initializer12$5 = applyDecoratedInitializer(_class2$h.prototype, "_auxiliaryCurveEntries", [serializable$4], function () {
         return [];
-      })), _class2$i)) || _class$m));
-      var AdditiveSettings = (_dec2$i = ccclass$6('cc.AnimationClipAdditiveSettings'), _dec2$i(_class4$1 = (_class5$1 = function AdditiveSettings() {
-        this.enabled = _initializer13$5 && _initializer13$5();
-        this.refClip = _initializer14$4 && _initializer14$4();
-      }, (_initializer13$5 = applyDecoratedInitializer(_class5$1.prototype, "enabled", [serializable$5], function () {
+      })), _class2$h)) || _class$k));
+      var AdditiveSettings = (_dec2$h = ccclass$5('cc.AnimationClipAdditiveSettings'), _dec2$h(_class4 = (_class5 = function AdditiveSettings() {
+        this.enabled = _initializer13$4 && _initializer13$4();
+        this.refClip = _initializer14$3 && _initializer14$3();
+      }, (_initializer13$4 = applyDecoratedInitializer(_class5.prototype, "enabled", [serializable$4], function () {
         return false;
-      }), _initializer14$4 = applyDecoratedInitializer(_class5$1.prototype, "refClip", [serializable$5], function () {
+      }), _initializer14$3 = applyDecoratedInitializer(_class5.prototype, "refClip", [serializable$4], function () {
         return null;
-      })), _class5$1)) || _class4$1);
+      })), _class5)) || _class4);
       cclegacy.AnimationClip = AnimationClip;
       var TrackEvalStatus = function () {
         function TrackEvalStatus(binding, trackEval) {
@@ -72116,8 +72116,8 @@ System.register([], (function (exports, module) {
         }
       }
 
-      var _class$l, _class2$h;
-      var AnimationManager = exports("AnimationManager", ccclass$6(_class$l = (_class2$h = function (_System) {
+      var _class$j, _class2$g;
+      var AnimationManager = exports("AnimationManager", ccclass$5(_class$j = (_class2$g = function (_System) {
         _inheritsLoose(AnimationManager, _System);
         function AnimationManager() {
           var _this;
@@ -72250,7 +72250,7 @@ System.register([], (function (exports, module) {
           }
         }]);
         return AnimationManager;
-      }(System), _class2$h.ID = 'animation', _class2$h)) || _class$l);
+      }(System), _class2$g.ID = 'animation', _class2$g)) || _class$j);
       director.on("director_init", function () {
         var animationManager = new AnimationManager();
         director.registerSystem(AnimationManager.ID, animationManager, 200);
@@ -72413,8 +72413,8 @@ System.register([], (function (exports, module) {
         return CrossFade;
       }(Playable);
 
-      var _dec$k, _dec2$h, _dec3$g, _dec4$d, _dec5$d, _class$k, _class2$g, _initializer$g, _initializer2$f, _initializer3$d, _class3$c;
-      var Animation = (_dec$k = ccclass$6('cc.Animation'), _dec2$h = executionOrder$1(99), _dec3$g = type$3([AnimationClip]), _dec4$d = type$3(AnimationClip), _dec5$d = type$3([AnimationClip]), _dec$k(_class$k = _dec2$h(_class$k = (_class2$g = (_class3$c = function (_Eventify) {
+      var _dec$i, _dec2$g, _dec3$f, _dec4$c, _dec5$c, _class$i, _class2$f, _initializer$f, _initializer2$e, _initializer3$c, _class3$b;
+      var Animation = (_dec$i = ccclass$5('cc.Animation'), _dec2$g = executionOrder(99), _dec3$f = type$2([AnimationClip]), _dec4$c = type$2(AnimationClip), _dec5$c = type$2([AnimationClip]), _dec$i(_class$i = _dec2$g(_class$i = (_class2$f = (_class3$b = function (_Eventify) {
         _inheritsLoose(Animation, _Eventify);
         function Animation() {
           var _this;
@@ -72422,11 +72422,11 @@ System.register([], (function (exports, module) {
             args[_key] = arguments[_key];
           }
           _this = _Eventify.call.apply(_Eventify, [this].concat(args)) || this;
-          _this.playOnLoad = _initializer$g && _initializer$g();
+          _this.playOnLoad = _initializer$f && _initializer$f();
           _this._crossFade = new CrossFade();
           _this._nameToState = createMap(true);
-          _this._clips = _initializer2$f && _initializer2$f();
-          _this._defaultClip = _initializer3$d && _initializer3$d();
+          _this._clips = _initializer2$e && _initializer2$e();
+          _this._defaultClip = _initializer3$c && _initializer3$c();
           _this._hasBeenPlayed = false;
           return _this;
         }
@@ -72659,13 +72659,13 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Animation;
-      }(Eventify(Component)), _class3$c.EventType = AnimationStateEventType, _class3$c), (_applyDecoratedDescriptor(_class2$g.prototype, "clips", [_dec3$g], Object.getOwnPropertyDescriptor(_class2$g.prototype, "clips"), _class2$g.prototype), _applyDecoratedDescriptor(_class2$g.prototype, "defaultClip", [_dec4$d], Object.getOwnPropertyDescriptor(_class2$g.prototype, "defaultClip"), _class2$g.prototype), _initializer$g = applyDecoratedInitializer(_class2$g.prototype, "playOnLoad", [serializable$5], function () {
+      }(Eventify(Component)), _class3$b.EventType = AnimationStateEventType, _class3$b), (_applyDecoratedDescriptor(_class2$f.prototype, "clips", [_dec3$f], Object.getOwnPropertyDescriptor(_class2$f.prototype, "clips"), _class2$f.prototype), _applyDecoratedDescriptor(_class2$f.prototype, "defaultClip", [_dec4$c], Object.getOwnPropertyDescriptor(_class2$f.prototype, "defaultClip"), _class2$f.prototype), _initializer$f = applyDecoratedInitializer(_class2$f.prototype, "playOnLoad", [serializable$4], function () {
         return false;
-      }), _initializer2$f = applyDecoratedInitializer(_class2$g.prototype, "_clips", [_dec5$d], function () {
+      }), _initializer2$e = applyDecoratedInitializer(_class2$f.prototype, "_clips", [_dec5$c], function () {
         return [];
-      }), _initializer3$d = applyDecoratedInitializer(_class2$g.prototype, "_defaultClip", [serializable$5], function () {
+      }), _initializer3$c = applyDecoratedInitializer(_class2$f.prototype, "_defaultClip", [serializable$4], function () {
         return null;
-      })), _class2$g)) || _class$k) || _class$k); exports({ Animation: Animation, AnimationComponent: Animation });
+      })), _class2$f)) || _class$i) || _class$i); exports({ Animation: Animation, AnimationComponent: Animation });
       function equalClips(clip1, clip2) {
         if (clip1 === clip2) {
           return true;
@@ -94568,1531 +94568,6 @@ System.register([], (function (exports, module) {
 
       cclegacy.UI.graphicsAssembler = graphicsAssemblerManager;
 
-      var MorphModel = function (_Model) {
-        _inheritsLoose(MorphModel, _Model);
-        function MorphModel() {
-          var _this;
-          _this = _Model.call(this) || this;
-          _this._morphRenderingInstance = null;
-          _this._usedMaterials = new Set();
-          return _this;
-        }
-        var _proto = MorphModel.prototype;
-        _proto.getMacroPatches = function getMacroPatches(subModelIndex) {
-          var superMacroPatches = _Model.prototype.getMacroPatches.call(this, subModelIndex);
-          if (this._morphRenderingInstance) {
-            var morphInstanceMacroPatches = this._morphRenderingInstance.requiredPatches(subModelIndex);
-            if (morphInstanceMacroPatches) {
-              return morphInstanceMacroPatches.concat(superMacroPatches !== null && superMacroPatches !== undefined ? superMacroPatches : []);
-            }
-          }
-          return superMacroPatches;
-        };
-        _proto.initSubModel = function initSubModel(subModelIndex, subMeshData, material) {
-          return _Model.prototype.initSubModel.call(this, subModelIndex, subMeshData, this._launderMaterial(material));
-        };
-        _proto.destroy = function destroy() {
-          _Model.prototype.destroy.call(this);
-          this._morphRenderingInstance = null;
-        };
-        _proto.setSubModelMaterial = function setSubModelMaterial(subModelIndex, material) {
-          return _Model.prototype.setSubModelMaterial.call(this, subModelIndex, this._launderMaterial(material));
-        };
-        _proto.setMorphRendering = function setMorphRendering(morphRendering) {
-          this._morphRenderingInstance = morphRendering;
-        };
-        _proto._updateLocalDescriptors = function _updateLocalDescriptors(submodelIdx, descriptorSet) {
-          _Model.prototype._updateLocalDescriptors.call(this, submodelIdx, descriptorSet);
-          if (this._morphRenderingInstance) {
-            this._morphRenderingInstance.adaptPipelineState(submodelIdx, descriptorSet);
-          }
-        };
-        _proto._launderMaterial = function _launderMaterial(material) {
-          return material;
-        };
-        return MorphModel;
-      }(Model);
-
-      var ReflectionProbeType = {
-        NONE: 0,
-        BAKED_CUBEMAP: 1,
-        PLANAR_REFLECTION: 2,
-        BLEND_PROBES: 3,
-        BLEND_PROBES_AND_SKYBOX: 4
-      };
-
-      var _dec$j, _dec2$g, _dec3$f, _dec4$c, _dec5$c, _dec6$6, _dec7$5, _class$j, _class2$f, _initializer$f, _initializer2$e, _initializer3$c, _initializer4$b, _initializer5$9, _initializer6$6, _initializer7$6, _initializer8$6, _initializer9$6, _initializer10$6, _class3$b, _dec8$4, _dec9$4, _dec10$2, _dec11$1, _dec12$1, _dec13$1, _dec14, _dec15, _class4, _class5, _initializer11$6, _initializer12$5, _initializer13$4, _initializer14$3, _initializer15$2, _initializer16$2, _initializer17$1, _initializer18$1, _initializer19, _initializer20, _initializer21, _class6;
-      var ccclass = ccclass$6,
-        executionOrder = executionOrder$1,
-        type = type$3,
-        formerlySerializedAs = formerlySerializedAs$1,
-        serializable = serializable$5;
-      var _phaseID = getPhaseID$1('specular-pass');
-      function getSkinPassIndex(subModel) {
-        var passes = subModel.passes;
-        var r = cclegacy.rendering;
-        if (isEnableEffect()) _phaseID = r.getPhaseID(r.getPassID('specular-pass'), 'default');
-        for (var k = 0; k < passes.length; k++) {
-          if ((!r || !r.enableEffectImport) && passes[k].phase === _phaseID || isEnableEffect() && passes[k].phaseID === _phaseID) {
-            return k;
-          }
-        }
-        return -1;
-      }
-      var ModelShadowCastingMode = Enum({
-        OFF: 0,
-        ON: 1
-      });
-      var ModelShadowReceivingMode = Enum({
-        OFF: 0,
-        ON: 1
-      });
-      var ModelBakeSettings = (_dec$j = ccclass('cc.ModelBakeSettings'), _dec2$g = formerlySerializedAs('_recieveShadow'), _dec3$f = type(CCInteger), _dec4$c = type(CCBoolean), _dec5$c = type(CCBoolean), _dec6$6 = type(Enum(ReflectionProbeType)), _dec7$5 = type(CCBoolean), _dec$j(_class$j = (_class2$f = (_class3$b = function (_EventTarget) {
-        _inheritsLoose(ModelBakeSettings, _EventTarget);
-        function ModelBakeSettings() {
-          var _this;
-          _this = _EventTarget.call(this) || this;
-          _this.texture = _initializer$f && _initializer$f();
-          _this.uvParam = _initializer2$e && _initializer2$e();
-          _this._bakeable = _initializer3$c && _initializer3$c();
-          _this._castShadow = _initializer4$b && _initializer4$b();
-          _this._receiveShadow = _initializer5$9 && _initializer5$9();
-          _this._lightmapSize = _initializer6$6 && _initializer6$6();
-          _this._useLightProbe = _initializer7$6 && _initializer7$6();
-          _this._bakeToLightProbe = _initializer8$6 && _initializer8$6();
-          _this._reflectionProbeType = _initializer9$6 && _initializer9$6();
-          _this._bakeToReflectionProbe = _initializer10$6 && _initializer10$6();
-          _this.probeCubemap = null;
-          _this.probeBlendCubemap = null;
-          _this.probePlanarmap = null;
-          return _this;
-        }
-        _createClass(ModelBakeSettings, [{
-          key: "bakeable",
-          get: function get() {
-            return this._bakeable;
-          },
-          set: function set(val) {
-            this._bakeable = val;
-          }
-        }, {
-          key: "castShadow",
-          get: function get() {
-            return this._castShadow;
-          },
-          set: function set(val) {
-            this._castShadow = val;
-          }
-        }, {
-          key: "receiveShadow",
-          get: function get() {
-            return this._receiveShadow;
-          },
-          set: function set(val) {
-            this._receiveShadow = val;
-          }
-        }, {
-          key: "lightmapSize",
-          get: function get() {
-            return this._lightmapSize;
-          },
-          set: function set(val) {
-            this._lightmapSize = val;
-          }
-        }, {
-          key: "useLightProbe",
-          get: function get() {
-            return this._useLightProbe;
-          },
-          set: function set(val) {
-            this._useLightProbe = val;
-            this.emit("use_light_probe_changed");
-          }
-        }, {
-          key: "bakeToLightProbe",
-          get: function get() {
-            return this._bakeToLightProbe;
-          },
-          set: function set(val) {
-            this._bakeToLightProbe = val;
-          }
-        }, {
-          key: "reflectionProbe",
-          get: function get() {
-            return this._reflectionProbeType;
-          },
-          set: function set(val) {
-            this._reflectionProbeType = val;
-            this.emit("reflection_probe_changed");
-          }
-        }, {
-          key: "bakeToReflectionProbe",
-          get: function get() {
-            return this._bakeToReflectionProbe;
-          },
-          set: function set(val) {
-            this._bakeToReflectionProbe = val;
-            this.emit("bake_to_reflection_probe_changed");
-          }
-        }]);
-        return ModelBakeSettings;
-      }(EventTarget), _class3$b.USE_LIGHT_PROBE_CHANGED = "use_light_probe_changed", _class3$b.REFLECTION_PROBE_CHANGED = "reflection_probe_changed", _class3$b.BAKE_TO_REFLECTION_PROBE_CHANGED = "bake_to_reflection_probe_changed", _class3$b), (_initializer$f = applyDecoratedInitializer(_class2$f.prototype, "texture", [serializable], function () {
-        return null;
-      }), _initializer2$e = applyDecoratedInitializer(_class2$f.prototype, "uvParam", [serializable], function () {
-        return new Vec4();
-      }), _initializer3$c = applyDecoratedInitializer(_class2$f.prototype, "_bakeable", [serializable], function () {
-        return false;
-      }), _initializer4$b = applyDecoratedInitializer(_class2$f.prototype, "_castShadow", [serializable], function () {
-        return false;
-      }), _initializer5$9 = applyDecoratedInitializer(_class2$f.prototype, "_receiveShadow", [_dec2$g], function () {
-        return false;
-      }), _initializer6$6 = applyDecoratedInitializer(_class2$f.prototype, "_lightmapSize", [serializable], function () {
-        return 64;
-      }), _initializer7$6 = applyDecoratedInitializer(_class2$f.prototype, "_useLightProbe", [serializable], function () {
-        return false;
-      }), _initializer8$6 = applyDecoratedInitializer(_class2$f.prototype, "_bakeToLightProbe", [serializable], function () {
-        return true;
-      }), _initializer9$6 = applyDecoratedInitializer(_class2$f.prototype, "_reflectionProbeType", [serializable], function () {
-        return 0;
-      }), _initializer10$6 = applyDecoratedInitializer(_class2$f.prototype, "_bakeToReflectionProbe", [serializable], function () {
-        return true;
-      }), _applyDecoratedDescriptor(_class2$f.prototype, "lightmapSize", [_dec3$f], Object.getOwnPropertyDescriptor(_class2$f.prototype, "lightmapSize"), _class2$f.prototype), _applyDecoratedDescriptor(_class2$f.prototype, "useLightProbe", [_dec4$c], Object.getOwnPropertyDescriptor(_class2$f.prototype, "useLightProbe"), _class2$f.prototype), _applyDecoratedDescriptor(_class2$f.prototype, "bakeToLightProbe", [_dec5$c], Object.getOwnPropertyDescriptor(_class2$f.prototype, "bakeToLightProbe"), _class2$f.prototype), _applyDecoratedDescriptor(_class2$f.prototype, "reflectionProbe", [_dec6$6], Object.getOwnPropertyDescriptor(_class2$f.prototype, "reflectionProbe"), _class2$f.prototype), _applyDecoratedDescriptor(_class2$f.prototype, "bakeToReflectionProbe", [_dec7$5], Object.getOwnPropertyDescriptor(_class2$f.prototype, "bakeToReflectionProbe"), _class2$f.prototype)), _class2$f)) || _class$j);
-      var MeshRenderer = (_dec8$4 = ccclass('cc.MeshRenderer'), _dec9$4 = executionOrder(100), _dec10$2 = type(CCFloat), _dec11$1 = type(CCFloat), _dec12$1 = type(ModelShadowCastingMode), _dec13$1 = type(ModelShadowReceivingMode), _dec14 = type(Mesh), _dec15 = type(CCBoolean), _dec8$4(_class4 = _dec9$4(_class4 = (_class5 = (_class6 = function (_ModelRenderer) {
-        _inheritsLoose(MeshRenderer, _ModelRenderer);
-        var _proto = MeshRenderer.prototype;
-        _proto.onUpdateReceiveDirLight = function onUpdateReceiveDirLight(visibility, forceClose) {
-          if (forceClose === undefined) {
-            forceClose = false;
-          }
-          if (!this._model) {
-            return;
-          }
-          if (forceClose) {
-            this._model.receiveDirLight = false;
-            return;
-          }
-          if (this.node && (visibility & this.node.layer) === this.node.layer || visibility & this._model.visFlags) {
-            this._model.receiveDirLight = true;
-          } else {
-            this._model.receiveDirLight = false;
-          }
-        };
-        _proto.clearGlobalStandardSkinObjectFlag = function clearGlobalStandardSkinObjectFlag() {
-          this._enabledGlobalStandardSkinObject = false;
-        };
-        function MeshRenderer() {
-          var _this2;
-          _this2 = _ModelRenderer.call(this) || this;
-          _this2.bakeSettings = _initializer11$6 && _initializer11$6();
-          _this2._mesh = _initializer12$5 && _initializer12$5();
-          _this2._shadowCastingMode = _initializer13$4 && _initializer13$4();
-          _this2._shadowReceivingMode = _initializer14$3 && _initializer14$3();
-          _this2._shadowBias = _initializer15$2 && _initializer15$2();
-          _this2._shadowNormalBias = _initializer16$2 && _initializer16$2();
-          _this2._reflectionProbeId = _initializer17$1 && _initializer17$1();
-          _this2._reflectionProbeBlendId = _initializer18$1 && _initializer18$1();
-          _this2._reflectionProbeBlendWeight = _initializer19 && _initializer19();
-          _this2._enabledGlobalStandardSkinObject = _initializer20 && _initializer20();
-          _this2._reflectionProbeDataMap = null;
-          _this2._subMeshShapesWeights = [];
-          _this2._modelType = Model;
-          _this2._model = null;
-          _this2._morphInstance = null;
-          _this2._enableMorph = _initializer21 && _initializer21();
-          var highQualityMode = settings.querySettings("rendering", 'highQualityMode');
-          if (highQualityMode) {
-            _this2._shadowCastingMode = ModelShadowCastingMode.ON;
-            _this2.bakeSettings.castShadow = true;
-            _this2.bakeSettings.receiveShadow = true;
-          }
-          return _this2;
-        }
-        _proto.onLoad = function onLoad() {
-          if (this._mesh) {
-            this._mesh.initialize();
-          }
-          if (!this._validateShapeWeights()) {
-            this._initSubMeshShapesWeights();
-          }
-          this._watchMorphInMesh();
-          this._updateModels();
-          this._updateCastShadow();
-          this._updateReceiveShadow();
-          this._updateShadowBias();
-          this._updateShadowNormalBias();
-          this._updateUseLightProbe();
-          this._updateBakeToReflectionProbe();
-          this._updateUseReflectionProbe();
-          this._updateReceiveDirLight();
-          this._updateStandardSkin();
-        };
-        _proto.onRestore = function onRestore() {
-          this._updateModels();
-          if (this.enabledInHierarchy) {
-            this._attachToScene();
-          }
-          this._updateCastShadow();
-          this._updateReceiveShadow();
-          this._updateShadowBias();
-          this._updateShadowNormalBias();
-          this._updateUseLightProbe();
-          this._updateBakeToReflectionProbe();
-          this._updateUseReflectionProbe();
-          this._updateReceiveDirLight();
-          this._updateStandardSkin();
-        };
-        _proto.onEnable = function onEnable() {
-          _ModelRenderer.prototype.onEnable.call(this);
-          this.node.on("mobility-changed", this.onMobilityChanged, this);
-          this.node.on("light-probe-baking-changed", this.onLightProbeBakingChanged, this);
-          this.bakeSettings.on("use_light_probe_changed", this.onUseLightProbeChanged, this);
-          this.bakeSettings.on("reflection_probe_changed", this.onReflectionProbeChanged, this);
-          this.bakeSettings.on("bake_to_reflection_probe_changed", this.onBakeToReflectionProbeChanged, this);
-          if (!this._model) {
-            this._updateModels();
-          }
-          this._model.onGlobalPipelineStateChanged();
-          this._updateCastShadow();
-          this._updateReceiveShadow();
-          this._updateShadowBias();
-          this._updateShadowNormalBias();
-          this._updateBakeToReflectionProbe();
-          this._updateUseReflectionProbe();
-          this._onUpdateLocalShadowBiasAndProbeId();
-          this._updateUseLightProbe();
-          this._updateReceiveDirLight();
-          this._onUpdateReflectionProbeDataMap();
-          this._onUpdateLocalReflectionProbeData();
-          this._updateStandardSkin();
-          this._attachToScene();
-        };
-        _proto.onDisable = function onDisable() {
-          if (this._model) {
-            this._detachFromScene();
-          }
-          this.node.off("mobility-changed", this.onMobilityChanged, this);
-          this.node.off("light-probe-baking-changed", this.onLightProbeBakingChanged, this);
-          this.bakeSettings.off("use_light_probe_changed", this.onUseLightProbeChanged, this);
-          this.bakeSettings.off("reflection_probe_changed", this.onReflectionProbeChanged, this);
-          this.bakeSettings.off("bake_to_reflection_probe_changed", this.onBakeToReflectionProbeChanged, this);
-        };
-        _proto.onDestroy = function onDestroy() {
-          if (this._model) {
-            cclegacy.director.root.destroyModel(this._model);
-            this._model = null;
-            this._models.length = 0;
-          }
-          if (this._morphInstance) {
-            this._morphInstance.destroy();
-          }
-        };
-        _proto.onGeometryChanged = function onGeometryChanged() {
-          if (this._model && this._mesh) {
-            var meshStruct = this._mesh.struct;
-            this._model.createBoundingShape(meshStruct.minPosition, meshStruct.maxPosition);
-            this._model.updateWorldBound();
-            this._model.onGeometryChanged();
-          }
-        };
-        _proto.getWeight = function getWeight(subMeshIndex, shapeIndex) {
-          var subMeshShapesWeights = this._subMeshShapesWeights;
-          assertIsTrue(subMeshIndex < subMeshShapesWeights.length);
-          var shapeWeights = this._subMeshShapesWeights[subMeshIndex];
-          assertIsTrue(shapeIndex < shapeWeights.length);
-          return shapeWeights[shapeIndex];
-        };
-        _proto.setWeights = function setWeights(weights, subMeshIndex) {
-          var subMeshShapesWeights = this._subMeshShapesWeights;
-          if (subMeshIndex >= subMeshShapesWeights.length) {
-            return;
-          }
-          var shapeWeights = subMeshShapesWeights[subMeshIndex];
-          if (shapeWeights.length !== weights.length) {
-            return;
-          }
-          subMeshShapesWeights[subMeshIndex] = weights.slice(0);
-          this._uploadSubMeshShapesWeights(subMeshIndex);
-        };
-        _proto.setWeight = function setWeight(weight, subMeshIndex, shapeIndex) {
-          var subMeshShapesWeights = this._subMeshShapesWeights;
-          if (subMeshIndex >= subMeshShapesWeights.length) {
-            return;
-          }
-          var shapeWeights = subMeshShapesWeights[subMeshIndex];
-          if (shapeIndex >= shapeWeights.length) {
-            return;
-          }
-          shapeWeights[shapeIndex] = weight;
-          this._uploadSubMeshShapesWeights(subMeshIndex);
-        };
-        _proto.setInstancedAttribute = function setInstancedAttribute(name, value) {
-          if (!this.model) {
-            return;
-          }
-          {
-            var subModels = this.model.subModels;
-            for (var i = 0; i < subModels.length; i++) {
-              var subModel = subModels[i];
-              var _subModel$instancedAt = subModel.instancedAttributeBlock,
-                attributes = _subModel$instancedAt.attributes,
-                views = _subModel$instancedAt.views;
-              for (var _i = 0; _i < attributes.length; _i++) {
-                if (attributes[_i].name === name) {
-                  views[_i].set(value);
-                  break;
-                }
-              }
-            }
-          }
-        };
-        _proto._updateLightmap = function _updateLightmap(lightmap, uOff, vOff, scale, lum) {
-          this.bakeSettings.texture = lightmap;
-          this.bakeSettings.uvParam.x = uOff;
-          this.bakeSettings.uvParam.y = vOff;
-          this.bakeSettings.uvParam.z = scale;
-          this.bakeSettings.uvParam.w = lum;
-          this._onUpdateLightingmap();
-          this._updateReceiveDirLight();
-        };
-        _proto.updateProbeCubemap = function updateProbeCubemap(cubeMap) {
-          if (this.bakeSettings.probeCubemap && this.bakeSettings.probeCubemap === cubeMap) {
-            return;
-          }
-          this.bakeSettings.probeCubemap = cubeMap;
-          if (this.model !== null) {
-            this.model.updateReflectionProbeCubemap(this.bakeSettings.probeCubemap);
-          }
-        };
-        _proto.updateProbeBlendCubemap = function updateProbeBlendCubemap(cubeMap) {
-          if (this.bakeSettings.probeBlendCubemap && this.bakeSettings.probeBlendCubemap === cubeMap) {
-            return;
-          }
-          this.bakeSettings.probeBlendCubemap = cubeMap;
-          if (this.model !== null) {
-            this.model.updateReflectionProbeBlendCubemap(this.bakeSettings.probeBlendCubemap);
-          }
-        };
-        _proto.updateProbePlanarMap = function updateProbePlanarMap(planarMap) {
-          if (this.bakeSettings.probePlanarmap === planarMap) {
-            return;
-          }
-          this.bakeSettings.probePlanarmap = planarMap;
-          if (this.model !== null) {
-            this.model.updateReflectionProbePlanarMap(this.bakeSettings.probePlanarmap);
-          }
-        };
-        _proto.updateReflectionProbeDataMap = function updateReflectionProbeDataMap(dataMap) {
-          this._reflectionProbeDataMap = dataMap;
-          if (this.model !== null) {
-            this.model.updateReflectionProbeDataMap(dataMap);
-          }
-        };
-        _proto.updateReflectionProbeId = function updateReflectionProbeId(probeId) {
-          this._reflectionProbeId = probeId;
-          if (this.model) {
-            this.model.reflectionProbeId = probeId;
-          }
-          this._onUpdateLocalShadowBiasAndProbeId();
-        };
-        _proto.updateReflectionProbeBlendId = function updateReflectionProbeBlendId(blendProbeId) {
-          this._reflectionProbeBlendId = blendProbeId;
-          if (this.model) {
-            this.model.reflectionProbeBlendId = blendProbeId;
-          }
-          this._onUpdateLocalShadowBiasAndProbeId();
-        };
-        _proto.updateReflectionProbeBlendWeight = function updateReflectionProbeBlendWeight(weight) {
-          this._reflectionProbeBlendWeight = weight;
-          if (this.model) {
-            this.model.reflectionProbeBlendWeight = weight;
-          }
-          this._onUpdateLocalReflectionProbeData();
-        };
-        _proto._updateReflectionProbeTexture = function _updateReflectionProbeTexture() {
-          if (!this.model) return;
-          var bakeSettings = this.bakeSettings;
-          var reflectionProbe = bakeSettings.reflectionProbe;
-          var probeBlendCubemap = bakeSettings.probeBlendCubemap;
-          var probePlanarMap = bakeSettings.probePlanarmap;
-          var probeCubeMap = bakeSettings.probeCubemap;
-          if (reflectionProbe === 1) {
-            this.model.updateReflectionProbeCubemap(probeCubeMap);
-            this.model.updateReflectionProbePlanarMap(null);
-            this.model.updateReflectionProbeBlendCubemap(null);
-          } else if (reflectionProbe === 3 || reflectionProbe === 4) {
-            this.model.updateReflectionProbeCubemap(probeCubeMap);
-            this.model.updateReflectionProbeBlendCubemap(probeBlendCubemap);
-            this.model.updateReflectionProbePlanarMap(null);
-          } else if (reflectionProbe === 2) {
-            this.model.updateReflectionProbePlanarMap(probePlanarMap);
-            this.model.updateReflectionProbeCubemap(null);
-            this.model.updateReflectionProbeBlendCubemap(null);
-          } else {
-            this.model.updateReflectionProbeCubemap(null);
-            this.model.updateReflectionProbePlanarMap(null);
-            this.model.updateReflectionProbeBlendCubemap(null);
-          }
-        };
-        _proto._updateModels = function _updateModels() {
-          if (!this.enabledInHierarchy) {
-            return;
-          }
-          var model = this._model;
-          if (model) {
-            model.destroy();
-            model.initialize();
-            model.node = model.transform = this.node;
-          } else {
-            this._createModel();
-          }
-          if (this._model) {
-            if (this._mesh) {
-              var meshStruct = this._mesh.struct;
-              this._model.createBoundingShape(meshStruct.minPosition, meshStruct.maxPosition);
-              this._model.updateWorldBound();
-            }
-            this._model.initLightingmap(this.bakeSettings.texture, this.bakeSettings.uvParam);
-            this._updateUseLightProbe();
-            this._updateUseReflectionProbeType();
-            this._updateModelParams();
-            this._onUpdateLightingmap();
-            this._onUpdateLocalShadowBiasAndProbeId();
-            this._updateUseReflectionProbe();
-            this._updateReceiveDirLight();
-            this._onUpdateReflectionProbeDataMap();
-            this._onUpdateLocalReflectionProbeData();
-          }
-        };
-        _proto._updateReceiveDirLight = function _updateReceiveDirLight() {
-          if (!this._model) {
-            return;
-          }
-          var scene = this.node.scene;
-          if (!scene || !scene.renderScene) {
-            return;
-          }
-          var mainLight = scene.renderScene.mainLight;
-          if (!mainLight) {
-            return;
-          }
-          var visibility = mainLight.visibility;
-          if (!mainLight.node) {
-            return;
-          }
-          if (mainLight.node.mobility === MobilityMode.Static) {
-            var sceneGlobals = this.node.scene.globals;
-            var lightProbeInfoData = sceneGlobals.lightProbeInfo.data;
-            var forceClose = false;
-            if (this.bakeSettings.texture && !sceneGlobals.disableLightmap) {
-              forceClose = true;
-            }
-            if (lightProbeInfoData && lightProbeInfoData.hasCoefficients() && this._model.useLightProbe) {
-              forceClose = true;
-            }
-            this.onUpdateReceiveDirLight(visibility, forceClose);
-          } else {
-            this.onUpdateReceiveDirLight(visibility);
-          }
-        };
-        _proto._createModel = function _createModel() {
-          var preferMorphOverPlain = !!this._morphInstance;
-          var modelType = preferMorphOverPlain && this._modelType === Model ? MorphModel : this._modelType;
-          var model = this._model = cclegacy.director.root.createModel(modelType);
-          model.visFlags = this.visibility;
-          model.node = model.transform = this.node;
-          this._models.length = 0;
-          this._models.push(model);
-          if (this._morphInstance && model instanceof MorphModel) {
-            model.setMorphRendering(this._morphInstance);
-          }
-        };
-        _proto._attachToScene = function _attachToScene() {
-          if (!this.node.scene || !this._model) {
-            return;
-          }
-          var renderScene = this._getRenderScene();
-          if (this._model.scene !== null) {
-            this._detachFromScene();
-          }
-          renderScene.addModel(this._model);
-        };
-        _proto._detachFromScene = function _detachFromScene() {
-          if (this._model && this._model.scene) {
-            this._model.scene.removeModel(this._model);
-          }
-        };
-        _proto._updateModelParams = function _updateModelParams() {
-          if (!this._mesh || !this._model) {
-            return;
-          }
-          this.node.hasChangedFlags |= 1;
-          this._model.transform.hasChangedFlags |= 1;
-          this._model.isDynamicBatching = this._isBatchingEnabled();
-          var meshCount = this._mesh ? this._mesh.renderingSubMeshes.length : 0;
-          var renderingMesh = this._mesh.renderingSubMeshes;
-          if (renderingMesh) {
-            for (var i = 0; i < meshCount; ++i) {
-              var material = this.getRenderMaterial(i);
-              if (material && !material.isValid) {
-                material = null;
-              }
-              var subMeshData = renderingMesh[i];
-              if (subMeshData) {
-                this._model.initSubModel(i, subMeshData, material || this._getBuiltinMaterial());
-              }
-            }
-          }
-          this._model.enabled = true;
-        };
-        _proto._onUpdateLightingmap = function _onUpdateLightingmap() {
-          if (this.model !== null) {
-            this.model.updateLightingmap(this.bakeSettings.texture, this.bakeSettings.uvParam);
-          }
-          this.setInstancedAttribute('a_lightingMapUVParam', [this.bakeSettings.uvParam.x, this.bakeSettings.uvParam.y, this.bakeSettings.uvParam.z, this.bakeSettings.uvParam.w]);
-        };
-        _proto._onUpdateLocalShadowBiasAndProbeId = function _onUpdateLocalShadowBiasAndProbeId() {
-          if (this.model !== null) {
-            this.model.updateLocalShadowBias();
-            this.model.updateReflectionProbeId();
-          }
-          this.setInstancedAttribute('a_localShadowBiasAndProbeId', [this._shadowBias, this._shadowNormalBias, this._reflectionProbeId, this._reflectionProbeBlendId]);
-        };
-        _proto._onUpdateLocalReflectionProbeData = function _onUpdateLocalReflectionProbeData() {
-          if (this.bakeSettings.reflectionProbe === 1 || this.bakeSettings.reflectionProbe === 3 || this.bakeSettings.reflectionProbe === 4) {
-            if (this.model !== null) {
-              this.model.updateReflectionProbeId();
-            }
-            this.setInstancedAttribute('a_reflectionProbeData', [this._reflectionProbeBlendWeight, 0.0, 0.0, 0.0]);
-          }
-        };
-        _proto._onUpdateReflectionProbeDataMap = function _onUpdateReflectionProbeDataMap() {
-          if (this.model !== null) {
-            this.model.updateReflectionProbeDataMap(this._reflectionProbeDataMap);
-          }
-        };
-        _proto._onMaterialModified = function _onMaterialModified(idx, material) {
-          if (!this._model || !this._model.inited) {
-            return;
-          }
-          this._onRebuildPSO(idx, material || this._getBuiltinMaterial());
-          this._updateStandardSkin();
-        };
-        _proto._onRebuildPSO = function _onRebuildPSO(idx, material) {
-          if (!this._model || !this._model.inited) {
-            return;
-          }
-          this._model.isDynamicBatching = this._isBatchingEnabled();
-          this._model.setSubModelMaterial(idx, material);
-          this._onUpdateLightingmap();
-          this._onUpdateLocalShadowBiasAndProbeId();
-          this._updateReflectionProbeTexture();
-          this._onUpdateReflectionProbeDataMap();
-          this._onUpdateLocalReflectionProbeData();
-        };
-        _proto._onMeshChanged = function _onMeshChanged(old) {};
-        _proto._clearMaterials = function _clearMaterials() {
-          if (!this._model) {
-            return;
-          }
-          var subModels = this._model.subModels;
-          for (var i = 0; i < subModels.length; ++i) {
-            this._onMaterialModified(i, null);
-          }
-        };
-        _proto._getBuiltinMaterial = function _getBuiltinMaterial() {
-          return builtinResMgr.get('missing-material');
-        };
-        _proto._onVisibilityChange = function _onVisibilityChange(val) {
-          if (!this._model) {
-            return;
-          }
-          this._model.visFlags = val;
-        };
-        _proto._updateShadowBias = function _updateShadowBias() {
-          if (!this._model) {
-            return;
-          }
-          this._model.shadowBias = this._shadowBias;
-        };
-        _proto._updateShadowNormalBias = function _updateShadowNormalBias() {
-          if (!this._model) {
-            return;
-          }
-          this._model.shadowNormalBias = this._shadowNormalBias;
-        };
-        _proto._updateCastShadow = function _updateCastShadow() {
-          if (!this._model) {
-            return;
-          }
-          if (this._shadowCastingMode === ModelShadowCastingMode.OFF) {
-            this._model.castShadow = false;
-          } else {
-            assertIsTrue(this._shadowCastingMode === ModelShadowCastingMode.ON, "ShadowCastingMode " + this._shadowCastingMode + " is not supported.");
-            this._model.castShadow = true;
-          }
-        };
-        _proto._updateReceiveShadow = function _updateReceiveShadow() {
-          if (!this._model) {
-            return;
-          }
-          if (this._shadowReceivingMode === ModelShadowReceivingMode.OFF) {
-            this._model.receiveShadow = false;
-          } else {
-            this._model.receiveShadow = true;
-          }
-        };
-        _proto.onMobilityChanged = function onMobilityChanged() {
-          this._updateUseLightProbe();
-          this._updateReceiveDirLight();
-        };
-        _proto.onLightProbeBakingChanged = function onLightProbeBakingChanged() {
-          this._updateReceiveDirLight();
-        };
-        _proto.onUseLightProbeChanged = function onUseLightProbeChanged() {
-          this._updateUseLightProbe();
-        };
-        _proto.onReflectionProbeChanged = function onReflectionProbeChanged() {
-          this._updateUseReflectionProbe();
-          this._onUpdateLocalShadowBiasAndProbeId();
-          var reflectionProbeManager = cclegacy.internal.reflectionProbeManager;
-          var model = this._model;
-          if (this.bakeSettings.reflectionProbe === 1 || this.bakeSettings.reflectionProbe === 3 || this.bakeSettings.reflectionProbe === 4) {
-            reflectionProbeManager.selectReflectionProbe(model);
-            if (!reflectionProbeManager.getUsedReflectionProbe(model, false)) {
-              warnID(16302);
-            }
-          } else if (this.bakeSettings.reflectionProbe === 2) {
-            reflectionProbeManager.selectPlanarReflectionProbe(model);
-            if (!reflectionProbeManager.getUsedReflectionProbe(model, true)) {
-              warnID(16302);
-            }
-          }
-        };
-        _proto.onBakeToReflectionProbeChanged = function onBakeToReflectionProbeChanged() {
-          this._updateBakeToReflectionProbe();
-        };
-        _proto._updateUseLightProbe = function _updateUseLightProbe() {
-          if (!this._model) {
-            return;
-          }
-          var node = this.node;
-          if (this._mesh && node && node.mobility === MobilityMode.Movable && this.bakeSettings.useLightProbe) {
-            this._model.useLightProbe = true;
-          } else {
-            this._model.useLightProbe = false;
-          }
-        };
-        _proto._isBatchingEnabled = function _isBatchingEnabled() {
-          for (var i = 0; i < this._materials.length; ++i) {
-            var mat = this._materials[i];
-            if (!mat) {
-              continue;
-            }
-            for (var p = 0; p < mat.passes.length; ++p) {
-              var pass = mat.passes[p];
-              if (pass.batchingScheme) {
-                return true;
-              }
-            }
-          }
-          return false;
-        };
-        _proto._updateUseReflectionProbe = function _updateUseReflectionProbe() {
-          if (!this._model) return;
-          this._model.reflectionProbeType = this.bakeSettings.reflectionProbe;
-          this._updateReflectionProbeTexture();
-        };
-        _proto._updateUseReflectionProbeType = function _updateUseReflectionProbeType() {
-          if (!this._model) return;
-          this._model.reflectionProbeType = this.bakeSettings.reflectionProbe;
-        };
-        _proto._updateBakeToReflectionProbe = function _updateBakeToReflectionProbe() {
-          if (!this._model) {
-            return;
-          }
-          this._model.bakeToReflectionProbe = this.bakeSettings.bakeToReflectionProbe;
-        };
-        _proto._watchMorphInMesh = function _watchMorphInMesh() {
-          if (this._morphInstance) {
-            this._morphInstance.destroy();
-            this._morphInstance = null;
-          }
-          if (!this._enableMorph) {
-            return;
-          }
-          if (!this._mesh || !this._mesh.struct.morph || !this._mesh.morphRendering) {
-            return;
-          }
-          this._morphInstance = this._mesh.morphRendering.createInstance();
-          var nSubMeshes = this._mesh.struct.primitives.length;
-          for (var iSubMesh = 0; iSubMesh < nSubMeshes; ++iSubMesh) {
-            this._uploadSubMeshShapesWeights(iSubMesh);
-          }
-          if (this._model && this._model instanceof MorphModel) {
-            this._model.setMorphRendering(this._morphInstance);
-          }
-        };
-        _proto._initSubMeshShapesWeights = function _initSubMeshShapesWeights() {
-          var mesh = this._mesh;
-          this._subMeshShapesWeights.length = 0;
-          if (!mesh) {
-            return;
-          }
-          var morph = mesh.struct.morph;
-          if (!morph) {
-            return;
-          }
-          var commonWeights = morph.weights;
-          this._subMeshShapesWeights = morph.subMeshMorphs.map(function (subMeshMorph) {
-            if (!subMeshMorph) {
-              return [];
-            } else if (subMeshMorph.weights) {
-              return subMeshMorph.weights.slice(0);
-            } else if (commonWeights) {
-              assertIsTrue(commonWeights.length === subMeshMorph.targets.length);
-              return commonWeights.slice(0);
-            } else {
-              return new Array(subMeshMorph.targets.length).fill(0.0);
-            }
-          });
-        };
-        _proto._validateShapeWeights = function _validateShapeWeights() {
-          var mesh = this._mesh,
-            subMeshShapesWeights = this._subMeshShapesWeights;
-          if (!mesh || !mesh.struct.morph) {
-            return subMeshShapesWeights.length === 0;
-          }
-          var morph = mesh.struct.morph;
-          if (morph.subMeshMorphs.length !== subMeshShapesWeights.length) {
-            return false;
-          }
-          return subMeshShapesWeights.every(function (_ref, subMeshIndex) {
-            var _morph$subMeshMorphs$, _morph$subMeshMorphs$2;
-            var shapeCount = _ref.length;
-            return ((_morph$subMeshMorphs$ = (_morph$subMeshMorphs$2 = morph.subMeshMorphs[subMeshIndex]) == null ? undefined : _morph$subMeshMorphs$2.targets.length) !== null && _morph$subMeshMorphs$ !== undefined ? _morph$subMeshMorphs$ : 0) === shapeCount;
-          });
-        };
-        _proto._uploadSubMeshShapesWeights = function _uploadSubMeshShapesWeights(subMeshIndex) {
-          var _this$_morphInstance;
-          (_this$_morphInstance = this._morphInstance) == null ? undefined : _this$_morphInstance.setWeights(subMeshIndex, this._subMeshShapesWeights[subMeshIndex]);
-        };
-        _proto._updateStandardSkin = function _updateStandardSkin() {
-          var pipelineSceneData = getPipelineSceneData();
-          if (this._enabledGlobalStandardSkinObject) {
-            pipelineSceneData.standardSkinMeshRenderer = this;
-            pipelineSceneData.standardSkinModel = this.model;
-          }
-          if (!pipelineSceneData.skinMaterialModel && this._model) {
-            var subModels = this._model.subModels;
-            for (var j = 0; j < subModels.length; j++) {
-              var subModel = subModels[j];
-              var skinPassIdx = getSkinPassIndex(subModel);
-              if (skinPassIdx < 0) {
-                continue;
-              }
-              pipelineSceneData.skinMaterialModel = this._model;
-              return;
-            }
-          }
-        };
-        _createClass(MeshRenderer, [{
-          key: "shadowBias",
-          get: function get() {
-            return this._shadowBias;
-          },
-          set: function set(val) {
-            this._shadowBias = val;
-            this._updateShadowBias();
-            this._onUpdateLocalShadowBiasAndProbeId();
-          }
-        }, {
-          key: "shadowNormalBias",
-          get: function get() {
-            return this._shadowNormalBias;
-          },
-          set: function set(val) {
-            this._shadowNormalBias = val;
-            this._updateShadowNormalBias();
-            this._onUpdateLocalShadowBiasAndProbeId();
-          }
-        }, {
-          key: "shadowCastingMode",
-          get: function get() {
-            return this._shadowCastingMode;
-          },
-          set: function set(val) {
-            this._shadowCastingMode = val;
-            this._updateCastShadow();
-          }
-        }, {
-          key: "shadowCastingModeForInspector",
-          get: function get() {
-            return this.shadowCastingMode === ModelShadowCastingMode.ON;
-          },
-          set: function set(val) {
-            this.shadowCastingMode = val === true ? ModelShadowCastingMode.ON : ModelShadowCastingMode.OFF;
-          }
-        }, {
-          key: "receiveShadow",
-          get: function get() {
-            return this._shadowReceivingMode;
-          },
-          set: function set(val) {
-            this._shadowReceivingMode = val;
-            this._updateReceiveShadow();
-          }
-        }, {
-          key: "receiveShadowForInspector",
-          get: function get() {
-            return this._shadowReceivingMode === ModelShadowReceivingMode.ON;
-          },
-          set: function set(val) {
-            this._shadowReceivingMode = val === true ? ModelShadowReceivingMode.ON : ModelShadowReceivingMode.OFF;
-            this._updateReceiveShadow();
-          }
-        }, {
-          key: "mesh",
-          get: function get() {
-            return this._mesh;
-          },
-          set: function set(val) {
-            var old = this._mesh;
-            var mesh = this._mesh = val;
-            mesh == null ? undefined : mesh.initialize();
-            this._initSubMeshShapesWeights();
-            this._watchMorphInMesh();
-            this._onMeshChanged(old);
-            this._updateModels();
-            if (this.enabledInHierarchy) {
-              this._attachToScene();
-            }
-            this._updateCastShadow();
-            this._updateReceiveShadow();
-            this._updateUseLightProbe();
-            this._updateUseReflectionProbe();
-            this._updateReceiveDirLight();
-          }
-        }, {
-          key: "model",
-          get: function get() {
-            return this._model;
-          }
-        }, {
-          key: "enableMorph",
-          get: function get() {
-            return this._enableMorph;
-          },
-          set: function set(value) {
-            this._enableMorph = value;
-          }
-        }, {
-          key: "isGlobalStandardSkinObject",
-          get: function get() {
-            return this._enabledGlobalStandardSkinObject;
-          },
-          set: function set(val) {
-            getPipelineSceneData().standardSkinMeshRenderer = val ? this : null;
-            this._enabledGlobalStandardSkinObject = val;
-          }
-        }]);
-        return MeshRenderer;
-      }(ModelRenderer), _class6.ShadowCastingMode = ModelShadowCastingMode, _class6.ShadowReceivingMode = ModelShadowReceivingMode, _class6), (_initializer11$6 = applyDecoratedInitializer(_class5.prototype, "bakeSettings", [serializable], function () {
-        return new ModelBakeSettings();
-      }), _initializer12$5 = applyDecoratedInitializer(_class5.prototype, "_mesh", [serializable], function () {
-        return null;
-      }), _initializer13$4 = applyDecoratedInitializer(_class5.prototype, "_shadowCastingMode", [serializable], function () {
-        return ModelShadowCastingMode.OFF;
-      }), _initializer14$3 = applyDecoratedInitializer(_class5.prototype, "_shadowReceivingMode", [serializable], function () {
-        return ModelShadowReceivingMode.ON;
-      }), _initializer15$2 = applyDecoratedInitializer(_class5.prototype, "_shadowBias", [serializable], function () {
-        return 0;
-      }), _initializer16$2 = applyDecoratedInitializer(_class5.prototype, "_shadowNormalBias", [serializable], function () {
-        return 0;
-      }), _initializer17$1 = applyDecoratedInitializer(_class5.prototype, "_reflectionProbeId", [serializable], function () {
-        return -1;
-      }), _initializer18$1 = applyDecoratedInitializer(_class5.prototype, "_reflectionProbeBlendId", [serializable], function () {
-        return -1;
-      }), _initializer19 = applyDecoratedInitializer(_class5.prototype, "_reflectionProbeBlendWeight", [serializable], function () {
-        return 0;
-      }), _initializer20 = applyDecoratedInitializer(_class5.prototype, "_enabledGlobalStandardSkinObject", [serializable], function () {
-        return false;
-      }), _applyDecoratedDescriptor(_class5.prototype, "shadowBias", [_dec10$2], Object.getOwnPropertyDescriptor(_class5.prototype, "shadowBias"), _class5.prototype), _applyDecoratedDescriptor(_class5.prototype, "shadowNormalBias", [_dec11$1], Object.getOwnPropertyDescriptor(_class5.prototype, "shadowNormalBias"), _class5.prototype), _applyDecoratedDescriptor(_class5.prototype, "shadowCastingMode", [_dec12$1], Object.getOwnPropertyDescriptor(_class5.prototype, "shadowCastingMode"), _class5.prototype), _applyDecoratedDescriptor(_class5.prototype, "receiveShadow", [_dec13$1], Object.getOwnPropertyDescriptor(_class5.prototype, "receiveShadow"), _class5.prototype), _applyDecoratedDescriptor(_class5.prototype, "mesh", [_dec14], Object.getOwnPropertyDescriptor(_class5.prototype, "mesh"), _class5.prototype), _applyDecoratedDescriptor(_class5.prototype, "isGlobalStandardSkinObject", [_dec15], Object.getOwnPropertyDescriptor(_class5.prototype, "isGlobalStandardSkinObject"), _class5.prototype), _initializer21 = applyDecoratedInitializer(_class5.prototype, "_enableMorph", [serializable], function () {
-        return true;
-      })), _class5)) || _class4) || _class4);
-
-      var Counter = function () {
-        function Counter(id, opts, now) {
-          this._total = 0;
-          this._value = 0;
-          this._averageValue = 0;
-          this._accumValue = 0;
-          this._accumSamples = 0;
-          this._id = id;
-          this._opts = opts;
-          this._accumStart = now;
-        }
-        var _proto = Counter.prototype;
-        _proto.sample = function sample(now) {
-          this._average(this._value, now);
-        };
-        _proto.human = function human() {
-          var _this$_opts = this._opts,
-            average = _this$_opts.average,
-            isInteger = _this$_opts.isInteger;
-          var v = average ? this._averageValue : this._value;
-          return isInteger ? Math.round(v) : Math.round(v * 100) / 100;
-        };
-        _proto.alarm = function alarm() {
-          if (this._opts.below !== undefined && this._value < this._opts.below) {
-            return true;
-          }
-          if (this._opts.over !== undefined && this._value > this._opts.over) {
-            return true;
-          }
-          return false;
-        };
-        _proto._average = function _average(v, now) {
-          if (now === undefined) {
-            now = 0;
-          }
-          if (this._opts.average) {
-            this._accumValue += v;
-            ++this._accumSamples;
-            var t = now;
-            if (t - this._accumStart >= this._opts.average) {
-              this._averageValue = this._accumValue / this._accumSamples;
-              this._accumValue = 0;
-              this._accumStart = t;
-              this._accumSamples = 0;
-            }
-          }
-        };
-        _createClass(Counter, [{
-          key: "value",
-          get: function get() {
-            return this._value;
-          },
-          set: function set(val) {
-            this._value = val;
-          }
-        }]);
-        return Counter;
-      }();
-
-      var _dec$i, _class$i;
-      var PerfCounter = (_dec$i = ccclass$6('cc.PerfCounter'), _dec$i(_class$i = function (_Counter) {
-        _inheritsLoose(PerfCounter, _Counter);
-        function PerfCounter(id, opts, now) {
-          var _this;
-          _this = _Counter.call(this, id, opts, now) || this;
-          _this._time = now;
-          return _this;
-        }
-        var _proto = PerfCounter.prototype;
-        _proto.start = function start(now) {
-          if (now === undefined) {
-            now = 0;
-          }
-          this._time = now;
-        };
-        _proto.end = function end(now) {
-          if (now === undefined) {
-            now = 0;
-          }
-          this._value = now - this._time;
-          this._average(this._value);
-        };
-        _proto.tick = function tick() {
-          this.end();
-          this.start();
-        };
-        _proto.frame = function frame(now) {
-          var t = now;
-          var e = t - this._time;
-          this._total++;
-          var avg = this._opts.average || 1000;
-          if (e > avg) {
-            this._value = this._total * 1000 / e;
-            this._total = 0;
-            this._time = t;
-            this._average(this._value);
-          }
-        };
-        return PerfCounter;
-      }(Counter)) || _class$i);
-
-      var _characters = '0123456789. ';
-      var _average = 500;
-      var _string2offset = {
-        0: 0,
-        1: 1,
-        2: 2,
-        3: 3,
-        4: 4,
-        5: 5,
-        6: 6,
-        7: 7,
-        8: 8,
-        9: 9,
-        '.': 10
-      };
-      var _profileInfo = {
-        fps: {
-          desc: "Framerate (FPS)",
-          below: 30,
-          average: _average,
-          isInteger: true
-        },
-        draws: {
-          desc: 'Draw call',
-          isInteger: true
-        },
-        frame: {
-          desc: 'Frame time (ms)',
-          min: 0,
-          max: 50,
-          average: _average
-        },
-        instances: {
-          desc: 'Instance Count',
-          isInteger: true
-        },
-        tricount: {
-          desc: 'Triangle',
-          isInteger: true
-        },
-        logic: {
-          desc: 'Game Logic (ms)',
-          min: 0,
-          max: 50,
-          average: _average,
-          color: '#080'
-        },
-        physics: {
-          desc: 'Physics (ms)',
-          min: 0,
-          max: 50,
-          average: _average
-        },
-        render: {
-          desc: 'Renderer (ms)',
-          min: 0,
-          max: 50,
-          average: _average,
-          color: '#f90'
-        },
-        present: {
-          desc: 'Present (ms)',
-          min: 0,
-          max: 50,
-          average: _average,
-          color: '#f90'
-        },
-        textureMemory: {
-          desc: 'GFX Texture Mem(M)'
-        },
-        bufferMemory: {
-          desc: 'GFX Buffer Mem(M)'
-        }
-      };
-      var _constants = {
-        fontSize: 23,
-        quadHeight: 0.4,
-        segmentsPerLine: 8,
-        textureWidth: 280,
-        textureHeight: 280
-      };
-      var Profiler = exports("Profiler", function (_System) {
-        _inheritsLoose(Profiler, _System);
-        function Profiler() {
-          var _this;
-          _this = _System.call(this) || this;
-          _this._profilerStats = null;
-          _this._showFPS = false;
-          _this._rootNode = null;
-          _this._device = null;
-          _this._swapchain = null;
-          _this._meshRenderer = null;
-          _this._canvas = null;
-          _this._ctx = null;
-          _this._texture = null;
-          _this._region = new BufferTextureCopy();
-          _this._canvasArr = [];
-          _this._regionArr = [_this._region];
-          _this.digitsData = null;
-          _this.offsetData = null;
-          _this.pass = null;
-          _this._canvasDone = false;
-          _this._statsDone = false;
-          _this._inited = false;
-          _this._lineHeight = _constants.textureHeight / (Object.keys(_profileInfo).length + 1);
-          _this._wordHeight = 0;
-          _this._eachNumWidth = 0;
-          _this._totalLines = 0;
-          _this.lastTime = 0;
-          _this._backgroundColor = new Color$1(150, 150, 150, 100);
-          _this._fontColor = Color$1.WHITE.clone();
-          return _this;
-        }
-        var _proto = Profiler.prototype;
-        _proto.init = function init() {
-          var showFPS = !!settings.querySettings("profiling", 'showFPS');
-          if (showFPS) {
-            this.showStats();
-          } else {
-            this.hideStats();
-          }
-        };
-        _proto.setBackgroundColor = function setBackgroundColor(color) {
-          if (this._backgroundColor.equals(color)) {
-            return;
-          }
-          this._backgroundColor.set(color);
-          if (this._showFPS) {
-            this.hideStats();
-            this.showStats();
-          }
-        };
-        _proto.setFontColor = function setFontColor(color) {
-          if (this._fontColor.equals(color)) {
-            return;
-          }
-          this._fontColor.set(color);
-          if (this._showFPS) {
-            this.hideStats();
-            this.showStats();
-          }
-        };
-        _proto.isShowingStats = function isShowingStats() {
-          return this._showFPS;
-        };
-        _proto.hideStats = function hideStats() {
-          var self = this;
-          if (self._showFPS) {
-            self._profilerStats = null;
-            if (self._rootNode) {
-              self._rootNode.destroy();
-              self._rootNode = null;
-            }
-            self._device = null;
-            self._swapchain = null;
-            var meshRenderer = self._meshRenderer;
-            if (meshRenderer) {
-              var _meshRenderer$sharedM, _meshRenderer$mesh;
-              (_meshRenderer$sharedM = meshRenderer.sharedMaterial) == null ? undefined : _meshRenderer$sharedM.destroy();
-              (_meshRenderer$mesh = meshRenderer.mesh) == null ? undefined : _meshRenderer$mesh.destroy();
-              meshRenderer.destroy();
-              self._meshRenderer = null;
-            }
-            self._canvas = null;
-            self._ctx = null;
-            if (self._texture) {
-              self._texture.destroy();
-              self._texture = null;
-            }
-            self._canvasArr.length = 0;
-            self.digitsData = null;
-            self.offsetData = null;
-            self.pass = null;
-            self._canvasDone = false;
-            self._statsDone = false;
-            self._inited = false;
-            self._wordHeight = 0;
-            self._eachNumWidth = 0;
-            self._totalLines = 0;
-            self.lastTime = 0;
-            director.off("director_before_update", self.beforeUpdate, self);
-            director.off("director_after_update", self.afterUpdate, self);
-            director.off("director_before_physics", self.beforePhysics, self);
-            director.off("director_after_physics", self.afterPhysics, self);
-            director.off("director_before_draw", self.beforeDraw, self);
-            director.off("director_after_render", self.afterRender, self);
-            director.off("director_after_draw", self.afterPresent, self);
-            self._showFPS = false;
-            director.root.pipeline.profiler = null;
-            cclegacy.game.config.showFPS = false;
-          }
-        };
-        _proto.showStats = function showStats() {
-          var game = cclegacy.game;
-          if (!this._showFPS) {
-            this._canvas = ccwindow.document.createElement('canvas');
-            this._ctx = this._canvas.getContext('2d');
-            this._canvasArr.push(this._canvas);
-            if (!this._device) {
-              var root = cclegacy.director.root;
-              this._device = deviceManager.gfxDevice;
-              this._swapchain = root.mainWindow.swapchain;
-            }
-            this.generateCanvas();
-            this.generateStats();
-            game.once(Game.EVENT_ENGINE_INITED, this.generateNode, this);
-            game.on(Game.EVENT_RESTART, this.generateNode, this);
-            if (this._rootNode) {
-              this._rootNode.active = true;
-            }
-            director.on("director_before_update", this.beforeUpdate, this);
-            director.on("director_after_update", this.afterUpdate, this);
-            director.on("director_before_physics", this.beforePhysics, this);
-            director.on("director_after_physics", this.afterPhysics, this);
-            director.on("director_before_draw", this.beforeDraw, this);
-            director.on("director_after_render", this.afterRender, this);
-            director.on("director_after_draw", this.afterPresent, this);
-            this._showFPS = true;
-            this._canvasDone = true;
-            this._statsDone = true;
-            game.config.showFPS = true;
-          }
-        };
-        _proto.generateCanvas = function generateCanvas() {
-          if (this._canvasDone) {
-            return;
-          }
-          var textureWidth = _constants.textureWidth,
-            textureHeight = _constants.textureHeight;
-          var canvas = this._canvas;
-          var ctx = this._ctx;
-          if (!ctx || !canvas) {
-            return;
-          }
-          canvas.width = textureWidth;
-          canvas.height = textureHeight;
-          canvas.style.width = "" + canvas.width;
-          canvas.style.height = "" + canvas.height;
-          ctx.font = _constants.fontSize + "px Arial";
-          ctx.textBaseline = 'top';
-          var fontColor = this._fontColor;
-          ctx.fillStyle = "rgba(" + fontColor.r + ", " + fontColor.g + ", " + fontColor.b + ", " + fontColor.a / 255 + ")";
-          this._texture = this._device.createTexture(new TextureInfo(1, 4 | 2, 35, textureWidth, textureHeight));
-          var texExtent = this._region.texExtent;
-          texExtent.width = textureWidth;
-          texExtent.height = textureHeight;
-        };
-        _proto.generateStats = function generateStats() {
-          var canvas = this._canvas;
-          var ctx = this._ctx;
-          if (this._statsDone || !ctx || !canvas) {
-            return;
-          }
-          this._profilerStats = null;
-          var now = performance.now();
-          ctx.textAlign = 'left';
-          var i = 0;
-          for (var id in _profileInfo) {
-            var element = _profileInfo[id];
-            ctx.fillText(element.desc, 0, i * this._lineHeight);
-            element.counter = new PerfCounter(id, element, now);
-            i++;
-          }
-          this._totalLines = i;
-          this._wordHeight = this._totalLines * this._lineHeight / canvas.height;
-          var j = 0;
-          for (j = 0; j < _characters.length; ++j) {
-            var offset = ctx.measureText(_characters[j]).width;
-            this._eachNumWidth = Math.max(this._eachNumWidth, offset);
-          }
-          for (j = 0; j < _characters.length; ++j) {
-            ctx.fillText(_characters[j], j * this._eachNumWidth, this._totalLines * this._lineHeight);
-          }
-          var bgColor = this._backgroundColor;
-          ctx.fillStyle = "rgba(" + bgColor.r + ", " + bgColor.g + ", " + bgColor.b + ", " + bgColor.a / 255 + ")";
-          ctx.fillRect(canvas.width - 4, canvas.height - 4, 4, 4);
-          this._eachNumWidth /= canvas.width;
-          this._profilerStats = _profileInfo;
-          this._canvasArr[0] = canvas;
-          this._device.copyTexImagesToTexture(this._canvasArr, this._texture, this._regionArr);
-        };
-        _proto.generateNode = function generateNode() {
-          if (this._rootNode && this._rootNode.isValid) {
-            return;
-          }
-          var canvas = this._canvas;
-          this._rootNode = new Node$1('PROFILER_NODE');
-          this._rootNode._objFlags = 8 | 1024;
-          game.addPersistRootNode(this._rootNode);
-          var managerNode = new Node$1('Profiler_Root');
-          managerNode.parent = this._rootNode;
-          var height = _constants.quadHeight;
-          var rowHeight = height / this._totalLines;
-          var lWidth = height / this._wordHeight;
-          var scale = rowHeight / _constants.fontSize;
-          var columnWidth = this._eachNumWidth * canvas.width * scale;
-          var bgRight = lWidth + _constants.segmentsPerLine * columnWidth;
-          var bgPadding = columnWidth;
-          var vertexPos = [-bgPadding, height + bgPadding, 0, bgRight + bgPadding, height + bgPadding, 0, bgRight + bgPadding, -bgPadding, 0, -bgPadding, -bgPadding, 0];
-          var vertexindices = [0, 2, 1, 0, 3, 2];
-          var bgUvOriginX = (canvas.width - 3) / canvas.width;
-          var bgUvOriginY = (canvas.height - 3) / canvas.height;
-          var bgUvRight = (canvas.width - 1) / canvas.width;
-          var bgUvTop = (canvas.height - 1) / canvas.width;
-          var vertexUV = [bgUvOriginX, bgUvOriginY, -1, 0, bgUvRight, bgUvOriginY, -1, 0, bgUvRight, bgUvTop, -1, 0, bgUvOriginX, bgUvTop, -1, 0];
-          vertexPos.push(0, height, 0, lWidth, height, 0, lWidth, 0, 0, 0, 0, 0);
-          vertexindices.push(4, 6, 5, 4, 7, 6);
-          vertexUV.push(0, 0, -1, 0, 1, 0, -1, 0, 1, this._wordHeight, -1, 0, 0, this._wordHeight, -1, 0);
-          var offset = 0;
-          for (var i = 0; i < this._totalLines; i++) {
-            for (var j = 0; j < _constants.segmentsPerLine; j++) {
-              vertexPos.push(lWidth + j * columnWidth, height - i * rowHeight, 0);
-              vertexPos.push(lWidth + (j + 1) * columnWidth, height - i * rowHeight, 0);
-              vertexPos.push(lWidth + (j + 1) * columnWidth, height - (i + 1) * rowHeight, 0);
-              vertexPos.push(lWidth + j * columnWidth, height - (i + 1) * rowHeight, 0);
-              offset = (i * _constants.segmentsPerLine + j + 2) * 4;
-              vertexindices.push(0 + offset, 2 + offset, 1 + offset, 0 + offset, 3 + offset, 2 + offset);
-              var idx = i * _constants.segmentsPerLine + j;
-              var z = Math.floor(idx / 4);
-              var w = idx - z * 4;
-              vertexUV.push(0, this._wordHeight, z, w);
-              vertexUV.push(this._eachNumWidth, this._wordHeight, z, w);
-              vertexUV.push(this._eachNumWidth, 1, z, w);
-              vertexUV.push(0, 1, z, w);
-            }
-          }
-          this._meshRenderer = managerNode.addComponent(MeshRenderer);
-          this._meshRenderer.mesh = _createMesh({
-            positions: vertexPos,
-            indices: vertexindices,
-            colors: vertexUV
-          });
-          var _material = new Material();
-          _material.initialize({
-            effectName: 'util/profiler'
-          });
-          var pass = this.pass = _material.passes[0];
-          var hTexture = pass.getBinding('mainTexture');
-          var bDigits = pass.getBinding('digits');
-          var bOffset = pass.getBinding('offset');
-          pass.bindTexture(hTexture, this._texture);
-          this.digitsData = pass.blocks[bDigits];
-          this.offsetData = pass.blocks[bOffset];
-          this.offsetData[3] = -1;
-          this._meshRenderer.material = _material;
-          this._meshRenderer.node.layer = Layers.Enum.PROFILER;
-          this._inited = true;
-        };
-        _proto.beforeUpdate = function beforeUpdate() {
-          var profilerStats = this._profilerStats;
-          if (!profilerStats) {
-            return;
-          }
-          var now = performance.now();
-          profilerStats.frame.counter.start(now);
-          profilerStats.logic.counter.start(now);
-        };
-        _proto.afterUpdate = function afterUpdate() {
-          var profilerStats = this._profilerStats;
-          if (!profilerStats) {
-            return;
-          }
-          var now = performance.now();
-          if (director.isPaused()) {
-            profilerStats.frame.counter.start(now);
-          } else {
-            profilerStats.logic.counter.end(now);
-          }
-        };
-        _proto.beforePhysics = function beforePhysics() {
-          if (!this._profilerStats) {
-            return;
-          }
-          var now = performance.now();
-          this._profilerStats.physics.counter.start(now);
-        };
-        _proto.afterPhysics = function afterPhysics() {
-          if (!this._profilerStats) {
-            return;
-          }
-          var now = performance.now();
-          this._profilerStats.physics.counter.end(now);
-        };
-        _proto.beforeDraw = function beforeDraw() {
-          if (!this._profilerStats || !this._inited) {
-            return;
-          }
-          var surfaceTransform = this._swapchain.surfaceTransform;
-          var clipSpaceSignY = this._device.capabilities.clipSpaceSignY;
-          if (surfaceTransform !== this.offsetData[3]) {
-            var preTransform = preTransforms[surfaceTransform];
-            var x = -0.9;
-            var y = -0.9 * clipSpaceSignY;
-            this.offsetData[0] = x * preTransform[0] + y * preTransform[2];
-            this.offsetData[1] = x * preTransform[1] + y * preTransform[3];
-            this.offsetData[2] = this._eachNumWidth;
-            this.offsetData[3] = surfaceTransform;
-          }
-          this.pass.setRootBufferDirty(true);
-          if (this._meshRenderer.model) {
-            director.root.pipeline.profiler = this._meshRenderer.model;
-          } else {
-            director.root.pipeline.profiler = null;
-          }
-          var now = performance.now();
-          this._profilerStats.render.counter.start(now);
-        };
-        _proto.afterRender = function afterRender() {
-          var profilerStats = this._profilerStats;
-          if (!profilerStats || !this._inited) {
-            return;
-          }
-          var now = performance.now();
-          profilerStats.render.counter.end(now);
-          profilerStats.present.counter.start(now);
-        };
-        _proto.afterPresent = function afterPresent() {
-          var profilerStats = this._profilerStats;
-          if (!profilerStats || !this._inited) {
-            return;
-          }
-          var now = performance.now();
-          profilerStats.frame.counter.end(now);
-          profilerStats.fps.counter.frame(now);
-          profilerStats.present.counter.end(now);
-          if (now - this.lastTime < _average) {
-            return;
-          }
-          this.lastTime = now;
-          var device = this._device;
-          profilerStats.draws.counter.value = device.numDrawCalls;
-          profilerStats.instances.counter.value = device.numInstances;
-          profilerStats.bufferMemory.counter.value = device.memoryStatus.bufferSize / (1024 * 1024);
-          profilerStats.textureMemory.counter.value = device.memoryStatus.textureSize / (1024 * 1024);
-          profilerStats.tricount.counter.value = device.numTris;
-          var i = 0;
-          var view = this.digitsData;
-          var segmentsPerLine = _constants.segmentsPerLine;
-          for (var id in profilerStats) {
-            var stat = profilerStats[id];
-            stat.counter.sample(now);
-            var result = stat.counter.human().toString();
-            for (var j = segmentsPerLine - 1; j >= 0; j--) {
-              var index = i * segmentsPerLine + j;
-              var character = result[result.length - (segmentsPerLine - j)];
-              var offset = _string2offset[character];
-              if (offset === undefined) {
-                offset = 11;
-              }
-              view[index] = offset;
-            }
-            i++;
-          }
-        };
-        _createClass(Profiler, [{
-          key: "_stats",
-          get: function get() {
-            warnID(16381);
-            return this._profilerStats;
-          }
-        }, {
-          key: "stats",
-          get: function get() {
-            return this._profilerStats;
-          }
-        }]);
-        return Profiler;
-      }(System));
-      var profiler = exports("profiler", new Profiler());
-      director.registerSystem('profiler', profiler, 0);
-      cclegacy.profiler = profiler;
-
       var _v3_tmp_1 = new Vec3();
       var _v3_tmp_2 = new Vec3();
       function createSplineProperty(mode, knots) {
@@ -98416,7 +96891,7 @@ System.register([], (function (exports, module) {
       var ButtonEventType = {
         CLICK: "click"
       };
-      var Button = (_dec$h = ccclass$6('cc.Button'), _dec2$f = executionOrder$1(110), _dec3$e = requireComponent(UITransform), _dec4$b = type$3(Node$1), _dec5$b = type$3(Transition), _dec6$5 = type$3(SpriteFrame), _dec7$4 = type$3(SpriteFrame), _dec8$3 = type$3(SpriteFrame), _dec9$3 = type$3(SpriteFrame), _dec10$1 = type$3([EventHandler]), _dec$h(_class$h = _dec2$f(_class$h = _dec3$e(_class$h = (_class2$e = (_class3$a = function (_Component) {
+      var Button = (_dec$h = ccclass$5('cc.Button'), _dec2$f = executionOrder(110), _dec3$e = requireComponent(UITransform), _dec4$b = type$2(Node$1), _dec5$b = type$2(Transition), _dec6$5 = type$2(SpriteFrame), _dec7$4 = type$2(SpriteFrame), _dec8$3 = type$2(SpriteFrame), _dec9$3 = type$2(SpriteFrame), _dec10$1 = type$2([EventHandler]), _dec$h(_class$h = _dec2$f(_class$h = _dec3$e(_class$h = (_class2$e = (_class3$a = function (_Component) {
         _inheritsLoose(Button, _Component);
         function Button() {
           var _this;
@@ -99003,33 +97478,33 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Button;
-      }(Component), _class3$a.Transition = Transition, _class3$a.EventType = ButtonEventType, _class3$a), (_applyDecoratedDescriptor(_class2$e.prototype, "target", [_dec4$b], Object.getOwnPropertyDescriptor(_class2$e.prototype, "target"), _class2$e.prototype), _applyDecoratedDescriptor(_class2$e.prototype, "transition", [_dec5$b], Object.getOwnPropertyDescriptor(_class2$e.prototype, "transition"), _class2$e.prototype), _applyDecoratedDescriptor(_class2$e.prototype, "normalSprite", [_dec6$5], Object.getOwnPropertyDescriptor(_class2$e.prototype, "normalSprite"), _class2$e.prototype), _applyDecoratedDescriptor(_class2$e.prototype, "pressedSprite", [_dec7$4], Object.getOwnPropertyDescriptor(_class2$e.prototype, "pressedSprite"), _class2$e.prototype), _applyDecoratedDescriptor(_class2$e.prototype, "hoverSprite", [_dec8$3], Object.getOwnPropertyDescriptor(_class2$e.prototype, "hoverSprite"), _class2$e.prototype), _applyDecoratedDescriptor(_class2$e.prototype, "disabledSprite", [_dec9$3], Object.getOwnPropertyDescriptor(_class2$e.prototype, "disabledSprite"), _class2$e.prototype), _initializer$e = applyDecoratedInitializer(_class2$e.prototype, "clickEvents", [_dec10$1, serializable$5], function () {
+      }(Component), _class3$a.Transition = Transition, _class3$a.EventType = ButtonEventType, _class3$a), (_applyDecoratedDescriptor(_class2$e.prototype, "target", [_dec4$b], Object.getOwnPropertyDescriptor(_class2$e.prototype, "target"), _class2$e.prototype), _applyDecoratedDescriptor(_class2$e.prototype, "transition", [_dec5$b], Object.getOwnPropertyDescriptor(_class2$e.prototype, "transition"), _class2$e.prototype), _applyDecoratedDescriptor(_class2$e.prototype, "normalSprite", [_dec6$5], Object.getOwnPropertyDescriptor(_class2$e.prototype, "normalSprite"), _class2$e.prototype), _applyDecoratedDescriptor(_class2$e.prototype, "pressedSprite", [_dec7$4], Object.getOwnPropertyDescriptor(_class2$e.prototype, "pressedSprite"), _class2$e.prototype), _applyDecoratedDescriptor(_class2$e.prototype, "hoverSprite", [_dec8$3], Object.getOwnPropertyDescriptor(_class2$e.prototype, "hoverSprite"), _class2$e.prototype), _applyDecoratedDescriptor(_class2$e.prototype, "disabledSprite", [_dec9$3], Object.getOwnPropertyDescriptor(_class2$e.prototype, "disabledSprite"), _class2$e.prototype), _initializer$e = applyDecoratedInitializer(_class2$e.prototype, "clickEvents", [_dec10$1, serializable$4], function () {
         return [];
-      }), _initializer2$d = applyDecoratedInitializer(_class2$e.prototype, "_interactable", [serializable$5], function () {
+      }), _initializer2$d = applyDecoratedInitializer(_class2$e.prototype, "_interactable", [serializable$4], function () {
         return true;
-      }), _initializer3$b = applyDecoratedInitializer(_class2$e.prototype, "_transition", [serializable$5], function () {
+      }), _initializer3$b = applyDecoratedInitializer(_class2$e.prototype, "_transition", [serializable$4], function () {
         return 0;
-      }), _initializer4$a = applyDecoratedInitializer(_class2$e.prototype, "_normalColor", [serializable$5], function () {
+      }), _initializer4$a = applyDecoratedInitializer(_class2$e.prototype, "_normalColor", [serializable$4], function () {
         return Color$1.WHITE.clone();
-      }), _initializer5$8 = applyDecoratedInitializer(_class2$e.prototype, "_hoverColor", [serializable$5], function () {
+      }), _initializer5$8 = applyDecoratedInitializer(_class2$e.prototype, "_hoverColor", [serializable$4], function () {
         return new Color$1(211, 211, 211, 255);
-      }), _initializer6$5 = applyDecoratedInitializer(_class2$e.prototype, "_pressedColor", [serializable$5], function () {
+      }), _initializer6$5 = applyDecoratedInitializer(_class2$e.prototype, "_pressedColor", [serializable$4], function () {
         return Color$1.WHITE.clone();
-      }), _initializer7$5 = applyDecoratedInitializer(_class2$e.prototype, "_disabledColor", [serializable$5], function () {
+      }), _initializer7$5 = applyDecoratedInitializer(_class2$e.prototype, "_disabledColor", [serializable$4], function () {
         return new Color$1(124, 124, 124, 255);
-      }), _initializer8$5 = applyDecoratedInitializer(_class2$e.prototype, "_normalSprite", [serializable$5], function () {
+      }), _initializer8$5 = applyDecoratedInitializer(_class2$e.prototype, "_normalSprite", [serializable$4], function () {
         return null;
-      }), _initializer9$5 = applyDecoratedInitializer(_class2$e.prototype, "_hoverSprite", [serializable$5], function () {
+      }), _initializer9$5 = applyDecoratedInitializer(_class2$e.prototype, "_hoverSprite", [serializable$4], function () {
         return null;
-      }), _initializer10$5 = applyDecoratedInitializer(_class2$e.prototype, "_pressedSprite", [serializable$5], function () {
+      }), _initializer10$5 = applyDecoratedInitializer(_class2$e.prototype, "_pressedSprite", [serializable$4], function () {
         return null;
-      }), _initializer11$5 = applyDecoratedInitializer(_class2$e.prototype, "_disabledSprite", [serializable$5], function () {
+      }), _initializer11$5 = applyDecoratedInitializer(_class2$e.prototype, "_disabledSprite", [serializable$4], function () {
         return null;
-      }), _initializer12$4 = applyDecoratedInitializer(_class2$e.prototype, "_duration", [serializable$5], function () {
+      }), _initializer12$4 = applyDecoratedInitializer(_class2$e.prototype, "_duration", [serializable$4], function () {
         return 0.1;
-      }), _initializer13$3 = applyDecoratedInitializer(_class2$e.prototype, "_zoomScale", [serializable$5], function () {
+      }), _initializer13$3 = applyDecoratedInitializer(_class2$e.prototype, "_zoomScale", [serializable$4], function () {
         return 1.2;
-      }), _initializer14$2 = applyDecoratedInitializer(_class2$e.prototype, "_target", [serializable$5], function () {
+      }), _initializer14$2 = applyDecoratedInitializer(_class2$e.prototype, "_target", [serializable$4], function () {
         return null;
       })), _class2$e)) || _class$h) || _class$h) || _class$h); exports({ Button: Button, ButtonComponent: Button });
       legacyCC.Button = Button;
@@ -99656,7 +98131,7 @@ System.register([], (function (exports, module) {
         XR_EDITING_DID_BEGAN: "xr-editing-did-began",
         XR_EDITING_DID_ENDED: "xr-editing-did-ended"
       };
-      var EditBox = (_dec$g = ccclass$6('cc.EditBox'), _dec2$e = executionOrder$1(110), _dec3$d = requireComponent(UITransform), _dec4$a = type$3(Label), _dec5$a = type$3(Label), _dec6$4 = type$3(SpriteFrame), _dec7$3 = type$3(InputFlag), _dec8$2 = type$3(InputMode), _dec9$2 = type$3(KeyboardReturnType), _dec10 = type$3([EventHandler]), _dec11 = type$3([EventHandler]), _dec12 = type$3([EventHandler]), _dec13 = type$3([EventHandler]), _dec$g(_class$g = _dec2$e(_class$g = _dec3$d(_class$g = (_class2$d = (_class3$9 = function (_Component) {
+      var EditBox = (_dec$g = ccclass$5('cc.EditBox'), _dec2$e = executionOrder(110), _dec3$d = requireComponent(UITransform), _dec4$a = type$2(Label), _dec5$a = type$2(Label), _dec6$4 = type$2(SpriteFrame), _dec7$3 = type$2(InputFlag), _dec8$2 = type$2(InputMode), _dec9$2 = type$2(KeyboardReturnType), _dec10 = type$2([EventHandler]), _dec11 = type$2([EventHandler]), _dec12 = type$2([EventHandler]), _dec13 = type$2([EventHandler]), _dec$g(_class$g = _dec2$e(_class$g = _dec3$d(_class$g = (_class2$d = (_class3$9 = function (_Component) {
         _inheritsLoose(EditBox, _Component);
         function EditBox() {
           var _this;
@@ -100097,31 +98572,31 @@ System.register([], (function (exports, module) {
           }
         }]);
         return EditBox;
-      }(Component), _class3$9._EditBoxImpl = EditBoxImplBase, _class3$9.KeyboardReturnType = KeyboardReturnType, _class3$9.InputFlag = InputFlag, _class3$9.InputMode = InputMode, _class3$9.EventType = EditBoxEventType, _class3$9), (_applyDecoratedDescriptor(_class2$d.prototype, "textLabel", [_dec4$a], Object.getOwnPropertyDescriptor(_class2$d.prototype, "textLabel"), _class2$d.prototype), _applyDecoratedDescriptor(_class2$d.prototype, "placeholderLabel", [_dec5$a], Object.getOwnPropertyDescriptor(_class2$d.prototype, "placeholderLabel"), _class2$d.prototype), _applyDecoratedDescriptor(_class2$d.prototype, "backgroundImage", [_dec6$4], Object.getOwnPropertyDescriptor(_class2$d.prototype, "backgroundImage"), _class2$d.prototype), _applyDecoratedDescriptor(_class2$d.prototype, "inputFlag", [_dec7$3], Object.getOwnPropertyDescriptor(_class2$d.prototype, "inputFlag"), _class2$d.prototype), _applyDecoratedDescriptor(_class2$d.prototype, "inputMode", [_dec8$2], Object.getOwnPropertyDescriptor(_class2$d.prototype, "inputMode"), _class2$d.prototype), _applyDecoratedDescriptor(_class2$d.prototype, "returnType", [_dec9$2], Object.getOwnPropertyDescriptor(_class2$d.prototype, "returnType"), _class2$d.prototype), _initializer$d = applyDecoratedInitializer(_class2$d.prototype, "editingDidBegan", [_dec10, serializable$5], function () {
+      }(Component), _class3$9._EditBoxImpl = EditBoxImplBase, _class3$9.KeyboardReturnType = KeyboardReturnType, _class3$9.InputFlag = InputFlag, _class3$9.InputMode = InputMode, _class3$9.EventType = EditBoxEventType, _class3$9), (_applyDecoratedDescriptor(_class2$d.prototype, "textLabel", [_dec4$a], Object.getOwnPropertyDescriptor(_class2$d.prototype, "textLabel"), _class2$d.prototype), _applyDecoratedDescriptor(_class2$d.prototype, "placeholderLabel", [_dec5$a], Object.getOwnPropertyDescriptor(_class2$d.prototype, "placeholderLabel"), _class2$d.prototype), _applyDecoratedDescriptor(_class2$d.prototype, "backgroundImage", [_dec6$4], Object.getOwnPropertyDescriptor(_class2$d.prototype, "backgroundImage"), _class2$d.prototype), _applyDecoratedDescriptor(_class2$d.prototype, "inputFlag", [_dec7$3], Object.getOwnPropertyDescriptor(_class2$d.prototype, "inputFlag"), _class2$d.prototype), _applyDecoratedDescriptor(_class2$d.prototype, "inputMode", [_dec8$2], Object.getOwnPropertyDescriptor(_class2$d.prototype, "inputMode"), _class2$d.prototype), _applyDecoratedDescriptor(_class2$d.prototype, "returnType", [_dec9$2], Object.getOwnPropertyDescriptor(_class2$d.prototype, "returnType"), _class2$d.prototype), _initializer$d = applyDecoratedInitializer(_class2$d.prototype, "editingDidBegan", [_dec10, serializable$4], function () {
         return [];
-      }), _initializer2$c = applyDecoratedInitializer(_class2$d.prototype, "textChanged", [_dec11, serializable$5], function () {
+      }), _initializer2$c = applyDecoratedInitializer(_class2$d.prototype, "textChanged", [_dec11, serializable$4], function () {
         return [];
-      }), _initializer3$a = applyDecoratedInitializer(_class2$d.prototype, "editingDidEnded", [_dec12, serializable$5], function () {
+      }), _initializer3$a = applyDecoratedInitializer(_class2$d.prototype, "editingDidEnded", [_dec12, serializable$4], function () {
         return [];
-      }), _initializer4$9 = applyDecoratedInitializer(_class2$d.prototype, "editingReturn", [_dec13, serializable$5], function () {
+      }), _initializer4$9 = applyDecoratedInitializer(_class2$d.prototype, "editingReturn", [_dec13, serializable$4], function () {
         return [];
-      }), _initializer5$7 = applyDecoratedInitializer(_class2$d.prototype, "_textLabel", [serializable$5], function () {
+      }), _initializer5$7 = applyDecoratedInitializer(_class2$d.prototype, "_textLabel", [serializable$4], function () {
         return null;
-      }), _initializer6$4 = applyDecoratedInitializer(_class2$d.prototype, "_placeholderLabel", [serializable$5], function () {
+      }), _initializer6$4 = applyDecoratedInitializer(_class2$d.prototype, "_placeholderLabel", [serializable$4], function () {
         return null;
-      }), _initializer7$4 = applyDecoratedInitializer(_class2$d.prototype, "_returnType", [serializable$5], function () {
+      }), _initializer7$4 = applyDecoratedInitializer(_class2$d.prototype, "_returnType", [serializable$4], function () {
         return 0;
-      }), _initializer8$4 = applyDecoratedInitializer(_class2$d.prototype, "_string", [serializable$5], function () {
+      }), _initializer8$4 = applyDecoratedInitializer(_class2$d.prototype, "_string", [serializable$4], function () {
         return '';
-      }), _initializer9$4 = applyDecoratedInitializer(_class2$d.prototype, "_tabIndex", [serializable$5], function () {
+      }), _initializer9$4 = applyDecoratedInitializer(_class2$d.prototype, "_tabIndex", [serializable$4], function () {
         return 0;
-      }), _initializer10$4 = applyDecoratedInitializer(_class2$d.prototype, "_backgroundImage", [serializable$5], function () {
+      }), _initializer10$4 = applyDecoratedInitializer(_class2$d.prototype, "_backgroundImage", [serializable$4], function () {
         return null;
-      }), _initializer11$4 = applyDecoratedInitializer(_class2$d.prototype, "_inputFlag", [serializable$5], function () {
+      }), _initializer11$4 = applyDecoratedInitializer(_class2$d.prototype, "_inputFlag", [serializable$4], function () {
         return 5;
-      }), _initializer12$3 = applyDecoratedInitializer(_class2$d.prototype, "_inputMode", [serializable$5], function () {
+      }), _initializer12$3 = applyDecoratedInitializer(_class2$d.prototype, "_inputMode", [serializable$4], function () {
         return 0;
-      }), _initializer13$2 = applyDecoratedInitializer(_class2$d.prototype, "_maxLength", [serializable$5], function () {
+      }), _initializer13$2 = applyDecoratedInitializer(_class2$d.prototype, "_maxLength", [serializable$4], function () {
         return 20;
       })), _class2$d)) || _class$g) || _class$g) || _class$g); exports({ EditBox: EditBox, EditBoxComponent: EditBox });
       if (typeof window === 'object' && typeof document === 'object' && true && true && true) {
@@ -100165,7 +98640,7 @@ System.register([], (function (exports, module) {
       };
       ccenum(LayoutConstraint);
       var _tempVec3$2 = new Vec3();
-      var Layout = (_dec$f = ccclass$6('cc.Layout'), _dec2$d = executionOrder$1(110), _dec3$c = requireComponent(UITransform), _dec4$9 = type$3(LayoutType), _dec5$9 = type$3(LayoutResizeMode), _dec6$3 = type$3(LayoutAxisDirection), _dec7$2 = type$3(LayoutVerticalDirection), _dec8$1 = type$3(LayoutHorizontalDirection), _dec9$1 = type$3(LayoutConstraint), _dec$f(_class$f = _dec2$d(_class$f = _dec3$c(_class$f = (_class2$c = (_class3$8 = function (_Component) {
+      var Layout = (_dec$f = ccclass$5('cc.Layout'), _dec2$d = executionOrder(110), _dec3$c = requireComponent(UITransform), _dec4$9 = type$2(LayoutType), _dec5$9 = type$2(LayoutResizeMode), _dec6$3 = type$2(LayoutAxisDirection), _dec7$2 = type$2(LayoutVerticalDirection), _dec8$1 = type$2(LayoutHorizontalDirection), _dec9$1 = type$2(LayoutConstraint), _dec$f(_class$f = _dec2$d(_class$f = _dec3$c(_class$f = (_class2$c = (_class3$8 = function (_Component) {
         _inheritsLoose(Layout, _Component);
         function Layout() {
           var _this;
@@ -100818,37 +99293,37 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Layout;
-      }(Component), _class3$8.Type = LayoutType, _class3$8.VerticalDirection = LayoutVerticalDirection, _class3$8.HorizontalDirection = LayoutHorizontalDirection, _class3$8.ResizeMode = LayoutResizeMode, _class3$8.AxisDirection = LayoutAxisDirection, _class3$8.Constraint = LayoutConstraint, _class3$8), (_applyDecoratedDescriptor(_class2$c.prototype, "type", [_dec4$9], Object.getOwnPropertyDescriptor(_class2$c.prototype, "type"), _class2$c.prototype), _applyDecoratedDescriptor(_class2$c.prototype, "resizeMode", [_dec5$9], Object.getOwnPropertyDescriptor(_class2$c.prototype, "resizeMode"), _class2$c.prototype), _applyDecoratedDescriptor(_class2$c.prototype, "startAxis", [_dec6$3], Object.getOwnPropertyDescriptor(_class2$c.prototype, "startAxis"), _class2$c.prototype), _applyDecoratedDescriptor(_class2$c.prototype, "verticalDirection", [_dec7$2], Object.getOwnPropertyDescriptor(_class2$c.prototype, "verticalDirection"), _class2$c.prototype), _applyDecoratedDescriptor(_class2$c.prototype, "horizontalDirection", [_dec8$1], Object.getOwnPropertyDescriptor(_class2$c.prototype, "horizontalDirection"), _class2$c.prototype), _applyDecoratedDescriptor(_class2$c.prototype, "constraint", [_dec9$1], Object.getOwnPropertyDescriptor(_class2$c.prototype, "constraint"), _class2$c.prototype), _initializer$c = applyDecoratedInitializer(_class2$c.prototype, "_resizeMode", [serializable$5], function () {
+      }(Component), _class3$8.Type = LayoutType, _class3$8.VerticalDirection = LayoutVerticalDirection, _class3$8.HorizontalDirection = LayoutHorizontalDirection, _class3$8.ResizeMode = LayoutResizeMode, _class3$8.AxisDirection = LayoutAxisDirection, _class3$8.Constraint = LayoutConstraint, _class3$8), (_applyDecoratedDescriptor(_class2$c.prototype, "type", [_dec4$9], Object.getOwnPropertyDescriptor(_class2$c.prototype, "type"), _class2$c.prototype), _applyDecoratedDescriptor(_class2$c.prototype, "resizeMode", [_dec5$9], Object.getOwnPropertyDescriptor(_class2$c.prototype, "resizeMode"), _class2$c.prototype), _applyDecoratedDescriptor(_class2$c.prototype, "startAxis", [_dec6$3], Object.getOwnPropertyDescriptor(_class2$c.prototype, "startAxis"), _class2$c.prototype), _applyDecoratedDescriptor(_class2$c.prototype, "verticalDirection", [_dec7$2], Object.getOwnPropertyDescriptor(_class2$c.prototype, "verticalDirection"), _class2$c.prototype), _applyDecoratedDescriptor(_class2$c.prototype, "horizontalDirection", [_dec8$1], Object.getOwnPropertyDescriptor(_class2$c.prototype, "horizontalDirection"), _class2$c.prototype), _applyDecoratedDescriptor(_class2$c.prototype, "constraint", [_dec9$1], Object.getOwnPropertyDescriptor(_class2$c.prototype, "constraint"), _class2$c.prototype), _initializer$c = applyDecoratedInitializer(_class2$c.prototype, "_resizeMode", [serializable$4], function () {
         return 0;
-      }), _initializer2$b = applyDecoratedInitializer(_class2$c.prototype, "_layoutType", [serializable$5], function () {
+      }), _initializer2$b = applyDecoratedInitializer(_class2$c.prototype, "_layoutType", [serializable$4], function () {
         return 0;
-      }), _initializer3$9 = applyDecoratedInitializer(_class2$c.prototype, "_cellSize", [serializable$5], function () {
+      }), _initializer3$9 = applyDecoratedInitializer(_class2$c.prototype, "_cellSize", [serializable$4], function () {
         return new Size$1(40, 40);
-      }), _initializer4$8 = applyDecoratedInitializer(_class2$c.prototype, "_startAxis", [serializable$5], function () {
+      }), _initializer4$8 = applyDecoratedInitializer(_class2$c.prototype, "_startAxis", [serializable$4], function () {
         return 0;
-      }), _initializer5$6 = applyDecoratedInitializer(_class2$c.prototype, "_paddingLeft", [serializable$5], function () {
+      }), _initializer5$6 = applyDecoratedInitializer(_class2$c.prototype, "_paddingLeft", [serializable$4], function () {
         return 0;
-      }), _initializer6$3 = applyDecoratedInitializer(_class2$c.prototype, "_paddingRight", [serializable$5], function () {
+      }), _initializer6$3 = applyDecoratedInitializer(_class2$c.prototype, "_paddingRight", [serializable$4], function () {
         return 0;
-      }), _initializer7$3 = applyDecoratedInitializer(_class2$c.prototype, "_paddingTop", [serializable$5], function () {
+      }), _initializer7$3 = applyDecoratedInitializer(_class2$c.prototype, "_paddingTop", [serializable$4], function () {
         return 0;
-      }), _initializer8$3 = applyDecoratedInitializer(_class2$c.prototype, "_paddingBottom", [serializable$5], function () {
+      }), _initializer8$3 = applyDecoratedInitializer(_class2$c.prototype, "_paddingBottom", [serializable$4], function () {
         return 0;
-      }), _initializer9$3 = applyDecoratedInitializer(_class2$c.prototype, "_spacingX", [serializable$5], function () {
+      }), _initializer9$3 = applyDecoratedInitializer(_class2$c.prototype, "_spacingX", [serializable$4], function () {
         return 0;
-      }), _initializer10$3 = applyDecoratedInitializer(_class2$c.prototype, "_spacingY", [serializable$5], function () {
+      }), _initializer10$3 = applyDecoratedInitializer(_class2$c.prototype, "_spacingY", [serializable$4], function () {
         return 0;
-      }), _initializer11$3 = applyDecoratedInitializer(_class2$c.prototype, "_verticalDirection", [serializable$5], function () {
+      }), _initializer11$3 = applyDecoratedInitializer(_class2$c.prototype, "_verticalDirection", [serializable$4], function () {
         return 1;
-      }), _initializer12$2 = applyDecoratedInitializer(_class2$c.prototype, "_horizontalDirection", [serializable$5], function () {
+      }), _initializer12$2 = applyDecoratedInitializer(_class2$c.prototype, "_horizontalDirection", [serializable$4], function () {
         return 0;
-      }), _initializer13$1 = applyDecoratedInitializer(_class2$c.prototype, "_constraint", [serializable$5], function () {
+      }), _initializer13$1 = applyDecoratedInitializer(_class2$c.prototype, "_constraint", [serializable$4], function () {
         return 0;
-      }), _initializer14$1 = applyDecoratedInitializer(_class2$c.prototype, "_constraintNum", [serializable$5], function () {
+      }), _initializer14$1 = applyDecoratedInitializer(_class2$c.prototype, "_constraintNum", [serializable$4], function () {
         return 2;
-      }), _initializer15$1 = applyDecoratedInitializer(_class2$c.prototype, "_affectedByScale", [serializable$5], function () {
+      }), _initializer15$1 = applyDecoratedInitializer(_class2$c.prototype, "_affectedByScale", [serializable$4], function () {
         return false;
-      }), _initializer16$1 = applyDecoratedInitializer(_class2$c.prototype, "_isAlign", [serializable$5], function () {
+      }), _initializer16$1 = applyDecoratedInitializer(_class2$c.prototype, "_isAlign", [serializable$4], function () {
         return false;
       })), _class2$c)) || _class$f) || _class$f) || _class$f); exports({ Layout: Layout, LayoutComponent: Layout });
       legacyCC.Layout = Layout;
@@ -100860,7 +99335,7 @@ System.register([], (function (exports, module) {
         FILLED: 2
       };
       Enum(Mode);
-      var ProgressBar = (_dec$e = ccclass$6('cc.ProgressBar'), _dec2$c = executionOrder$1(110), _dec3$b = requireComponent(UITransform), _dec4$8 = type$3(Sprite), _dec5$8 = type$3(Mode), _dec$e(_class$e = _dec2$c(_class$e = _dec3$b(_class$e = (_class2$b = (_class3$7 = function (_Component) {
+      var ProgressBar = (_dec$e = ccclass$5('cc.ProgressBar'), _dec2$c = executionOrder(110), _dec3$b = requireComponent(UITransform), _dec4$8 = type$2(Sprite), _dec5$8 = type$2(Mode), _dec$e(_class$e = _dec2$c(_class$e = _dec3$b(_class$e = (_class2$b = (_class3$7 = function (_Component) {
         _inheritsLoose(ProgressBar, _Component);
         function ProgressBar() {
           var _this;
@@ -101040,15 +99515,15 @@ System.register([], (function (exports, module) {
           }
         }]);
         return ProgressBar;
-      }(Component), _class3$7.Mode = Mode, _class3$7), (_applyDecoratedDescriptor(_class2$b.prototype, "barSprite", [_dec4$8], Object.getOwnPropertyDescriptor(_class2$b.prototype, "barSprite"), _class2$b.prototype), _applyDecoratedDescriptor(_class2$b.prototype, "mode", [_dec5$8], Object.getOwnPropertyDescriptor(_class2$b.prototype, "mode"), _class2$b.prototype), _initializer$b = applyDecoratedInitializer(_class2$b.prototype, "_barSprite", [serializable$5], function () {
+      }(Component), _class3$7.Mode = Mode, _class3$7), (_applyDecoratedDescriptor(_class2$b.prototype, "barSprite", [_dec4$8], Object.getOwnPropertyDescriptor(_class2$b.prototype, "barSprite"), _class2$b.prototype), _applyDecoratedDescriptor(_class2$b.prototype, "mode", [_dec5$8], Object.getOwnPropertyDescriptor(_class2$b.prototype, "mode"), _class2$b.prototype), _initializer$b = applyDecoratedInitializer(_class2$b.prototype, "_barSprite", [serializable$4], function () {
         return null;
-      }), _initializer2$a = applyDecoratedInitializer(_class2$b.prototype, "_mode", [serializable$5], function () {
+      }), _initializer2$a = applyDecoratedInitializer(_class2$b.prototype, "_mode", [serializable$4], function () {
         return 0;
-      }), _initializer3$8 = applyDecoratedInitializer(_class2$b.prototype, "_totalLength", [serializable$5], function () {
+      }), _initializer3$8 = applyDecoratedInitializer(_class2$b.prototype, "_totalLength", [serializable$4], function () {
         return 1;
-      }), _initializer4$7 = applyDecoratedInitializer(_class2$b.prototype, "_progress", [serializable$5], function () {
+      }), _initializer4$7 = applyDecoratedInitializer(_class2$b.prototype, "_progress", [serializable$4], function () {
         return 0.1;
-      }), _initializer5$5 = applyDecoratedInitializer(_class2$b.prototype, "_reverse", [serializable$5], function () {
+      }), _initializer5$5 = applyDecoratedInitializer(_class2$b.prototype, "_reverse", [serializable$4], function () {
         return false;
       })), _class2$b)) || _class$e) || _class$e) || _class$e); exports({ ProgressBar: ProgressBar, ProgressBarComponent: ProgressBar });
       legacyCC.ProgressBar = ProgressBar;
@@ -101066,7 +99541,7 @@ System.register([], (function (exports, module) {
         VERTICAL: 1
       };
       ccenum(ScrollBarDirection);
-      var ScrollBar = (_dec$d = ccclass$6('cc.ScrollBar'), _dec2$b = executionOrder$1(110), _dec3$a = requireComponent(UITransform), _dec4$7 = type$3(Sprite), _dec5$7 = type$3(ScrollBarDirection), _dec$d(_class$d = _dec2$b(_class$d = _dec3$a(_class$d = (_class2$a = (_class3$6 = function (_Component) {
+      var ScrollBar = (_dec$d = ccclass$5('cc.ScrollBar'), _dec2$b = executionOrder(110), _dec3$a = requireComponent(UITransform), _dec4$7 = type$2(Sprite), _dec5$7 = type$2(ScrollBarDirection), _dec$d(_class$d = _dec2$b(_class$d = _dec3$a(_class$d = (_class2$a = (_class3$6 = function (_Component) {
         _inheritsLoose(ScrollBar, _Component);
         function ScrollBar() {
           var _this;
@@ -101349,21 +99824,21 @@ System.register([], (function (exports, module) {
           }
         }]);
         return ScrollBar;
-      }(Component), _class3$6.Direction = ScrollBarDirection, _class3$6), (_applyDecoratedDescriptor(_class2$a.prototype, "handle", [_dec4$7], Object.getOwnPropertyDescriptor(_class2$a.prototype, "handle"), _class2$a.prototype), _applyDecoratedDescriptor(_class2$a.prototype, "direction", [_dec5$7], Object.getOwnPropertyDescriptor(_class2$a.prototype, "direction"), _class2$a.prototype), _initializer$a = applyDecoratedInitializer(_class2$a.prototype, "_scrollView", [serializable$5], function () {
+      }(Component), _class3$6.Direction = ScrollBarDirection, _class3$6), (_applyDecoratedDescriptor(_class2$a.prototype, "handle", [_dec4$7], Object.getOwnPropertyDescriptor(_class2$a.prototype, "handle"), _class2$a.prototype), _applyDecoratedDescriptor(_class2$a.prototype, "direction", [_dec5$7], Object.getOwnPropertyDescriptor(_class2$a.prototype, "direction"), _class2$a.prototype), _initializer$a = applyDecoratedInitializer(_class2$a.prototype, "_scrollView", [serializable$4], function () {
         return null;
-      }), _initializer2$9 = applyDecoratedInitializer(_class2$a.prototype, "_handle", [serializable$5], function () {
+      }), _initializer2$9 = applyDecoratedInitializer(_class2$a.prototype, "_handle", [serializable$4], function () {
         return null;
-      }), _initializer3$7 = applyDecoratedInitializer(_class2$a.prototype, "_direction", [serializable$5], function () {
+      }), _initializer3$7 = applyDecoratedInitializer(_class2$a.prototype, "_direction", [serializable$4], function () {
         return 0;
-      }), _initializer4$6 = applyDecoratedInitializer(_class2$a.prototype, "_enableAutoHide", [serializable$5], function () {
+      }), _initializer4$6 = applyDecoratedInitializer(_class2$a.prototype, "_enableAutoHide", [serializable$4], function () {
         return false;
-      }), _initializer5$4 = applyDecoratedInitializer(_class2$a.prototype, "_autoHideTime", [serializable$5], function () {
+      }), _initializer5$4 = applyDecoratedInitializer(_class2$a.prototype, "_autoHideTime", [serializable$4], function () {
         return 1.0;
       })), _class2$a)) || _class$d) || _class$d) || _class$d); exports({ ScrollBar: ScrollBar, ScrollBarComponent: ScrollBar });
       legacyCC.ScrollBar = ScrollBar;
 
       var _dec$c, _dec2$a, _class$c;
-      var ViewGroup = exports("ViewGroup", (_dec$c = ccclass$6('cc.ViewGroup'), _dec2$a = executionOrder$1(110), _dec$c(_class$c = _dec2$a(_class$c = function (_Component) {
+      var ViewGroup = exports("ViewGroup", (_dec$c = ccclass$5('cc.ViewGroup'), _dec2$a = executionOrder(110), _dec$c(_class$c = _dec2$a(_class$c = function (_Component) {
         _inheritsLoose(ViewGroup, _Component);
         function ViewGroup() {
           return _Component.apply(this, arguments) || this;
@@ -101431,7 +99906,7 @@ System.register([], (function (exports, module) {
         SCROLL_ENG_WITH_THRESHOLD: "scroll-ended-with-threshold",
         TOUCH_UP: "touch-up"
       };
-      var ScrollView = (_dec$b = ccclass$6('cc.ScrollView'), _dec2$9 = executionOrder$1(110), _dec3$9 = requireComponent(UITransform), _dec4$6 = type$3(Node$1), _dec5$6 = type$3(ScrollBar), _dec6$2 = type$3(ScrollBar), _dec7$1 = type$3([EventHandler]), _dec$b(_class$b = _dec2$9(_class$b = _dec3$9(_class$b = (_class2$9 = (_class3$5 = function (_ViewGroup) {
+      var ScrollView = (_dec$b = ccclass$5('cc.ScrollView'), _dec2$9 = executionOrder(110), _dec3$9 = requireComponent(UITransform), _dec4$6 = type$2(Node$1), _dec5$6 = type$2(ScrollBar), _dec6$2 = type$2(ScrollBar), _dec7$1 = type$2([EventHandler]), _dec$b(_class$b = _dec2$9(_class$b = _dec3$9(_class$b = (_class2$9 = (_class3$5 = function (_ViewGroup) {
         _inheritsLoose(ScrollView, _ViewGroup);
         function ScrollView() {
           var _this;
@@ -102511,27 +100986,27 @@ System.register([], (function (exports, module) {
           }
         }]);
         return ScrollView;
-      }(ViewGroup), _class3$5.EventType = ScrollViewEventType, _class3$5), (_initializer$9 = applyDecoratedInitializer(_class2$9.prototype, "bounceDuration", [serializable$5], function () {
+      }(ViewGroup), _class3$5.EventType = ScrollViewEventType, _class3$5), (_initializer$9 = applyDecoratedInitializer(_class2$9.prototype, "bounceDuration", [serializable$4], function () {
         return 1;
-      }), _initializer2$8 = applyDecoratedInitializer(_class2$9.prototype, "brake", [serializable$5], function () {
+      }), _initializer2$8 = applyDecoratedInitializer(_class2$9.prototype, "brake", [serializable$4], function () {
         return 0.5;
-      }), _initializer3$6 = applyDecoratedInitializer(_class2$9.prototype, "elastic", [serializable$5], function () {
+      }), _initializer3$6 = applyDecoratedInitializer(_class2$9.prototype, "elastic", [serializable$4], function () {
         return true;
-      }), _initializer4$5 = applyDecoratedInitializer(_class2$9.prototype, "inertia", [serializable$5], function () {
+      }), _initializer4$5 = applyDecoratedInitializer(_class2$9.prototype, "inertia", [serializable$4], function () {
         return true;
-      }), _applyDecoratedDescriptor(_class2$9.prototype, "content", [_dec4$6], Object.getOwnPropertyDescriptor(_class2$9.prototype, "content"), _class2$9.prototype), _initializer5$3 = applyDecoratedInitializer(_class2$9.prototype, "horizontal", [serializable$5], function () {
+      }), _applyDecoratedDescriptor(_class2$9.prototype, "content", [_dec4$6], Object.getOwnPropertyDescriptor(_class2$9.prototype, "content"), _class2$9.prototype), _initializer5$3 = applyDecoratedInitializer(_class2$9.prototype, "horizontal", [serializable$4], function () {
         return true;
-      }), _applyDecoratedDescriptor(_class2$9.prototype, "horizontalScrollBar", [_dec5$6], Object.getOwnPropertyDescriptor(_class2$9.prototype, "horizontalScrollBar"), _class2$9.prototype), _initializer6$2 = applyDecoratedInitializer(_class2$9.prototype, "vertical", [serializable$5], function () {
+      }), _applyDecoratedDescriptor(_class2$9.prototype, "horizontalScrollBar", [_dec5$6], Object.getOwnPropertyDescriptor(_class2$9.prototype, "horizontalScrollBar"), _class2$9.prototype), _initializer6$2 = applyDecoratedInitializer(_class2$9.prototype, "vertical", [serializable$4], function () {
         return true;
-      }), _applyDecoratedDescriptor(_class2$9.prototype, "verticalScrollBar", [_dec6$2], Object.getOwnPropertyDescriptor(_class2$9.prototype, "verticalScrollBar"), _class2$9.prototype), _initializer7$2 = applyDecoratedInitializer(_class2$9.prototype, "cancelInnerEvents", [serializable$5], function () {
+      }), _applyDecoratedDescriptor(_class2$9.prototype, "verticalScrollBar", [_dec6$2], Object.getOwnPropertyDescriptor(_class2$9.prototype, "verticalScrollBar"), _class2$9.prototype), _initializer7$2 = applyDecoratedInitializer(_class2$9.prototype, "cancelInnerEvents", [serializable$4], function () {
         return true;
-      }), _initializer8$2 = applyDecoratedInitializer(_class2$9.prototype, "scrollEvents", [_dec7$1, serializable$5], function () {
+      }), _initializer8$2 = applyDecoratedInitializer(_class2$9.prototype, "scrollEvents", [_dec7$1, serializable$4], function () {
         return [];
-      }), _initializer9$2 = applyDecoratedInitializer(_class2$9.prototype, "_content", [serializable$5], function () {
+      }), _initializer9$2 = applyDecoratedInitializer(_class2$9.prototype, "_content", [serializable$4], function () {
         return null;
-      }), _initializer10$2 = applyDecoratedInitializer(_class2$9.prototype, "_horizontalScrollBar", [serializable$5], function () {
+      }), _initializer10$2 = applyDecoratedInitializer(_class2$9.prototype, "_horizontalScrollBar", [serializable$4], function () {
         return null;
-      }), _initializer11$2 = applyDecoratedInitializer(_class2$9.prototype, "_verticalScrollBar", [serializable$5], function () {
+      }), _initializer11$2 = applyDecoratedInitializer(_class2$9.prototype, "_verticalScrollBar", [serializable$4], function () {
         return null;
       })), _class2$9)) || _class$b) || _class$b) || _class$b); exports({ ScrollView: ScrollView, ScrollViewComponent: ScrollView });
       legacyCC.ScrollView = ScrollView;
@@ -102543,7 +101018,7 @@ System.register([], (function (exports, module) {
         Vertical: 1
       };
       ccenum(Direction$1);
-      var Slider = (_dec$a = ccclass$6('cc.Slider'), _dec2$8 = executionOrder$1(110), _dec3$8 = requireComponent(UITransform), _dec4$5 = type$3(Sprite), _dec5$5 = type$3(Direction$1), _dec6$1 = type$3([EventHandler]), _dec$a(_class$a = _dec2$8(_class$a = _dec3$8(_class$a = (_class2$8 = (_class3$4 = function (_Component) {
+      var Slider = (_dec$a = ccclass$5('cc.Slider'), _dec2$8 = executionOrder(110), _dec3$8 = requireComponent(UITransform), _dec4$5 = type$2(Sprite), _dec5$5 = type$2(Direction$1), _dec6$1 = type$2([EventHandler]), _dec$a(_class$a = _dec2$8(_class$a = _dec3$8(_class$a = (_class2$8 = (_class3$4 = function (_Component) {
         _inheritsLoose(Slider, _Component);
         function Slider() {
           var _this;
@@ -102734,13 +101209,13 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Slider;
-      }(Component), _class3$4.Direction = Direction$1, _class3$4), (_applyDecoratedDescriptor(_class2$8.prototype, "handle", [_dec4$5], Object.getOwnPropertyDescriptor(_class2$8.prototype, "handle"), _class2$8.prototype), _applyDecoratedDescriptor(_class2$8.prototype, "direction", [_dec5$5], Object.getOwnPropertyDescriptor(_class2$8.prototype, "direction"), _class2$8.prototype), _initializer$8 = applyDecoratedInitializer(_class2$8.prototype, "slideEvents", [_dec6$1, serializable$5], function () {
+      }(Component), _class3$4.Direction = Direction$1, _class3$4), (_applyDecoratedDescriptor(_class2$8.prototype, "handle", [_dec4$5], Object.getOwnPropertyDescriptor(_class2$8.prototype, "handle"), _class2$8.prototype), _applyDecoratedDescriptor(_class2$8.prototype, "direction", [_dec5$5], Object.getOwnPropertyDescriptor(_class2$8.prototype, "direction"), _class2$8.prototype), _initializer$8 = applyDecoratedInitializer(_class2$8.prototype, "slideEvents", [_dec6$1, serializable$4], function () {
         return [];
-      }), _initializer2$7 = applyDecoratedInitializer(_class2$8.prototype, "_handle", [serializable$5], function () {
+      }), _initializer2$7 = applyDecoratedInitializer(_class2$8.prototype, "_handle", [serializable$4], function () {
         return null;
-      }), _initializer3$5 = applyDecoratedInitializer(_class2$8.prototype, "_direction", [serializable$5], function () {
+      }), _initializer3$5 = applyDecoratedInitializer(_class2$8.prototype, "_direction", [serializable$4], function () {
         return 0;
-      }), _initializer4$4 = applyDecoratedInitializer(_class2$8.prototype, "_progress", [serializable$5], function () {
+      }), _initializer4$4 = applyDecoratedInitializer(_class2$8.prototype, "_progress", [serializable$4], function () {
         return 0.1;
       })), _class2$8)) || _class$a) || _class$a) || _class$a); exports({ Slider: Slider, SliderComponent: Slider });
       legacyCC.Slider = Slider;
@@ -102756,7 +101231,7 @@ System.register([], (function (exports, module) {
       var ToggleEventType = {
         TOGGLE: "toggle"
       };
-      var Toggle = (_dec$9 = ccclass$6('cc.Toggle'), _dec2$7 = executionOrder$1(110), _dec3$7 = requireComponent(UITransform), _dec4$4 = type$3(Sprite), _dec5$4 = type$3([EventHandler]), _dec$9(_class$9 = _dec2$7(_class$9 = _dec3$7(_class$9 = (_class2$7 = (_class3$3 = function (_Button) {
+      var Toggle = (_dec$9 = ccclass$5('cc.Toggle'), _dec2$7 = executionOrder(110), _dec3$7 = requireComponent(UITransform), _dec4$4 = type$2(Sprite), _dec5$4 = type$2([EventHandler]), _dec$9(_class$9 = _dec2$7(_class$9 = _dec3$7(_class$9 = (_class2$7 = (_class3$3 = function (_Button) {
         _inheritsLoose(Toggle, _Button);
         function Toggle() {
           var _this;
@@ -102852,17 +101327,17 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Toggle;
-      }(Button), _class3$3.EventType = extendsEnum(ToggleEventType, ButtonEventType), _class3$3), (_applyDecoratedDescriptor(_class2$7.prototype, "checkMark", [_dec4$4], Object.getOwnPropertyDescriptor(_class2$7.prototype, "checkMark"), _class2$7.prototype), _initializer$7 = applyDecoratedInitializer(_class2$7.prototype, "checkEvents", [_dec5$4, serializable$5], function () {
+      }(Button), _class3$3.EventType = extendsEnum(ToggleEventType, ButtonEventType), _class3$3), (_applyDecoratedDescriptor(_class2$7.prototype, "checkMark", [_dec4$4], Object.getOwnPropertyDescriptor(_class2$7.prototype, "checkMark"), _class2$7.prototype), _initializer$7 = applyDecoratedInitializer(_class2$7.prototype, "checkEvents", [_dec5$4, serializable$4], function () {
         return [];
-      }), _initializer2$6 = applyDecoratedInitializer(_class2$7.prototype, "_isChecked", [serializable$5], function () {
+      }), _initializer2$6 = applyDecoratedInitializer(_class2$7.prototype, "_isChecked", [serializable$4], function () {
         return true;
-      }), _initializer3$4 = applyDecoratedInitializer(_class2$7.prototype, "_checkMark", [serializable$5], function () {
+      }), _initializer3$4 = applyDecoratedInitializer(_class2$7.prototype, "_checkMark", [serializable$4], function () {
         return null;
       })), _class2$7)) || _class$9) || _class$9) || _class$9); exports({ Toggle: Toggle, ToggleComponent: Toggle });
       legacyCC.Toggle = Toggle;
 
       var _dec$8, _dec2$6, _dec3$6, _class$8, _class2$6, _initializer$6, _initializer2$5;
-      var ToggleContainer = (_dec$8 = ccclass$6('cc.ToggleContainer'), _dec2$6 = executionOrder$1(110), _dec3$6 = type$3([EventHandler]), _dec$8(_class$8 = _dec2$6(_class$8 = (_class2$6 = function (_Component) {
+      var ToggleContainer = (_dec$8 = ccclass$5('cc.ToggleContainer'), _dec2$6 = executionOrder(110), _dec3$6 = type$2([EventHandler]), _dec$8(_class$8 = _dec2$6(_class$8 = (_class2$6 = function (_Component) {
         _inheritsLoose(ToggleContainer, _Component);
         function ToggleContainer() {
           var _this;
@@ -102953,9 +101428,9 @@ System.register([], (function (exports, module) {
           }
         }]);
         return ToggleContainer;
-      }(Component), (_initializer$6 = applyDecoratedInitializer(_class2$6.prototype, "_allowSwitchOff", [serializable$5], function () {
+      }(Component), (_initializer$6 = applyDecoratedInitializer(_class2$6.prototype, "_allowSwitchOff", [serializable$4], function () {
         return false;
-      }), _initializer2$5 = applyDecoratedInitializer(_class2$6.prototype, "checkEvents", [_dec3$6, serializable$5], function () {
+      }), _initializer2$5 = applyDecoratedInitializer(_class2$6.prototype, "checkEvents", [_dec3$6, serializable$4], function () {
         return [];
       })), _class2$6)) || _class$8) || _class$8); exports({ ToggleContainer: ToggleContainer, ToggleContainerComponent: ToggleContainer });
       legacyCC.ToggleContainer = ToggleContainer;
@@ -103031,7 +101506,7 @@ System.register([], (function (exports, module) {
       };
       var TOP_BOT = 1 | 4;
       var LEFT_RIGHT = 8 | 32;
-      var Widget = (_dec$7 = ccclass$6('cc.Widget'), _dec2$5 = executionOrder$1(110), _dec3$5 = requireComponent(UITransform), _dec4$3 = type$3(Node$1), _dec5$3 = type$3(AlignMode), _dec$7(_class$7 = _dec2$5(_class$7 = _dec3$5(_class$7 = (_class2$5 = (_class3$2 = function (_Component) {
+      var Widget = (_dec$7 = ccclass$5('cc.Widget'), _dec2$5 = executionOrder(110), _dec3$5 = requireComponent(UITransform), _dec4$3 = type$2(Node$1), _dec5$3 = type$2(AlignMode), _dec$7(_class$7 = _dec2$5(_class$7 = _dec3$5(_class$7 = (_class2$5 = (_class3$2 = function (_Component) {
         _inheritsLoose(Widget, _Component);
         function Widget() {
           var _this;
@@ -103505,41 +101980,41 @@ System.register([], (function (exports, module) {
           }
         }]);
         return Widget;
-      }(Component), _class3$2.AlignMode = AlignMode, _class3$2), (_applyDecoratedDescriptor(_class2$5.prototype, "target", [_dec4$3], Object.getOwnPropertyDescriptor(_class2$5.prototype, "target"), _class2$5.prototype), _applyDecoratedDescriptor(_class2$5.prototype, "alignMode", [_dec5$3], Object.getOwnPropertyDescriptor(_class2$5.prototype, "alignMode"), _class2$5.prototype), _initializer$5 = applyDecoratedInitializer(_class2$5.prototype, "_alignFlags", [serializable$5], function () {
+      }(Component), _class3$2.AlignMode = AlignMode, _class3$2), (_applyDecoratedDescriptor(_class2$5.prototype, "target", [_dec4$3], Object.getOwnPropertyDescriptor(_class2$5.prototype, "target"), _class2$5.prototype), _applyDecoratedDescriptor(_class2$5.prototype, "alignMode", [_dec5$3], Object.getOwnPropertyDescriptor(_class2$5.prototype, "alignMode"), _class2$5.prototype), _initializer$5 = applyDecoratedInitializer(_class2$5.prototype, "_alignFlags", [serializable$4], function () {
         return 0;
-      }), _initializer2$4 = applyDecoratedInitializer(_class2$5.prototype, "_target", [serializable$5], function () {
+      }), _initializer2$4 = applyDecoratedInitializer(_class2$5.prototype, "_target", [serializable$4], function () {
         return null;
-      }), _initializer3$3 = applyDecoratedInitializer(_class2$5.prototype, "_left", [serializable$5], function () {
+      }), _initializer3$3 = applyDecoratedInitializer(_class2$5.prototype, "_left", [serializable$4], function () {
         return 0;
-      }), _initializer4$3 = applyDecoratedInitializer(_class2$5.prototype, "_right", [serializable$5], function () {
+      }), _initializer4$3 = applyDecoratedInitializer(_class2$5.prototype, "_right", [serializable$4], function () {
         return 0;
-      }), _initializer5$2 = applyDecoratedInitializer(_class2$5.prototype, "_top", [serializable$5], function () {
+      }), _initializer5$2 = applyDecoratedInitializer(_class2$5.prototype, "_top", [serializable$4], function () {
         return 0;
-      }), _initializer6$1 = applyDecoratedInitializer(_class2$5.prototype, "_bottom", [serializable$5], function () {
+      }), _initializer6$1 = applyDecoratedInitializer(_class2$5.prototype, "_bottom", [serializable$4], function () {
         return 0;
-      }), _initializer7$1 = applyDecoratedInitializer(_class2$5.prototype, "_horizontalCenter", [serializable$5], function () {
+      }), _initializer7$1 = applyDecoratedInitializer(_class2$5.prototype, "_horizontalCenter", [serializable$4], function () {
         return 0;
-      }), _initializer8$1 = applyDecoratedInitializer(_class2$5.prototype, "_verticalCenter", [serializable$5], function () {
+      }), _initializer8$1 = applyDecoratedInitializer(_class2$5.prototype, "_verticalCenter", [serializable$4], function () {
         return 0;
-      }), _initializer9$1 = applyDecoratedInitializer(_class2$5.prototype, "_isAbsLeft", [serializable$5], function () {
+      }), _initializer9$1 = applyDecoratedInitializer(_class2$5.prototype, "_isAbsLeft", [serializable$4], function () {
         return true;
-      }), _initializer10$1 = applyDecoratedInitializer(_class2$5.prototype, "_isAbsRight", [serializable$5], function () {
+      }), _initializer10$1 = applyDecoratedInitializer(_class2$5.prototype, "_isAbsRight", [serializable$4], function () {
         return true;
-      }), _initializer11$1 = applyDecoratedInitializer(_class2$5.prototype, "_isAbsTop", [serializable$5], function () {
+      }), _initializer11$1 = applyDecoratedInitializer(_class2$5.prototype, "_isAbsTop", [serializable$4], function () {
         return true;
-      }), _initializer12$1 = applyDecoratedInitializer(_class2$5.prototype, "_isAbsBottom", [serializable$5], function () {
+      }), _initializer12$1 = applyDecoratedInitializer(_class2$5.prototype, "_isAbsBottom", [serializable$4], function () {
         return true;
-      }), _initializer13 = applyDecoratedInitializer(_class2$5.prototype, "_isAbsHorizontalCenter", [serializable$5], function () {
+      }), _initializer13 = applyDecoratedInitializer(_class2$5.prototype, "_isAbsHorizontalCenter", [serializable$4], function () {
         return true;
-      }), _initializer14 = applyDecoratedInitializer(_class2$5.prototype, "_isAbsVerticalCenter", [serializable$5], function () {
+      }), _initializer14 = applyDecoratedInitializer(_class2$5.prototype, "_isAbsVerticalCenter", [serializable$4], function () {
         return true;
-      }), _initializer15 = applyDecoratedInitializer(_class2$5.prototype, "_originalWidth", [serializable$5], function () {
+      }), _initializer15 = applyDecoratedInitializer(_class2$5.prototype, "_originalWidth", [serializable$4], function () {
         return 0;
-      }), _initializer16 = applyDecoratedInitializer(_class2$5.prototype, "_originalHeight", [serializable$5], function () {
+      }), _initializer16 = applyDecoratedInitializer(_class2$5.prototype, "_originalHeight", [serializable$4], function () {
         return 0;
-      }), _initializer17 = applyDecoratedInitializer(_class2$5.prototype, "_alignMode", [serializable$5], function () {
+      }), _initializer17 = applyDecoratedInitializer(_class2$5.prototype, "_alignMode", [serializable$4], function () {
         return 2;
-      }), _initializer18 = applyDecoratedInitializer(_class2$5.prototype, "_lockFlags", [serializable$5, editorOnly], function () {
+      }), _initializer18 = applyDecoratedInitializer(_class2$5.prototype, "_lockFlags", [serializable$4, editorOnly], function () {
         return 0;
       })), _class2$5)) || _class$7) || _class$7) || _class$7); exports({ Widget: Widget, WidgetComponent: Widget });
       cclegacy.internal.computeInverseTransForTarget = computeInverseTransForTarget;
@@ -103553,7 +102028,7 @@ System.register([], (function (exports, module) {
         VERTICAL: 1
       };
       ccenum(Direction);
-      var PageViewIndicator = (_dec$6 = ccclass$6('cc.PageViewIndicator'), _dec2$4 = executionOrder$1(110), _dec3$4 = type$3(SpriteFrame), _dec4$2 = type$3(Direction), _dec5$2 = type$3(Size$1), _dec$6(_class$6 = _dec2$4(_class$6 = (_class2$4 = (_class3$1 = function (_Component) {
+      var PageViewIndicator = (_dec$6 = ccclass$5('cc.PageViewIndicator'), _dec2$4 = executionOrder(110), _dec3$4 = type$2(SpriteFrame), _dec4$2 = type$2(Direction), _dec5$2 = type$2(Size$1), _dec$6(_class$6 = _dec2$4(_class$6 = (_class2$4 = (_class3$1 = function (_Component) {
         _inheritsLoose(PageViewIndicator, _Component);
         function PageViewIndicator() {
           var _this;
@@ -103690,13 +102165,13 @@ System.register([], (function (exports, module) {
           }
         }]);
         return PageViewIndicator;
-      }(Component), _class3$1.Direction = Direction, _class3$1), (_applyDecoratedDescriptor(_class2$4.prototype, "spriteFrame", [_dec3$4], Object.getOwnPropertyDescriptor(_class2$4.prototype, "spriteFrame"), _class2$4.prototype), _applyDecoratedDescriptor(_class2$4.prototype, "direction", [_dec4$2], Object.getOwnPropertyDescriptor(_class2$4.prototype, "direction"), _class2$4.prototype), _applyDecoratedDescriptor(_class2$4.prototype, "cellSize", [_dec5$2], Object.getOwnPropertyDescriptor(_class2$4.prototype, "cellSize"), _class2$4.prototype), _initializer$4 = applyDecoratedInitializer(_class2$4.prototype, "spacing", [serializable$5], function () {
+      }(Component), _class3$1.Direction = Direction, _class3$1), (_applyDecoratedDescriptor(_class2$4.prototype, "spriteFrame", [_dec3$4], Object.getOwnPropertyDescriptor(_class2$4.prototype, "spriteFrame"), _class2$4.prototype), _applyDecoratedDescriptor(_class2$4.prototype, "direction", [_dec4$2], Object.getOwnPropertyDescriptor(_class2$4.prototype, "direction"), _class2$4.prototype), _applyDecoratedDescriptor(_class2$4.prototype, "cellSize", [_dec5$2], Object.getOwnPropertyDescriptor(_class2$4.prototype, "cellSize"), _class2$4.prototype), _initializer$4 = applyDecoratedInitializer(_class2$4.prototype, "spacing", [serializable$4], function () {
         return 0;
-      }), _initializer2$3 = applyDecoratedInitializer(_class2$4.prototype, "_spriteFrame", [serializable$5], function () {
+      }), _initializer2$3 = applyDecoratedInitializer(_class2$4.prototype, "_spriteFrame", [serializable$4], function () {
         return null;
-      }), _initializer3$2 = applyDecoratedInitializer(_class2$4.prototype, "_direction", [serializable$5], function () {
+      }), _initializer3$2 = applyDecoratedInitializer(_class2$4.prototype, "_direction", [serializable$4], function () {
         return 0;
-      }), _initializer4$2 = applyDecoratedInitializer(_class2$4.prototype, "_cellSize", [serializable$5], function () {
+      }), _initializer4$2 = applyDecoratedInitializer(_class2$4.prototype, "_cellSize", [serializable$4], function () {
         return new Size$1(20, 20);
       })), _class2$4)) || _class$6) || _class$6); exports({ PageViewIndicator: PageViewIndicator, PageViewIndicatorComponent: PageViewIndicator });
       legacyCC.PageViewIndicator = PageViewIndicator;
@@ -103716,7 +102191,7 @@ System.register([], (function (exports, module) {
       var PageViewEventType = {
         PAGE_TURNING: "page-turning"
       };
-      var PageView = (_dec$5 = ccclass$6('cc.PageView'), _dec2$3 = executionOrder$1(110), _dec3$3 = type$3(SizeMode), _dec4$1 = type$3(PageViewDirection), _dec5$1 = type$3(PageViewIndicator), _dec6 = type$3(ScrollBar), _dec7 = type$3(ScrollBar), _dec8 = type$3([EventHandler]), _dec9 = type$3([EventHandler]), _dec$5(_class$5 = _dec2$3(_class$5 = (_class2$3 = (_class3 = function (_ScrollView) {
+      var PageView = (_dec$5 = ccclass$5('cc.PageView'), _dec2$3 = executionOrder(110), _dec3$3 = type$2(SizeMode), _dec4$1 = type$2(PageViewDirection), _dec5$1 = type$2(PageViewIndicator), _dec6 = type$2(ScrollBar), _dec7 = type$2(ScrollBar), _dec8 = type$2([EventHandler]), _dec9 = type$2([EventHandler]), _dec$5(_class$5 = _dec2$3(_class$5 = (_class2$3 = (_class3 = function (_ScrollView) {
         _inheritsLoose(PageView, _ScrollView);
         function PageView() {
           var _this;
@@ -104162,29 +102637,29 @@ System.register([], (function (exports, module) {
           }
         }]);
         return PageView;
-      }(ScrollView), _class3.SizeMode = SizeMode, _class3.Direction = PageViewDirection, _class3.EventType = extendsEnum(PageViewEventType, ScrollViewEventType), _class3), (_applyDecoratedDescriptor(_class2$3.prototype, "sizeMode", [_dec3$3], Object.getOwnPropertyDescriptor(_class2$3.prototype, "sizeMode"), _class2$3.prototype), _applyDecoratedDescriptor(_class2$3.prototype, "direction", [_dec4$1], Object.getOwnPropertyDescriptor(_class2$3.prototype, "direction"), _class2$3.prototype), _applyDecoratedDescriptor(_class2$3.prototype, "indicator", [_dec5$1], Object.getOwnPropertyDescriptor(_class2$3.prototype, "indicator"), _class2$3.prototype), _initializer$3 = applyDecoratedInitializer(_class2$3.prototype, "autoPageTurningThreshold", [serializable$5], function () {
+      }(ScrollView), _class3.SizeMode = SizeMode, _class3.Direction = PageViewDirection, _class3.EventType = extendsEnum(PageViewEventType, ScrollViewEventType), _class3), (_applyDecoratedDescriptor(_class2$3.prototype, "sizeMode", [_dec3$3], Object.getOwnPropertyDescriptor(_class2$3.prototype, "sizeMode"), _class2$3.prototype), _applyDecoratedDescriptor(_class2$3.prototype, "direction", [_dec4$1], Object.getOwnPropertyDescriptor(_class2$3.prototype, "direction"), _class2$3.prototype), _applyDecoratedDescriptor(_class2$3.prototype, "indicator", [_dec5$1], Object.getOwnPropertyDescriptor(_class2$3.prototype, "indicator"), _class2$3.prototype), _initializer$3 = applyDecoratedInitializer(_class2$3.prototype, "autoPageTurningThreshold", [serializable$4], function () {
         return 100;
-      }), _applyDecoratedDescriptor(_class2$3.prototype, "verticalScrollBar", [_dec6, override], Object.getOwnPropertyDescriptor(_class2$3.prototype, "verticalScrollBar"), _class2$3.prototype), _applyDecoratedDescriptor(_class2$3.prototype, "horizontalScrollBar", [_dec7, override], Object.getOwnPropertyDescriptor(_class2$3.prototype, "horizontalScrollBar"), _class2$3.prototype), _initializer2$2 = applyDecoratedInitializer(_class2$3.prototype, "horizontal", [override, serializable$5], function () {
+      }), _applyDecoratedDescriptor(_class2$3.prototype, "verticalScrollBar", [_dec6, override], Object.getOwnPropertyDescriptor(_class2$3.prototype, "verticalScrollBar"), _class2$3.prototype), _applyDecoratedDescriptor(_class2$3.prototype, "horizontalScrollBar", [_dec7, override], Object.getOwnPropertyDescriptor(_class2$3.prototype, "horizontalScrollBar"), _class2$3.prototype), _initializer2$2 = applyDecoratedInitializer(_class2$3.prototype, "horizontal", [override, serializable$4], function () {
         return true;
-      }), _initializer3$1 = applyDecoratedInitializer(_class2$3.prototype, "vertical", [override, serializable$5], function () {
+      }), _initializer3$1 = applyDecoratedInitializer(_class2$3.prototype, "vertical", [override, serializable$4], function () {
         return true;
-      }), _initializer4$1 = applyDecoratedInitializer(_class2$3.prototype, "cancelInnerEvents", [override, serializable$5], function () {
+      }), _initializer4$1 = applyDecoratedInitializer(_class2$3.prototype, "cancelInnerEvents", [override, serializable$4], function () {
         return true;
-      }), _initializer5$1 = applyDecoratedInitializer(_class2$3.prototype, "scrollEvents", [_dec8, serializable$5, override], function () {
+      }), _initializer5$1 = applyDecoratedInitializer(_class2$3.prototype, "scrollEvents", [_dec8, serializable$4, override], function () {
         return [];
-      }), _initializer6 = applyDecoratedInitializer(_class2$3.prototype, "pageTurningSpeed", [serializable$5], function () {
+      }), _initializer6 = applyDecoratedInitializer(_class2$3.prototype, "pageTurningSpeed", [serializable$4], function () {
         return 0.3;
-      }), _initializer7 = applyDecoratedInitializer(_class2$3.prototype, "pageEvents", [_dec9, serializable$5], function () {
+      }), _initializer7 = applyDecoratedInitializer(_class2$3.prototype, "pageEvents", [_dec9, serializable$4], function () {
         return [];
-      }), _initializer8 = applyDecoratedInitializer(_class2$3.prototype, "_sizeMode", [serializable$5], function () {
+      }), _initializer8 = applyDecoratedInitializer(_class2$3.prototype, "_sizeMode", [serializable$4], function () {
         return 0;
-      }), _initializer9 = applyDecoratedInitializer(_class2$3.prototype, "_direction", [serializable$5], function () {
+      }), _initializer9 = applyDecoratedInitializer(_class2$3.prototype, "_direction", [serializable$4], function () {
         return 0;
-      }), _initializer10 = applyDecoratedInitializer(_class2$3.prototype, "_scrollThreshold", [serializable$5], function () {
+      }), _initializer10 = applyDecoratedInitializer(_class2$3.prototype, "_scrollThreshold", [serializable$4], function () {
         return 0.5;
-      }), _initializer11 = applyDecoratedInitializer(_class2$3.prototype, "_pageTurningEventTiming", [serializable$5], function () {
+      }), _initializer11 = applyDecoratedInitializer(_class2$3.prototype, "_pageTurningEventTiming", [serializable$4], function () {
         return 0.1;
-      }), _initializer12 = applyDecoratedInitializer(_class2$3.prototype, "_indicator", [serializable$5], function () {
+      }), _initializer12 = applyDecoratedInitializer(_class2$3.prototype, "_indicator", [serializable$4], function () {
         return null;
       })), _class2$3)) || _class$5) || _class$5); exports({ PageView: PageView, PageViewComponent: PageView });
       legacyCC.PageView = PageView;
@@ -104501,7 +102976,7 @@ System.register([], (function (exports, module) {
       });
 
       var _dec$4, _dec2$2, _dec3$2, _class$4, _class2$2, _initializer$2;
-      var SafeArea = (_dec$4 = ccclass$6('cc.SafeArea'), _dec2$2 = executionOrder$1(110), _dec3$2 = requireComponent(Widget), _dec$4(_class$4 = _dec2$2(_class$4 = _dec3$2(_class$4 = (_class2$2 = function (_Component) {
+      var SafeArea = (_dec$4 = ccclass$5('cc.SafeArea'), _dec2$2 = executionOrder(110), _dec3$2 = requireComponent(Widget), _dec$4(_class$4 = _dec2$2(_class$4 = _dec3$2(_class$4 = (_class2$2 = function (_Component) {
         _inheritsLoose(SafeArea, _Component);
         function SafeArea() {
           var _this;
@@ -104554,13 +103029,13 @@ System.register([], (function (exports, module) {
           }
         }]);
         return SafeArea;
-      }(Component), (_initializer$2 = applyDecoratedInitializer(_class2$2.prototype, "_symmetric", [serializable$5], function () {
+      }(Component), (_initializer$2 = applyDecoratedInitializer(_class2$2.prototype, "_symmetric", [serializable$4], function () {
         return true;
       })), _class2$2)) || _class$4) || _class$4) || _class$4); exports({ SafeArea: SafeArea, SafeAreaComponent: SafeArea });
       legacyCC.SafeArea = SafeArea;
 
       var _dec$3, _dec2$1, _dec3$1, _dec4, _dec5, _class$3, _class2$1, _initializer$1, _initializer2$1, _initializer3, _initializer4, _initializer5;
-      var UICoordinateTracker = (_dec$3 = ccclass$6('cc.UICoordinateTracker'), _dec2$1 = executionOrder$1(110), _dec3$1 = type$3(Node$1), _dec4 = type$3(Camera), _dec5 = type$3([EventHandler]), _dec$3(_class$3 = _dec2$1(_class$3 = (_class2$1 = function (_Component) {
+      var UICoordinateTracker = (_dec$3 = ccclass$5('cc.UICoordinateTracker'), _dec2$1 = executionOrder(110), _dec3$1 = type$2(Node$1), _dec4 = type$2(Camera), _dec5 = type$2([EventHandler]), _dec$3(_class$3 = _dec2$1(_class$3 = (_class2$1 = function (_Component) {
         _inheritsLoose(UICoordinateTracker, _Component);
         function UICoordinateTracker() {
           var _this;
@@ -104650,15 +103125,15 @@ System.register([], (function (exports, module) {
           }
         }]);
         return UICoordinateTracker;
-      }(Component), (_applyDecoratedDescriptor(_class2$1.prototype, "target", [_dec3$1], Object.getOwnPropertyDescriptor(_class2$1.prototype, "target"), _class2$1.prototype), _applyDecoratedDescriptor(_class2$1.prototype, "camera", [_dec4], Object.getOwnPropertyDescriptor(_class2$1.prototype, "camera"), _class2$1.prototype), _initializer$1 = applyDecoratedInitializer(_class2$1.prototype, "syncEvents", [_dec5, serializable$5], function () {
+      }(Component), (_applyDecoratedDescriptor(_class2$1.prototype, "target", [_dec3$1], Object.getOwnPropertyDescriptor(_class2$1.prototype, "target"), _class2$1.prototype), _applyDecoratedDescriptor(_class2$1.prototype, "camera", [_dec4], Object.getOwnPropertyDescriptor(_class2$1.prototype, "camera"), _class2$1.prototype), _initializer$1 = applyDecoratedInitializer(_class2$1.prototype, "syncEvents", [_dec5, serializable$4], function () {
         return [];
-      }), _initializer2$1 = applyDecoratedInitializer(_class2$1.prototype, "_target", [serializable$5], function () {
+      }), _initializer2$1 = applyDecoratedInitializer(_class2$1.prototype, "_target", [serializable$4], function () {
         return null;
-      }), _initializer3 = applyDecoratedInitializer(_class2$1.prototype, "_camera", [serializable$5], function () {
+      }), _initializer3 = applyDecoratedInitializer(_class2$1.prototype, "_camera", [serializable$4], function () {
         return null;
-      }), _initializer4 = applyDecoratedInitializer(_class2$1.prototype, "_useScale", [serializable$5], function () {
+      }), _initializer4 = applyDecoratedInitializer(_class2$1.prototype, "_useScale", [serializable$4], function () {
         return true;
-      }), _initializer5 = applyDecoratedInitializer(_class2$1.prototype, "_distance", [serializable$5], function () {
+      }), _initializer5 = applyDecoratedInitializer(_class2$1.prototype, "_distance", [serializable$4], function () {
         return 1;
       })), _class2$1)) || _class$3) || _class$3); exports({ UICoordinateTracker: UICoordinateTracker, UICoordinateTrackerComponent: UICoordinateTracker });
 
@@ -104667,7 +103142,7 @@ System.register([], (function (exports, module) {
       function stopPropagation(event) {
         event.propagationStopped = true;
       }
-      var BlockInputEvents = (_dec$2 = ccclass$6('cc.BlockInputEvents'), _dec$2(_class$2 = function (_Component) {
+      var BlockInputEvents = (_dec$2 = ccclass$5('cc.BlockInputEvents'), _dec$2(_class$2 = function (_Component) {
         _inheritsLoose(BlockInputEvents, _Component);
         function BlockInputEvents() {
           return _Component.apply(this, arguments) || this;
@@ -104687,7 +103162,7 @@ System.register([], (function (exports, module) {
       }(Component)) || _class$2); exports({ BlockInputEvents: BlockInputEvents, BlockInputEventsComponent: BlockInputEvents });
 
       var _dec$1, _dec2, _dec3, _class$1, _class2, _initializer, _initializer2;
-      var SubContextView = exports("SubContextView", (_dec$1 = ccclass$6('cc.SubContextView'), _dec2 = executionOrder$1(110), _dec3 = requireComponent(UITransform), _dec$1(_class$1 = _dec2(_class$1 = _dec3(_class$1 = (_class2 = function (_Component) {
+      var SubContextView = exports("SubContextView", (_dec$1 = ccclass$5('cc.SubContextView'), _dec2 = executionOrder(110), _dec3 = requireComponent(UITransform), _dec$1(_class$1 = _dec2(_class$1 = _dec3(_class$1 = (_class2 = function (_Component) {
         _inheritsLoose(SubContextView, _Component);
         function SubContextView() {
           var _this;
@@ -104857,9 +103332,9 @@ System.register([], (function (exports, module) {
           }
         }]);
         return SubContextView;
-      }(Component), (_initializer = applyDecoratedInitializer(_class2.prototype, "_fps", [serializable$5], function () {
+      }(Component), (_initializer = applyDecoratedInitializer(_class2.prototype, "_fps", [serializable$4], function () {
         return 60;
-      }), _initializer2 = applyDecoratedInitializer(_class2.prototype, "_designResolutionSize", [serializable$5], function () {
+      }), _initializer2 = applyDecoratedInitializer(_class2.prototype, "_designResolutionSize", [serializable$4], function () {
         return new Size$1(640, 960);
       })), _class2)) || _class$1) || _class$1) || _class$1));
       legacyCC.SubContextView = SubContextView;
@@ -104943,7 +103418,7 @@ System.register([], (function (exports, module) {
       });
 
       var _dec, _class;
-      var UIReorderComponent = exports("UIReorderComponent", (_dec = ccclass$6('cc.UIReorderComponent'), _dec(_class = function UIReorderComponent() {
+      var UIReorderComponent = exports("UIReorderComponent", (_dec = ccclass$5('cc.UIReorderComponent'), _dec(_class = function UIReorderComponent() {
         warnID(1408, 'UIReorderComponent');
       }) || _class));
       legacyCC.UIReorderComponent = UIReorderComponent;

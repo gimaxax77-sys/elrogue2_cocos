@@ -788,7 +788,7 @@ System.register("chunks:///_virtual/balance.ts", ['cc', './relics.ts', './pets.t
 });
 
 System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './gameState.ts', './units.ts', './stats.ts', './formation.ts', './campaign.ts', './character.ts', './gacha.ts'], function (exports) {
-  var _inheritsLoose, _createForOfIteratorHelperLoose, cclegacy, _decorator, view, ResolutionPolicy, Label, UITransform, Color, Node, Layers, Sprite, resources, SpriteFrame, Component, createGameState, createUnit, computePower, autoFormation, formationSummary, CAMPAIGN_CHAPTER_COUNT, fightChapter, chapterReward, levelUp, summonOne, summonMulti, PULL_COST;
+  var _inheritsLoose, _createForOfIteratorHelperLoose, cclegacy, _decorator, view, ResolutionPolicy, Node, Layers, Graphics, Color, Label, UITransform, Sprite, resources, SpriteFrame, Component, createGameState, createUnit, computePower, autoFormation, formationSummary, CAMPAIGN_CHAPTER_COUNT, fightChapter, chapterReward, levelUp, summonOne, summonMulti, PULL_COST;
   return {
     setters: [function (module) {
       _inheritsLoose = module.inheritsLoose;
@@ -798,11 +798,12 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
       _decorator = module._decorator;
       view = module.view;
       ResolutionPolicy = module.ResolutionPolicy;
-      Label = module.Label;
-      UITransform = module.UITransform;
-      Color = module.Color;
       Node = module.Node;
       Layers = module.Layers;
+      Graphics = module.Graphics;
+      Color = module.Color;
+      Label = module.Label;
+      UITransform = module.UITransform;
       Sprite = module.Sprite;
       resources = module.resources;
       SpriteFrame = module.SpriteFrame;
@@ -887,6 +888,7 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
         _proto.start = function start() {
           // 세로형으로 강제(엔진 기본은 1280×720 가로). 씬/설정 안 건드리고 코드로 전환.
           view.setDesignResolutionSize(DESIGN_W, DESIGN_H, ResolutionPolicy.SHOW_ALL);
+          this.drawBackground();
           this.state = createGameState({
             units: [],
             party: []
@@ -919,6 +921,27 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
             return u.uid;
           });
           autoFormation(this.state);
+        }
+
+        // ── 배경 — 검은 기본 배경 대신 짙은 남색 + 상/하단 띠 ──────────
+        ;
+
+        _proto.drawBackground = function drawBackground() {
+          var bg = new Node('bg');
+          bg.layer = Layers.Enum.UI_2D;
+          bg.parent = this.node;
+          bg.setPosition(0, 0, 0);
+          var g = bg.addComponent(Graphics);
+          // 전체 배경(짙은 남색)
+          g.fillColor = new Color(20, 24, 42, 255);
+          g.rect(-HALF_W, -640, HALF_W * 2, 1280);
+          g.fill();
+          // 상단 재화바 띠 + 하단 탭바 띠(살짝 밝게 → 영역 구분)
+          g.fillColor = new Color(34, 40, 68, 255);
+          g.rect(-HALF_W, 552, HALF_W * 2, 88);
+          g.fill();
+          g.rect(-HALF_W, -640, HALF_W * 2, 92);
+          g.fill();
         }
 
         // ── 상단 재화바 ─────────────────────────────────────────────
