@@ -788,7 +788,7 @@ System.register("chunks:///_virtual/balance.ts", ['cc', './relics.ts', './pets.t
 });
 
 System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './gameState.ts', './units.ts', './stats.ts', './formation.ts', './campaign.ts', './character.ts', './gacha.ts'], function (exports) {
-  var _inheritsLoose, _createForOfIteratorHelperLoose, cclegacy, _decorator, view, ResolutionPolicy, Node, Layers, Graphics, Color, Label, UITransform, Sprite, resources, SpriteFrame, Component, createGameState, createUnit, computePower, autoFormation, formationSummary, CAMPAIGN_CHAPTER_COUNT, fightChapter, chapterReward, levelUp, summonOne, summonMulti, PULL_COST;
+  var _inheritsLoose, _createForOfIteratorHelperLoose, cclegacy, _decorator, view, ResolutionPolicy, Node, Layers, Graphics, Color, Label, UITransform, Sprite, resources, SpriteFrame, Rect, Size, Component, createGameState, createUnit, computePower, autoFormation, formationSummary, CAMPAIGN_CHAPTER_COUNT, fightChapter, chapterReward, levelUp, summonOne, summonMulti, PULL_COST;
   return {
     setters: [function (module) {
       _inheritsLoose = module.inheritsLoose;
@@ -807,6 +807,8 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
       Sprite = module.Sprite;
       resources = module.resources;
       SpriteFrame = module.SpriteFrame;
+      Rect = module.Rect;
+      Size = module.Size;
       Component = module.Component;
     }, function (module) {
       createGameState = module.createGameState;
@@ -1261,8 +1263,15 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
           tf.setContentSize(size, size);
           var sp = node.addComponent(Sprite);
           sp.sizeMode = Sprite.SizeMode.CUSTOM;
+          // idle1.png는 가로 스프라이트 스트립(예: 512×128 = 4프레임). 첫 프레임(정사각)만 잘라 표시.
           resources.load("art/hero/" + artKey + "/idle1/spriteFrame", SpriteFrame, function (err, frame) {
-            if (!err && frame && sp.isValid) sp.spriteFrame = frame;
+            if (err || !frame || !sp.isValid) return;
+            var tex = frame.texture;
+            var h = tex.height || 128; // 프레임 높이 = 정사각 한 변
+            var fr = frame.clone();
+            fr.rect = new Rect(0, 0, h, h); // 첫 프레임만
+            fr.originalSize = new Size(h, h);
+            sp.spriteFrame = fr;
           });
           return node;
         };
