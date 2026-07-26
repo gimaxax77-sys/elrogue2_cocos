@@ -787,8 +787,8 @@ System.register("chunks:///_virtual/balance.ts", ['cc', './relics.ts', './pets.t
   };
 });
 
-System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './gameState.ts', './save.ts', './units.ts', './stats.ts', './formation.ts', './campaign.ts', './character.ts', './gacha.ts'], function (exports) {
-  var _inheritsLoose, _createForOfIteratorHelperLoose, cclegacy, _decorator, view, ResolutionPolicy, sys, Node, Layers, Graphics, Color, Label, UITransform, Sprite, resources, SpriteFrame, Rect, Size, Component, createGameState, deserialize, serialize, createUnit, computePower, autoFormation, formationSummary, CAMPAIGN_CHAPTER_COUNT, fightChapter, chapterReward, levelUp, summonOne, summonMulti, PULL_COST;
+System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './gameState.ts', './save.ts', './units.ts', './stats.ts', './formation.ts', './campaign.ts', './character.ts', './gacha.ts', './spriteAnim.ts'], function (exports) {
+  var _inheritsLoose, _createForOfIteratorHelperLoose, cclegacy, _decorator, view, ResolutionPolicy, sys, Node, Layers, Graphics, Color, Label, UITransform, Sprite, resources, SpriteFrame, Rect, Size, Component, createGameState, deserialize, serialize, createUnit, computePower, autoFormation, formationSummary, CAMPAIGN_CHAPTER_COUNT, fightChapter, chapterReward, levelUp, summonOne, summonMulti, PULL_COST, frameCount;
   return {
     setters: [function (module) {
       _inheritsLoose = module.inheritsLoose;
@@ -833,6 +833,8 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
       summonOne = module.summonOne;
       summonMulti = module.summonMulti;
       PULL_COST = module.PULL_COST;
+    }, function (module) {
+      frameCount = module.frameCount;
     }],
     execute: function () {
       var _dec, _class;
@@ -869,7 +871,11 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
       var HALF_W = 360;
       var TOP_Y = 600; // 재화바 y(상단)
       var TAB_Y = -600; // 탭바 y(하단)
-      var IDLE_FRAME_SEC = 0.125; // idle 스프라이트 재생 간격(8fps)
+      // idle 한 호흡에 걸리는 시간. 자산 프레임 수가 4~21로 제각각이라 fps를 고정하면
+      // 캐릭터마다 호흡 속도가 달라진다 → 고정하는 건 fps가 아니라 이 루프 시간.
+      var IDLE_LOOP_SEC = 0.8;
+      // 캐릭터별 주기 ±15%. 주기가 똑같으면 여럿이 군무처럼 동시에 들썩인다.
+      var IDLE_JITTER = 0.15;
       var SAVE_KEY = 'elrogue2.save'; // localStorage 키(세이브 1슬롯)
 
       var BattleDemo = exports('BattleDemo', (_dec = ccclass('BattleDemo'), _dec(_class = /*#__PURE__*/function (_Component) {
@@ -1303,17 +1309,22 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
             if (err || !frame || !sp.isValid) return;
             var tex = frame.texture;
             var h = tex.height || 128; // 프레임 높이 = 정사각 한 변
-            var count = Math.max(1, Math.floor((tex.width || h) / h)); // 스트립 프레임 수(4~21, 자산마다 다름)
+            var count = frameCount(tex.width || h, h); // 스트립 프레임 수(4~21, 자산마다 다름)
             var frames = [];
-            for (var _i = 0; _i < count; _i++) {
+            for (var k = 0; k < count; k++) {
               var fr = frame.clone();
-              fr.rect = new Rect(_i * h, 0, h, h);
+              fr.rect = new Rect(k * h, 0, h, h);
               fr.originalSize = new Size(h, h);
               frames.push(fr);
             }
-            sp.spriteFrame = frames[0];
-            if (count === 1) return;
-            var i = 0;
+            if (count === 1) {
+              sp.spriteFrame = frames[0];
+              return;
+            }
+            // 시작 프레임과 주기를 캐릭터마다 흩뿌린다 → 나란히 서도 동시에 호흡하지 않는다.
+            var i = Math.floor(Math.random() * count);
+            sp.spriteFrame = frames[i];
+            var loopSec = IDLE_LOOP_SEC * (1 + (Math.random() * 2 - 1) * IDLE_JITTER);
             // 탭 전환 시 select()의 unscheduleAllCallbacks()가 정리. 로드가 전환 뒤 끝난 경우는 isValid로 자체 정지.
             var step = function step() {
               if (!sp.isValid) {
@@ -1323,7 +1334,7 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
               i = (i + 1) % count;
               sp.spriteFrame = frames[i];
             };
-            _this8.schedule(step, IDLE_FRAME_SEC);
+            _this8.schedule(step, loopSec / count);
           });
           return node;
         };
