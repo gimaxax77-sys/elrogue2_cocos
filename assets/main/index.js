@@ -787,8 +787,8 @@ System.register("chunks:///_virtual/balance.ts", ['cc', './relics.ts', './pets.t
   };
 });
 
-System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './gameState.ts', './units.ts', './stats.ts', './formation.ts', './campaign.ts', './character.ts', './gacha.ts'], function (exports) {
-  var _inheritsLoose, _createForOfIteratorHelperLoose, cclegacy, _decorator, view, ResolutionPolicy, Node, Layers, Graphics, Color, Label, UITransform, Sprite, resources, SpriteFrame, Rect, Size, Component, createGameState, createUnit, computePower, autoFormation, formationSummary, CAMPAIGN_CHAPTER_COUNT, fightChapter, chapterReward, levelUp, summonOne, summonMulti, PULL_COST;
+System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHelpers.js', 'cc', './gameState.ts', './save.ts', './units.ts', './stats.ts', './formation.ts', './campaign.ts', './character.ts', './gacha.ts'], function (exports) {
+  var _inheritsLoose, _createForOfIteratorHelperLoose, cclegacy, _decorator, view, ResolutionPolicy, sys, Node, Layers, Graphics, Color, Label, UITransform, Sprite, resources, SpriteFrame, Rect, Size, Component, createGameState, deserialize, serialize, createUnit, computePower, autoFormation, formationSummary, CAMPAIGN_CHAPTER_COUNT, fightChapter, chapterReward, levelUp, summonOne, summonMulti, PULL_COST;
   return {
     setters: [function (module) {
       _inheritsLoose = module.inheritsLoose;
@@ -798,6 +798,7 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
       _decorator = module._decorator;
       view = module.view;
       ResolutionPolicy = module.ResolutionPolicy;
+      sys = module.sys;
       Node = module.Node;
       Layers = module.Layers;
       Graphics = module.Graphics;
@@ -812,6 +813,9 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
       Component = module.Component;
     }, function (module) {
       createGameState = module.createGameState;
+    }, function (module) {
+      deserialize = module.deserialize;
+      serialize = module.serialize;
     }, function (module) {
       createUnit = module.createUnit;
     }, function (module) {
@@ -866,6 +870,7 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
       var TOP_Y = 600; // 재화바 y(상단)
       var TAB_Y = -600; // 탭바 y(하단)
       var IDLE_FRAME_SEC = 0.125; // idle 스프라이트 재생 간격(8fps)
+      var SAVE_KEY = 'elrogue2.save'; // localStorage 키(세이브 1슬롯)
 
       var BattleDemo = exports('BattleDemo', (_dec = ccclass('BattleDemo'), _dec(_class = /*#__PURE__*/function (_Component) {
         _inheritsLoose(BattleDemo, _Component);
@@ -889,29 +894,48 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
         var _proto = BattleDemo.prototype;
         // 방치 자동전투 on/off
         _proto.start = function start() {
+          var _this$loadState;
           // 세로형으로 강제(엔진 기본은 1280×720 가로). 씬/설정 안 건드리고 코드로 전환.
           view.setDesignResolutionSize(DESIGN_W, DESIGN_H, ResolutionPolicy.SHOW_ALL);
           this.drawBackground();
-          this.state = createGameState({
-            units: [],
-            party: []
-          });
-          this.setupParty();
-          // 데모용 초기 재화(방치 루프가 gem/summon을 채우고, 로스터 레벨업이 growth를 쓴다)
-          this.state.wallet.currency = 1200;
-          this.state.wallet.growth = 500000;
-          this.state.wallet.summon = 3;
-          this.state.wallet.gem = 15;
+          this.state = (_this$loadState = this.loadState()) != null ? _this$loadState : this.newState();
           this.drawTopBar();
           this.drawTabBar();
           this.content = this.makeNode('content', 0, 0);
           this.select(this.active);
         }
 
-        // 방치·전투가 공유하는 데모 파티 1회 구성(레벨 넉넉히 → 초반 챕터 자동 진행)
+        // ── 세이브 ───────────────────────────────────────────────────
+        // 저장된 진행 복원. 없거나 깨졌으면 null → 신규 상태로 시작(deserialize가
+        // 버전불일치·파싱실패에 null을 주므로 폰에서 갱신 후에도 멈추지 않는다).
         ;
 
-        _proto.setupParty = function setupParty() {
+        _proto.loadState = function loadState() {
+          try {
+            var raw = sys.localStorage.getItem(SAVE_KEY);
+            return raw ? deserialize(raw) : null;
+          } catch (_unused) {
+            return null;
+          }
+        }
+
+        // 상태를 바꾼 직후 호출(챕터 클리어·레벨업·소환). 자동 주기 저장은 두지 않는다.
+        ;
+
+        _proto.persist = function persist() {
+          try {
+            sys.localStorage.setItem(SAVE_KEY, serialize(this.state));
+          } catch (_unused2) {/* 저장 실패는 무시(진행은 계속) */}
+        }
+
+        // 신규 시작 상태 — 데모 파티(레벨 넉넉히 → 초반 챕터 자동 진행) + 초기 재화
+        ;
+
+        _proto.newState = function newState() {
+          var state = createGameState({
+            units: [],
+            party: []
+          });
           var units = PARTY.map(function (p) {
             return createUnit(p.arch, {
               level: 40,
@@ -919,11 +943,16 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
               characterId: p.id
             });
           });
-          this.state.units = units;
-          this.state.party = units.map(function (u) {
+          state.units = units;
+          state.party = units.map(function (u) {
             return u.uid;
           });
-          autoFormation(this.state);
+          autoFormation(state);
+          state.wallet.currency = 1200;
+          state.wallet.growth = 500000;
+          state.wallet.summon = 3;
+          state.wallet.gem = 15;
+          return state;
         }
 
         // ── 배경 — 검은 기본 배경 대신 짙은 남색 + 상/하단 띠 ──────────
@@ -1061,6 +1090,7 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
               pushLog("\u2705 \uCC55\uD130 " + (cleared + 1) + " \uD074\uB9AC\uC5B4  +\uC82C" + r.reward.gem + " +\uC18C\uD658" + r.reward.summon);
               _this4.refreshWallet();
               setStatus('⚔ 승리!');
+              _this4.persist();
             } else {
               var _r$margin;
               pushLog("\u2716 \uCC55\uD130 " + (cleared + 1) + " \uB3C4\uC804 \uC2E4\uD328 (\uACA9\uCC28 " + Math.round((_r$margin = r.margin) != null ? _r$margin : 0) + ")");
@@ -1137,6 +1167,7 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
               if (r.ok) {
                 update();
                 _this6.refreshWallet();
+                _this6.persist();
               } else {
                 power.getComponent(Label).string = "\u2694 " + computePower(u) + "  \xB7 " + r.reason;
               }
@@ -1168,6 +1199,7 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
             result.getComponent(Label).string = "\uD83C\uDF89 [" + r.rarity + "] " + ((_r$characterId = r.characterId) != null ? _r$characterId : r.archetype) + "\n\uB85C\uC2A4\uD130\uC5D0 \uD569\uB958! (\uBCF4\uC720 " + _this7.state.units.length + "\uC885)";
             result.getComponent(Label).color = grade(r.rarity);
             _this7.refreshWallet();
+            _this7.persist();
           };
           var showMulti = function showMulti(rs) {
             if (!rs.ok) {
@@ -1192,6 +1224,7 @@ System.register("chunks:///_virtual/BattleDemo.ts", ['./rollupPluginModLoBabelHe
             result.getComponent(Label).string = "10\uC5F0\uCC28 \uACB0\uACFC\n" + summary + "\n(\uBCF4\uC720 " + _this7.state.units.length + "\uC885)";
             result.getComponent(Label).color = grade(best);
             _this7.refreshWallet();
+            _this7.persist();
           };
           this.makeButton("1\uD68C \uC18C\uD658 (\uC18C\uD658 " + one + ")", 0, 340, c, function () {
             return showOne(summonOne(_this7.state));
